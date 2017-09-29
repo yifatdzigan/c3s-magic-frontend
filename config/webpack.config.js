@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const project = require('./project.config');
 const debug = require('debug')('app:config:webpack');
 const WebpackStrip = require('strip-loader');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const __DEV__ = project.globals.__DEV__;
 const __PROD__ = project.globals.__PROD__;
@@ -68,10 +67,7 @@ webpackConfig.plugins = [
     minify   : {
       collapseWhitespace : true
     }
-  }),
-  new CopyWebpackPlugin([
-    { from: 'src/static/' }
-  ])
+  })
 ];
 
 if (__DEV__) {

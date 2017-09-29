@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
+import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card, Form, FormGroup, FormControl, ControlLabel } from 'reactstrap';
 
 class RenderProcesses extends Component {
   renderProcess (process) {
@@ -49,7 +49,59 @@ export default class KNMIClimpExpCorrelate extends Component {
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
-      inputb: 20
+      inputb: 20,
+      inputs: {
+  "netcdf_source1": {
+    "default": "/usr/people/mihajlov/climexp/DATA/cru_ts3.22.1901.2013.pre.dat.nc",
+    "abstract": "application/netcdf",
+    "identifier": "netcdf_source1",
+    "values": null,
+    "title": "Copy input: Input 1 netCDF opendap."
+  },
+  "netcdf_source2": {
+    "default": "/usr/people/mihajlov/climexp/DATA/nino3.nc",
+    "abstract": "application/netcdf",
+    "identifier": "netcdf_source2",
+    "values": null,
+    "title": "Copy input: Input 2 netCDF opendap."
+  },
+  "ratio": {
+    "default": "1:12",
+    "identifier": "ratio",
+    "values": null,
+    "title": "Ratio"
+  },
+  "netcdf_target": {
+    "default": "out.nc",
+    "identifier": "netcdf_target",
+    "values": null,
+    "title": "Output netCDF."
+  },
+  "average": {
+    "default": "ave",
+    "identifier": "average",
+    "values": null,
+    "title": "Average"
+  },
+  "tags": {
+    "default": "c3s-422-Lot2",
+    "identifier": "tags",
+    "values": null,
+    "title": "User Defined Tags CLIPC user tags."
+  },
+  "frequency": {
+    "default": "mon",
+    "identifier": "frequency",
+    "values": null,
+    "title": "Frequency"
+  },
+  "var": {
+    "default": "3",
+    "identifier": "var",
+    "values": null,
+    "title": "var"
+  }
+}
     };
   }
 
@@ -68,23 +120,26 @@ export default class KNMIClimpExpCorrelate extends Component {
   wrangleClicked (id) {
     const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
 
-    let dataInputs =
-      'inputCSVPath=ExportOngevalsData.csv;' +
-      'metaCSVPath=metaDataCsv.json;' +
-      'dataURL=http%3A%2F%2Fopendap.knmi.nl%2Fknmi%2Fthredds%2FdodsC%2FDATALAB%2Fhackathon%2FradarFullWholeData.nc;' +
-      'dataVariables=image1_image_data;' +
-      'limit=10';
+    let dataInputs = '';
+    Object.keys(this.state.inputs).map(
+      (key, value2) => {
+        if (dataInputs.length > 0) {
+          dataInputs += ';';
+        }
+        dataInputs += this.state.inputs[key].identifier + '=' + this.state.inputs[key].default;
+      }
+    );
 
-    dispatch(actions.startWPSExecute(domain, accessToken, 'wrangleProcess',
+    dispatch(actions.startWPSExecute(domain, accessToken, 'climexp',
       dataInputs,
       nrOfStartedProcesses));
   };
 
-  calculateClicked () {
-    const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-    dispatch(actions.startWPSExecute(domain, accessToken, 'binaryoperatorfornumbers_10sec',
-      '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
-  };
+  // calculateClicked () {
+  //   const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
+  //   dispatch(actions.startWPSExecute(domain, accessToken, 'binaryoperatorfornumbers_10sec',
+  //     '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
+  // };
 
   handleChange (name, value) {
     console.log(name, value);
@@ -93,33 +148,53 @@ export default class KNMIClimpExpCorrelate extends Component {
     });
   };
 
+  handleWPSInputChange (name, value) {
+    console.log(name, value);
+    let inputs = Object.assign({}, this.state.inputs);
+    inputs[name]['default'] = value;
+    this.setState({
+      inputs:inputs
+    });
+  };
+
   render () {
-    const { accessToken, nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
+    const { accessToken, runningProcesses } = this.props;
+
+    if (!accessToken) {
+      return (<div>Not signed in.</div>);
+    }
+
+    console.log(this.state.inputs);
     return (
       <div className='MainViewport'>
-        <h1>Correlate with a time series</h1>
-        <p><Button id='wrangleButton' onClick={() => { this.wrangleClicked('wrangleProcess'); }}>Wrangle!</Button></p>
+        <h1>Correlate with a time series!</h1>
+        <span>Your accessToken6 = {accessToken}</span>
+        <div className='WPSCalculatorForm'>
+          { Object.keys(this.state.inputs).map(
+            (key, value2) => {
+              let value = this.state.inputs[key];
+              console.log(value);
+              console.log(value.identifier);
+              if (!value.identifier || !value.title) {
+                return (<span>bla</span>);
+              }
+              console.log(key, value2, value.identifier);
+              return (
+                <Row>
+                  <Col componentClass={ControlLabel}>
+                    {value.title}
+                  </Col>
+                  <Col>
+                    <Input onChange={(event) => { this.handleWPSInputChange(value.identifier, event.target.value); }} value={value.default} />
+                  </Col>
+                </Row>
+              );
+            })
+          }
+        </div>
         <Row>
-          <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col>
-          <Col xs='2'>
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret >
-                { this.state.dropDownValue }
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('add'); }}>add</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('divide'); }}>divide</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('substract'); }}>substract</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('multiply'); }}>multiply</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
-          </Col>
-          <Col xs='2'><Input onChange={(event) => { this.handleChange('inputb', event.target.value); }} value={this.state.inputb} /></Col>
-          <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.calculateClicked(); }}>Calculate</Button></Col>
+          <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Correlate</Button></Col>
         </Row>
-        <p>nrOfStartedProcesses: {nrOfStartedProcesses}</p>
-        <p>nrOfFailedProcesses: {nrOfFailedProcesses}</p>
-        <p>nrOfCompletedProcesses: {nrOfCompletedProcesses}</p>
         <RenderProcesses runningProcesses={runningProcesses} />
       </div>);
   }
