@@ -5,7 +5,7 @@ import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownIt
 
 class RenderProcesses extends Component {
   renderProcess (process) {
-    // console.log(process);
+    console.log(process);
     let value = '-';
     try {
       value = process.result.ExecuteResponse.ProcessOutputs.Output.Data.LiteralData.value;

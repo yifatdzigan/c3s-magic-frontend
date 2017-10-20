@@ -7,14 +7,14 @@ class BaseLayout extends Component {
   render () {
     const { header, mainContent } = this.props;
     return (
-      <Container fluid>
-        {header || 'Oops'}
-        <Row className='show-grid scrollAreaPageWidth'>
-          <div className='page-layout__viewport'>
-            {mainContent}
-          </div>
+      <div className='innerContainer'>
+        <Row className='Header' tag='header'>
+          {header || 'Oops'}
         </Row>
-      </Container>
+        <Row className='mainSection' style={{ height:'inherit' }} >
+          {mainContent}
+        </Row>
+      </div>
     );
   }
 }

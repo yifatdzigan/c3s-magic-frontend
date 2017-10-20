@@ -26,7 +26,7 @@ export default class TitleComponent extends Component {
     var { pathname } = location;
 
     return (
-      <div>
+      <div className='TitleComponent'>
         <Navbar inverse >
           <Row className='navbar-header-c3s'>
             <Col className='welcomeSign'>

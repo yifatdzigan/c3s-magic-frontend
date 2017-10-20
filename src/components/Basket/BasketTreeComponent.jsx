@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Treebeard, decorators } from 'react-treebeard';
 import PropTypes from 'prop-types';
 import treeBeardStyling from '../../styles/stylingBasket/stylingBasket';
-import { Button } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 import ScrollArea from 'react-scrollbar';
 import PreviewComponent from '../PreviewComponent';
 import { withRouter } from 'react-router';
@@ -137,35 +137,39 @@ class BasketTreeComponent extends Component {
     };
 
     return (
-      <div>
-        <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
-          {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
-          <Treebeard
-            data={this.props.data}
-            onToggle={this.onToggle}
-            style={treeBeardStyling}
-            decorators={decorators}
-          />
-        </ScrollArea>
-        <hr /> {/* Dividing line, for dividing the tree and the buttons. */}
-        <Button className='basketButton' onClick={() => this.props.router.push('/upload')}>Upload</Button>
-        <Button className='basketButton' onClick={() => this.previewFile()}
-          disabled={this.isPreviewButtonDisabled()}>Preview</Button>
-        <Button className='basketButton' onClick={() => this.goToWrangler()}
-          disabled={this.isWrangleButtonDisabled()}>Wrangle</Button>
-        <Button className='basketButton' onClick={() => this.downloadBasketItem()}
-          disabled={this.isDownloadButtonDisabled()}>Download</Button>
-        <Button className='basketButton' onClick={() => this.deleteBasketItem()}>Delete</Button>
-        <hr />
-        {
-          this.state.previewActive
-          ? <PreviewComponent
-            file={this.state.cursor ? this.state.cursor.httpurl : ''}
-            tableClassName='previewTable'
-            componentClassName='previewComponent'
-            numberOfLinesDisplayed={30} />
-          : null
-        }
+      <div className='basketTreeContainer'>
+        <Row className='basketTreeContainerMainSection'>
+          <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
+            {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
+            <Treebeard
+              data={this.props.data}
+              onToggle={this.onToggle}
+              style={treeBeardStyling}
+              decorators={decorators}
+            />
+          </ScrollArea>
+        </Row>
+        <Row style={{ minHeight: '60px' }}>
+          <hr /> {/* Dividing line, for dividing the tree and the buttons. */}
+          <Button className='basketButton' onClick={() => this.props.router.push('/upload')}>Upload</Button>
+          <Button className='basketButton' onClick={() => this.previewFile()}
+            disabled={this.isPreviewButtonDisabled()}>Preview</Button>
+          <Button className='basketButton' onClick={() => this.goToWrangler()}
+            disabled={this.isWrangleButtonDisabled()}>Wrangle</Button>
+          <Button className='basketButton' onClick={() => this.downloadBasketItem()}
+            disabled={this.isDownloadButtonDisabled()}>Download</Button>
+          <Button className='basketButton' onClick={() => this.deleteBasketItem()}>Delete</Button>
+          <hr />
+          {
+            this.state.previewActive
+            ? <PreviewComponent
+              file={this.state.cursor ? this.state.cursor.httpurl : ''}
+              tableClassName='previewTable'
+              componentClassName='previewComponent'
+              numberOfLinesDisplayed={30} />
+            : null
+          }
+        </Row>
       </div>
     );
   }

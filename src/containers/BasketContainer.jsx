@@ -7,7 +7,7 @@ export default class BasketContainer extends Component {
     const { accessToken, dispatch, actions, basket, hasFetched,
       domain, selectedCSVFileForWrangling, wpsActions } = this.props;
     return (
-      <div>
+      <div className='BasketContainer'>
         <BasketComponent accessToken={accessToken}
           dispatch={dispatch} actions={actions} basket={basket} hasFetched={hasFetched}
           domain={domain} selectedCSVFileForWrangling={selectedCSVFileForWrangling}

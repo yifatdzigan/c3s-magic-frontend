@@ -39,14 +39,7 @@ export default class BasketComponent extends Component {
     const { basket, dispatch, actions, accessToken, wpsActions } = this.props;
     if (!basket || accessToken === null) return (<div className='MainViewport'>Unable to get basket, are you signed in?</div>);
     return (
-      <div className='MainViewport'>
-        {
-        basket
-        ? <BasketTreeComponent data={basket.jsonResponse} dispatch={dispatch}
-          actions={actions} accessToken={accessToken} wpsActions={wpsActions} />
-        : <div />
-        }
-      </div>
+      basket ? <BasketTreeComponent data={basket.jsonResponse} dispatch={dispatch} actions={actions} accessToken={accessToken} wpsActions={wpsActions} /> : <div />
     );
   }
 }
