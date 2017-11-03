@@ -21,6 +21,9 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "validate": "npm ls"
   },
+  "nyc": {
+    "check-coverage": false
+  },
   "betterScripts": {
     "compile": {
       "command": "node bin/compile",

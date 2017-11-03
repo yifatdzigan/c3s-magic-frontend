@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { config } from 'static/config.js';
-import { Col, Row, Navbar, NavbarBrand, NavItem, Nav, NavLink, Button } from 'reactstrap';
+import { config } from '../static/config.js';
+import { Col, Row, Navbar, NavItem, Nav, NavLink, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import MSPLogo from '../components/assets/dsp_logo.svg';
+// import MSPLogo from '../components/assets/dsp_logo.svg';
 import Icon from 'react-fa';
 
 export default class TitleComponent extends Component {
@@ -120,13 +120,13 @@ export default class TitleComponent extends Component {
 }
 
 TitleComponent.propTypes = {
-  accessToken: PropTypes.string,
-  emailAddress: PropTypes.string,
+  // accessToken: PropTypes.string,
+  // emailAddress: PropTypes.string,
   clientId: PropTypes.string,
-  domain: PropTypes.string,
+  // domain: PropTypes.string,
   location: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
-  actions: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  routes: PropTypes.array
+  actions: PropTypes.object.isRequired
+  // location: PropTypes.object.isRequired,
+  // routes: PropTypes.array
 };

@@ -92,6 +92,7 @@ export const doWPSExecuteCall = function (wps, accessToken, statusCallBack, exec
       console.log('Exception in WPS Process');
       return;
     }
+    console.log(executeResponse);
     let statusLocation = executeResponse.ExecuteResponse.attr.statusLocation;
     let processIsRunning = true;
     let pol = () => {
