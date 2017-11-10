@@ -3,14 +3,16 @@ import React, { Component } from 'react';
 import { Col, Row, Card } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { config } from 'static/config.js';
-export default class WPSWranglerDemo extends Component {
+export default class AccountComponent extends Component {
   constructor () {
+    console.log('constructing AccountComponent');
     super();
     this.state = {
     };
   }
 
   render () {
+    console.log('Render AccountComponent');
     const { accessToken, emailAddress, clientId, domain } = this.props;
     const { backendHost } = config;
     return (
@@ -47,7 +49,7 @@ export default class WPSWranglerDemo extends Component {
   }
 }
 
-WPSWranglerDemo.propTypes = {
+AccountComponent.propTypes = {
   accessToken: PropTypes.string,
   emailAddress: PropTypes.string,
   clientId: PropTypes.string,

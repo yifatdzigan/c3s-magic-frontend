@@ -33,9 +33,9 @@ export default class TitleComponent extends Component {
               <p style={{ marginLeft:'auto', marginRight:'auto', marginTop:'10px' }}>
                 <a href='http://www.copernicus.eu/'>
                   <img alt='' src='/sites/default/files/copernicus-logo.png' style={{ marginRight: '40px', width: '187px', height: '69px' }} />
-                  <a href='/'>
-                    <img alt='' src='/sites/default/files/repository/website-structure/c3s-logo.png' style={{ width: '236px', height: '69px' }} />
-                  </a>
+                </a>
+                <a href='/'>
+                  <img alt='' src='/sites/default/files/repository/website-structure/c3s-logo.png' style={{ width: '236px', height: '69px' }} />
                 </a>
               </p>
             </Col>
@@ -53,6 +53,18 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} ><Icon name='home' /> Home</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href='#/metrics/home' active={pathname === '/metrics/home'} ><Icon name='' /> Metrics</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/multimodelproducts/home' active={pathname === '/multimodelproducts/home'} ><Icon name='' /> Multi Model Products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/timeseries/home' active={pathname === '/timeseries/home'} ><Icon name='' /> Timeseries</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/tailoredproducts/home' active={pathname === '/tailoredproducts/home'} ><Icon name='' /> Tailored products</NavLink>
+            </NavItem>
+            { /* <NavItem>
               <NavLink href='#/demo' active={pathname === '/demo'}>WPS Demo</NavLink>
             </NavItem>
             <NavItem>
@@ -63,7 +75,7 @@ export default class TitleComponent extends Component {
             </NavItem>
             <NavItem>
               <NavLink href='#/joblist' active={pathname === '/joblist'}><Icon name='list' /> Joblist</NavLink>
-            </NavItem>
+            </NavItem> */ }
             <NavItem>
               <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
             </NavItem>

@@ -1,9 +1,8 @@
 
 import React, { Component } from 'react';
 import { Col, Row } from 'reactstrap';
-import PropTypes from 'prop-types';
 
-export default class WPSWranglerDemo extends Component {
+export default class WP1Home extends Component {
   constructor () {
     super();
     this.state = {
@@ -11,13 +10,12 @@ export default class WPSWranglerDemo extends Component {
   }
 
   render () {
-    const { accessToken, emailAddress, clientId, domain } = this.props;
     return (
       <div className='MainViewport'>
         <Row>
           <Col xs='auto'>
             <div className='text'>
-              <h1>Welcome to the C3S Magic Science Platform!</h1>
+              <h1>[WP1] Welcome to the C3S Magic Science Platform!</h1>
               <p>Currently, the platform is meant to help you in the process of preparing your own data for analysis.
               The platform allows you to enrich your dataset with meteorological variables available in KNMI datasets.</p>
               <p>If your dataset is in CSV (comma-separated values) format and your cases contain a <strong>time</strong> variable and a <strong>spatial </strong>
@@ -27,17 +25,31 @@ export default class WPSWranglerDemo extends Component {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col >
-          </Col>
-        </Row>
       </div>);
   }
 }
 
-WPSWranglerDemo.propTypes = {
-  accessToken: PropTypes.string,
-  emailAddress: PropTypes.string,
-  clientId: PropTypes.string,
-  domain: PropTypes.string
-};
+/*
+
+WP4 - Metrics
+ - Mean state
+ - Climate variability
+ - Extreme events
+
+WP5 - MMP
+ - Sub ensemble selections
+ - Future climate
+
+WP6 - Timeseries
+ - Indices on area averages
+ - Spatio temporal analyses
+ - Correlations
+
+ WP7 - Tailored products
+ - User consultations
+ - Coastal areas
+ - Water / Hydrology
+ - Energy
+ - Insurance
+
+ */
