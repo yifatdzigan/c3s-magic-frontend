@@ -1,27 +1,56 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
-import PropTypes from 'prop-types';
+import { Container } from 'reactstrap';
 import '../../styles/core.scss';
+import PropTypes from 'prop-types';
+
+const browserFullScreenRequests = [
+  'mozRequestFullScreen',
+  'msRequestFullscreen',
+  'webkitRequestFullScreen'
+];
 
 class BaseLayout extends Component {
+  constructor (props) {
+    super(props);
+    this.elementToFullScreen = this.elementToFullScreen.bind(this);
+  }
+
+  elementToFullScreen (evt) {
+    if (evt.key === 'F11') {
+      evt.preventDefault();
+      const fullScreenPath = 'full_screen';
+      const tag = this.props.routes.some((routeElmt) => routeElmt.path === fullScreenPath) ? 'body' : 'main';
+      const elmt = document.querySelector(tag);
+      let requestFullScreenFunc = elmt.requestFullscreen;
+      if (!requestFullScreenFunc) {
+        browserFullScreenRequests.forEach((request) => {
+          requestFullScreenFunc = requestFullScreenFunc || elmt[request];
+        });
+      }
+      if (typeof requestFullScreenFunc !== 'undefined') {
+        requestFullScreenFunc.call(elmt);
+      }
+    }
+  }
+
+  componentWillMount () {
+    document.addEventListener('keydown', this.elementToFullScreen);
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.elementToFullScreen);
+  }
+
   render () {
-    const { header, mainContent } = this.props;
     return (
-      <div className='innerContainer'>
-        <Row className='Header' tag='header'>
-          {header || 'Oops'}
-        </Row>
-        <Row className='mainSection' style={{ height:'inherit' }} >
-          {mainContent}
-        </Row>
-      </div>
+      <Container fluid>
+        {this.props.children}
+      </Container>
     );
   }
 }
-
 BaseLayout.propTypes = {
-  header: PropTypes.element,
-  mainContent: PropTypes.element
+  routes: PropTypes.array
 };
 
 export default BaseLayout;

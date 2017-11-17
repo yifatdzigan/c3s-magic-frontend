@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const project = require('./project.config');
 const debug = require('debug')('app:config:webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const __DEV__ = project.globals.__DEV__;
 const __PROD__ = project.globals.__PROD__;
 
@@ -52,7 +51,7 @@ webpackConfig.externals = {};
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true;
 webpackConfig.externals['react/lib/ReactContext'] = true;
 webpackConfig.externals['react/addons'] = true;
-
+// webpackConfig.externals['config'] = JSON.stringify(require('./config.json'));
 // ------------------------------------
 // Plugins
 // ------------------------------------
@@ -73,7 +72,8 @@ webpackConfig.plugins = [
   ]),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'commons'
-  })
+  }),
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 ];
 
 if (__DEV__) {
@@ -89,6 +89,7 @@ if (__DEV__) {
     new webpack.optimize.UglifyJsPlugin({
       parallel: true,
       uglifyOptions: {
+        ecma: 6,
         compress: {
           unused: true,
           dead_code: true,
@@ -115,7 +116,7 @@ if (__DEV__) {
 webpackConfig.module.rules = [
   {
     test: /\.(js|jsx)$/,
-    exclude: /(node_modules|static)/,
+    exclude: /(node_modules)/,
     loader: 'babel-loader',
     options: project.compiler_babel,
     enforce: 'pre'

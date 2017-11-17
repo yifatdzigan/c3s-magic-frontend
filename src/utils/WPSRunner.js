@@ -141,9 +141,12 @@ export const doWPSExecuteCall = function (wps, accessToken, statusCallBack, exec
 };
 
 const doXML2JSONCallWithToken = function (urlToXMLService, accessToken, callback, failure) {
-  let encodedWPSURL = encodeURIComponent(urlToXMLService + '&key=' + accessToken);
+  // let encodedWPSURL = encodeURIComponent(urlToXMLService + '&key=' + accessToken);
+  let encodedWPSURL = encodeURIComponent(urlToXMLService);
   let requestURL = config.backendHost + '/xml2json?request=' + encodedWPSURL + '&rand=' + Math.random();
-  fetch(requestURL)
+  fetch(requestURL, {
+    credentials: 'include'
+  })
   .then(function (response) {
     let a = response.json();
     return a;

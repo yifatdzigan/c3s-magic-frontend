@@ -99,7 +99,6 @@ export default class WPSWranglerDemo extends Component {
       <div className='MainViewport'>
         <h1>WPS Demo</h1>
         <p>{accessToken}</p>
-        <p><Button id='wrangleButton' onClick={() => { this.wrangleClicked('wrangleProcess'); }}>Wrangle!</Button></p>
         <Row>
           <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col>
           <Col xs='2'>
