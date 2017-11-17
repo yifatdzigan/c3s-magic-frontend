@@ -64,16 +64,16 @@ export default class TitleComponent extends Component {
             <NavItem>
               <NavLink href='#/tailoredproducts/home' active={pathname === '/tailoredproducts/home'} ><Icon name='' /> Tailored products</NavLink>
             </NavItem>
-            { /* <NavItem>
-              <NavLink href='#/demo' active={pathname === '/demo'}>WPS Demo</NavLink>
-            </NavItem>
             <NavItem>
-              <NavLink href='#/knmi_climexp_correlate' active={pathname === '/knmi_climexp_correlate'}><Icon name='gears' /> Correlate</NavLink>
+              <NavLink href='#/demo' active={pathname === '/demo'}><Icon name='gears' /> Demo</NavLink>
             </NavItem>
+            { /* <NavItem>
+              <NavLink href='#/knmi_climexp_correlate' active={pathname === '/knmi_climexp_correlate'}><Icon name='gears' /> Correlate</NavLink>
+            </NavItem> */ }
             <NavItem>
               <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>
             </NavItem>
-            <NavItem>
+            { /* <NavItem>
               <NavLink href='#/joblist' active={pathname === '/joblist'}><Icon name='list' /> Joblist</NavLink>
             </NavItem> */ }
             <NavItem>

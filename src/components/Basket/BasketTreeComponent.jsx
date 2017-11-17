@@ -5,6 +5,7 @@ import treeBeardStyling from '../../styles/stylingBasket/stylingBasket';
 import { Button, Row } from 'reactstrap';
 import ScrollArea from 'react-scrollbar';
 import PreviewComponent from '../PreviewComponent';
+import DapPreview from '../DapPreview';
 import { withRouter } from 'react-router';
 import Moment from 'react-moment';
 
@@ -18,12 +19,45 @@ class BasketTreeComponent extends Component {
     this.onToggle = this.onToggle.bind(this);
     this.deleteBasketItem = this.deleteBasketItem.bind(this);
     this.previewFile = this.previewFile.bind(this);
+    decorators.Header = (properties) => {
+      if (!properties.node.type === 'NODE') return;
+      const style = properties.style;
+      const iconType = properties.node.children ? 'folder' : 'file-text';
+      const iconClass = `fa fa-${iconType}`;
+      const iconStyle = { marginRight: '5px' };
+
+      if (properties.node.type === 'LEAF') {
+        return (
+          <div style={{ verticalAlign: 'top', color: '#000000' }}>
+            <div style={style.title}>
+              <div>
+                <i className={iconClass} style={iconStyle} />
+
+                <span>{properties.node.name}</span>
+                <Moment format='MMMM Do YYYY, HH:mm:ss' style={{ float: 'right' }}>{properties.node.date}</Moment>
+              </div>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div style={style.base}>
+            <div style={style.title}>
+              <div>
+                {properties.node.name}
+              </div>
+            </div>
+          </div>
+        );
+      }
+    };
   }
 
   /**
    * What to do when the treebeard is toggled.
    **/
   onToggle (node, toggled) {
+    console.log(node, toggled);
     if (this.state.cursor) {
       this.state.cursor.active = false;
     }
@@ -36,22 +70,24 @@ class BasketTreeComponent extends Component {
 
     /* When toggled, preview is always not active. */
     this.setState({ cursor: node, previewActive: false });
+
+    if (node.dapurl) {
+      this.setState({ dapurl : node.dapurl });
+    }
   }
 
   /**
    * Deleting an item by dispatching an action.
    **/
   deleteBasketItem () {
-    const { dispatch, actions, accessToken } = this.props;
-    if (!accessToken) return;
+    const { dispatch, actions } = this.props;
 
     /* Getting the path of the currently selected item. */
     let pathItem = this.state.cursor.id;
     const pathItemWithoutGoogleId =
       pathItem.substring(pathItem.indexOf('/'), pathItem.length);
 
-    dispatch(actions.deleteBasketItem({ accessToken: accessToken,
-      path: pathItemWithoutGoogleId }));
+    dispatch(actions.deleteBasketItem({ path: pathItemWithoutGoogleId }));
   }
 
   /**
@@ -96,45 +132,20 @@ class BasketTreeComponent extends Component {
     return this.state.cursor.type === 'NODE';
   }
 
-  goToWrangler () {
-    if (!this.state.cursor) return;
+  // goToWrangler () {
+  //   if (!this.state.cursor) return;
 
-    const { dispatch, wpsActions } = this.props;
+  //   const { dispatch } = this.props;
 
-    let fullId = this.state.cursor.id;
-    const idWithoutGoogleId = fullId.substring(fullId.indexOf('/') + 1);
+  //   let fullId = this.state.cursor.id;
+  //   const idWithoutGoogleId = fullId.substring(fullId.indexOf('/') + 1);
 
-    dispatch(wpsActions.setCSVFileToWrangle({ fileName: idWithoutGoogleId }));
-    this.props.router.push('/wrangler');
-  }
+  //   dispatch(wpsActions.setCSVFileToWrangle({ fileName: idWithoutGoogleId }));
+  //   this.props.router.push('/wrangler');
+  // }
 
   render () {
-    decorators.Header = (props) => {
-      if (!props.node.type === 'NODE') return;
-      const style = props.style;
-      if (props.node.type === 'LEAF') {
-        return (
-          <div style={{ verticalAlign: 'top', color: '#000000' }}>
-            <div style={style.title}>
-              <div>
-                <span>{props.node.name}</span>
-                <Moment format='MMMM Do YYYY, HH:mm:ss' style={{ float: 'right' }}>{props.node.date}</Moment>
-              </div>
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div style={style.base}>
-            <div style={style.title}>
-              <div>
-                {props.node.name}
-              </div>
-            </div>
-          </div>
-        );
-      }
-    };
+
 
     return (
       <div className='basketTreeContainer'>
@@ -154,8 +165,6 @@ class BasketTreeComponent extends Component {
           <Button className='basketButton' onClick={() => this.props.router.push('/upload')}>Upload</Button>
           <Button className='basketButton' onClick={() => this.previewFile()}
             disabled={this.isPreviewButtonDisabled()}>Preview</Button>
-          <Button className='basketButton' onClick={() => this.goToWrangler()}
-            disabled={this.isWrangleButtonDisabled()}>Wrangle</Button>
           <Button className='basketButton' onClick={() => this.downloadBasketItem()}
             disabled={this.isDownloadButtonDisabled()}>Download</Button>
           <Button className='basketButton' onClick={() => this.deleteBasketItem()}>Delete</Button>
@@ -170,17 +179,21 @@ class BasketTreeComponent extends Component {
             : null
           }
         </Row>
+        { this.state.dapurl
+          ? <Row>
+            <DapPreview dapurl={this.state.dapurl} closeCallback={() => { this.setState({ dapurl:null }); }} />
+          </Row> : null
+        }
       </div>
     );
   }
 }
 
 BasketTreeComponent.propTypes = {
-  wpsActions: PropTypes.object.isRequired,
+  // wpsActions: PropTypes.object.isRequired,
   data: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
-  accessToken: PropTypes.string.isRequired,
   router: PropTypes.object
 };
 

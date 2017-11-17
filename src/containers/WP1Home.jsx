@@ -15,7 +15,7 @@ export default class WP1Home extends Component {
         <Row>
           <Col xs='auto'>
             <div className='text'>
-              <h1>[WP1] Welcome to the C3S Magic Science Platform!</h1>
+              <h1>Welcome to the C3S Magic Science Platform</h1>
               <p>Currently, the platform is meant to help you in the process of preparing your own data for analysis.
               The platform allows you to enrich your dataset with meteorological variables available in KNMI datasets.</p>
               <p>If your dataset is in CSV (comma-separated values) format and your cases contain a <strong>time</strong> variable and a <strong>spatial </strong>

@@ -2,7 +2,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { connect } from 'react-redux';
-import actions from '../actions/userActions';
+import useractions from '../actions/userActions';
+import wpsactions from '../actions/WPSActions';
+import basketactions from '../actions/basketActions';
 import BaseLayout from '../layouts/BaseLayout';
 import DoubleNavBarLayout from '../layouts/DoubleNavBarLayout';
 import NavBarLayout from '../layouts/NavBarLayout';
@@ -66,6 +68,9 @@ import TitleComponent from '../containers/TitleComponent';
 import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
 
+import WPSWranglerDemo from '../components/WPSWranglerDemo';
+import BasketComponent from '../components/Basket/BasketComponent';
+
 const mapStateToTitleProps = (state) => {
   return { ...state.userState };
 };
@@ -73,7 +78,29 @@ const mapStateToTitleProps = (state) => {
 const mapDispatchToTitleProps = function (dispatch) {
   return ({
     dispatch: dispatch,
-    actions: actions
+    actions: useractions
+  });
+};
+
+const mapStateToWPSProps = (state) => {
+  return { ...state.WPSState, ...state.userState };
+};
+
+const mapDispatchToWPSProps = function (dispatch) {
+  return ({
+    dispatch: dispatch,
+    actions: wpsactions
+  });
+};
+
+const mapStateToBasketProps = (state) => {
+  return { ...state.basketState, ...state.userState, accessToken: state.userState.accessToken };
+};
+
+const mapDispatchToBasketProps = function (dispatch) {
+  return ({
+    dispatch: dispatch,
+    actions: basketactions
   });
 };
 
@@ -87,12 +114,21 @@ export const createRoutes = (store) => {
   const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
+  const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
+  const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
+
   return (
 
     <Route path='/' component={BaseLayout} title='C3S-Magic'>
       <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wp1home} />
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
+      </Route>
+      <Route path='demo' title='Demo'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
+      </Route>
+      <Route path='basket' title='Basket'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
       </Route>
       <Route path='metrics' title='Metrics'>
         <Route path='home'>

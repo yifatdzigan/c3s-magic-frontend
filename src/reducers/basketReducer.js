@@ -1,21 +1,39 @@
-import { SET_BASKET_ITEMS, UPDATE_BASKET_ITEMS, DELETE_BASKET_ITEM } from '../constants/basketLabels';
+import { SET_BASKET_ITEMS, UPDATE_BASKET_ITEMS, DELETE_BASKET_ITEM, FETCH_BASKET_ITEMS } from '../constants/basketLabels';
 import { config } from '../static/config.js';
 
 const setBasketItems = (state, payload) => {
+  console.log('fetchBasketItems', payload);
+  return Object.assign({}, state, { basket: payload.basket, isFetching: false, hasFetched: true });
+};
+
+const fetchBasketItems = (state, payload) => {
+  console.log('fetchBasketItems', payload);
+  if (state.isFetching === true) {
+    console.log('Already fetching');
+    return Object.assign({}, state);
+  }
   let result = null;
-  const accessToken = payload.accessToken;
-  fetch(config.adagucServicesHost + '/basket/list?key=' + accessToken)
-    .then((result) => {
-      if (result.ok) {
-        return result.json();
-      } else {
-        return null;
-      }
-    })
-    .then((json) => {
-      result = json;
-    });
-  return Object.assign({}, state, { basket: result, hasFetched: true });
+  fetch(config.backendHost + '/basket/list', {
+    credentials: 'include'
+  })
+  .then((result) => {
+    console.log(result);
+    if (result.ok) {
+      return result.json();
+    } else {
+      return null;
+    }
+  })
+  .then((json) => {
+    console.log(json);
+    result = json;
+    console.log('starting dispatch', payload);
+    if (payload) {
+      payload.dispatch(payload.actions.setBasketItems(result));
+    }
+  });
+
+  return Object.assign({}, state, { isFetching: true, hasFetched: false });
 };
 
 const updateBasket = (state, payload) => {
@@ -28,7 +46,7 @@ const updateBasket = (state, payload) => {
 const deleteBasketItem = (state, payload) => {
   const accessToken = payload.accessToken;
   const path = payload.path;
-  fetch(config.adagucServicesHost + '/basket/remove?key=' + accessToken + '&path=' + path)
+  fetch(config.backendHost + '/basket/remove?key=' + accessToken + '&path=' + path)
   .then((result) => {
     if (result.ok) {
       return result.json();
@@ -46,7 +64,8 @@ const deleteBasketItem = (state, payload) => {
 const ACTION_HANDLERS = {
   [SET_BASKET_ITEMS] : (state, action) => setBasketItems(state, action.payload),
   [UPDATE_BASKET_ITEMS] : (state, action) => updateBasket(state, action.payload),
-  [DELETE_BASKET_ITEM] : (state, action) => deleteBasketItem(state, action.payload)
+  [DELETE_BASKET_ITEM] : (state, action) => deleteBasketItem(state, action.payload),
+  [FETCH_BASKET_ITEMS] : (state, action) => fetchBasketItems(state, action.payload)
 };
 
 // ------------------------------------

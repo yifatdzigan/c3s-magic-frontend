@@ -49,10 +49,10 @@ const config = {
     'element-resize-event',
     'es6-enum',
     'ip',
-    'jquery',
     'lodash.clonedeep',
     'lodash.isempty',
     'lodash.omit',
+    'lyef-switch-button',
     'moment',
     'moment-timezone',
     'popper.js',
@@ -72,7 +72,6 @@ const config = {
     'react-redux',
     'react-router',
     'react-sortable-hoc',
-    'react-switch-button',
     'reactable',
     'reactstrap',
     'reapop',
@@ -83,7 +82,10 @@ const config = {
     'redux-thunk',
     'uuid',
     'validator'
-  ]
+  ],
+  compiler_babel: {
+    presets: ['es2015']
+  }
 };
 
 /************************************************

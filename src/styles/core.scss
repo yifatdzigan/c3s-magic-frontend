@@ -442,3 +442,16 @@ aside, header, main {
   background: gold;
   overflow: auto;;
 }
+
+.my-draggable {
+  padding: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 410px;
+  height: 410px;
+  background-color: #FFF;
+  border: 1px solid #777;
+  -webkit-box-shadow: 3px 3px 30px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 30px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 30px 0px rgba(0,0,0,0.75);
+}
