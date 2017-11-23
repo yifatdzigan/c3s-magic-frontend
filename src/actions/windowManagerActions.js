@@ -1,0 +1,101 @@
+
+/* labels */
+export const WM_SHOW_WINDOW = 'WM_SHOW_WINDOW';
+export const WM_CLOSE_WINDOW = 'WM_CLOSE_WINDOW';
+export const WM_UPDATE_WINDOW = 'WM_UPDATE_WINDOW';
+
+/* Actions */
+const showWindow = (payload) => {
+  console.log('showWindow');
+  return {
+    type: WM_SHOW_WINDOW,
+    payload: payload
+  };
+};
+
+const closeWindow = (payload) => {
+  console.log('closeWindow', payload);
+  return {
+    type: WM_CLOSE_WINDOW,
+    payload: payload
+  };
+};
+
+const updateWindow = (payload) => {
+  return {
+    type: WM_UPDATE_WINDOW,
+    payload: payload
+  };
+};
+
+export const windowManagerActions = {
+  showWindow,
+  closeWindow,
+  updateWindow
+};
+
+/* Reducers */
+
+let openedWindows = 0;
+let zIndex = 200;
+
+const _showWindow = (state, payload) => {
+  console.log('_showWindow', payload);
+  let windows = state.windows.slice();
+  let id = openedWindows++;
+  windows.push({
+    element:payload.component,
+    id: id,
+    title: payload.title,
+    x: 200 + (id % 10) * 20,
+    y: 200 + (id % 10) * 20,
+    w: payload.width || 400,
+    h: payload.height || 400,
+    zIndex: payload.zIndex || zIndex++
+  });
+
+  return Object.assign({}, state, { windows: windows });
+};
+
+const _closeWindow = (state, payload) => {
+  let windows = state.windows.slice();
+  for (let j = 0; j < windows.length; j++) {
+    if (windows[j].id === payload) {
+      windows.splice(j, 1);
+      break;
+    }
+  };
+  return Object.assign({}, state, { windows: windows });
+};
+
+const _updateWindow = (state, payload) => {
+  console.log('_updateWindow', payload);
+  let windows = state.windows.slice();
+  for (let j = 0; j < windows.length; j++) {
+    if (windows[j].id === payload.id) {
+      windows[j].x = payload.updates.x;
+      windows[j].y = payload.updates.y;
+      windows[j].w = payload.updates.w;
+      windows[j].h = payload.updates.h;
+      windows[j].zIndex = zIndex++;
+      console.log(windows[j]);
+      break;
+    }
+  };
+  return Object.assign({}, state, { windows: windows });
+};
+
+const ACTION_HANDLERS = {
+  [WM_SHOW_WINDOW] : (state, action) => _showWindow(state, action.payload),
+  [WM_CLOSE_WINDOW] : (state, action) => _closeWindow(state, action.payload),
+  [WM_UPDATE_WINDOW] : (state, action) => _updateWindow(state, action.payload)
+};
+const initialState = { windows: [] };
+
+export function windowManagerReducer (state = initialState, action) {
+  if (!action) {
+    return state;
+  }
+  const handler = ACTION_HANDLERS[action.type];
+  return handler ? handler(state, action) : state;
+}

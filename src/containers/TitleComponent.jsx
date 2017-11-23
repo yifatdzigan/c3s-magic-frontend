@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { config } from '../static/config.js';
 import { Col, Row, Navbar, NavItem, Nav, NavLink, Button } from 'reactstrap';
+import WindowManager from '../components/WindowManager';
 import PropTypes from 'prop-types';
 // import MSPLogo from '../components/assets/dsp_logo.svg';
 import Icon from 'react-fa';
@@ -24,7 +25,6 @@ export default class TitleComponent extends Component {
   render () {
     const { clientId, location } = this.props;
     var { pathname } = location;
-
     return (
       <div className='TitleComponent'>
         <Navbar inverse >
@@ -106,7 +106,7 @@ export default class TitleComponent extends Component {
         dispatch(actions.setClientId(obj.id));
         dispatch(actions.setEmailAddress(obj.email_address));
         dispatch(actions.setDomain(obj.domain));
-        console.log('DOMAIN SET', obj.domain);
+        console.log('Signed in', obj.domain);
       }
     });
   }
@@ -136,9 +136,5 @@ TitleComponent.propTypes = {
   // emailAddress: PropTypes.string,
   clientId: PropTypes.string,
   // domain: PropTypes.string,
-  location: PropTypes.object,
-  dispatch: PropTypes.func.isRequired,
-  actions: PropTypes.object.isRequired
-  // location: PropTypes.object.isRequired,
-  // routes: PropTypes.array
+  location: PropTypes.object
 };

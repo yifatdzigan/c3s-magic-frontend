@@ -118,7 +118,7 @@ export default class KNMIClimpExpCorrelate extends Component {
   };
 
   wrangleClicked (id) {
-    const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
+    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
 
     let dataInputs = '';
     Object.keys(this.state.inputs).map(
@@ -130,7 +130,7 @@ export default class KNMIClimpExpCorrelate extends Component {
       }
     );
 
-    dispatch(actions.startWPSExecute(domain, accessToken, 'climexp',
+    dispatch(actions.startWPSExecute(domain, 'climexp',
       dataInputs,
       nrOfStartedProcesses));
   };
@@ -158,9 +158,9 @@ export default class KNMIClimpExpCorrelate extends Component {
   };
 
   render () {
-    const { accessToken, runningProcesses } = this.props;
+    const { domain, runningProcesses } = this.props;
 
-    if (!accessToken) {
+    if (!domain) {
       return (<div>Not signed in.</div>);
     }
 
@@ -168,7 +168,7 @@ export default class KNMIClimpExpCorrelate extends Component {
     return (
       <div className='MainViewport'>
         <h1>Correlate with a time series!</h1>
-        <span>Your accessToken6 = {accessToken}</span>
+        <span>Your compute node = {domain}</span>
         <div className='WPSCalculatorForm'>
           { Object.keys(this.state.inputs).map(
             (key, value2) => {
@@ -201,7 +201,6 @@ export default class KNMIClimpExpCorrelate extends Component {
 }
 
 KNMIClimpExpCorrelate.propTypes = {
-  accessToken: PropTypes.string,
   domain: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
