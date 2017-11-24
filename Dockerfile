@@ -10,7 +10,7 @@ RUN npm run deploy:prod
 # Install `serve` to run the application.
 RUN npm install -g serve
 # Set the command to start the node server.
-CMD echo "export const config = { 'backendHost': '${CONTROLLER}', 'adagucServicesHost': '${COMPUTE}' };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
+CMD echo "const config = { 'backendHost': '${CONTROLLER}', 'adagucServicesHost': '${COMPUTE}' };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
 
 EXPOSE 5000
 
