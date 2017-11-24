@@ -36,7 +36,7 @@ export const windowManagerActions = {
 
 /* Reducers */
 
-let openedWindows = 0;
+let openedWindows = 1;
 let zIndex = 200;
 
 const _showWindow = (state, payload) => {
@@ -46,25 +46,33 @@ const _showWindow = (state, payload) => {
   windows.push({
     element:payload.component,
     id: id,
-    title: payload.title,
+    title: payload.title + ' (' + id + ')',
     x: 200 + (id % 10) * 20,
     y: 200 + (id % 10) * 20,
     w: payload.width || 400,
     h: payload.height || 400,
-    zIndex: payload.zIndex || zIndex++
+    zIndex: payload.zIndex || zIndex++,
+    index: windows.length
   });
 
   return Object.assign({}, state, { windows: windows });
 };
 
 const _closeWindow = (state, payload) => {
-  let windows = state.windows.slice();
+  if (payload <= 0) return;
+  let windows = JSON.parse(JSON.stringify(state.windows));
+  // console.log(JSON.stringify(windows));
+  for (let j = 0; j < windows.length; j++) {
+    windows[j].element = state.windows[j].element;
+  }
   for (let j = 0; j < windows.length; j++) {
     if (windows[j].id === payload) {
+      console.log('deleting ', j, windows[j]);
       windows.splice(j, 1);
       break;
     }
   };
+  // console.log(JSON.stringify(windows));
   return Object.assign({}, state, { windows: windows });
 };
 

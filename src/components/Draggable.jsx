@@ -9,8 +9,14 @@ export default class Draggable extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      pos: this.props.initialPos,
-      size: this.props.initialSize,
+      pos: {
+        x: this.props.initialPos.x,
+        y: this.props.initialPos.y
+      },
+      size: {
+        w: this.props.initialSize.w,
+        h: this.props.initialSize.h
+      },
       dragging: false,
       resizing: false,
       rel: null, // position relative to the cursor,
@@ -41,12 +47,16 @@ export default class Draggable extends Component {
       document.removeEventListener('mousemove', this.onMouseMove);
       document.removeEventListener('mouseup', this.onMouseUp);
     }
+    // console.log('componentDidUpdate', props);
   }
 
   componentWillUpdate (props) {
-    if (props.zIndex !== this.state.zIndex) {
-      this.setState({ zIndex:props.zIndex });
-    }
+    // console.log(props);
+    if (props.zIndex !== this.state.zIndex) this.setState({ zIndex:props.zIndex });
+    // if (props.initialPos && this.state.pos) {
+    //   console.log('setX', props.initialPos.x);
+    //   if (props.initialPos.x !== this.state.pos.x) this.setState({ pos: { x: props.initialPos.x } });
+    // }
   }
 
   componentWillUnMount () {
@@ -142,6 +152,7 @@ export default class Draggable extends Component {
       cursor: this.state.cursor,
       zIndex: this.state.zIndex
     });
+    console.log('render index ' + this.props.index);
     return React.DOM.div(
       {
         ref: (element) => { this.divRef = element; },
@@ -166,6 +177,7 @@ export default class Draggable extends Component {
 Draggable.propTypes = {
   children: PropTypes.object,
   zIndex: PropTypes.number,
+  index: PropTypes.number,
   initialPos: PropTypes.object,
   initialSize: PropTypes.object,
   style: PropTypes.object,
