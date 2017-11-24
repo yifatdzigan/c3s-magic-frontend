@@ -1,5 +1,5 @@
-let lconfig = require('../static/config');
-let config = lconfig.config;
+import { getConfig } from '../getConfig';
+let config = getConfig();
 
 export const getKeys = function (obj) {
   if (!Object.keys) {
@@ -44,8 +44,10 @@ export const doWPSCall = function (wps, accessToken, callback, failure) {
 };
 
 export const doWPSExecuteCall = function (wps, accessToken, statusCallBack, executeCompleteCallBack, failure) {
+  console.log('start');
   statusCallBack('Starting WPS', 0);
 
+  /* Returns true if there was an error */
   let handleExceptions = (json) => {
     let percentageComplete = 0;
     let message = null;
@@ -88,6 +90,7 @@ export const doWPSExecuteCall = function (wps, accessToken, statusCallBack, exec
   };
 
   let wpsExecuteCallback = (executeResponse) => {
+    console.log(wpsExecuteCallback);
     if (handleExceptions(executeResponse) === true) {
       console.log('Exception in WPS Process');
       return;
@@ -144,6 +147,7 @@ const doXML2JSONCallWithToken = function (urlToXMLService, accessToken, callback
   // let encodedWPSURL = encodeURIComponent(urlToXMLService + '&key=' + accessToken);
   let encodedWPSURL = encodeURIComponent(urlToXMLService);
   let requestURL = config.backendHost + '/xml2json?request=' + encodedWPSURL + '&rand=' + Math.random();
+  console.log(requestURL);
   fetch(requestURL, {
     credentials: 'include'
   })

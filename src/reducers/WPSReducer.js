@@ -1,7 +1,7 @@
 import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_END, START_WPS_EXECUTE_FAILED, WPS_STATUS_UPDATE, WPS_COMPLETED, SET_CSV_FILE_TO_WRANGLE } from '../constants/WPSLabels';
 
 const handleWPSExecute = (state, payload) => {
-  console.log('reducer handleWPSExecute');
+  console.log('reducer handleWPSExecute', payload);
   let newRunningProcesses = Object.assign({}, state.runningProcesses);
   let nrOfStartedProcesses = state.nrOfStartedProcesses;
   newRunningProcesses[payload.id] = Object.assign({}, Object.assign({}, payload, { isStarted:true, hasFailed: false, isComplete:false, percentageComplete: 0, message:'' }));
@@ -12,12 +12,12 @@ const handleWPSExecute = (state, payload) => {
 };
 
 const handleWPSFailed = (state, payload) => {
-  console.log('reducer handleWPSFailed');
+  console.log('reducer handleWPSFailed', payload);
   return Object.assign({}, state);
 };
 
 const handleWPSEnd = (state, payload) => {
-  console.log('reducer handleWPSEnd');
+  console.log('reducer handleWPSEnd', payload);
   return Object.assign({}, state);
 };
 
