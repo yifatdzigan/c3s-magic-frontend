@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Draggable from './Draggable';
-import { config } from '../static/config.js';
-import { Row, Col, Button } from 'reactstrap';
-import Icon from 'react-fa';
+import { getConfig } from '../getConfig';
+let config = getConfig();
+console.log(config);
+
 export default class BasketComponent extends Component {
   constructor (props) {
     super(props);
