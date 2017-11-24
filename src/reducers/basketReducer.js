@@ -1,5 +1,6 @@
 import { SET_BASKET_ITEMS, UPDATE_BASKET_ITEMS, DELETE_BASKET_ITEM, FETCH_BASKET_ITEMS } from '../constants/basketLabels';
-import { config } from '../static/config.js';
+import { getConfig } from '../getConfig';
+let config = getConfig();
 
 const setBasketItems = (state, payload) => {
   console.log('fetchBasketItems', payload);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { config } from '../static/config.js';
+import { getConfig } from '../getConfig';
+let config = getConfig();
+
 import { Col, Row, Navbar, NavItem, Nav, NavLink, Button } from 'reactstrap';
 import WindowManager from '../components/WindowManager';
 import PropTypes from 'prop-types';

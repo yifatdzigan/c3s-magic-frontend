@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import { Col, Row, Card } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { config } from 'static/config.js';
+import { getConfig } from '../getConfig';
+let config = getConfig();
+
 export default class AccountComponent extends Component {
   constructor () {
     console.log('constructing AccountComponent');

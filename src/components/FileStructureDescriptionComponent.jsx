@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { config } from 'static/config.js';
+import { getConfig } from '../getConfig';
+let config = getConfig();
+
 import { Control, Form } from 'react-redux-form';
 import { Button } from 'reactstrap';
 

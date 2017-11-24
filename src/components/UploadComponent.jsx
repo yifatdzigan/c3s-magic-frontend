@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { config } from 'static/config.js';
+import { getConfig } from './getConfig';
+let config = getConfig();
+
 import FileColumnDescriptionComponent from './FileColumnDescriptionComponent';
 import FileStructureDescriptionComponent from './FileStructureDescriptionComponent';
 import PreviewComponent from './PreviewComponent';

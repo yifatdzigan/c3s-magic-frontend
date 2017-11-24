@@ -1,5 +1,5 @@
-
-import { config } from '../static/config.js';
+let lconfig = require('../static/config');
+let config = lconfig.config;
 
 export const getKeys = function (obj) {
   if (!Object.keys) {
