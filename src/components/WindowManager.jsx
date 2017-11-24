@@ -7,19 +7,21 @@ export default class WindowManager extends Component {
     // console.log(this.props);
     // return (<div style={{ border:'3px solid black', display:'block', position:'absolute', zIndex: 1000, width:'100px', height:'100px', left:'100px', right:'100px' }}>WW!</div>);
     const { windows, dispatch, actions } = this.props;
+    // console.log('render', windows);
     return (<div>
       { windows.map((v, i) => {
         return (<Draggable
           className='my-draggable'
           key={i}
+          index={v.index}
           initialPos={{ x: v.x, y:v.y }}
           initialSize={{ w:v.w, h:v.h }}
           zIndex={v.zIndex}
-          title={v.title}
+          title={v.title + v.id}
           closeCallback={() => { dispatch(actions.closeWindow(v.id)); }}
           updateCallback={(updates) => { dispatch(actions.updateWindow({ id: v.id, updates: updates })); }}
           >
-          { v.element }
+          <div>{ v.element }</div>
         </Draggable>);
       })}
     </div>);
