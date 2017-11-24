@@ -66,7 +66,7 @@ export default class WPSWranglerDemo extends Component {
   };
 
   wrangleClicked (id) {
-    const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
+    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
 
     let dataInputs =
       'inputCSVPath=ExportOngevalsData.csv;' +
@@ -75,14 +75,14 @@ export default class WPSWranglerDemo extends Component {
       'dataVariables=image1_image_data;' +
       'limit=10';
 
-    dispatch(actions.startWPSExecute(domain, accessToken, 'wrangleProcess',
+    dispatch(actions.startWPSExecute(domain, 'wrangleProcess',
       dataInputs,
       nrOfStartedProcesses));
   };
 
   calculateClicked () {
-    const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-    dispatch(actions.startWPSExecute(domain, accessToken, 'binaryoperatorfornumbers_10sec',
+    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
+    dispatch(actions.startWPSExecute(domain, 'binaryoperatorfornumbers_10sec',
       '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
   };
 
@@ -94,11 +94,10 @@ export default class WPSWranglerDemo extends Component {
   };
 
   render () {
-    const { accessToken, nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
+    const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
     return (
       <div className='MainViewport'>
         <h1>WPS Demo</h1>
-        <p>{accessToken}</p>
         <Row>
           <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col>
           <Col xs='2'>

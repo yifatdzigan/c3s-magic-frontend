@@ -129,7 +129,7 @@ export default class KNMIClimpExpCorrelate extends Component {
         dataInputs += this.state.inputs[key].identifier + '=' + this.state.inputs[key].default;
       }
     );
-
+    console.log(domain, dataInputs);
     dispatch(actions.startWPSExecute(domain, 'climexp',
       dataInputs,
       nrOfStartedProcesses));

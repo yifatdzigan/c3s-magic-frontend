@@ -39,11 +39,11 @@ export const stripNS = function (currentObj) {
   return newObj;
 };
 
-export const doWPSCall = function (wps, accessToken, callback, failure) {
-  doXML2JSONCallWithToken(wps, accessToken, callback, failure);
+export const doWPSCall = function (wps, callback, failure) {
+  doXML2JSONCallWithToken(wps, callback, failure);
 };
 
-export const doWPSExecuteCall = function (wps, accessToken, statusCallBack, executeCompleteCallBack, failure) {
+export const doWPSExecuteCall = function (wps, statusCallBack, executeCompleteCallBack, failure) {
   console.log('start');
   statusCallBack('Starting WPS', 0);
 
@@ -135,16 +135,16 @@ export const doWPSExecuteCall = function (wps, accessToken, statusCallBack, exec
           statusCallBack(message, percentageComplete);
         }
       };
-      doXML2JSONCallWithToken(statusLocation, accessToken, pollCallBack, failure);
+      doXML2JSONCallWithToken(statusLocation, pollCallBack, failure);
       setTimeout(pol, 300);
     };
     pol();
   };
-  doXML2JSONCallWithToken(wps, accessToken, wpsExecuteCallback, failure);
+  doXML2JSONCallWithToken(wps, wpsExecuteCallback, failure);
 };
 
-const doXML2JSONCallWithToken = function (urlToXMLService, accessToken, callback, failure) {
-  // let encodedWPSURL = encodeURIComponent(urlToXMLService + '&key=' + accessToken);
+const doXML2JSONCallWithToken = function (urlToXMLService, callback, failure) {
+  // let encodedWPSURL = encodeURIComponent(urlToXMLService
   let encodedWPSURL = encodeURIComponent(urlToXMLService);
   let requestURL = config.backendHost + '/xml2json?request=' + encodedWPSURL + '&rand=' + Math.random();
   console.log(requestURL);

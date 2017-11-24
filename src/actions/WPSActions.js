@@ -2,13 +2,12 @@
 import { doWPSExecuteCall } from '../utils/WPSRunner.js';
 import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_FAILED, START_WPS_EXECUTE_END, WPS_STATUS_UPDATE, WPS_COMPLETED, SET_CSV_FILE_TO_WRANGLE } from '../constants/WPSLabels';
 
-const startWPSExecute = (domain, accessToken, identifier, dataInputs, nrOfStartedProcesses) => {
+const startWPSExecute = (domain, identifier, dataInputs, nrOfStartedProcesses) => {
   return (dispatch) => {
     dispatch({
       type: START_WPS_EXECUTE_START,
       payload: {
         id: nrOfStartedProcesses,
-        accessToken: accessToken,
         identifier: identifier,
         dataInputs: dataInputs
       }
@@ -22,7 +21,7 @@ const startWPSExecute = (domain, accessToken, identifier, dataInputs, nrOfStarte
       let executeCompletCallback = (json, processSucceeded) => {
         dispatch({ type: WPS_COMPLETED, payload: { json: json, processSucceeded: processSucceeded, id: nrOfStartedProcesses } });
       };
-      doWPSExecuteCall(wps, accessToken, statusUpdateCallback, executeCompletCallback);
+      doWPSExecuteCall(wps, statusUpdateCallback, executeCompletCallback);
     } catch (e) {
       return dispatch({ type: START_WPS_EXECUTE_FAILED, payload: { error: e, id: nrOfStartedProcesses } });
     }
