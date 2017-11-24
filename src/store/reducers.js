@@ -4,6 +4,7 @@ import WPSReducer from '../reducers/WPSReducer';
 import userReducer from '../reducers/userReducer';
 import uploadReducer from '../reducers/uploadReducer';
 import jobListReducer from '../reducers/jobListReducer';
+import { windowManagerReducer } from '../actions/windowManagerActions';
 import { combineForms } from 'react-redux-form';
 import { initialFileDescription, initialFileStructureDescription } from '../constants/initialFormStates';
 
@@ -16,6 +17,7 @@ export const makeRootReducer = () => {
     basketState: basketReducer,
     uploadState: uploadReducer,
     jobListState: jobListReducer,
+    windowManagerState: windowManagerReducer,
     fileDescriptionState: combineForms({
       fileColumnDescription: initialFileDescription,
       fileStructureDescription: initialFileStructureDescription

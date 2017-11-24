@@ -44,7 +44,9 @@ class BaseLayout extends Component {
   render () {
     return (
       <Container fluid>
+        {this.props.route.windowmanager}
         {this.props.children}
+        }
       </Container>
     );
   }

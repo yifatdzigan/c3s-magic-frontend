@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import useractions from '../actions/userActions';
 import wpsactions from '../actions/WPSActions';
 import basketactions from '../actions/basketActions';
+import { windowManagerActions } from '../actions/windowManagerActions';
 import BaseLayout from '../layouts/BaseLayout';
 import DoubleNavBarLayout from '../layouts/DoubleNavBarLayout';
 import NavBarLayout from '../layouts/NavBarLayout';
@@ -71,14 +72,16 @@ import AccountComponent from '../containers/AccountComponent';
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
 import BasketComponent from '../components/Basket/BasketComponent';
 
+import WindowManager from '../components/WindowManager';
+
 const mapStateToTitleProps = (state) => {
-  return { ...state.userState };
+  return { ...state.userState, ...state.windowManagerState };
 };
 
 const mapDispatchToTitleProps = function (dispatch) {
   return ({
     dispatch: dispatch,
-    actions: useractions
+    actions: { ...useractions, ...windowManagerActions }
   });
 };
 
@@ -100,7 +103,7 @@ const mapStateToBasketProps = (state) => {
 const mapDispatchToBasketProps = function (dispatch) {
   return ({
     dispatch: dispatch,
-    actions: basketactions
+    actions: { ...basketactions, ...windowManagerActions }
   });
 };
 
@@ -116,10 +119,11 @@ export const createRoutes = (store) => {
 
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
+  console.log('createROutes');
+  let ww = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WindowManager));
 
   return (
-
-    <Route path='/' component={BaseLayout} title='C3S-Magic'>
+    <Route path='/' component={BaseLayout} title='C3S-Magic' windowmanager={ww}>
       <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wp1home} />
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
@@ -187,7 +191,7 @@ export const createRoutes = (store) => {
         </Route>
         <Route path='correlations'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={timeseriesmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Correlations))}
+            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(Correlations))}
           />
         </Route>
       </Route>
@@ -224,7 +228,8 @@ export const createRoutes = (store) => {
         </Route>
       </Route>
 
-    </Route>);
+    </Route>
+  );
 };
 
 export default createRoutes;

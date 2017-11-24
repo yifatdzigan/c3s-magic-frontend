@@ -14,9 +14,9 @@ export default class BasketComponent extends Component {
     this.getLayersForService(props.dapurl);
   }
 
-  componentWillReceiveProps (nextprops) {
-    this.getLayersForService(nextprops.dapurl);
-  };
+  // componentWillReceiveProps (nextprops) {
+  //   // this.getLayersForService(nextprops.dapurl);
+  // };
 
   getLayersForService (dapurl) {
     this.setState({ wmsLayers:[] });
@@ -42,7 +42,6 @@ export default class BasketComponent extends Component {
             service:WMSGetCapabiltiesURL,
             name:_layerNames[j],
             onReady: (callbackLayer) => {
-              console.log('Pushing layer ', callbackLayer);
               wmsLayers.push(callbackLayer);
             }
           });
@@ -65,32 +64,20 @@ export default class BasketComponent extends Component {
   render () {
     const { closeCallback } = this.props;
     return (<div>
-      <Draggable initialPos={{ x: 500, y: 200 }}
-        className={'my-draggable'}
-        style={{ padding: '0px', width: '404px', height: '404px' }} >
-        <div style={{ display: 'flex', flexFlow: 'column', height:'100%' }}>
-          <Row style={{ flex:'unset', backgroundColor: 'rgb(148, 19, 51)', color:'white', padding:'4px' }}>
-            <Col>Preview</Col><Button onClick={closeCallback} size='sm' className='float-right'><Icon name='close' /></Button>
-          </Row>
-          <Row style={{ flexGrow:1, overflow:'auto', padding: '0 4px' }}>
-            { this.state.wmsLayers.map((wmjslayer, index) => {
-              var wmsgetmap = wmjslayer.service +
-                    '&service=WMS&request=getmap&format=image/png&layers=' + encodeURIComponent(wmjslayer.name) +
-                    '&width=880&CRS=EPSG:4326&STYLES=&EXCEPTIONS=INIMAGE&showlegend=true';
-              return (
-                <div key={index} style={{ margin:'5px' }}>
-                  <p>{wmjslayer.name} - {wmjslayer.title}</p>
-                  <img
-                    width='380'
-                    height='300'
-                    src={wmsgetmap}
-                  />
-                </div>);
-            })}
-
-          </Row>
-        </div>
-      </Draggable>
+      { this.state.wmsLayers.map((wmjslayer, index) => {
+        var wmsgetmap = wmjslayer.service +
+              '&service=WMS&request=getmap&format=image/png&layers=' + encodeURIComponent(wmjslayer.name) +
+              '&width=880&CRS=EPSG:4326&STYLES=&EXCEPTIONS=INIMAGE&showlegend=true';
+        return (
+          <div key={index} style={{ margin:'5px' }}>
+            <p>{wmjslayer.name} - {wmjslayer.title}</p>
+            <img
+              width='380'
+              height='300'
+              src={wmsgetmap}
+            />
+          </div>);
+      })}
     </div>);
   }
 }

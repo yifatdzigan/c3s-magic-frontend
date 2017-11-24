@@ -8,6 +8,10 @@ import PreviewComponent from '../PreviewComponent';
 import DapPreview from '../DapPreview';
 import { withRouter } from 'react-router';
 import Moment from 'react-moment';
+import Icon from 'react-fa';
+import FileUploadComponent from '../FileUploadComponent';
+
+var fileDownload = require('js-file-download');
 
 class BasketTreeComponent extends Component {
   constructor (props) {
@@ -19,6 +23,9 @@ class BasketTreeComponent extends Component {
     this.onToggle = this.onToggle.bind(this);
     this.deleteBasketItem = this.deleteBasketItem.bind(this);
     this.previewFile = this.previewFile.bind(this);
+    this.reloadBasket = this.reloadBasket.bind(this);
+    this.uploadBasketItem = this.uploadBasketItem.bind(this);
+
     decorators.Header = (properties) => {
       if (!properties.node.type === 'NODE') return;
       const style = properties.style;
@@ -57,7 +64,6 @@ class BasketTreeComponent extends Component {
    * What to do when the treebeard is toggled.
    **/
   onToggle (node, toggled) {
-    console.log(node, toggled);
     if (this.state.cursor) {
       this.state.cursor.active = false;
     }
@@ -72,7 +78,15 @@ class BasketTreeComponent extends Component {
     this.setState({ cursor: node, previewActive: false });
 
     if (node.dapurl) {
-      this.setState({ dapurl : node.dapurl });
+      this.props.dispatch(this.props.actions.showWindow(
+        {
+          component:(<DapPreview dapurl={node.dapurl} />),
+          title:'Preview',
+          dispatch: this.props.dispatch,
+          width:500,
+          height: 460
+        })
+      );
     }
   }
 
@@ -98,7 +112,8 @@ class BasketTreeComponent extends Component {
     if (!this.state.cursor) return;
 
     /* this.state.cursor is always the current selected item in the basket. */
-    window.location = this.state.cursor.httpurl;
+    let link = this.state.cursor.httpurl + '?key=' + this.props.accessToken;
+    fileDownload(link, this.state.cursor.httpurl.substring(this.state.cursor.httpurl.lastIndexOf('/') + 1));
   }
 
   previewFile () {
@@ -144,30 +159,55 @@ class BasketTreeComponent extends Component {
   //   this.props.router.push('/wrangler');
   // }
 
+  reloadBasket () {
+    this.props.dispatch(this.props.actions.fetchBasketItems(this.props));
+  }
+
+  uploadBasketItem () {
+    this.props.dispatch(this.props.actions.showWindow(
+      {
+        component:(<FileUploadComponent dispatch={this.props.dispatch} actions={this.props.actions} domain={this.props.domain} accessToken={this.props.accessToken} />),
+        title:'Upload',
+        dispatch: this.props.dispatch,
+        width: 700,
+        height: 500
+      })
+    );
+  }
+
   render () {
-
-
+    if (this.props.data) {
+      this.props.data.toggled = true;
+      if (this.props.data.children) {
+        this.props.data.children.toggled = true;
+      }
+    }
     return (
+
       <div className='basketTreeContainer'>
         <Row className='basketTreeContainerMainSection'>
           <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
             {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
-            <Treebeard
+            { this.props.data ? <Treebeard
               data={this.props.data}
               onToggle={this.onToggle}
               style={treeBeardStyling}
               decorators={decorators}
-            />
+            /> : <div>Not signed in.</div> }
           </ScrollArea>
         </Row>
-        <Row style={{ minHeight: '60px' }}>
-          <hr /> {/* Dividing line, for dividing the tree and the buttons. */}
-          <Button className='basketButton' onClick={() => this.props.router.push('/upload')}>Upload</Button>
-          <Button className='basketButton' onClick={() => this.previewFile()}
-            disabled={this.isPreviewButtonDisabled()}>Preview</Button>
+
+        <Row>
+          <hr />
+
+          <hr />
+          <Button className='basketButton' onClick={() => this.uploadBasketItem()}><Icon name='upload' /> Upload</Button>
+          { /* <Button className='basketButton' onClick={() => this.previewFile()}
+            disabled={this.isPreviewButtonDisabled()}>Preview</Button>*/ }
           <Button className='basketButton' onClick={() => this.downloadBasketItem()}
-            disabled={this.isDownloadButtonDisabled()}>Download</Button>
-          <Button className='basketButton' onClick={() => this.deleteBasketItem()}>Delete</Button>
+            disabled={this.isDownloadButtonDisabled()}><Icon name='download' /> Download</Button>
+          <Button className='basketButton' onClick={() => this.deleteBasketItem()}><Icon name='recycle' /> Delete</Button>
+          <Button className='basketButton' onClick={() => this.reloadBasket()}><Icon name='refresh' /> Reload</Button>
           <hr />
           {
             this.state.previewActive
@@ -179,11 +219,6 @@ class BasketTreeComponent extends Component {
             : null
           }
         </Row>
-        { this.state.dapurl
-          ? <Row>
-            <DapPreview dapurl={this.state.dapurl} closeCallback={() => { this.setState({ dapurl:null }); }} />
-          </Row> : null
-        }
       </div>
     );
   }
@@ -194,7 +229,9 @@ BasketTreeComponent.propTypes = {
   data: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
-  router: PropTypes.object
+  router: PropTypes.object,
+  accessToken: PropTypes.string,
+  domain: PropTypes.string
 };
 
 export default withRouter(BasketTreeComponent);

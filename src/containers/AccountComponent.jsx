@@ -12,7 +12,6 @@ export default class AccountComponent extends Component {
   }
 
   render () {
-    console.log('Render AccountComponent');
     const { accessToken, emailAddress, clientId, domain } = this.props;
     const { backendHost } = config;
     return (

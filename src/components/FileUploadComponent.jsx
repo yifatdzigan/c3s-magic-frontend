@@ -1,56 +1,54 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { config } from 'static/config.js';
-import { Button, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 export default class UploadComponent extends Component {
-
-  determineFileName() {
-    console.log('Hallo');
-    console.log(this.fileName);
-    return this.fileName;
+  constructor (props) {
+    super(props);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
   }
 
-  handleFileUpload(event) {
+  handleFileUpload (event) {
     event.preventDefault();
-
-    const { backendHost, frontendHost, adagucServicesHost } = config;
-    const { dispatch, actions } = this.props;
+    const { dispatch, actions, domain, accessToken } = this.props;
 
     var fileName = this.fileInput.files[0].name;
 
     var formData = new FormData();
     formData.append('files', this.fileInput.files[0], fileName);
 
-    fetch(adagucServicesHost + '/basket/upload?key=' + this.props.accessToken,
+    let ok = (result) => {
+      console.log(result, this.props);
+      dispatch(actions.fetchBasketItems(this.props));
+    };
+
+    fetch('https://' + domain + '/basket/upload?key=' + accessToken,
       {
-        credentials:'include',
         method: 'POST',
         body: formData
       })
-      .then(function(result) {
+      .then(function (result) {
         console.log(result);
-        dispatch(actions.setUploadedFile(fileName));
+        ok(result);
       });
   }
 
   render () {
     return (
-      <div>
-        <div className='alert alert-info col-6'>
+      <div style={{ width: '100%', height: '100%' }}>
+        <div className='alert alert-info'>
           Please upload your file.
         </div>
-        <form onSubmit={ (event) => this.handleFileUpload(event) }>
+        <form onSubmit={(event) => this.handleFileUpload(event)}>
           <div className='form-group row'>
-            <label className='btn btn-primary btn-file col-3'> Choose file
+            <label className='btn btn-primary btn-file'> Choose file
               <input
                 type='file'
                 style={{ display: 'none' }}
-                onChange={ (event) => { this.fileName = event.target.files[0].name; this.forceUpdate()}}
-                ref={ (input) => { this.fileInput = input; } }/>
+                onChange={(event) => { this.fileName = event.target.files[0].name; this.forceUpdate(); }}
+                ref={(input) => { this.fileInput = input; }} />
             </label>
-            <input type='text' className='form-control col-3 btn-input-text'
-                   value={ this.fileName }/>
+            <input type='text' className='form-control btn-input-text' value={this.fileName} />
           </div>
           <Button color='primary' type='submit'>Upload File</Button>
         </form>
@@ -58,3 +56,9 @@ export default class UploadComponent extends Component {
     );
   }
 }
+UploadComponent.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
+  accessToken: PropTypes.string,
+  domain: PropTypes.string
+};

@@ -76,8 +76,8 @@ body {
 }
 
 .scrollAreaBasket {
-  height: flex 1;
-  width: 60em;
+  height: inherit;
+  width: inherit;
 }
 
 .scrollAreaPageWidth {
@@ -398,6 +398,10 @@ body {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+.Header {
+  display:block;
+}
+
 .WPSCalculatorForm{
   padding:10px;
   margin:10px;
@@ -408,6 +412,7 @@ body {
 .BasketContainer {
   height:inherit;
   width:100%;
+  border:2px solid blue;
 }
 
 aside, header, main {
@@ -416,7 +421,7 @@ aside, header, main {
 
 .innerContainer {
   height: inherit;
-  display: inherit;
+  display: flex;
   flex-direction: inherit;
   flex: inherit;
   padding: inherit;
@@ -431,24 +436,28 @@ aside, header, main {
   margin: 0 0.2rem 0.2rem 0.2rem;
 }
 
+.ViewComponent {
+  height:100%;
+}
+
 .basketTreeContainer {
   display: flex;
   flex-flow: column;
   height:inherit;
+  width:100%;
 }
 
 .basketTreeContainerMainSection {
-  flex: 2 ;
-  background: gold;
-  overflow: auto;;
+  flex: 1 ;
+  background: white;
+  width:inherit;
+  height:inherit;
+  overflow-y:auto;
 }
 
 .my-draggable {
-  padding: 5px;
+  padding: 0px;
   overflow: hidden;
-  cursor: pointer;
-  width: 410px;
-  height: 410px;
   background-color: #FFF;
   border: 1px solid #777;
   -webkit-box-shadow: 3px 3px 30px 0px rgba(0,0,0,0.75);
