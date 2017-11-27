@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import { connect } from 'react-redux';
 import useractions from '../actions/userActions';
 import wpsactions from '../actions/WPSActions';
+import joblistactions from '../actions/jobListActions';
 import basketactions from '../actions/basketActions';
 import { windowManagerActions } from '../actions/windowManagerActions';
 import BaseLayout from '../layouts/BaseLayout';
@@ -21,6 +22,7 @@ WP5 - MMP
  - Home
  - Sub ensemble selections
  - Future climate
+ - Estimates of agreement
 
 WP6 - Timeseries
  - Home
@@ -72,6 +74,8 @@ import AccountComponent from '../containers/AccountComponent';
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
 import BasketComponent from '../components/Basket/BasketComponent';
 
+import JoblistComponent from '../components/JobListComponent';
+
 import WindowManager from '../components/WindowManager';
 
 const mapStateToTitleProps = (state) => {
@@ -97,13 +101,25 @@ const mapDispatchToWPSProps = function (dispatch) {
 };
 
 const mapStateToBasketProps = (state) => {
-  return { ...state.basketState, ...state.userState, accessToken: state.userState.accessToken };
+  return { ...state.basketState, ...state.userState, domain: state.userState.domain };
 };
 
 const mapDispatchToBasketProps = function (dispatch) {
   return ({
     dispatch: dispatch,
     actions: { ...basketactions, ...windowManagerActions }
+  });
+};
+
+const mapStateToJoblistProps = (state) => {
+  console.log(state);
+  return { ...state.JoblistState, ...state.userState };
+};
+
+const mapDispatchToJoblistProps = function (dispatch) {
+  return ({
+    dispatch: dispatch,
+    actions: { ...joblistactions }
   });
 };
 
@@ -119,6 +135,9 @@ export const createRoutes = (store) => {
 
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
+
+  const jobs = React.createElement(connect(mapStateToJoblistProps, mapDispatchToJoblistProps)(JoblistComponent));
+
   console.log('createROutes');
   let ww = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WindowManager));
 
@@ -134,6 +153,10 @@ export const createRoutes = (store) => {
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
       </Route>
+      <Route path='jobs' title='Jobs'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={jobs} />
+      </Route>
+      JoblistComponent
       <Route path='metrics' title='Metrics'>
         <Route path='home'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={metricsmenu}
