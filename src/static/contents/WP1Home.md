@@ -1,13 +1,9 @@
-# Welcome to the C3S Magic Science Platform
+# Welcome to the C3S Magic Portal (C3S 34a Lot2)
 
-Currently, the platform is meant to help you in the process of preparing your own data for analysis.
-The platform allows you to enrich your dataset with meteorological variables available in KNMI datasets.
+The Metrics and Access to Global Indices for Climate Projections (MAGIC) portal provides the functions as requested in the C3S tender “Global Climate Projections: Data Access, product generation and impact of front-line developments” (GCP). It provides solutions that allow to assess GCM projections using well-established metrics, and manipulation tools to allow tailoring the outputs to the users’ needs. 
 
-If your dataset is in CSV (comma-separated values) format and your cases contain a **time**
-variable and a **spatial** one such as a coordinate pair (e.g., longitude and latitude) then
-you are set to use the data preparation functionalities.
+Currently it is a demonstration version of the portal, demonstrating the functionality we have prepared up to November 2017. 
 
-The platform allows you to add a set of meteorological parameters to your cases
-for the time and location specified in each of them.
+In the different you will either find working data analytic functions or sceencast movies showing metrics we will integrate into the portal. 
 
 Have fun!
