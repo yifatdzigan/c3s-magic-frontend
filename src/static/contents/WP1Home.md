@@ -4,6 +4,6 @@ The Metrics and Access to Global Indices for Climate Projections (MAGIC) portal 
 
 Currently it is a demonstration version of the portal, demonstrating the functionality we have prepared up to November 2017. 
 
-In the different you will either find working data analytic functions or sceencast movies showing metrics we will integrate into the portal. 
+In the different menu's you will either find working data analytic functions or sceencast movies showing metrics we will integrate into the portal.
 
-Have fun!
+Have fun! If comments or suggestions, please let us know.
