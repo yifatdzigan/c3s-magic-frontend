@@ -161,13 +161,13 @@ export default class Draggable extends Component {
         onMouseDown: this.onMouseDown
       },
       <div style={{ display: 'flex', flexFlow: 'column', height:'100%' }} className={'my-draggable'} >
-        <Row style={{ flex:'unset', backgroundColor: 'rgb(148, 19, 51)', color:'white', padding:'4px' }}>
+        <Row style={{ flex:'none', backgroundColor: 'rgb(148, 19, 51)', color:'white', padding:'4px' }}>
           <Col style={{ paddingLeft:'4px' }}>{this.props.title}</Col><Button size='sm' className='float-right' onClick={this.props.closeCallback}><Icon name='close' /></Button>
         </Row>
         <Row style={{ flexGrow:1, overflow:'auto', padding: '0 4px' }}>
           {this.props.children}
         </Row>
-        <Row style={{ flex:'unset', backgroundColor: 'rgb(148, 19, 51)', color:'white', padding:'4px' }}>
+        <Row style={{ flex:'none', backgroundColor: 'rgb(148, 19, 51)', color:'white', padding:'4px' }}>
           <Col>&nbsp;</Col><div className='float-right' style={{ paddingRight:'5px' }}><Icon name='hand-grab-o' /></div>
         </Row>
       </div>

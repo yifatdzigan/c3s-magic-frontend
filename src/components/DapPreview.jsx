@@ -67,15 +67,16 @@ export default class BasketComponent extends Component {
       { this.state.wmsLayers.map((wmjslayer, index) => {
         var wmsgetmap = wmjslayer.service +
               '&service=WMS&request=getmap&format=image/png&layers=' + encodeURIComponent(wmjslayer.name) +
-              '&width=880&CRS=EPSG:4326&STYLES=&EXCEPTIONS=INIMAGE&showlegend=true';
+              '&width=600&height=400&CRS=EPSG:4326&STYLES=&EXCEPTIONS=INIMAGE&showlegend=true';
         return (
           <div key={index} style={{ margin:'5px' }}>
             <p>{wmjslayer.name} - {wmjslayer.title}</p>
             <img
-              width='380'
-              height='300'
+              width='480'
+              style={{ border: '1px solid #000', maxWidth:'480px', maxHeight:'300px' }}
               src={wmsgetmap}
             />
+            <hr />
           </div>);
       })}
     </div>);
