@@ -7,3 +7,5 @@ Currently it is a demonstration version of the portal, demonstrating the functio
 In the different menu's you will either find working data analytic functions or sceencast movies showing metrics we will integrate into the portal.
 
 Have fun! If comments or suggestions, please let us know.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UmIWfLD5Q5A" frameborder="0" allowfullscreen></iframe>
