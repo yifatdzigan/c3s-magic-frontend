@@ -187,7 +187,7 @@ export default class KNMIClimpExpCorrelate extends Component {
 
     console.log(this.state.inputs);
     return (
-      <div className='MainViewport'>
+      <div style={{ backgroundColor:'#FFF', width: '100%' }} >
         <h1>Correlate with a time series!</h1>
         <span>Your compute node = {domain}</span>
         <div className='WPSCalculatorForm'>

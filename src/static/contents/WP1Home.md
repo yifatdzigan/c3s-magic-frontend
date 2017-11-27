@@ -11,3 +11,4 @@ The platform allows you to add a set of meteorological parameters to your cases
 for the time and location specified in each of them.
 
 Have fun!
+
