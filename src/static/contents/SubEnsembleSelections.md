@@ -3,4 +3,9 @@
 Demonstration video
 
 # Description
+Through the publicly available s2dverification package, BSC will deliver functions to compute and display the following types of combined model products:
+1. maps (or time series) of (sub-)ensemble mean anomalies for any variable with respect to its mean annual cycle computed on a pre-defined period (e.g. 1971-2000)
+2. maps (or time series) of (sub-)ensemble mean variance over any preselected period and variable of interest
+3. maps of frequency of occurrences, computed over a selection of models and members, of extreme events (such as heat waves, droughts…) defined through quantiles.
+These products will provide an integrated view of the historical evolution and projection of the climate system state in terms of mean state (1), variability (2) and extremes (3), aggregating the multi-model data into a single signal. A selection of models included in the ensemble is allowed by filtering on major drivers such as chosen RCP scenarios, major contributions to global Sea Level Rise, climate sensitivity, metric performance or other dominant features.
 
