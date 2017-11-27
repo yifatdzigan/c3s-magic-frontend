@@ -18,7 +18,10 @@ export default class MarkdownFromFile extends Component {
 
   render () {
     return (
-      <ReactMarkdown source={this.state.text} />
+      <ReactMarkdown
+        source={this.state.text}
+        escapeHtml={false}
+      />
     );
   }
 }

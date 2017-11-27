@@ -9,6 +9,7 @@ export default class WP1Home extends Component {
     return (
       <div className='MainViewport'>
         <Row>
+
           <div className='text'>
             <MarkdownFromFile url={'/contents/WP1Home.md'} />
           </div>

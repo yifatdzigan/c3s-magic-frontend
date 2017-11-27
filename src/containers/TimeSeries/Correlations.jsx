@@ -10,17 +10,15 @@ export default class Correlations extends Component {
     return (
       <div className='MainViewport'>
         <Row className='MainRow'>
-          <Col xs='auto'>
-            <KNMIClimpExpCorrelate
-              dispatch={dispatch}
-              actions={actions}
-              domain={domain}
-              nrOfStartedProcesses={nrOfStartedProcesses}
-              nrOfFailedProcesses={nrOfFailedProcesses}
-              nrOfCompletedProcesses={nrOfCompletedProcesses}
-              runningProcesses={runningProcesses}
-              />
-        </Col>
+          <KNMIClimpExpCorrelate
+            dispatch={dispatch}
+            actions={actions}
+            domain={domain}
+            nrOfStartedProcesses={nrOfStartedProcesses}
+            nrOfFailedProcesses={nrOfFailedProcesses}
+            nrOfCompletedProcesses={nrOfCompletedProcesses}
+            runningProcesses={runningProcesses}
+            />
         </Row>
       </div>);
   }
