@@ -8,4 +8,6 @@ In the different menu's you will either find working data analytic functions or 
 
 Have fun! If comments or suggestions, please let us know.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UmIWfLD5Q5A" frameborder="0" allowfullscreen></iframe>
+<iframe width="700" height="400" src="https://www.youtube.com/embed/UmIWfLD5Q5A" frameborder="0" allowfullscreen></frame>
+
+Magic portal with connection to CP4CDS

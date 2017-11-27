@@ -27,7 +27,7 @@ export default class JobListComponent extends Component {
       return;
     }
 
-    fetch(config.adagucServicesHost + '/joblist/list?key=' + accessToken)
+    fetch('https://' + this.props.domain + '/joblist/list?key=' + accessToken)
     .then((result) => {
       if (result.ok) {
         return result.json();
@@ -50,7 +50,7 @@ export default class JobListComponent extends Component {
   deleteJobListItem () {
     if (!this.state.cursor) return;
     const { accessToken } = this.props;
-    fetch(config.adagucServicesHost + '/joblist/remove?key=' + accessToken +
+    fetch('https://' + this.props.domain + '/joblist/remove?key=' + accessToken +
       '&job=' + this.state.cursor.id)
     .then((result) => {
       if (result.ok) {
@@ -138,7 +138,8 @@ export default class JobListComponent extends Component {
 
 JobListComponent.propTypes = {
   accessToken: PropTypes.string,
-  jobs: PropTypes.Object,
+  domain: PropTypes.string,
+  jobs: PropTypes.Array,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired
 };
