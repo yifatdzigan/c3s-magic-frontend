@@ -281,11 +281,19 @@ body {
 .MainViewport {
     flex: 1;
     flex-direction: column;
-    overflow: hidden;
-    padding:10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*padding:10px;*/
     width:99vw;
     display:block;
     height:inherit;
+      display:block;
+    width:inherit;
+    text-align: justify;
+    text-justify: inter-word;
+    margin:0;
+    background-color:#FFF;
+    padding:10px;
 }
 
 .MainViewport {
@@ -294,7 +302,8 @@ body {
   }
   flex: 1;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .row.MainSection {
   flex: 1;
@@ -311,10 +320,12 @@ body {
   padding-bottom:0.5em;
 }
 
-.text p{
-  max-width:600px;
-}
+.text {
 
+}
+.text p{
+  max-width:700px;
+}
 .card{
   padding:10px;
 }
@@ -396,6 +407,11 @@ body {
   font-size: 16px;
   /*text-transform: uppercase;*/
   font-family: Verdana, Geneva, sans-serif;
+}
+
+.secondNavbar {
+  display:inline-block;
+
 }
 
 .Header {

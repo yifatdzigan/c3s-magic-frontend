@@ -86,13 +86,13 @@ const mapDispatchToTitleProps = function (dispatch) {
 };
 
 const mapStateToWPSProps = (state) => {
-  return { ...state.WPSState, ...state.userState };
+  return { ...state.WPSState, ...state.userState, ...state.windowManagerActions };
 };
 
 const mapDispatchToWPSProps = function (dispatch) {
   return ({
     dispatch: dispatch,
-    actions: wpsactions
+    actions: { ...wpsactions, ...windowManagerActions }
   });
 };
 

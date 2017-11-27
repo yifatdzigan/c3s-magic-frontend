@@ -83,7 +83,7 @@ class BasketTreeComponent extends Component {
           component:(<DapPreview dapurl={node.dapurl} />),
           title:'Preview',
           dispatch: this.props.dispatch,
-          width:500,
+          width:530,
           height: 460
         })
       );

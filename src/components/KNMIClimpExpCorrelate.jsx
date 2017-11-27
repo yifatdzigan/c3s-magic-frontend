@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card, Form, FormGroup, FormControl, ControlLabel } from 'reactstrap';
+import DapPreview from './DapPreview';
 
 class RenderProcesses extends Component {
   renderProcess (process) {
@@ -16,7 +17,7 @@ class RenderProcesses extends Component {
         <Row>
           <Col> <div className='text-center'>{process.percentageComplete} </div><Progress value={process.percentageComplete} /></Col>
           <Col>{process.message}</Col>
-          <Col>{value}</Col>
+          <Col style={{ backgroundColor: '#d9edf7', cursor: 'pointer', color: '#31708f' }} onClick={() => { this.props.resultClickCallback(value); }}>{value}</Col>
         </Row>
       </Card>
     );
@@ -36,7 +37,8 @@ class RenderProcesses extends Component {
 };
 
 RenderProcesses.propTypes = {
-  runningProcesses: PropTypes.object.isRequired
+  runningProcesses: PropTypes.object.isRequired,
+  resultClickCallback: PropTypes.object.isRequired
 };
 
 export default class KNMIClimpExpCorrelate extends Component {
@@ -45,6 +47,7 @@ export default class KNMIClimpExpCorrelate extends Component {
     this.wrangleClicked = this.wrangleClicked.bind(this);
     this.toggle = this.toggle.bind(this);
     this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
+    this.resultClickCallback = this.resultClickCallback.bind(this);
     this.state = {
       dropdownOpen: false,
       dropDownValue: 'add',
@@ -52,14 +55,14 @@ export default class KNMIClimpExpCorrelate extends Component {
       inputb: 20,
       inputs: {
   "netcdf_source1": {
-    "default": "/usr/people/mihajlov/climexp/DATA/cru_ts3.22.1901.2013.pre.dat.nc",
+    "default": "/data/climexp/cru_ts3.22.1901.2013.pre.dat.nc",
     "abstract": "application/netcdf",
     "identifier": "netcdf_source1",
     "values": null,
     "title": "Copy input: Input 1 netCDF opendap."
   },
   "netcdf_source2": {
-    "default": "/usr/people/mihajlov/climexp/DATA/nino3.nc",
+    "default": "/data/climexp/nino3.nc",
     "abstract": "application/netcdf",
     "identifier": "netcdf_source2",
     "values": null,
@@ -157,6 +160,24 @@ export default class KNMIClimpExpCorrelate extends Component {
     });
   };
 
+  resultClickCallback (value) {
+    console.log(value);
+    if (value) {
+      if (value.startsWith('http') && value.indexOf('opendap') !== -1 && value.indexOf('.nc')) {
+        console.log(value);
+        this.props.dispatch(this.props.actions.showWindow(
+          {
+            component:(<DapPreview dapurl={value} />),
+            title:'Preview',
+            dispatch: this.props.dispatch,
+            width:530,
+            height: 460
+          })
+        );
+      }
+    }
+  }
+
   render () {
     const { domain, runningProcesses } = this.props;
 
@@ -173,8 +194,8 @@ export default class KNMIClimpExpCorrelate extends Component {
           { Object.keys(this.state.inputs).map(
             (key, value2) => {
               let value = this.state.inputs[key];
-              console.log(value);
-              console.log(value.identifier);
+              // console.log(value);
+              // console.log(value.identifier);
               if (!value.identifier || !value.title) {
                 return (<span>bla</span>);
               }
@@ -195,7 +216,7 @@ export default class KNMIClimpExpCorrelate extends Component {
         <Row>
           <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Correlate</Button></Col>
         </Row>
-        <RenderProcesses runningProcesses={runningProcesses} />
+        <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
       </div>);
   }
 }
