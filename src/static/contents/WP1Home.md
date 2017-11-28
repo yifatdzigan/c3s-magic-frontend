@@ -8,6 +8,9 @@ In the different menu's you will either find working data analytic functions or 
 
 Have fun! If comments or suggestions, please let us know.
 
+# Demonstration video
+Below a video showing the commection to the C3S CP4CDS (C3S 34a lot1) Global Climate Model data. It show how the data can be searched and accessed through the MAGIC portal.
+
 <iframe width="700" height="400" src="https://www.youtube.com/embed/UmIWfLD5Q5A" frameborder="0" allowfullscreen></frame>
 
 Magic portal with connection to CP4CDS
