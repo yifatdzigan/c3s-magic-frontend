@@ -67,6 +67,9 @@ export default class TitleComponent extends Component {
               <NavLink href='#/tailoredproducts/home' active={pathname === '/tailoredproducts/home'} ><Icon name='' /> Tailored products</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href='#/system/home' active={pathname === '/system/home'} ><Icon name='' /> System</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href='#/demo' active={pathname === '/demo'}><Icon name='gears' /> Demo</NavLink>
             </NavItem>
             { /* <NavItem>

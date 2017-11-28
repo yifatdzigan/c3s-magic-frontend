@@ -22,7 +22,7 @@ WP5 - MMP
  - Home
  - Sub ensemble selections
  - Future climate
- - Estimates of agreement
+ - Estimate of agreement
 
 WP6 - Timeseries
  - Home
@@ -37,6 +37,11 @@ WP6 - Timeseries
  - Water / Hydrology
  - Energy
  - Insurance
+
+ WP3 - System
+ - Home
+ - Provenance
+ - Lot1
 */
 /* Metrics */
 import MetricsMenu from '../containers/Metrics/MetricsMenu';
@@ -50,6 +55,7 @@ import MultiModelProductsMenu from '../containers/MultiModelProducts/MultiModelP
 import MultiModelProductsHome from '../containers/MultiModelProducts/MultiModelProductsHome';
 import SubEnsembleSelections from '../containers/MultiModelProducts/SubEnsembleSelections';
 import FutureClimate from '../containers/MultiModelProducts/FutureClimate';
+import EstimateOfAgreement from '../containers/MultiModelProducts/EstimateOfAgreement';
 
 /* TimeSeries */
 import TimeSeriesMenu from '../containers/TimeSeries/TimeSeriesMenu';
@@ -66,6 +72,12 @@ import Energy from '../containers/TailoredProducts/Energy';
 import Insurance from '../containers/TailoredProducts/Insurance';
 import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
 import UserConsultation from '../containers/TailoredProducts/UserConsultation';
+
+/* System */
+import SystemMenu from '../containers/System/SystemMenu';
+import SystemHome from '../containers/System/SystemHome';
+import Provenance from '../containers/System/Provenance';
+import Data from '../containers/System/Data';
 
 import TitleComponent from '../containers/TitleComponent';
 import WP1Home from '../containers/WP1Home';
@@ -129,6 +141,7 @@ export const createRoutes = (store) => {
   const multimodelproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MultiModelProductsMenu));
   const timeseriesmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TimeSeriesMenu));
   const tailoredproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsMenu));
+  const systemmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SystemMenu));
 
   const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
@@ -195,6 +208,12 @@ export const createRoutes = (store) => {
             viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SubEnsembleSelections))}
           />
         </Route>
+        <Route path='estimateofagreement'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={multimodelproductsmenu}
+            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(EstimateOfAgreement))}
+          />
+        </Route>
+
       </Route>
       <Route path='timeseries' title='Timeseries'>
         <Route path='home'>
@@ -247,6 +266,23 @@ export const createRoutes = (store) => {
         <Route path='waterhydrology'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
             viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WaterHydrology))}
+          />
+        </Route>
+      </Route>
+      <Route path='system' title='System'>
+        <Route path='home'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu}
+            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SystemHome))}
+          />
+        </Route>
+        <Route path='provenance'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu}
+            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Provenance))}
+          />
+        </Route>
+        <Route path='data'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu}
+            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Data))}
           />
         </Route>
       </Route>

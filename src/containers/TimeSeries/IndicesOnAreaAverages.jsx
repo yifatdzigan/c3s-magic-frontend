@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
-import { Col, Row } from 'reactstrap';
+import MarkdownFromFile from '../MarkdownFromFile';
+
+import { Row } from 'reactstrap';
 
 export default class IndicesOnAreaAverages extends Component {
   render () {
     return (
       <div className='MainViewport'>
         <Row>
-          <Col xs='auto'>
-            <div className='text'>
-              <h1>Indices on area averages</h1>
-              <p>...</p>
-            </div>
-          </Col>
+
+          <div className='text'>
+            <MarkdownFromFile url={'/contents/IndicesOnAreaAverages.md'} />
+          </div>
         </Row>
       </div>);
   }

@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
-import { Col, Row } from 'reactstrap';
+import MarkdownFromFile from '../MarkdownFromFile';
+
+import { Row } from 'reactstrap';
 
 export default class UserConsultation extends Component {
   render () {
     return (
       <div className='MainViewport'>
         <Row>
-          <Col xs='auto'>
-            <div className='text'>
-              <h1>User consultation</h1>
-              <p>...</p>
-            </div>
-          </Col>
+
+          <div className='text'>
+            <MarkdownFromFile url={'/contents/UserConsultation.md'} />
+          </div>
         </Row>
       </div>);
   }
