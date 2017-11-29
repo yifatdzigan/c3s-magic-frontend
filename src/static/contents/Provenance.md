@@ -10,7 +10,7 @@ S-ProvFlow combines a set of components in support of Reproducibility as a Servi
 
 RaaS addresses the limitations of grids and computational infrastructures in terms of flexible lineage metadata management services and tools, from its acquisition and representation to its rapid exploitation. 
 
-Data lineage information, stored and accessible through the RaaS layer, can be used at any stage of the cycle. During the usage of experimenting tools and analysis software, for the iterative and preliminary validation developed with the DARE technology, until the production of outreach and summarisation reports. 
+Data lineage information, stored and accessible through the RaaS layer, can be used at any stage of the cycle. During the usage of experimenting tools and analysis software, for the iterative and preliminary validation, until the production of outreach and summarisation reports. 
 
 The system can be deployed using docker technology. Current development branch with full dockerisation available at:
 https://github.com/andrejsim/s-provenance/
