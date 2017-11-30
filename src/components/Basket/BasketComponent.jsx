@@ -14,9 +14,7 @@ export default class BasketComponent extends Component {
   render () {
     const { basket, dispatch, actions, accessToken, domain } = this.props;
     return (
-      <div style={{ width:'100%', height:'inherit' }} >
-        <BasketTreeComponent data={basket} dispatch={dispatch} actions={actions} accessToken={accessToken} domain={domain} />
-      </div>
+      <BasketTreeComponent data={basket} dispatch={dispatch} actions={actions} accessToken={accessToken} domain={domain} />
     );
   }
 }

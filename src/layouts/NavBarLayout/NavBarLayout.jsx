@@ -16,9 +16,9 @@ export default class NavBarLayout extends Component {
             { viewComponent }
           </Row>
           : null }
-        <Row className='MainSection'>
+        { /* <Row className='MainSection'>
           {this.props.children}
-        </Row>
+        </Row> */ }
       </div>
     );
   }
