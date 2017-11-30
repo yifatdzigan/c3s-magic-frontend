@@ -2,6 +2,10 @@
 
 Demonstration Video
 
+<iframe width="480" height="270" src="https://www.youtube.com/embed/iPrIsomsvD4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+Demonstration of calculation of Indices of hydro-climatic intensity.
+
 # Description
 ISAC-CNR will deliver functions to compute climate indices derived from spatio-temporal analysis of the data, including options to combine multiple variables into a single index. In particular this task will deliver functions to compute
 1. teleconnection indices based on Principal Component Analysis;
