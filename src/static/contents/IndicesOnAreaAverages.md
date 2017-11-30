@@ -2,6 +2,10 @@
 
 Demonstration video
 
+<iframe width="480" height="270" src="https://www.youtube.com/embed/CNWA4j2okcc" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+Ensemble Anomaly Plots
+
 # Definition
 Using the s2dverification package, functions will be provided to select locations or areas, compute area-averages over these regions for any pre-selected variable and combine them through addition or subtraction, with the option of including weights in these operations. 
 The outcome will be time series of climate indices computed for individual models. BSC will also deliver functions combining the climate indices computed from several individual models into a single climate index based on predefined metric-based (from WP4) weights. 
