@@ -17,7 +17,7 @@ export default class NavBarLayout extends Component {
           </Row>
           : null }
         { viewComponent
-          ? <Row className='map' tag='main'>
+          ? <Row className='ViewComponent' tag='main'>
             { viewComponent }
           </Row>
           : null }

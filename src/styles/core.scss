@@ -281,7 +281,7 @@ body {
 .MainViewport {
     flex: 1;
     flex-direction: column;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     overflow-x: hidden;
     /*padding:10px;*/
     width:99vw;
@@ -312,7 +312,7 @@ iframe {
   }
   flex: 1;
   flex-direction: column;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
   overflow-x: hidden;
 }
 .row.MainSection {
@@ -449,7 +449,7 @@ aside, header, main {
   height: inherit;
   display: flex;
   flex-direction: inherit;
-  flex: inherit;
+  /*chroflex: inherit;*/
   padding: inherit;
 }
 
@@ -463,7 +463,8 @@ aside, header, main {
 }
 
 .ViewComponent {
-  height:100%;
+  height:auto;
+  overflow-y:auto;
 }
 
 .basketTreeContainer {
