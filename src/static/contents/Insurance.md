@@ -2,6 +2,10 @@
 
 Demonstration video
 
+<iframe width="480" height="270" src="https://www.youtube.com/embed/Cee-axD7n0Y" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+Actuaries Climate Risk Index (ACRI)
+
 # Description
 The changing risks between the recent past and the future are of great interest to the insurance industry because even slight changes in climate characteristics can translate into large impacts on risk distribution/management and expected losses. 
 Here we  will deliver functions to compute and display insurance-tailored metrics from observations and climate model simulations. 
