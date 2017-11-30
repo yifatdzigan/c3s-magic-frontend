@@ -1,7 +1,7 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card, Form, FormGroup, FormControl, ControlLabel } from 'reactstrap';
+import { Button, Input, Row, Col, Progress, Card, ControlLabel } from 'reactstrap';
+import MarkdownFromFile from '../containers/MarkdownFromFile';
 import DapPreview from './DapPreview';
 
 class RenderProcesses extends Component {
@@ -59,14 +59,14 @@ export default class KNMIClimpExpCorrelate extends Component {
     "abstract": "application/netcdf",
     "identifier": "netcdf_source1",
     "values": null,
-    "title": "Copy input: Input 1 netCDF opendap."
+    "title": "NetCDF field data"
   },
   "netcdf_source2": {
     "default": "/data/climexp/nino3.nc",
     "abstract": "application/netcdf",
     "identifier": "netcdf_source2",
     "values": null,
-    "title": "Copy input: Input 2 netCDF opendap."
+    "title": "NetCDF timeseries data:"
   },
   "ratio": {
     "default": "1:12",
@@ -78,7 +78,7 @@ export default class KNMIClimpExpCorrelate extends Component {
     "default": "out.nc",
     "identifier": "netcdf_target",
     "values": null,
-    "title": "Output netCDF."
+    "title": "Output netCDF filename"
   },
   "average": {
     "default": "ave",
@@ -102,7 +102,7 @@ export default class KNMIClimpExpCorrelate extends Component {
     "default": "3",
     "identifier": "var",
     "values": null,
-    "title": "var"
+    "title": "Lag"
   }
 }
     };
@@ -180,43 +180,42 @@ export default class KNMIClimpExpCorrelate extends Component {
 
   render () {
     const { domain, runningProcesses } = this.props;
-
-    if (!domain) {
-      return (<div>Not signed in.</div>);
-    }
-
-    console.log(this.state.inputs);
     return (
       <div style={{ backgroundColor:'#FFF', width: '100%' }} >
-        <h1>Correlate with a time series!</h1>
-        <span>Your compute node = {domain}</span>
-        <div className='WPSCalculatorForm'>
-          { Object.keys(this.state.inputs).map(
-            (key, value2) => {
-              let value = this.state.inputs[key];
-              // console.log(value);
-              // console.log(value.identifier);
-              if (!value.identifier || !value.title) {
-                return (<span>bla</span>);
-              }
-              console.log(key, value2, value.identifier);
-              return (
-                <Row>
-                  <Col componentClass={ControlLabel}>
-                    {value.title}
-                  </Col>
-                  <Col>
-                    <Input onChange={(event) => { this.handleWPSInputChange(value.identifier, event.target.value); }} value={value.default} />
-                  </Col>
-                </Row>
-              );
-            })
-          }
+        <div className='text'>
+          <MarkdownFromFile url={'/contents/Correlations.md'} />
         </div>
-        <Row>
-          <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Correlate</Button></Col>
-        </Row>
-        <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
+        { domain ? <div>
+          <span>Your compute node = {domain}</span>
+          <div className='WPSCalculatorForm'>
+            { Object.keys(this.state.inputs).map(
+              (key, value2) => {
+                let value = this.state.inputs[key];
+                // console.log(value);
+                // console.log(value.identifier);
+                if (!value.identifier || !value.title) {
+                  return (<span>bla</span>);
+                }
+                console.log(key, value2, value.identifier);
+                return (
+                  <Row>
+                    <Col componentClass={ControlLabel}>
+                      {value.title}
+                    </Col>
+                    <Col>
+                      <Input onChange={(event) => { this.handleWPSInputChange(value.identifier, event.target.value); }} value={value.default} />
+                    </Col>
+                  </Row>
+                );
+              })
+            }
+          </div>
+          <Row>
+            <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Correlate</Button></Col>
+          </Row>
+          <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
+        </div>
+        : <div>You need to sign in to use this functionality</div> }
       </div>);
   }
 }
