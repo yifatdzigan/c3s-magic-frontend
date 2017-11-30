@@ -14,11 +14,12 @@ The S-ProvFlow system offers a visual tool (Monitoring and Validation Visualiser
 ### The Bulk Dependencies Visualiser (BDV)
 The BVD produces comprehensive views for a single execution of a scientific data-intensive task or involving many runs and users. It exploits an approach to visual-analytics of the information captured that combines radial diagrams, selective grouping and Edge Bundles technique. Views of the provenance repository are generated interactively for multiple levels of granularity and for different kinds of expertise and roles. It offers facilities to tune and organise the views. We consider two classes of usage, respectively addressing details of a single computational tasks or the interaction between more tasks and users, according to specific data properties.
 
+<img src="/contents/images/sprov-gui-overview.png" width="700px">
+
+
 ### The API
-The \id{S-ProvFlow} system exposes a web API which offers high-level services on top of the storage backend. The API provides runtime monitoring, detailed metadata exploration, summarisation and integrated data-discovery. The description of the API methods is provided in Table \ref{prov-api}. 
+S-ProvFlow system exposes a RESTful web API which offers high-level services on top of the storage backend. The API methods are classified in <i>provenance acquisition</>, <i>monitoring<i>, <i>discovery</i>, <i>validation and traceability</i>, <i>comprehensive-summaries</i>, <i>export</i>. 
+The API returns provenance information in JSON-LD, which includes PROV and S-PROV semantics and references to external controlled vocabularies. It allows clients to selectively export provenance traces in PROV-XML and RDF for single results, as well as for a whole computation.
 
 The system can be deployed using docker technology. Current development branch with full dockerisation available at:
 https://github.com/andrejsim/s-provenance/
-
-
-<img src="/contents/images/sprov-gui-overview.png" width="700px">
