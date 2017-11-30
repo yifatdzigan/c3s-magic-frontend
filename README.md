@@ -9,7 +9,7 @@ cd c3s-magic-frontend
 docker build -t c3s-magic-frontend .
 docker run -e CONTROLLER="https://portal.c3s-magic.eu/" -p 8081:5000 -it c3s-magic-frontend
 ```
-
+Visit http://localhost:8081/
 
 
 
