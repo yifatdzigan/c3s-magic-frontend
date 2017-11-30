@@ -198,7 +198,6 @@ class BasketTreeComponent extends Component {
         </Row>
 
         <Row>
-          <hr />
 
           <hr />
           <Button className='basketButton' onClick={() => this.uploadBasketItem()}><Icon name='upload' /> Upload</Button>
