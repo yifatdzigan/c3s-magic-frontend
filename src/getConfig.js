@@ -22,7 +22,7 @@ export const getConfig = function () {
     // eslint-disable-next-line no-undef
     c = Object.assign({}, configDefault, config || {});
   }
-  console.log('Using config:', c);
+  // console.log('Using config:', c);
   try {
   // eslint-disable-next-line no-undef
     xml2jsonrequestURL = c.backendHost + '/xml2json?';
