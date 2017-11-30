@@ -8,6 +8,8 @@ Video previewing provenance interface.
 The provenance system incorporated in C3S-Magic is based on the <strong>S-ProvFlow</strong> framework. 
 S-ProvFlow combines a set of components in support of Reproducibility as a Service (RaaS). It includes a NoSQL document-store (MongoDB) for the storage of the provenance and lineage metadata, a service layer in the form of a Web API and a suite of interactive provenance access tools. Data lineage information, stored and accessible through the RaaS layer, can be used at any stage of the cycle. During the usage of experimenting tools and analysis software, for the iterative and preliminary validation, until the production of outreach and summarisation reports. The data-model specialises the W3C-PROV recommendation for data-intensive application (S-PROV). 
 
+<img src="/contents/images/sprovflowpnf.png" width="700px">
+
 ### Monitoring and Validation Visualiser (MVV)
 The S-ProvFlow system offers a visual tool (Monitoring and Validation Visualiser- MVV) that allows different sorts of operations through the interactive access and manipulation of the provenance information. These include monitoring of the progress of the execution with runtime indication on the production of data and the occurrence of errors, dependency navigation, data discovery, data preview, download and selective staging.
 
@@ -18,8 +20,9 @@ The BVD produces comprehensive views for a single execution of a scientific data
 
 
 ### The API
-S-ProvFlow system exposes a RESTful web API which offers high-level services on top of the storage backend. The API methods are classified in <i>provenance acquisition</>, <i>monitoring<i>, <i>discovery</i>, <i>validation and traceability</i>, <i>comprehensive-summaries</i>, <i>export</i>. 
-The API returns provenance information in JSON-LD, which includes PROV and S-PROV semantics and references to external controlled vocabularies. It allows clients to selectively export provenance traces in PROV-XML and RDF for single results, as well as for a whole computation.
+S-ProvFlow system exposes a RESTful web API which offers high-level services on top of the storage backend. The API methods are classified in <i>provenance acquisition</i>, <i>monitoring</i>, <i>discovery</i>, <i>validation and traceability</i>, <i>comprehensive-summaries</i>, <i>export</i>. This is the service layer on top of which all the above visualisation and exploration tools are built.
+
+The API returns information in JSON-LD, which includes PROV and S-PROV semantics and references to external controlled vocabularies for the domain metadata describng the data entities. It allows clients to selectively export provenance traces in PROV-XML and RDF for a single data results, as well as for the entire computation.
 
 The system can be deployed using docker technology. Current development branch with full dockerisation available at:
 https://github.com/andrejsim/s-provenance/
