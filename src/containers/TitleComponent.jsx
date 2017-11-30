@@ -27,6 +27,9 @@ export default class TitleComponent extends Component {
   render () {
     const { clientId, location } = this.props;
     var { pathname } = location;
+
+    if (!pathname) pathname = '';
+
     return (
       <div className='TitleComponent'>
         <Navbar inverse >
@@ -55,19 +58,19 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} ><Icon name='home' /> Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/metrics/home' active={pathname === '/metrics/home'} ><Icon name='' /> Metrics</NavLink>
+              <NavLink href='#/metrics/home' active={pathname.startsWith('/metrics')} ><Icon name='' /> Metrics</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/multimodelproducts/home' active={pathname === '/multimodelproducts/home'} ><Icon name='' /> Multi Model Products</NavLink>
+              <NavLink href='#/multimodelproducts/home' active={pathname.startsWith('/multimodelproducts')} ><Icon name='' /> Multi Model Products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/timeseries/home' active={pathname === '/timeseries/home'} ><Icon name='' /> Timeseries</NavLink>
+              <NavLink href='#/timeseries/home' active={pathname.startsWith('/timeseries')} ><Icon name='' /> Timeseries</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/tailoredproducts/home' active={pathname === '/tailoredproducts/home'} ><Icon name='' /> Tailored products</NavLink>
+              <NavLink href='#/tailoredproducts/home' active={pathname.startsWith('/tailoredproducts')} ><Icon name='' /> Tailored products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/system/home' active={pathname === '/system/home'} ><Icon name='' /> System</NavLink>
+              <NavLink href='#/system/home' active={pathname.startsWith('/system')} ><Icon name='' /> System</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/demo' active={pathname === '/demo'}><Icon name='gears' /> Demo</NavLink>
