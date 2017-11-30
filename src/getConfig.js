@@ -1,3 +1,6 @@
+import 'babel-polyfill';
+import 'isomorphic-fetch';
+
 /*
   Configuration is loaded from two configuration files:
     1) configDefault.js in ./src/static
