@@ -151,7 +151,6 @@ export const createRoutes = (store) => {
 
   const jobs = React.createElement(connect(mapStateToJoblistProps, mapDispatchToJoblistProps)(JoblistComponent));
 
-  console.log('createROutes');
   let ww = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WindowManager));
 
   return (

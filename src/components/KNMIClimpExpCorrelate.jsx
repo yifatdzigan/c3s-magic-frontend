@@ -6,7 +6,7 @@ import DapPreview from './DapPreview';
 
 class RenderProcesses extends Component {
   renderProcess (process) {
-    console.log(process);
+    // console.log(process);
     let value = '-';
     try {
       value = process.result.ExecuteResponse.ProcessOutputs.Output.Data.LiteralData.value;
@@ -38,7 +38,7 @@ class RenderProcesses extends Component {
 
 RenderProcesses.propTypes = {
   runningProcesses: PropTypes.object.isRequired,
-  resultClickCallback: PropTypes.object.isRequired
+  resultClickCallback: PropTypes.func.isRequired
 };
 
 export default class KNMIClimpExpCorrelate extends Component {
@@ -66,7 +66,7 @@ export default class KNMIClimpExpCorrelate extends Component {
     "abstract": "application/netcdf",
     "identifier": "netcdf_source2",
     "values": null,
-    "title": "NetCDF timeseries data:"
+    "title": "NetCDF timeseries data"
   },
   "ratio": {
     "default": "1:12",
@@ -90,7 +90,7 @@ export default class KNMIClimpExpCorrelate extends Component {
     "default": "c3s-422-Lot2",
     "identifier": "tags",
     "values": null,
-    "title": "User Defined Tags CLIPC user tags."
+    "title": "User defined tags"
   },
   "frequency": {
     "default": "mon",
@@ -194,12 +194,11 @@ export default class KNMIClimpExpCorrelate extends Component {
                 // console.log(value);
                 // console.log(value.identifier);
                 if (!value.identifier || !value.title) {
-                  return (<span>bla</span>);
+                  return (<span key={key}>bla</span>);
                 }
-                console.log(key, value2, value.identifier);
                 return (
-                  <Row>
-                    <Col componentClass={ControlLabel}>
+                  <Row key={key}>
+                    <Col>
                       {value.title}
                     </Col>
                     <Col>
@@ -211,7 +210,7 @@ export default class KNMIClimpExpCorrelate extends Component {
             }
           </div>
           <Row>
-            <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Correlate</Button></Col>
+            <Col xs='2' style={{ margin:'10px' }} ><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Correlate</Button></Col>
           </Row>
           <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
         </div>

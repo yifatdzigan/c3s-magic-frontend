@@ -114,7 +114,7 @@ export default class TitleComponent extends Component {
         dispatch(actions.setClientId(obj.id));
         dispatch(actions.setEmailAddress(obj.email_address));
         dispatch(actions.setDomain(obj.domain));
-        console.log('Signed in', obj.domain);
+        // console.log('Signed in', obj.domain);
       }
     });
   }
