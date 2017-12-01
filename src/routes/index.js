@@ -177,7 +177,7 @@ export const createRoutes = (store) => {
         </Route>
         <Route path='meanstate'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={metricsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MeanState))}
+            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(MeanState))}
           />
         </Route>
         <Route path='extremeevents'>

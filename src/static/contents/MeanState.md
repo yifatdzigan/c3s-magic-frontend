@@ -18,3 +18,7 @@ The performance metrics namelist is currently being adapted and tested with this
 
 <img src="/contents/images/perfmetrics_main_ta_cycle_monthlyclim__Glob_legend_transparent.png" width="700px">
 
+
+Below is an example plot analysis, run live using an early version of ESMValTool 2.0. Note that although settings can be changed, very little data is available on this portal for this analysis at this point.
+
+<hr />
