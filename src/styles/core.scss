@@ -273,6 +273,16 @@ body {
   color: #31708f;
 }
 
+.nav-link{
+  display:flex;
+  overflow:hidden;
+}
+.nav-link span{
+  padding:3px;
+}
+.nav{
+  overflow:hidden;
+}
 
 .row {
   margin: 0;
