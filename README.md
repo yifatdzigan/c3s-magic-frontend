@@ -1,6 +1,8 @@
 # C3S Magic Science Platform
 
-Documentation files can be found in [src/static/contents](src/static/contents)
+Content files can be found in [src/static/contents](src/static/contents). Markdown layout will automatically get picked up.
+
+If you would like to change anything, please do a pull-request to the master branch. You can use Docker (see below) to preview what the site will look like with your changes.
 
 # Docker
 ```
