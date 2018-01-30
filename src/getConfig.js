@@ -24,8 +24,10 @@ export const getConfig = function () {
   }
   // console.log('Using config:', c);
   try {
-  // eslint-disable-next-line no-undef
+    // eslint-disable-next-line no-undef
     xml2jsonrequestURL = c.backendHost + '/xml2json?';
+    // eslint-disable-next-line no-undef
+    requestProxy = c.backendHost + '/proxy?';
   } catch (e) {
     // console.log(e);
   }
