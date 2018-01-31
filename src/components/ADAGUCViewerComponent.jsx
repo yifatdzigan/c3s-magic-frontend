@@ -63,7 +63,6 @@ const mapTypeConfiguration = [
 class ReactWebMapJS extends Component {
   constructor (props) {
     super(props);
-    console.log('new ReactWebMapJS', this.props.layers[0].name);
     this.webMapJSCreated = false;
     this.resize = this.resize.bind(this);
     this._handleWindowResize = this._handleWindowResize.bind(this);
@@ -105,18 +104,21 @@ class ReactWebMapJS extends Component {
         keepOnTop:true
       })
     ]);
-    this.webMapJS.addLayer(this.props.layers[0]);
-    this.resize();
-    this.webMapJS.draw();
+    if (this.props.layers.length > 0 && this.props.layers[0]) {
+      this.webMapJS.addLayer(this.props.layers[0]);
+      if (this.props.wmjsRegistry) {
+        this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
+      }
+    }
 
     if (this.props.listeners) {
       this.props.listeners.forEach((listener) => {
         this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
       });
     }
-    if (this.props.wmjsRegistry) {
-      this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
-    }
+    this.resize();
+    this.webMapJS.draw();
+
     window.addEventListener('resize', this._handleWindowResize);
   }
 
@@ -175,7 +177,10 @@ export default class ADAGUCViewerComponent extends Component {
     if (props.dapurl) {
       this.getLayersForService(props.dapurl);
     } else {
-      this.getLayersForService('https://localportal.c3s-magic.eu:9000/opendap/google.108664741257531327255/out.nc');
+      // this.getLayersForService('https://localportal.c3s-magic.eu:9000/opendap/google.108664741257531327255/out.nc');
+      this.getLayersForService('https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_new.nc');
+
+
     }
     this.listeners = [];
     console.log('wmjsRegistry = {}');
@@ -345,7 +350,7 @@ export default class ADAGUCViewerComponent extends Component {
             </DropdownMenu>
           </Dropdown>
           {
-            this.state.wmsLayers.map((wmjslayer, index) => {
+            (this.props.stacklayers !== true) ? this.state.wmsLayers.map((wmjslayer, index) => {
               return (
                 <Card body key={index}>
                   <CardBody>
@@ -362,7 +367,17 @@ export default class ADAGUCViewerComponent extends Component {
                   </CardBody>
                 </Card>
               );
-            })
+            }) : <Card body >
+              <CardBody>
+                <div style={{ width:'100%', height:'400px' }} >
+                  <ReactWebMapJS
+                    layers={[this.state.wmsLayers[0]]}
+                    listeners={this.listeners}
+                    wmjsRegistry={(id, wmjs, appendOrRemove) => { if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id]; }}
+                  />
+                </div>
+              </CardBody>
+            </Card>
           }
         </CardBody>
       </Card>
@@ -372,5 +387,6 @@ export default class ADAGUCViewerComponent extends Component {
 
 ADAGUCViewerComponent.propTypes = {
   dapurl: PropTypes.string,
+  stacklayers: PropTypes.bool,
   closeCallback: PropTypes.func
 };

@@ -86,7 +86,7 @@ import AccountComponent from '../containers/AccountComponent';
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
 import BasketComponent from '../components/Basket/BasketComponent';
 
-import AdagucViewerComponent from '../components/ADAGUCViewerComponent';
+import AdagucViewerContainer from '../containers/AdagucViewerContainer';
 
 import JoblistComponent from '../components/JobListComponent';
 
@@ -151,7 +151,7 @@ export const createRoutes = (store) => {
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
-  const adagucviewer = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(AdagucViewerComponent));
+  const adagucviewer = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(AdagucViewerContainer));
 
   const jobs = React.createElement(connect(mapStateToJoblistProps, mapDispatchToJoblistProps)(JoblistComponent));
 
