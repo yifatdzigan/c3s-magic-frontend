@@ -49,10 +49,11 @@ const _showWindow = (state, payload) => {
     title: payload.title + ' (' + id + ')',
     x: 200 + (id % 10) * 20,
     y: 200 + (id % 10) * 20,
-    w: payload.width || 400,
-    h: payload.height || 400,
+    w: payload.width || 600,
+    h: payload.height || 450,
     zIndex: payload.zIndex || zIndex++,
-    index: windows.length
+    index: id,
+    width:'100%'
   });
 
   return Object.assign({}, state, { windows: windows });
