@@ -1,0 +1,23 @@
+{
+  "definitions": {
+    "Model": {
+      "title": "Model",
+      "type": "string",
+      "anyOf": [
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "ModelEntry"
+  ],
+  "properties": {
+    "ModelEntry": {
+      "type": "array",
+      "title": "Add a model",
+      "items": {
+        "$ref": "#/definitions/Model"
+      }
+    }
+  }
+}
