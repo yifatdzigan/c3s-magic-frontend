@@ -4,6 +4,18 @@ import { Button, Input, Row, Col, Progress, Card, ControlLabel } from 'reactstra
 import MarkdownFromFile from '../containers/MarkdownFromFile';
 import DapPreview from './DapPreview';
 import ImagePreview from './ImagePreview';
+import {stripNS} from "../utils/WPSRunner";
+
+
+//var { SchemaForm } = require('react-schema-form');
+
+//import { SchemaForm } from 'react-schema-form';
+
+import Form from "react-jsonschema-form";
+
+var $RefParser = require('json-schema-ref-parser');
+
+
 
 
 class RenderProcesses extends Component {
@@ -15,7 +27,7 @@ class RenderProcesses extends Component {
       value = 'data:image/png;base64,' + process.result.ExecuteResponse.ProcessOutputs.Output.Data.ComplexData.value;
       shown = 'click for output'
     } catch (e) {
-    }  
+    }
     return (
       <Card>
         <Row>
@@ -52,7 +64,13 @@ export default class ESMValToolPerfmetrics extends Component {
     this.toggle = this.toggle.bind(this);
     this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
     this.resultClickCallback = this.resultClickCallback.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+    this.formChanged = this.formChanged.bind(this);
+    this.fetchInfo = this.fetchInfo.bind(this);
+    this.formError = this.formError.bind(this);
     this.state = {
+      form_schema: {},
+      namelist_ok:false,
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
@@ -120,6 +138,7 @@ export default class ESMValToolPerfmetrics extends Component {
   }
 }
     };
+
   }
 
   toggle (e) {
@@ -189,8 +208,47 @@ export default class ESMValToolPerfmetrics extends Component {
     }
   }
 
+  formSubmit (formData) {
+    console.log("Data submitted: ", formData);
+  }
+
+  formChanged (info) {
+    console.log("Form changed: ", info);
+  }
+
+  formError (info) {
+    console.error("Form error: ", info);
+  }
+
+  componentWillMount() {
+    $RefParser.dereference("form_data.json")
+      .then(schema => this.setState({form_schema: schema, namelist_ok: true}));
+  }
+
+  componentDidMount() {
+    $RefParser.dereference("namelist_anomaly_agreement.yml")
+      .then(function (namelist) {
+        namelist.models.forEach(function(model) {
+          console.log(model.model);
+          console.log(model.exp);
+          console.log(model.mip);
+          console.log(model.project);
+          console.log(model.end_year);
+          console.log(model.start_year);
+          console.log(model.ensemble);
+        })
+      });
+
+  }
+
+  fetchInfo(){
+    console.log("Fetching the form info");
+  }
+
   render () {
     const { domain, runningProcesses } = this.props;
+    const { form_schema } = this.state;
+
     return (
       <div style={{ backgroundColor:'#FFF', width: '100%' }} >
         <div className='text'>
@@ -220,6 +278,7 @@ export default class ESMValToolPerfmetrics extends Component {
               })
             }
           </div>
+            <Form schema={form_schema} onSubmit={this.formSubmit} onChange={this.formChanged} onError={this.formError}/>
           <Row>
             <Col xs='2' style={{ margin:'10px' }} ><Button color='primary' id='wrangleButton' onClick={() => { this.wrangleClicked(); }}>Compute</Button></Col>
           </Row>

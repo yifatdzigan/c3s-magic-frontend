@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
-import ESMValToolPerfmetrics from '../../components/ESMValToolPerfmetrics';
+import ESMValToolPerfmetrics from '../../components/NewESMValToolPerfmetrics';
 
 export default class MeanState extends Component {
   render () {
