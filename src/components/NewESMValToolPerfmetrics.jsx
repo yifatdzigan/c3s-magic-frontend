@@ -224,6 +224,10 @@ export default class ESMValToolPerfmetrics extends Component {
     if (!data_loaded){
       return (
               <div>
+                  <div className='text'>
+                    <MarkdownFromFile url={'/contents/MeanState.md'} />
+                  </div>
+
                   <Alert color="warning">
                     Press the button to load the models.
                   </Alert>
@@ -237,6 +241,10 @@ export default class ESMValToolPerfmetrics extends Component {
       return (
 
         <div style={{backgroundColor: '#FFF', width: '100%'}}>
+          <div className='text'>
+            <MarkdownFromFile url={'/contents/MeanState.md'} />
+          </div>
+
 
           <Nav tabs>
             <NavItem>
