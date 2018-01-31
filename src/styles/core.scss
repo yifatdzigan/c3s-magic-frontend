@@ -518,8 +518,38 @@ aside, header, main {
 }
 
 
+.glyphicon-plus:before {
+  content: "add a model";
+}
+.glyphicon-remove:before {
+  content: "remove";
+}
+.glyphicon-arrow-up:before {
+  content: "\e093";
+}
+.glyphicon-arrow-down:before {
+  content: "\e094";
+}
+.btn.btn-default.array-item-move-up {
+  display: none;
+}
+.btn.btn-default.array-item-move-down {
+  display: none;
+}
+.form-group.field.field-string {
+  margin-left: 1em;
+}
+.btn.btn-danger.array-item-add {
+  margin-left: 1em;
+}
+.btn.btn-danger.array-item-remove {
+  margin-left: 1em;
+}
 
+.btn.btn-info.btn-add {
+  margin-left: 1em;
+  margin-top:0.51em;
+}
 .show > .dropdown-menu {
   display: block;
 }
-
