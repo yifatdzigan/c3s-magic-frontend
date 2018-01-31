@@ -86,6 +86,8 @@ import AccountComponent from '../containers/AccountComponent';
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
 import BasketComponent from '../components/Basket/BasketComponent';
 
+import AdagucViewerComponent from '../components/ADAGUCViewerComponent';
+
 import JoblistComponent from '../components/JobListComponent';
 
 import WindowManager from '../components/WindowManager';
@@ -149,6 +151,8 @@ export const createRoutes = (store) => {
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
+  const adagucviewer = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(AdagucViewerComponent));
+
   const jobs = React.createElement(connect(mapStateToJoblistProps, mapDispatchToJoblistProps)(JoblistComponent));
 
   let ww = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WindowManager));
@@ -164,6 +168,9 @@ export const createRoutes = (store) => {
       </Route>
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
+      </Route>
+      <Route path='adagucviewer' title='ADAGUC Viewer'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={adagucviewer} />
       </Route>
       <Route path='jobs' title='Jobs'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={jobs} />

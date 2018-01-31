@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input, Row, Col, Progress, Card, ControlLabel } from 'reactstrap';
 import MarkdownFromFile from '../containers/MarkdownFromFile';
-import DapPreview from './DapPreview';
+import ADAGUCViewerComponent from './ADAGUCViewerComponent';
 
 class RenderProcesses extends Component {
   renderProcess (process) {
@@ -167,7 +167,7 @@ export default class KNMIClimpExpCorrelate extends Component {
         console.log(value);
         this.props.dispatch(this.props.actions.showWindow(
           {
-            component:(<DapPreview dapurl={value} />),
+            component:(<ADAGUCViewerComponent dapurl={value} />),
             title:'Preview',
             dispatch: this.props.dispatch,
             width:530,

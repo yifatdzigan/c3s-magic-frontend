@@ -84,7 +84,7 @@ export default class Draggable extends Component {
           height: this.divRef.clientHeight
         }
       });
-    } else {
+    } else if (y < 35) {
       this.setState({
         dragging: true,
         cursor: 'move',
@@ -105,6 +105,9 @@ export default class Draggable extends Component {
     e.preventDefault();
   }
   onMouseUp (e) {
+    if (this.state.resizing){
+      window.dispatchEvent(new Event('resize'));
+    }
     this.setState({ dragging: false, resizing: false, cursor: 'default' });
     this.props.updateCallback({
       x: this.state.pos.x,
