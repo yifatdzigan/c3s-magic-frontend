@@ -81,7 +81,7 @@ class ReactWebMapJS extends Component {
     this.webMapJS.setBaseLayers([
       // new WMJSLayer({ 'name': 'OSM', type: 'twms' }),
       new WMJSLayer({
-        service:'https://localportal.c3s-magic.eu:7777/wms?dataset=baselayers&',
+        service: config. backendHost + './wms?dataset=baselayers&',
         name:'baselayer',
         format:'image/png',
         title:'World country borders',
@@ -97,7 +97,7 @@ class ReactWebMapJS extends Component {
       //   keepOnTop:true
       // })  ,
       new WMJSLayer({
-        service:'https://localportal.c3s-magic.eu:7777/wms?dataset=baselayers&',
+        service: config.backendHost + './wms?dataset=baselayers&',
         name:'overlay',
         format:'image/png',
         title:'World country borders',
@@ -350,7 +350,7 @@ export default class ADAGUCViewerComponent extends Component {
                 <Card body key={index}>
                   <CardBody>
                     <CardTitle>Layer {wmjslayer.name} - {wmjslayer.title}</CardTitle>
-                    <div style={{ width:'100%', height:'300px' }} >
+                    <div style={{ width:'100%', height:'400px' }} >
                       <ReactWebMapJS
                         id={index}
                         key={wmjslayer.name}
