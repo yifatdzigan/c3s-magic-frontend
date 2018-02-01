@@ -77,24 +77,16 @@ class ReactWebMapJS extends Component {
     this.webMapJS.setBaseURL('./adagucwebmapjs/');
     this.webMapJS.setProjection({ srs:this.props.srs || 'EPSG:3857', bbox:this.props.bbox || [-19000000, -19000000, 19000000, 19000000] });
     this.webMapJS.setWMJSTileRendererTileSettings(WMJSTileRendererTileSettings);
-    this.webMapJS.setBaseLayers([
+    let baselayers = [
       // new WMJSLayer({ 'name': 'OSM', type: 'twms' }),
       new WMJSLayer({
-        service: config. backendHost + './wms?dataset=baselayers&',
+        service: config.backendHost + './wms?dataset=baselayers&',
         name:'baselayer',
         format:'image/png',
-        title:'World country borders',
+        title:'Basemap',
         enabled: true,
         keepOnTop:false
       }),
-      // new WMJSLayer({
-      //   service:'http://geoservices.knmi.nl/cgi-bin/worldmaps.cgi?',
-      //   name:'ne_10m_admin_0_countries_simplified',
-      //   format:'image/png',
-      //   title:'World country borders',
-      //   enabled: false,
-      //   keepOnTop:true
-      // })  ,
       new WMJSLayer({
         service: config.backendHost + './wms?dataset=baselayers&',
         name:'overlay',
@@ -103,7 +95,9 @@ class ReactWebMapJS extends Component {
         enabled: true,
         keepOnTop:true
       })
-    ]);
+    ];
+    console.log(baselayers);
+    this.webMapJS.setBaseLayers(baselayers);
     if (this.props.layers.length > 0 && this.props.layers[0]) {
       this.webMapJS.addLayer(this.props.layers[0]);
       if (this.props.wmjsRegistry) {
