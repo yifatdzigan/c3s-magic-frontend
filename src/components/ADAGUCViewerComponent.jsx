@@ -80,7 +80,7 @@ class ReactWebMapJS extends Component {
     let baselayers = [
       // new WMJSLayer({ 'name': 'OSM', type: 'twms' }),
       new WMJSLayer({
-        service: config.backendHost + './wms?dataset=baselayers&',
+        service: config.backendHost + '/wms?dataset=baselayers&',
         name:'baselayer',
         format:'image/png',
         title:'Basemap',
@@ -88,7 +88,7 @@ class ReactWebMapJS extends Component {
         keepOnTop:false
       }),
       new WMJSLayer({
-        service: config.backendHost + './wms?dataset=baselayers&',
+        service: config.backendHost + '/wms?dataset=baselayers&',
         name:'overlay',
         format:'image/png',
         title:'World country borders',
