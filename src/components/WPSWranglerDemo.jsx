@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
 
@@ -98,6 +99,7 @@ export default class WPSWranglerDemo extends Component {
     return (
       <div className='MainViewport'>
         <h1>WPS Demo</h1>
+        <ADAGUCViewerComponent stacklayers={true} dapurl='https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_agreement.nc' />
         <Row>
           <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col>
           <Col xs='2'>
