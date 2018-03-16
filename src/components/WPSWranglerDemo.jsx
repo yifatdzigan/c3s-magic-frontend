@@ -4,6 +4,7 @@ import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
 import ReactSlider from 'react-slider';
+import { withRouter } from 'react-router'
 
 class RenderProcesses extends Component {
   renderProcess (process) {
@@ -41,9 +42,9 @@ RenderProcesses.propTypes = {
   runningProcesses: PropTypes.object.isRequired
 };
 
-export default class WPSWranglerDemo extends Component {
-  constructor () {
-    super();
+class WPSWranglerDemo extends Component {
+  constructor (props) {
+    super(props);
     this.wrangleClicked = this.wrangleClicked.bind(this);
     this.toggle = this.toggle.bind(this);
     this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
@@ -52,7 +53,7 @@ export default class WPSWranglerDemo extends Component {
       dropDownValue: 'add',
       inputa: 10,
       inputb: 20,
-      currentValue: 50,
+      currentValue: 100,
       changeValue: 0,
       step: 1,
       min: 0,
@@ -111,11 +112,13 @@ export default class WPSWranglerDemo extends Component {
     const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
     return (
       <div className='MainViewport'>
+        <Button style={{float:'right'}} color='link' onClick={() => {this.props.router.push('/');} }>(back)</Button>
         <h1>Anomaly agreement</h1>
+
         <ADAGUCViewerComponent
           height={'50vh'}
           stacklayers={true}
-          dapurl='https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_agreement_20180316.nc'
+          wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
           parsedLayerCallback={ (wmjsregistry) => {console.log(wmjsregistry);  this.wmjsregistry = wmjsregistry;  this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
         />
         <Row>
@@ -130,6 +133,7 @@ export default class WPSWranglerDemo extends Component {
             }} />
           </Col><Col>{this.state.currentValue}</Col>
         </Row>
+
       </div>);
   }
 }
@@ -139,8 +143,11 @@ WPSWranglerDemo.propTypes = {
   domain: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
+  router: PropTypes.object,
   nrOfStartedProcesses: PropTypes.number,
   nrOfFailedProcesses: PropTypes.number,
   nrOfCompletedProcesses: PropTypes.number,
   runningProcesses: PropTypes.object.isRequired
 };
+
+export default withRouter(WPSWranglerDemo);

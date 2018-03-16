@@ -69,12 +69,10 @@ export default class ADAGUCViewerComponent extends Component {
     this.getLayersForService = this.getLayersForService.bind(this);
 
     if (props.dapurl) {
-      this.getLayersForService(props.dapurl);
+      let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(props.dapurl);
+      this.getLayersForService(WMSGetCapabiltiesURL, props.dapurl);
     } else {
-      // this.getLayersForService('https://localportal.c3s-magic.eu:9000/opendap/google.108664741257531327255/out.nc');
-      this.getLayersForService('https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_new.nc');
-
-
+      this.getLayersForService(props.wmsurl);
     }
     this.listeners = [];
     console.log('wmjsRegistry = {}');
@@ -131,10 +129,9 @@ export default class ADAGUCViewerComponent extends Component {
     });
   }
 
-  getLayersForService (dapurl) {
+  getLayersForService (WMSGetCapabiltiesURL, dapurl) {
     console.log('getLayersForService');
     this.setState({ wmsLayers:[], error:null, title:'Loading...' });
-    let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(dapurl);
     console.log(WMSGetCapabiltiesURL);
 
     // eslint-disable-next-line no-undef
@@ -294,6 +291,7 @@ export default class ADAGUCViewerComponent extends Component {
 
 ADAGUCViewerComponent.propTypes = {
   dapurl: PropTypes.string,
+  wmsurl: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   stacklayers: PropTypes.bool,
