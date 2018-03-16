@@ -4,8 +4,9 @@ import { getConfig } from '../getConfig';
 import { debounce } from 'throttle-debounce';
 import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import Icon from 'react-fa';
+import ReactWebMapJS from './ReactWebMapJS';
 
-const WMJSTileRendererTileSettings = require('../../config/basemaps');
+
 let config = getConfig();
 console.log(config);
 
@@ -60,107 +61,6 @@ const mapTypeConfiguration = [
 ];
 
 
-class ReactWebMapJS extends Component {
-  constructor (props) {
-    super(props);
-    this.webMapJSCreated = false;
-    this.resize = this.resize.bind(this);
-    this._handleWindowResize = this._handleWindowResize.bind(this);
-  }
-  _handleWindowResize () {
-    this.resize();
-  }
-  componentDidMount () {
-    if (this.webMapJSCreated) return;
-    this.webMapJSCreated = true;
-    this.webMapJS = new WMJSMap(this.refs.adagucwebmapjs);
-    this.webMapJS.setBaseURL('./adagucwebmapjs/');
-    this.webMapJS.setProjection({ srs:this.props.srs || 'EPSG:3857', bbox:this.props.bbox || [-19000000, -19000000, 19000000, 19000000] });
-    this.webMapJS.setWMJSTileRendererTileSettings(WMJSTileRendererTileSettings);
-    let baselayers = [
-      // new WMJSLayer({ 'name': 'OSM', type: 'twms' }),
-      new WMJSLayer({
-        service: config.backendHost + '/wms?dataset=baselayers&',
-        name:'baselayer',
-        format:'image/png',
-        title:'Basemap',
-        enabled: true,
-        keepOnTop:false
-      }),
-      new WMJSLayer({
-        service: config.backendHost + '/wms?dataset=baselayers&',
-        name:'overlay',
-        format:'image/png',
-        title:'World country borders',
-        enabled: true,
-        keepOnTop:true
-      })
-    ];
-    console.log(baselayers);
-    this.webMapJS.setBaseLayers(baselayers);
-    if (this.props.layers.length > 0 && this.props.layers[0]) {
-      this.webMapJS.addLayer(this.props.layers[0]);
-      if (this.props.wmjsRegistry) {
-        this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
-      }
-    }
-
-    if (this.props.listeners) {
-      this.props.listeners.forEach((listener) => {
-        this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
-      });
-    }
-    this.resize();
-    this.webMapJS.draw();
-
-    window.addEventListener('resize', this._handleWindowResize);
-  }
-
-  componentWillUnMount () {
-    window.removeEventListener('resize', this._handleWindowResize);
-    if (this.props.wmjsRegistry) {
-      this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, false);
-    }
-  }
-  resize () {
-    const element = this.refs.adaguccontainer;
-    if (element) {
-      this.webMapJS.setSize(element.clientWidth, element.clientHeight);
-    }
-  }
-  render () {
-    if (this.container) {
-      this.width = parseInt(this.container.clientWidth);
-      this.height = parseInt(this.container.clientHeight);
-    }
-
-    // console.log(this.refs.adaguccontainer.clientWidth);
-    // console.log('ReactWebMapJS render ', this.props);
-    return (<div className='ReactWebMapJS' ref={(container) => { this.container = container; }}
-      style={{ height:'100%', width:'100%', border:'none', display:'block', overflow:'hidden' }} >
-      <div ref='adaguccontainer' style={{
-        minWidth:'inherit',
-        minHeight:'inherit',
-        width: 'inherit',
-        height: 'inherit',
-        overflow: 'hidden',
-        display:'block',
-        border: 'none'
-      }}>
-        <div style={{ overflow: 'visible' }} >
-          <div ref='adagucwebmapjs' />
-        </div>
-      </div>
-    </div>);
-  }
-};
-ReactWebMapJS.propTypes = {
-  layers: PropTypes.array,
-  listeners: PropTypes.array,
-  bbox: PropTypes.object,
-  wmjsRegistry: PropTypes.func,
-  srs: PropTypes.string
-};
 
 export default class ADAGUCViewerComponent extends Component {
   constructor (props) {
@@ -317,13 +217,20 @@ export default class ADAGUCViewerComponent extends Component {
 
   render () {
     const { title, error } = this.state;
-    return (<div style={{ width:'100%' }}>
-      <Card body>
+    console.log(this.state.wmsLayers);
+    console.log('layer0', this.state.wmsLayers[0]);
+    return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%'}}>
+
         <CardBody>
-          { title ? (<CardTitle>NetCDF file: {this.state.title}</CardTitle>) : null }
-          { error ? (<Alert color='danger'>{this.state.error}</Alert>) : null }
-          <CardSubtitle>{this.WMSServiceStore.title}</CardSubtitle>
-          <CardText>{this.WMSServiceStore.abstract}</CardText>
+          { this.props.showmetadata ?
+            <div>
+              { title ? (<CardTitle>NetCDF file: {this.state.title}</CardTitle>) : null }
+              { error ? (<Alert color='danger'>{this.state.error}</Alert>) : null }
+              <CardSubtitle>{this.WMSServiceStore.title}</CardSubtitle>
+              <CardText>{this.WMSServiceStore.abstract}</CardText>
+            </div>
+          :null }
+
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
             <DropdownToggle caret>
               <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
@@ -346,16 +253,19 @@ export default class ADAGUCViewerComponent extends Component {
           {
             (this.props.stacklayers !== true) ? this.state.wmsLayers.map((wmjslayer, index) => {
               return (
-                <Card body key={index}>
+                <Card body key={index} >
                   <CardBody>
                     <CardTitle>Layer {wmjslayer.name} - {wmjslayer.title}</CardTitle>
-                    <div style={{ width:'100%', height:'400px' }} >
+                    <div style={{ width:this.props.width || '100%', height:this.props.height || '100%'}}>
                       <ReactWebMapJS
                         id={index}
                         key={wmjslayer.name}
                         layers={[wmjslayer]}
                         listeners={this.listeners}
-                        wmjsRegistry={(id, wmjs, appendOrRemove) => { if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id]; }}
+                        wmjsRegistry={(id, wmjs, appendOrRemove) => {
+                          if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
+                          if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
+                        }}
                       />
                     </div>
                   </CardBody>
@@ -363,24 +273,30 @@ export default class ADAGUCViewerComponent extends Component {
               );
             }) : <Card body >
               <CardBody>
-                <div style={{ width:'100%', height:'400px' }} >
+                <div style={{ width:this.props.width || '100%', height:this.props.height || '100%'}}>
                   <ReactWebMapJS
-                    layers={[this.state.wmsLayers[0]]}
+                    layers={this.state.wmsLayers}
                     listeners={this.listeners}
-                    wmjsRegistry={(id, wmjs, appendOrRemove) => { if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id]; }}
+                    wmjsRegistry={(id, wmjs, appendOrRemove) => {
+                      if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
+                      if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
+                    }}
                   />
                 </div>
               </CardBody>
             </Card>
           }
         </CardBody>
-      </Card>
+
     </div>);
   }
 }
 
 ADAGUCViewerComponent.propTypes = {
   dapurl: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
   stacklayers: PropTypes.bool,
-  closeCallback: PropTypes.func
+  closeCallback: PropTypes.func,
+  parsedLayerCallback: PropTypes.func
 };

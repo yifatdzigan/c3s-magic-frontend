@@ -10,7 +10,7 @@ export default class AdagucViewerContainer extends Component {
         <Row>
 
           <div className='text'>
-            <ADAGUCViewerComponent stacklayers={true} dapurl='https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_new.nc' />
+            <ADAGUCViewerComponent parsedLayerCallback={ (wmjsregistry) => {console.log(wmjsregistry); } } stacklayers={true} dapurl='https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_new.nc' />
 
           </div>
         </Row>

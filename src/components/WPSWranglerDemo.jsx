@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
+import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
+import ReactSlider from 'react-slider';
 
 class RenderProcesses extends Component {
   renderProcess (process) {
@@ -49,8 +51,15 @@ export default class WPSWranglerDemo extends Component {
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
-      inputb: 20
+      inputb: 20,
+      currentValue: 50,
+      changeValue: 0,
+      step: 1,
+      min: 0,
+      max:100
+
     };
+    this.wmjsregistry = {};
   }
 
   toggle (e) {
@@ -91,35 +100,36 @@ export default class WPSWranglerDemo extends Component {
     this.setState({
       [name]: value
     });
+    if (name === 'inputa') {
+      let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
+      anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + parseInt(value)});
+      console.log(this.wmjsregistry.anomaly.getLayers()[0]);
+    }
   };
 
   render () {
     const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
     return (
       <div className='MainViewport'>
-        <h1>WPS Demo</h1>
+        <h1>Anomaly agreement</h1>
+        <ADAGUCViewerComponent
+          height={'50vh'}
+          stacklayers={true}
+          dapurl='https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_agreement_20180316.nc'
+          parsedLayerCallback={ (wmjsregistry) => {console.log(wmjsregistry);  this.wmjsregistry = wmjsregistry;  this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
+        />
         <Row>
-          <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col>
-          <Col xs='2'>
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret >
-                { this.state.dropDownValue }
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('add'); }}>add</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('divide'); }}>divide</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('substract'); }}>substract</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('multiply'); }}>multiply</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
-          </Col>
-          <Col xs='2'><Input onChange={(event) => { this.handleChange('inputb', event.target.value); }} value={this.state.inputb} /></Col>
-          <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.calculateClicked(); }}>Calculate</Button></Col>
+          { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
+          <Col xs='8'>
+            <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) => {
+               let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
+               anomalyLayer.legendGraphic = '';
+                anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + parseInt(v / 1) * 1});
+                this.wmjsregistry.anomaly.draw();
+                this.setState({currentValue:v});
+            }} />
+          </Col><Col>{this.state.currentValue}</Col>
         </Row>
-        <p>nrOfStartedProcesses: {nrOfStartedProcesses}</p>
-        <p>nrOfFailedProcesses: {nrOfFailedProcesses}</p>
-        <p>nrOfCompletedProcesses: {nrOfCompletedProcesses}</p>
-        <RenderProcesses runningProcesses={runningProcesses} />
       </div>);
   }
 }
