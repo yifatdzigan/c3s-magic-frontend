@@ -57,10 +57,11 @@ class WPSWranglerDemo extends Component {
       changeValue: 0,
       step: 1,
       min: 0,
-      max:100
+      max:100,
 
     };
     this.wmjsregistry = {};
+    this.initialized = false;
   }
 
   toggle (e) {
@@ -119,7 +120,13 @@ class WPSWranglerDemo extends Component {
           height={'50vh'}
           stacklayers={true}
           wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
-          parsedLayerCallback={ (wmjsregistry) => {console.log(wmjsregistry);  this.wmjsregistry = wmjsregistry;  this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
+          parsedLayerCallback={ (wmjsregistry) => {
+            console.log(wmjsregistry);
+            this.wmjsregistry = wmjsregistry;
+            if (!this.initialized) {
+              this.initialized = true;
+              this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
+            }
         />
         <Row>
           { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
