@@ -54,7 +54,7 @@ class WPSWranglerDemo extends Component {
       dropDownValue: 'add',
       inputa: 10,
       inputb: 20,
-      currentValue: 100,
+      currentValue: 0,
       changeValue: 0,
       step: 1,
       min: 0,
@@ -118,15 +118,16 @@ class WPSWranglerDemo extends Component {
   }
 
   handleSliderChange (v) {
-    if (! this.wmjsregistry){
+    this.setState({currentValue:v});
+    if (! this.wmjsregistry || ! this.wmjsregistry.anomaly){
       console.log('No this.wmjsregistry');
       return;
     }
     let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
     anomalyLayer.legendGraphic = '';
-    anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + parseInt(v / 1) * 1});
+    anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1)});
     this.wmjsregistry.anomaly.draw();
-    this.setState({currentValue:v});
+
   }
 
   render () {
@@ -134,10 +135,11 @@ class WPSWranglerDemo extends Component {
     return (
       <div className='MainViewport'>
         <Button style={{float:'right'}} color='link' onClick={() => {this.props.router.push('/');} }>(back)</Button>
-        <h1>Anomaly agreement</h1>
+        <h1>Ensemble anomaly plots</h1>
 
         <ADAGUCViewerComponent
-          height={'50vh'}
+          height2={'50vh'}
+          height={'500px'}
           stacklayers={true}
           wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
           parsedLayerCallback={ (wmjsregistry) => {
@@ -149,10 +151,17 @@ class WPSWranglerDemo extends Component {
             }
         />
         <Row>
+        <Col xs='5'>Stippling (% of members agreeing):</Col>
+        </Row>
+        <Row>
           { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
-          <Col xs='8'>
+
+
+          <Col xs='11'>
             <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) =>{this.debouncedHandleSliderChange(v);}} />
-          </Col><Col>{this.state.currentValue}</Col>
+          </Col>
+          <Col xs='1'>{this.state.currentValue} %</Col>
+
         </Row>
 
       </div>);

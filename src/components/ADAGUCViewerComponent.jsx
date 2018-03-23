@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 import { debounce } from 'throttle-debounce';
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import Icon from 'react-fa';
 import ReactWebMapJS from './ReactWebMapJS';
-
 
 let config = getConfig();
 console.log(config);
@@ -13,54 +12,52 @@ console.log(config);
 const mapTypeConfiguration = [
   {
     title: 'World Lat/Lon',
-    bbox: [-180,-90,180,90],
+    bbox: [-180, -90, 180, 90],
     srs: 'EPSG:4326',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
-  },{
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
+  }, {
     title: 'World Mollweide',
-    bbox: [-18157572.744146045,-11212941.682924412,18085661.018022258,11419683.192411266],
+    bbox: [-18157572.744146045, -11212941.682924412, 18085661.018022258, 11419683.192411266],
     srs: 'EPSG:7399',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   },
   {
     title: 'World Robinson',
-    bbox: [-17036744.451383516,-10711364.114367772,16912038.081015453,10488456.659686875],
+    bbox: [-17036744.451383516, -10711364.114367772, 16912038.081015453, 10488456.659686875],
     srs: 'EPSG:54030',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'World Mercator',
-    bbox: [-19000000,-19000000,19000000,19000000],
+    bbox: [-19000000, -19000000, 19000000, 19000000],
     srs: 'EPSG:3857',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'Northern Hemisphere',
-    bbox: [-5661541.927991125,-3634073.745615984,5795287.923063262,2679445.334384017],
+    bbox: [-5661541.927991125, -3634073.745615984, 5795287.923063262, 2679445.334384017],
     srs: 'EPSG:3411',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'Southern Hemisphere',
-    bbox: [-4589984.273212382,-2752857.546211313,5425154.657417289,2986705.2537886878],
+    bbox: [-4589984.273212382, -2752857.546211313, 5425154.657417289, 2986705.2537886878],
     srs: 'EPSG:3412',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'Europe North Pole',
-    bbox: [-13000000,-13000000,13000000,13000000],
+    bbox: [-13000000,-13000000, 13000000, 13000000],
     srs: 'EPSG:3575',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'Europe stereographic',
-    bbox: [-2776118.977564746,-6499490.259201691,9187990.785775745,971675.53185069],
+    bbox: [-2776118.977564746, -6499490.259201691, 9187990.785775745, 971675.53185069],
     srs: 'EPSG:32661',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'North America',
-    bbox: [-2015360.8716608454,-697107.5349683464,9961718.159421016,6782157.107682772],
+    bbox: [-2015360.8716608454, -697107.5349683464, 9961718.159421016, 6782157.107682772],
     srs: 'EPSG:50001',
-    baselayer:{service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?',name:'naturalearth2',type: 'wms'}
+    baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }
 ];
-
-
 
 export default class ADAGUCViewerComponent extends Component {
   constructor (props) {
@@ -224,74 +221,73 @@ export default class ADAGUCViewerComponent extends Component {
     const { title, error } = this.state;
     // console.log(this.state.wmsLayers);
     // console.log('layer0', this.state.wmsLayers[0]);
-    return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%'}}>
+    return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%' }}>
+      <CardBody style={{ padding:'0' }}>
+        { this.props.showmetadata ? <div>
+          { title ? (<CardTitle>NetCDF file: {this.state.title}</CardTitle>) : null }
+          { error ? (<Alert color='danger'>{this.state.error}</Alert>) : null }
+          <CardSubtitle>{this.WMSServiceStore.title}</CardSubtitle>
+          <CardText>{this.WMSServiceStore.abstract}</CardText>
+        </div>
+        : null }
 
-        <CardBody>
-          { this.props.showmetadata ?
-            <div>
-              { title ? (<CardTitle>NetCDF file: {this.state.title}</CardTitle>) : null }
-              { error ? (<Alert color='danger'>{this.state.error}</Alert>) : null }
-              <CardSubtitle>{this.WMSServiceStore.title}</CardSubtitle>
-              <CardText>{this.WMSServiceStore.abstract}</CardText>
-            </div>
-          :null }
-
-          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle caret>
-              <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
-            </DropdownToggle>
-            <DropdownMenu>
-              {
-                mapTypeConfiguration.map((proj, index) => {
-                  return (<DropdownItem key={index} onClick={(event) => {
-                    mapTypeConfiguration.map((proj, index) => {
-                      if (proj.title === event.target.innerText) {
-                        this.setProjection(proj);
-                      }
-                    });
-                  }
-                  }>{proj.title}</DropdownItem>);
-                })
-              }
-            </DropdownMenu>
-          </Dropdown>
-          {
-            (this.props.stacklayers !== true) ? this.state.wmsLayers.map((wmjslayer, index) => {
-              return (
-                <Card body key={index} >
-                  <CardBody>
-                    <CardTitle>Layer {wmjslayer.name} - {wmjslayer.title}</CardTitle>
-                    <div style={{ width:this.props.width || '100%', height:this.props.height || '100%'}}>
-                      <ReactWebMapJS
-                        id={index}
-                        key={wmjslayer.name}
-                        layers={[wmjslayer]}
-                        listeners={this.listeners}
-                        wmjsRegistry={(id, wmjs, appendOrRemove) => {
-                          if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
-                          if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
-                        }}
-                      />
-                    </div>
-                  </CardBody>
-                </Card>
-              );
-            }) : <Card body >
-              <CardBody>
-                <div style={{ width:this.props.width || '100%', height:this.props.height || '100%'}}>
-                  <ReactWebMapJS
-                    layers={this.state.wmsLayers}
-                    listeners={this.listeners}
-                    wmjsRegistry={(id, wmjs, appendOrRemove) => {
-                      if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
-                      if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
-                    }}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          }
-        </CardBody>
+        { this.props.controls && this.props.controls.showprojectionbutton ? <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle caret>
+            <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
+          </DropdownToggle>
+          <DropdownMenu>
+            {
+              mapTypeConfiguration.map((proj, index) => {
+                return (<DropdownItem key={index} onClick={(event) => {
+                  mapTypeConfiguration.map((proj, index) => {
+                    if (proj.title === event.target.innerText) {
+                      this.setProjection(proj);
+                    }
+                  });
+                }
+                }>{proj.title}</DropdownItem>);
+              })
+            }
+          </DropdownMenu>
+        </Dropdown> : null
+        }
+        {
+          (this.props.stacklayers !== true) ? this.state.wmsLayers.map((wmjslayer, index) => {
+            return (
+              <Card style={{ padding:'0' }} body key={index} >
+                <CardBody style={{ padding:'0' }} >
+                  <CardTitle>Layer {wmjslayer.name} - {wmjslayer.title}</CardTitle>
+                  <div style={{ width:this.props.width || '100%', height:this.props.height || '100%' }}>
+                    <ReactWebMapJS
+                      id={index}
+                      key={wmjslayer.name}
+                      layers={[wmjslayer]}
+                      listeners={this.listeners}
+                      wmjsRegistry={(id, wmjs, appendOrRemove) => {
+                        if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
+                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
+                      }}
+                    />
+                  </div>
+                </CardBody>
+              </Card>
+            );
+          }) : <Card body style={{ padding:'0' }} >
+            <CardBody style={{ padding:'0' }}>
+              <div style={{ width:this.props.width || '100%', height:this.props.height || '100%' }}>
+                <ReactWebMapJS
+                  layers={this.state.wmsLayers}
+                  listeners={this.listeners}
+                  wmjsRegistry={(id, wmjs, appendOrRemove) => {
+                    if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
+                    if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
+                  }}
+                />
+              </div>
+            </CardBody>
+          </Card>
+        }
+      </CardBody>
 
     </div>);
   }
@@ -303,6 +299,7 @@ ADAGUCViewerComponent.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   stacklayers: PropTypes.bool,
-  closeCallback: PropTypes.func,
+  showmetadata: PropTypes.bool,
+  controls: PropTypes.object,
   parsedLayerCallback: PropTypes.func
 };
