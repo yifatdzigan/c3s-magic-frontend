@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
 import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router'
+import { debounce } from 'throttle-debounce';
 
 class RenderProcesses extends Component {
   renderProcess (process) {
@@ -62,6 +63,9 @@ class WPSWranglerDemo extends Component {
     };
     this.wmjsregistry = {};
     this.initialized = false;
+
+    this.handleSliderChange = this.handleSliderChange.bind(this);
+    this.debouncedHandleSliderChange = debounce(25, this.debouncedHandleSliderChange);
   }
 
   toggle (e) {
@@ -109,6 +113,22 @@ class WPSWranglerDemo extends Component {
     }
   };
 
+  debouncedHandleSliderChange (v) {
+    this.handleSliderChange(v);
+  }
+
+  handleSliderChange (v) {
+    if (! this.wmjsregistry){
+      console.log('No this.wmjsregistry');
+      return;
+    }
+    let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
+    anomalyLayer.legendGraphic = '';
+    anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + parseInt(v / 1) * 1});
+    this.wmjsregistry.anomaly.draw();
+    this.setState({currentValue:v});
+  }
+
   render () {
     const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
     return (
@@ -121,7 +141,7 @@ class WPSWranglerDemo extends Component {
           stacklayers={true}
           wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
           parsedLayerCallback={ (wmjsregistry) => {
-            console.log(wmjsregistry);
+            // console.log(wmjsregistry);
             this.wmjsregistry = wmjsregistry;
             if (!this.initialized) {
               this.initialized = true;
@@ -131,13 +151,7 @@ class WPSWranglerDemo extends Component {
         <Row>
           { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
           <Col xs='8'>
-            <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) => {
-               let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
-               anomalyLayer.legendGraphic = '';
-                anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + parseInt(v / 1) * 1});
-                this.wmjsregistry.anomaly.draw();
-                this.setState({currentValue:v});
-            }} />
+            <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) =>{this.debouncedHandleSliderChange(v);}} />
           </Col><Col>{this.state.currentValue}</Col>
         </Row>
 

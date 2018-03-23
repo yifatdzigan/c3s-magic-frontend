@@ -12,8 +12,8 @@ export default class ReactWebMapJS extends Component {
     this.resize();
   }
   componentDidUpdate () {
-    console.log('componentDidUpdate');
-    console.log('layers', this.props.layers);
+    // console.log('componentDidUpdate');
+    // console.log('layers', this.props.layers);
     if (this.props.layers && this.props.layers.length > 0 && this.props.layers[0]) {
       this.webMapJS.removeAllLayers();
       for (let j = 0;j < this.props.layers.length; j++) {
@@ -23,7 +23,7 @@ export default class ReactWebMapJS extends Component {
         this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
       }
     }
-    this.webMapJS.draw();
+    // this.webMapJS.draw();
   }
   componentDidMount () {
     console.log('componentDidMount');
@@ -56,6 +56,8 @@ export default class ReactWebMapJS extends Component {
       })
     ];
     console.log(baselayers);
+
+
     this.webMapJS.setBaseLayers(baselayers);
 
 
@@ -69,6 +71,8 @@ export default class ReactWebMapJS extends Component {
 
     window.addEventListener('resize', this._handleWindowResize);
   }
+
+
 
   componentWillUnMount () {
     window.removeEventListener('resize', this._handleWindowResize);

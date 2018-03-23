@@ -117,6 +117,14 @@ export default class ADAGUCViewerComponent extends Component {
     };
   }
 
+  // shouldComponentUpdate (nextProps, nextState) {
+  //   console.log(nextProps, nextState);
+  //   // You can access `this.props` and `this.state` here
+  //   // This function should return a boolean, whether the component should re-render.
+  //   return false;
+  // }
+
+
   componentDidMount () {
     this.listeners = [
       { name:'onupdatebbox', callbackfunction: (webmapjs, bbox) => { this.updateBBOXDebounced(webmapjs, bbox); }, keep:true },
@@ -214,8 +222,8 @@ export default class ADAGUCViewerComponent extends Component {
 
   render () {
     const { title, error } = this.state;
-    console.log(this.state.wmsLayers);
-    console.log('layer0', this.state.wmsLayers[0]);
+    // console.log(this.state.wmsLayers);
+    // console.log('layer0', this.state.wmsLayers[0]);
     return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%'}}>
 
         <CardBody>
