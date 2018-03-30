@@ -164,7 +164,7 @@ export const createRoutes = (store) => {
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
       </Route>
       <Route path='demo' title='Demo'>
-        <IndexRoute component={NavBarLayout} viewComponent={wpsdemo} />
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
       </Route>
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
