@@ -13,7 +13,7 @@ export default class ReactWebMapJS extends Component {
   }
   componentDidUpdate () {
     // console.log('componentDidUpdate');
-    // console.log('layers', this.props.layers);
+    // console.log('componentDidUpdate layers', this.props.layers);
     if (this.props.layers && this.props.layers.length > 0 && this.props.layers[0]) {
       this.webMapJS.removeAllLayers();
       for (let j = 0;j < this.props.layers.length; j++) {
@@ -23,12 +23,15 @@ export default class ReactWebMapJS extends Component {
         this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
       }
     }
+    // console.log('draw', this.webMapJS.getLayers());
     // this.webMapJS.draw();
   }
   componentDidMount () {
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
+
     if (this.webMapJSCreated) {
-      console.log('ok');
+      // console.log('ok');
+      this.webMapJS.draw();
       return;
     }
     this.webMapJSCreated = true;
@@ -55,7 +58,6 @@ export default class ReactWebMapJS extends Component {
         keepOnTop:true
       })
     ];
-    console.log(baselayers);
 
 
     this.webMapJS.setBaseLayers(baselayers);
@@ -66,9 +68,11 @@ export default class ReactWebMapJS extends Component {
         this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
       });
     }
-    this.resize();
-    this.webMapJS.draw();
 
+
+    this.resize();
+    this.componentDidUpdate();
+    this.webMapJS.draw();
     window.addEventListener('resize', this._handleWindowResize);
   }
 
