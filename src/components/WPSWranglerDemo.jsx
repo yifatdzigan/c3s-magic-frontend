@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
-import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
+import { Button, Input, FormGroup, Form, Label,ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
 import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router'
 import { debounce } from 'throttle-debounce';
@@ -136,34 +136,45 @@ class WPSWranglerDemo extends Component {
       <div className='MainViewport'>
         <Button style={{float:'right'}} color='link' onClick={() => {this.props.router.push('/');} }>(back)</Button>
         <h1>Ensemble anomaly plots</h1>
-
-        <ADAGUCViewerComponent
-          height2={'50vh'}
-          height={'500px'}
-          stacklayers={true}
-          wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
-          parsedLayerCallback={ (wmjsregistry) => {
-            // console.log(wmjsregistry);
-            this.wmjsregistry = wmjsregistry;
-            if (!this.initialized) {
-              this.initialized = true;
-              this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
-            }
-        />
         <Row>
-        <Col xs='5'>Stippling (% of members agreeing):</Col>
-        </Row>
-        <Row>
-          { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
+          <Col>
+            { /*<Row>
+              <Col>
+                <div className='text'>
+                  Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
+                </div>
+              </Col>
+            </Row> */ }
+            <Form>
+              <FormGroup>
+                <Label>Stippling (% of members agreeing):</Label>
+                <Row>
+                  { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
 
 
-          <Col xs='11'>
-            <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) =>{this.debouncedHandleSliderChange(v);}} />
+                  <Col xs='10'>
+                    <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) =>{this.debouncedHandleSliderChange(v);}} />
+                  </Col>
+                  <Col xs='2'>{this.state.currentValue} %</Col>
+                </Row>
+              </FormGroup>
+            </Form>
           </Col>
-          <Col xs='1'>{this.state.currentValue} %</Col>
-
+          <Col xs='8'>
+            <ADAGUCViewerComponent
+              height={'70vh'}
+              stacklayers={true}
+              wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
+              parsedLayerCallback={ (wmjsregistry) => {
+                // console.log(wmjsregistry);
+                this.wmjsregistry = wmjsregistry;
+                if (!this.initialized) {
+                  this.initialized = true;
+                  this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
+                }
+            />
+          </Col>
         </Row>
-
       </div>);
   }
 }
