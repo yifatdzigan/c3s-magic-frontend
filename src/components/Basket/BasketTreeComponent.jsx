@@ -87,7 +87,7 @@ class BasketTreeComponent extends Component {
       let basename = baseName(node.dapurl);
       this.props.dispatch(this.props.actions.showWindow(
         {
-          component:(<ADAGUCViewerComponent className='AdagucPreview' style={{ width:'100%' }} dapurl={node.dapurl} />),
+          component:(<ADAGUCViewerComponent className='AdagucPreview' width={'100%'} height={'300px'} dapurl={node.dapurl} />),
           title: basename
         })
       );

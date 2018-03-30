@@ -7,7 +7,7 @@ import Icon from 'react-fa';
 import ReactWebMapJS from './ReactWebMapJS';
 
 let config = getConfig();
-console.log(config);
+// console.log(config);
 
 const mapTypeConfiguration = [
   {
@@ -72,7 +72,7 @@ export default class ADAGUCViewerComponent extends Component {
       this.getLayersForService(props.wmsurl);
     }
     this.listeners = [];
-    console.log('wmjsRegistry = {}');
+    // console.log('wmjsRegistry = {}');
     this.wmjsRegistry = {};
     this.drawDebounced = debounce(1000, this.drawDebounced);
     this.updateBBOXDebounced = debounce(10, this.updateBBOXDebounced);
@@ -135,9 +135,9 @@ export default class ADAGUCViewerComponent extends Component {
   }
 
   getLayersForService (WMSGetCapabiltiesURL, dapurl) {
-    console.log('getLayersForService');
+    // console.log('getLayersForService');
     this.setState({ wmsLayers:[], error:null, title:'Loading...' });
-    console.log(WMSGetCapabiltiesURL);
+    // console.log(WMSGetCapabiltiesURL);
 
     // eslint-disable-next-line no-undef
     this.WMSServiceStore = WMJSgetServiceFromStore(WMSGetCapabiltiesURL);
@@ -147,10 +147,10 @@ export default class ADAGUCViewerComponent extends Component {
         console.log('error');
         return;
       }
-      console.log(this.props);
+      // console.log(this.props);
 
       if (dapurl) {
-        console.log(this.props.dapurl);
+        // console.log(this.props.dapurl);
         let baseName = (str) => {
           let base = str.substring(str.lastIndexOf('/') + 1);
           // if (base.lastIndexOf('.') !== -1) base = base.substring(0, base.lastIndexOf('.'));
@@ -177,7 +177,7 @@ export default class ADAGUCViewerComponent extends Component {
           });
         }
       }
-      console.log('layerNames', wmsLayers);
+      // console.log('layerNames', wmsLayers);
       this.setState({ wmsLayers:wmsLayers });
     };
     this.WMSServiceStore.getCapabilities(
@@ -196,7 +196,7 @@ export default class ADAGUCViewerComponent extends Component {
   setProjection (p) {
     for (let key in this.wmjsRegistry) {
       let otherWebMapJS = this.wmjsRegistry[key];
-      console.log('Set projection', p, otherWebMapJS);
+      // console.log('Set projection', p, otherWebMapJS);
       otherWebMapJS.setProjection(p);
       otherWebMapJS.draw();
     }
@@ -206,7 +206,7 @@ export default class ADAGUCViewerComponent extends Component {
   }
 
   toggle () {
-    console.log('toggle', this.state.dropdownOpen);
+    // console.log('toggle', this.state.dropdownOpen);
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
@@ -253,6 +253,7 @@ export default class ADAGUCViewerComponent extends Component {
         }
         {
           (this.props.stacklayers !== true) ? this.state.wmsLayers.map((wmjslayer, index) => {
+            // console.log(' this.state.wmsLayers',  this.state.wmsLayers);
             return (
               <Card style={{ padding:'0' }} body key={index} >
                 <CardBody style={{ padding:'0' }} >
@@ -265,7 +266,7 @@ export default class ADAGUCViewerComponent extends Component {
                       listeners={this.listeners}
                       wmjsRegistry={(id, wmjs, appendOrRemove) => {
                         if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
-                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
+                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry); else wmjs.draw();
                       }}
                     />
                   </div>
@@ -280,7 +281,7 @@ export default class ADAGUCViewerComponent extends Component {
                   listeners={this.listeners}
                   wmjsRegistry={(id, wmjs, appendOrRemove) => {
                     if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
-                    if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry);
+                    if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry); else wmjs.draw();
                   }}
                 />
               </div>
