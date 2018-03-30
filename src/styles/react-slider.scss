@@ -1,0 +1,68 @@
+
+.horizontal-slider {
+  width: 100%;
+
+  height: 8px;
+  margin-top: 8px;
+  border: 1px solid #CCCCCC;
+  border-radius:15px;
+  background:#F2F2F2;
+  box-shadow:         inset 0 0 1px #BBB;
+  cursor: pointer;
+}
+.vertical-slider {
+  height: 380px;
+  width: 50px;
+  border: 1px solid grey;
+}
+.handle {
+  font-size: 0.9em;
+  text-align: center;
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+  border-radius:15px;
+  background:#DDDDDD;
+  border:1px solid #AAADAA;
+}
+.handle.active {
+  background-color: #DDDDFD;
+}
+.bar {
+  position: relative;
+  background: #ddd;
+}
+.bar.bar-1 {
+  background: #f00;
+}
+.bar.bar-2 {
+  background: #0f0;
+}
+.horizontal-slider .bar {
+  top: 20px;
+  height: 10px;
+}
+.horizontal-slider .handle {
+  top: -6px;
+  width: 18px;
+  height: 18px;
+  line-height: 28px;
+
+}
+.vertical-slider .handle {
+  left: 1px;
+  width: 48px;
+  line-height: 50px;
+}
+.vertical-slider .bar {
+  left: 20px;
+  width: 10px;
+}
+#horizontal-0,
+#horizontal-1, #horizontal-2, #horizontal-3,
+#vertical {
+  margin: 20px 10px;
+}
+#horizontal-2 .bar.bar-2 {
+  background: #ddd;
+}
