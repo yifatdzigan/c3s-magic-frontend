@@ -68,8 +68,10 @@ export default class ADAGUCViewerComponent extends Component {
     if (props.dapurl) {
       let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(props.dapurl);
       this.getLayersForService(WMSGetCapabiltiesURL, props.dapurl);
-    } else {
+    } else if(props.wmsurl) {
       this.getLayersForService(props.wmsurl);
+    } else {
+      console.log('empty');
     }
     this.listeners = [];
     // console.log('wmjsRegistry = {}');
@@ -277,6 +279,7 @@ export default class ADAGUCViewerComponent extends Component {
             <CardBody style={{ padding:'0' }}>
               <div style={{ width:this.props.width || '100%', height:this.props.height || '100%' }}>
                 <ReactWebMapJS
+                  baselayers={this.props.baselayers}
                   layers={this.state.wmsLayers}
                   listeners={this.listeners}
                   wmjsRegistry={(id, wmjs, appendOrRemove) => {
@@ -302,5 +305,6 @@ ADAGUCViewerComponent.propTypes = {
   stacklayers: PropTypes.bool,
   showmetadata: PropTypes.bool,
   controls: PropTypes.object,
-  parsedLayerCallback: PropTypes.func
+  parsedLayerCallback: PropTypes.func,
+  baselayers: PropTypes.array
 };

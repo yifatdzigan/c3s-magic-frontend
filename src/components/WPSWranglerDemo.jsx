@@ -6,7 +6,152 @@ import { Button, Input, FormGroup, Form, Label,ButtonDropdown, DropdownToggle, D
 import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router'
 import { debounce } from 'throttle-debounce';
+import axios from 'axios';
+import AdagucMapDraw from './ADAGUC/AdagucMapDraw.js';
 
+
+class ActuariesPage extends Component {
+
+constructor(props) {
+  super(props);
+
+  let csvJSON = (csv) => {
+    var lines=csv.split('\n');
+    var result = [];
+    var headers=lines[0].split(';');
+    for(var i=1;i<lines.length;i++){
+      var obj = {};
+      var currentline=lines[i].split(';');
+      for(var j=0;j<headers.length;j++){
+        obj[headers[j]] = currentline[j];
+      }
+      result.push(obj);
+    }
+    return result;
+  }
+  let fetchGeoJSON = () => {
+
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        //url: 'geodata/NUTS_2010_L0.geojson',
+        url: 'geodata/eu-countries.geo.json',
+        withCredentials: true,
+        responseType: 'json'
+      }).then(src => {
+        if (src.data) {
+          let geojson = src.data;
+          for (let featureIndex = 0; featureIndex < geojson.features.length; featureIndex++) {
+            const feature = geojson.features[featureIndex];
+            const featureProps = feature.properties;
+            if (featureProps.iso_a2 === 'NL' || featureProps.NUTS_ID === 'NL') {
+              featureProps.fill = '#FF0000';
+            }
+          };
+          this.setState({ geojson: src.data });
+          if (this.state.wmjsregistry && this.state.wmjsregistry.first) {
+            this.state.wmjsregistry.first.setProjection(
+              {srs:'EPSG:32661' ,bbox:[422133.0051161968,-4614524.365473892,4714402.927897792,-1179461.5805027087]
+            });
+            this.state.wmjsregistry.first.draw();
+          }
+        }
+
+        axios({
+          method: 'get',
+          url: 'actuaries/c3s-magic-actuaries-countriesextract.csv',
+          withCredentials: true,
+          responseType: 'csv'
+        }).then(src => {
+          if (src.data) {
+            console.log(csvJSON(src.data));
+          }
+          resolve('Fetched FIR');
+        });
+
+        //
+
+        // let newGeoJson = cloneDeep(this.props.drawProperties.adagucMapDraw.geojson);
+        // newGeoJson.features[destinationFeatureNr].geometry = cloneDeep(src.data.features[0].geometry);
+        // dispatch(drawActions.setGeoJSON(newGeoJson));
+
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+  this.state = {
+      dropdownOpen: false,
+      dropDownValue: 'add',
+      inputa: 10,
+      inputb: 20,
+      currentValue: 0,
+      changeValue: 0,
+      step: 1,
+      min: 0,
+      max:100,
+
+    };
+
+    fetchGeoJSON();
+}
+
+render () {
+  console.log(this.wmjsregistry);
+     return (<div>
+      <h1>Actuaries index</h1>
+        <Row>
+          <Col>
+            { /*<Row>
+              <Col>
+                <div className='text'>
+                  Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
+                </div>
+              </Col>
+            </Row> */ }
+            <Form>
+              <FormGroup>
+                <Label>Stippling (% of members agreeing):</Label>
+                <Row>
+                  { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
+
+
+                  <Col xs='10'>
+                    <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) =>{this.debouncedHandleSliderChange(v);}} />
+                  </Col>
+                  <Col xs='2'>{this.state.currentValue} %</Col>
+                </Row>
+              </FormGroup>
+            </Form>
+          </Col>
+          <Col xs='8'>
+            <ADAGUCViewerComponent
+              height={'70vh'}
+              stacklayers={true}
+              baselayers = {[]}
+              controls={{ showprojectionbutton: true }}
+
+              // wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
+              parsedLayerCallback={
+                (wmjsregistry) => {
+                  if (!this.state.initialized) {
+                    console.log(wmjsregistry);
+                    this.setState({wmjsregistry:wmjsregistry, initialized: true})
+                    // this.state.wmjsregistry.getLayers()[0].zoomToLayer();
+                  }
+                }
+              }
+            />
+            { this.state.initialized ?
+            <AdagucMapDraw
+              geojson={this.state.geojson}
+              webmapjs={this.state.wmjsregistry.first}
+            /> : null }
+          </Col>
+        </Row>
+      </div>);
+  }
+};
 
 
 class RenderProcesses extends Component {
@@ -132,12 +277,10 @@ class WPSWranglerDemo extends Component {
 
   }
 
-  render () {
-    const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
-    return (
-      <div className='MainViewport'>
-        <Button style={{float:'right'}} color='link' onClick={() => {this.props.router.push('/');} }>(back)</Button>
-        <h1>Ensemble anomaly plots</h1>
+
+  renderAnomalyAgreement () {
+    return (<div>
+      <h1>Ensemble anomaly plots</h1>
         <Row>
           <Col>
             { /*<Row>
@@ -177,6 +320,17 @@ class WPSWranglerDemo extends Component {
             />
           </Col>
         </Row>
+      </div>);
+  }
+
+
+  render () {
+    const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
+    return (
+      <div className='MainViewport'>
+        <Button style={{float:'right'}} color='link' onClick={() => {this.props.router.push('/');} }>(back)</Button>
+        { /* this.renderAnomalyAgreement() */ }
+        <ActuariesPage/>
       </div>);
   }
 }

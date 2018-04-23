@@ -22,6 +22,10 @@ export default class ReactWebMapJS extends Component {
       if (this.props.wmjsRegistry) {
         this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
       }
+    } else {
+      if (this.props.wmjsRegistry) {
+        this.props.wmjsRegistry('first', this.webMapJS, true);
+      }
     }
     // console.log('draw', this.webMapJS.getLayers());
     // this.webMapJS.draw();
@@ -59,6 +63,9 @@ export default class ReactWebMapJS extends Component {
       })
     ];
 
+    if (this.props.baselayers) {
+      baselayers = this.props.baselayers;
+    }
 
     this.webMapJS.setBaseLayers(baselayers);
 
@@ -118,6 +125,7 @@ export default class ReactWebMapJS extends Component {
 };
 ReactWebMapJS.propTypes = {
   layers: PropTypes.array,
+  baselayers: PropTypes.array,
   listeners: PropTypes.array,
   bbox: PropTypes.object,
   wmjsRegistry: PropTypes.func,
