@@ -84,6 +84,7 @@ import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
 
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
+import ActuariesDemo from '../components/ActuariesDemo';
 import BasketComponent from '../components/Basket/BasketComponent';
 
 import AdagucViewerContainer from '../containers/AdagucViewerContainer';
@@ -149,6 +150,9 @@ export const createRoutes = (store) => {
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
+
+  const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
+
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
   const adagucviewer = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(AdagucViewerContainer));
@@ -165,6 +169,9 @@ export const createRoutes = (store) => {
       </Route>
       <Route path='demo' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
+      </Route>
+      <Route path='actuaries' title='actuariesDemo'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={actuariesDemo} />
       </Route>
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
