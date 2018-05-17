@@ -70,9 +70,9 @@ class WPSWranglerDemo extends Component {
       [name]: value
     });
     if (name === 'inputa') {
-      let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
+      let anomalyLayer = this.wmjsregistry.getLayers()[0];
       anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + parseInt(value) });
-      console.log(this.wmjsregistry.anomaly.getLayers()[0]);
+      console.log(this.wmjsregistry.getLayers()[0]);
     }
   };
 
@@ -82,14 +82,14 @@ class WPSWranglerDemo extends Component {
 
   handleSliderChange (v) {
     this.setState({ currentValue:v });
-    if (!this.wmjsregistry || !this.wmjsregistry.anomaly) {
+    if (!this.wmjsregistry || !this.wmjsregistry) {
       console.log('No this.wmjsregistry');
       return;
     }
-    let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
+    let anomalyLayer = this.wmjsregistry.getLayers()[0];
     anomalyLayer.legendGraphic = '';
     anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1) });
-    this.wmjsregistry.anomaly.draw();
+    this.wmjsregistry.draw();
   }
 
   renderAnomalyAgreement () {
@@ -128,12 +128,12 @@ class WPSWranglerDemo extends Component {
             wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
             parsedLayerCallback={
               (wmjsregistry) => {
-                console.log('parsedLayerCallback', wmjsregistry);
+                // console.log('parsedLayerCallback', wmjsregistry);
                 this.wmjsregistry = wmjsregistry;
                 if (!this.initialized) {
-                  if (this.wmjsregistry.anomaly) {
-                    this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer();
-                    this.wmjsregistry.anomaly.draw();
+                  if (this.wmjsregistry && this.wmjsregistry.getLayers().length > 0) {
+                    this.wmjsregistry.getLayers()[0].zoomToLayer();
+                    this.wmjsregistry.draw();
                     this.initialized = true;
                   }
                 }

@@ -115,9 +115,9 @@ class ActuariesPage extends Component {
               }
             };
             this.setState({ geojson: src.data });
-            if (this.state.wmjsregistry && this.state.wmjsregistry.first) {
-              this.state.wmjsregistry.first.setProjection({ srs:'EPSG:32661', bbox:[422133.0051161968, -4614524.365473892, 4714402.927897792, -1179461.5805027087] });
-              this.state.wmjsregistry.first.draw();
+            if (this.state.wmjsregistry && this.state.wmjsregistry) {
+              this.state.wmjsregistry.setProjection({ srs:'EPSG:32661', bbox:[422133.0051161968, -4614524.365473892, 4714402.927897792, -1179461.5805027087] });
+              this.state.wmjsregistry.draw();
             }
             axios({
               method: 'get',
@@ -187,7 +187,7 @@ class ActuariesPage extends Component {
       }
     });
     this.setState({ geojson: this.geojson });
-    this.state.wmjsregistry.first.draw();
+    this.state.wmjsregistry.draw();
   }
 
   debouncedHandleSliderChange (v) {
@@ -252,8 +252,8 @@ class ActuariesPage extends Component {
             baselayers={[]}
             controls={{ showprojectionbutton: true }}
             parsedLayerCallback={
-              (wmjsregistry) => {console.log('parsedLayerCallback', wmjsregistry);
-                console.log('parsedLayerCallback', wmjsregistry);
+              (wmjsregistry) => {
+                // console.log('parsedLayerCallback', wmjsregistry);
                 if (!this.state.initialized) {
                   this.setState({ wmjsregistry:wmjsregistry, initialized: true });
                   // this.state.wmjsregistry.getLayers()[0].zoomToLayer();
@@ -263,7 +263,7 @@ class ActuariesPage extends Component {
           />
           { this.state.initialized ? <AdagucMapDraw
             geojson={this.state.geojson}
-            webmapjs={this.state.wmjsregistry.first}
+            webmapjs={this.state.wmjsregistry}
             dispatch={this.props.dispatch}
             actions={this.props.actions}
             hoverFeatureCallback={this.hoverFeatureCallback}
