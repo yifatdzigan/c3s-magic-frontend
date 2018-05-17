@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 import { debounce } from 'throttle-debounce';
@@ -59,20 +59,12 @@ const mapTypeConfiguration = [
   }
 ];
 
-export default class ADAGUCViewerComponent extends Component {
+export default class ADAGUCViewerComponent extends PureComponent {
   constructor (props) {
     super(props);
     this.setProjection = this.setProjection.bind(this);
     this.getLayersForService = this.getLayersForService.bind(this);
 
-    if (props.dapurl) {
-      let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(props.dapurl);
-      this.getLayersForService(WMSGetCapabiltiesURL, props.dapurl);
-    } else if(props.wmsurl) {
-      this.getLayersForService(props.wmsurl);
-    } else {
-      console.log('empty');
-    }
     this.listeners = [];
     // console.log('wmjsRegistry = {}');
     this.wmjsRegistry = {};
@@ -125,6 +117,17 @@ export default class ADAGUCViewerComponent extends Component {
 
 
   componentDidMount () {
+    // console.log('ADAGUCViewerComponent componentDidMount');
+
+    if (this.props.dapurl) {
+      let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(this.props.dapurl);
+      this.getLayersForService(WMSGetCapabiltiesURL, this.props.dapurl);
+    } else if(this.props.wmsurl) {
+      this.getLayersForService(this.props.wmsurl);
+    } else {
+      console.log('empty');
+    }
+
     this.listeners = [
       { name:'onupdatebbox', callbackfunction: (webmapjs, bbox) => { this.updateBBOXDebounced(webmapjs, bbox); }, keep:true },
       { name: 'onmaploadingcomplete', callbackfunction: (webmapjs) => { this.drawDebounced(webmapjs); }, keep:true }
@@ -134,6 +137,10 @@ export default class ADAGUCViewerComponent extends Component {
         this.setProjection(proj);
       }
     });
+  }
+
+  componentWillUnmount () {
+    console.log('Viewer componentWillUnMount');
   }
 
   getLayersForService (WMSGetCapabiltiesURL, dapurl) {
@@ -213,15 +220,16 @@ export default class ADAGUCViewerComponent extends Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
-  // shouldComponentUpdate (nextProps, nextState) {
-  //   // console.log(nextProps, nextState);
-  //   // if (nextProps.wmsLayers && nextState.wmsLayers && nextProps.wmsLayers.length !== nextState.wmsLayers.length) return true;
-  //   return false;
-  // }
+  shouldComponentUpdate (nextProps, nextState) {
+    // console.log(this.props, nextProps);
+    // console.log(this.state, nextState);
+    if (nextState.wmsLayers && this.state.wmsLayers && nextState.wmsLayers.length !== this.state.wmsLayers.length) return true;
+    return false;
+  }
 
   render () {
     const { title, error } = this.state;
-    // console.log(this.state.wmsLayers);
+    console.log('ADAGUCViewerComponent render');
     // console.log('layer0', this.state.wmsLayers[0]);
     return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%' }}>
       <CardBody style={{ padding:'0' }}>

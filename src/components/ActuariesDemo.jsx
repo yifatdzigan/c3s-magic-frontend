@@ -200,8 +200,9 @@ class ActuariesPage extends Component {
   }
 
   hoverFeatureCallback (featureIndex) {
-    console.log(this.geojson.features[featureIndex].properties.value);
-    this.setState({ hoveredValue:this.geojson.features[featureIndex].properties.value });
+    if (this.geojson && featureIndex >= 0 && this.geojson.features[featureIndex] && this.geojson.features[featureIndex]) {
+      this.setState({ hoveredValue:this.geojson.features[featureIndex].properties.value });
+    }
   }
 
   render () {
@@ -231,8 +232,8 @@ class ActuariesPage extends Component {
               <CardTitle>Standard deviations:</CardTitle>
               <CardText>
                 {
-                  colorBar.map((item) => {
-                    return (<div style={{
+                  colorBar.map((item, i) => {
+                    return (<div key={i} style={{
                       background:item.fillColor,
                       color: item.textColor,
                       padding:'10px',
@@ -251,9 +252,9 @@ class ActuariesPage extends Component {
             baselayers={[]}
             controls={{ showprojectionbutton: true }}
             parsedLayerCallback={
-              (wmjsregistry) => {
+              (wmjsregistry) => {console.log('parsedLayerCallback', wmjsregistry);
+                console.log('parsedLayerCallback', wmjsregistry);
                 if (!this.state.initialized) {
-                  console.log(wmjsregistry);
                   this.setState({ wmjsregistry:wmjsregistry, initialized: true });
                   // this.state.wmjsregistry.getLayers()[0].zoomToLayer();
                 }

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 const WMJSTileRendererTileSettings = require('../../config/basemaps');
-export default class ReactWebMapJS extends Component {
+export default class ReactWebMapJS extends PureComponent {
   constructor (props) {
     super(props);
     this.webMapJSCreated = false;
@@ -85,9 +85,9 @@ export default class ReactWebMapJS extends Component {
 
 
 
-  componentWillUnMount () {
+  componentWillUnmount () {
     window.removeEventListener('resize', this._handleWindowResize);
-    if (this.props.wmjsRegistry) {
+    if (this.props.wmjsRegistry && this.props.layers && this.props.layers.length > 0) {
       this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, false);
     }
   }

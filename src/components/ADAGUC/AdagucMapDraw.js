@@ -662,7 +662,7 @@ export default class AdagucMapDraw extends PureComponent {
 
       if (this.drawMode === this.DRAWMODE.POINT || this.drawMode === this.DRAWMODE.MULTIPOINT) {
         /* Create points */
-        console.log('create point');
+        // console.log('create point');
         if (feature.geometry.coordinates === undefined) {
           feature.geometry.coordinates = [];
         }
@@ -857,20 +857,7 @@ export default class AdagucMapDraw extends PureComponent {
       this.cancelEdit(this.drawMode !== this.DRAWMODE.BOX);
     }
   }
-  componentWillMount () {
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
-  componentWillUnMount () {
-    document.removeEventListener('keydown', this.handleKeyDown);
-    const { webmapjs } = this.props;
-    if (webmapjs !== undefined && this.listenersInitialized === true) {
-      this.listenersInitialized = undefined;
-      webmapjs.removeListener('beforecanvasdisplay', this.adagucBeforeDraw);
-      webmapjs.removeListener('beforemousemove', this.adagucMouseMove);
-      webmapjs.removeListener('beforemousedown', this.adagucMouseDown);
-      webmapjs.removeListener('beforemouseup', this.adagucMouseUp);
-    }
-  }
+
   featureHasChanged (text) {
     const { dispatch, actions } = this.props;
     // console.log(JSON.stringify(this.geojson, null, 2));
@@ -913,6 +900,24 @@ export default class AdagucMapDraw extends PureComponent {
     }
   }
 
+  componentDidMount () {
+    // console.log('Mapdraw componentWillMount');
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+  componentWillUnmount () {
+    // console.log('Mapdraw componentWillUnMount');
+    document.removeEventListener('keydown', this.handleKeyDown);
+    const { webmapjs } = this.props;
+    if (webmapjs !== undefined && this.listenersInitialized === true) {
+      // console.log('Remove listeners webmapjs');
+      this.listenersInitialized = undefined;
+      webmapjs.removeListener('beforecanvasdisplay', this.adagucBeforeDraw);
+      webmapjs.removeListener('beforemousemove', this.adagucMouseMove);
+      webmapjs.removeListener('beforemousedown', this.adagucMouseDown);
+      webmapjs.removeListener('beforemouseup', this.adagucMouseUp);
+    }
+  }
+
   /* istanbul ignore next */
   render () {
     const { webmapjs } = this.props;
@@ -922,6 +927,7 @@ export default class AdagucMapDraw extends PureComponent {
 
     if (webmapjs !== undefined && this.listenersInitialized === undefined) {
       this.listenersInitialized = true;
+      // console.log('adding event listeners');
       webmapjs.addListener('beforecanvasdisplay', this.adagucBeforeDraw, true);
       webmapjs.addListener('beforemousemove', this.adagucMouseMove, true);
       webmapjs.addListener('beforemousedown', this.adagucMouseDown, true);
