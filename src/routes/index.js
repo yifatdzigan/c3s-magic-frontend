@@ -50,6 +50,8 @@ import MeanState from '../containers/Metrics/MeanState';
 import ExtremeEvents from '../containers/Metrics/ExtremeEvents';
 import ClimateVariability from '../containers/Metrics/ClimateVariability';
 
+import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
+
 /* MultiModelProducts */
 import MultiModelProductsMenu from '../containers/MultiModelProducts/MultiModelProductsMenu';
 import MultiModelProductsHome from '../containers/MultiModelProducts/MultiModelProductsHome';
@@ -147,6 +149,9 @@ const mapDispatchToJoblistProps = function (dispatch) {
 export const createRoutes = (store) => {
   const mainmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TitleComponent));
   const metricsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MetricsMenu));
+
+  const diagnosticshome = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(DiagnosticsHome));
+
   const multimodelproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MultiModelProductsMenu));
   const timeseriesmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TimeSeriesMenu));
   const tailoredproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsMenu));
@@ -177,6 +182,9 @@ export const createRoutes = (store) => {
       <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu} viewComponent={actuariesDemo} />
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
+      </Route>
+      <Route path='diagnostics' title='Diagnostics'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={diagnosticshome} />
       </Route>
       <Route path='demo' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />

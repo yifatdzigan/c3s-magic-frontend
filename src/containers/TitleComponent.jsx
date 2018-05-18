@@ -78,6 +78,9 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} ><Icon name='home' /> Home</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href='#/diagnostics' active={pathname.startsWith('/diagnostics')} ><Icon name='' /> Diagnostics</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href='#/metrics/home' active={pathname.startsWith('/metrics')} ><Icon name='' /> Metrics</NavLink>
             </NavItem>
             <NavItem>
