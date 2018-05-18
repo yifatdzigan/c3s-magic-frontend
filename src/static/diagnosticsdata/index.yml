@@ -6,13 +6,15 @@ diagnostics:
         info_text: info_text_0
         info_file: cmip5_performance.yml
         image_file: image_0
+        github_issue:
     diagnostics_1:
         id: 1
-        title: title_1
+        title: Tools to aggregate and combine multi-model climate information into a single best estimate of future climate information.
         sub_title: sub_title_1
-        info_text: info_text_1
-        info_file: file_1
+        info_text: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
+        info_file: anomaly_agreement.yml
         image_file: image_1
+        github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
     diagnostics_2:
         id: 2
         title: title_2
@@ -20,6 +22,7 @@ diagnostics:
         info_text: info_text_2
         info_file: file_2
         image_file: image_2
+        github_issue:
     diagnostics_3:
         id: 3
         title: title_3
@@ -27,6 +30,7 @@ diagnostics:
         info_text: info_text_3
         info_file: file_3
         image_file: image_3
+        github_issue:
     diagnostics_4:
         id: 4
         title: title_4
@@ -34,3 +38,4 @@ diagnostics:
         info_text: info_text_4
         info_file: file_4
         image_file: image_4
+        github_issue:
