@@ -217,7 +217,7 @@ class ActuariesPage extends Component {
         </div>
       </Row>
       <Row>
-        <Col>
+        <Col x>
           <Form>
             <FormGroup>
               <Row>
@@ -246,7 +246,9 @@ class ActuariesPage extends Component {
                     return (<div key={i} style={{
                       background:item.fillColor,
                       color: item.textColor,
-                      padding:'10px',
+                      padding:'6px 8px 6px 8px',
+                      textAlign:'center',
+                      margin: '0px 12px 0px 12px',
                       border: this.state.hoveredValue >= item.min && this.state.hoveredValue < item.max ? '2px solid black' : '2px solid' + item.fillColor
                     }} >{item.text}</div>);
                   })
@@ -255,7 +257,7 @@ class ActuariesPage extends Component {
             </CardBody>
           </Card>
         </Col>
-        <Col xs='8'>
+        <Col xs='9'>
           <ADAGUCViewerComponent
             height={'60vh'}
             stacklayers
