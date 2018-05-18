@@ -68,7 +68,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
     this.listeners = [];
     // console.log('wmjsRegistry = {}');
     this.wmjsRegistry = {};
-    this.drawDebounced = debounce(1000, this.drawDebounced);
+    this.drawDebounced = debounce(500, this.drawDebounced);
     this.updateBBOXDebounced = debounce(10, this.updateBBOXDebounced);
     this.toggle = this.toggle.bind(this);
     this.state = {

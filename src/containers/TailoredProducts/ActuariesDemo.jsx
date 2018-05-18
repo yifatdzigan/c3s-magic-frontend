@@ -5,8 +5,8 @@ import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router';
 import { debounce } from 'throttle-debounce';
 import axios from 'axios';
-import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
-import AdagucMapDraw from './ADAGUC/AdagucMapDraw.js';
+import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
+import AdagucMapDraw from '../../components/ADAGUC/AdagucMapDraw.js';
 
 const colorBar = [{
   min: 2.0,
@@ -209,12 +209,22 @@ class ActuariesPage extends Component {
     return (<div className='MainViewport'>
       <h1>Actuaries index</h1>
       <Row>
+        <div className='text' style={{ paddingBottom:'15px' }}>
+        The changing risks between the recent past and the future are of great interest to the insurance industry
+        because even slight changes in climate characteristics can translate into large impacts on risk distribution/management and expected losses.
+        Comprehensive risk indices such as the ACRI, which integrates changes in frequency and magnitude of key climate indicators and elements of hazard,
+         exposure and vulnerability, are crucial for decision making processes.
+        </div>
+      </Row>
+      <Row>
         <Col>
           <Form>
             <FormGroup>
-              <Label>Year:</Label>
               <Row>
-                <Col xs='10'>
+                <Col xs='1'>
+                  <Label>Year: </Label>
+                </Col>
+                <Col xs='9'>
                   <ReactSlider
                     className={'horizontal-slider'}
                     min={this.state.min}
@@ -247,10 +257,10 @@ class ActuariesPage extends Component {
         </Col>
         <Col xs='8'>
           <ADAGUCViewerComponent
-            height={'70vh'}
+            height={'60vh'}
             stacklayers
             baselayers={[]}
-            controls={{ showprojectionbutton: true }}
+            controls={{ showprojectionbutton: false }}
             parsedLayerCallback={
               (wmjsregistry) => {
                 // console.log('parsedLayerCallback', wmjsregistry);
@@ -269,6 +279,9 @@ class ActuariesPage extends Component {
             hoverFeatureCallback={this.hoverFeatureCallback}
           /> : null }
         </Col>
+      </Row>
+      <Row>
+        <a href='#/tailoredproducts/insurance'>Checkout our video about actuaries.</a>
       </Row>
     </div>);
   }

@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
+import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
 import { Button, FormGroup, Form, Label, Row, Col } from 'reactstrap';
 import ReactSlider from 'react-slider';
@@ -10,9 +10,7 @@ import { debounce } from 'throttle-debounce';
 class WPSWranglerDemo extends Component {
   constructor (props) {
     super(props);
-    this.wrangleClicked = this.wrangleClicked.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
     this.state = {
       dropdownOpen: false,
       dropDownValue: 'add',
@@ -36,45 +34,6 @@ class WPSWranglerDemo extends Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
-
-  dropDownSelectItem (value) {
-    this.setState({
-      dropDownValue: value
-    });
-  };
-
-  wrangleClicked (id) {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-
-    let dataInputs =
-      'inputCSVPath=ExportOngevalsData.csv;' +
-      'metaCSVPath=metaDataCsv.json;' +
-      'dataURL=http%3A%2F%2Fopendap.knmi.nl%2Fknmi%2Fthredds%2FdodsC%2FDATALAB%2Fhackathon%2FradarFullWholeData.nc;' +
-      'dataVariables=image1_image_data;' +
-      'limit=10';
-
-    dispatch(actions.startWPSExecute(domain, 'wrangleProcess',
-      dataInputs,
-      nrOfStartedProcesses));
-  };
-
-  calculateClicked () {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-    dispatch(actions.startWPSExecute(domain, 'binaryoperatorfornumbers_10sec',
-      '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
-  };
-
-  handleChange (name, value) {
-    console.log(name, value);
-    this.setState({
-      [name]: value
-    });
-    if (name === 'inputa') {
-      let anomalyLayer = this.wmjsregistry.getLayers()[0];
-      anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + parseInt(value) });
-      console.log(this.wmjsregistry.getLayers()[0]);
-    }
-  };
 
   debouncedHandleSliderChange (v) {
     this.handleSliderChange(v);
@@ -108,7 +67,6 @@ class WPSWranglerDemo extends Component {
             <FormGroup>
               <Label>Stippling (% of members agreeing):</Label>
               <Row>
-                { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
                 <Col xs='10'>
                   <ReactSlider
                     className={'horizontal-slider'}

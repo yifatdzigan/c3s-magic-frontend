@@ -72,6 +72,10 @@ import Energy from '../containers/TailoredProducts/Energy';
 import Insurance from '../containers/TailoredProducts/Insurance';
 import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
 import UserConsultation from '../containers/TailoredProducts/UserConsultation';
+import ActuariesDemo from '../containers/TailoredProducts/ActuariesDemo';
+
+/* Diagnostics */
+import Diagnostics from '../containers/Diagnostics';
 
 /* System */
 import SystemMenu from '../containers/System/SystemMenu';
@@ -80,11 +84,13 @@ import Provenance from '../containers/System/Provenance';
 import Data from '../containers/System/Data';
 
 import TitleComponent from '../containers/TitleComponent';
-import WP1Home from '../containers/WP1Home';
+// import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
 
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
-import ActuariesDemo from '../components/ActuariesDemo';
+
+import EnsembleAnomalyPlots from '../containers/Diagnostics/EnsembleAnomalyPlots';
+
 import BasketComponent from '../components/Basket/BasketComponent';
 
 import AdagucViewerContainer from '../containers/AdagucViewerContainer';
@@ -146,12 +152,17 @@ export const createRoutes = (store) => {
   const tailoredproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsMenu));
   const systemmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SystemMenu));
 
-  const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
+  // const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
+
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
 
+  const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(EnsembleAnomalyPlots));
+
   const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
+
+  const diagnostics = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(Diagnostics));
 
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
@@ -162,8 +173,8 @@ export const createRoutes = (store) => {
   let ww = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WindowManager));
 
   return (
-    <Route path='/' component={BaseLayout} title='C3S-Magic' windowmanager={ww}>
-      <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wp1home} />
+    <Route path={'/'} component={BaseLayout} title={'C3S-Magic'} windowmanager={ww} >
+      <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu} viewComponent={actuariesDemo} />
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
       </Route>
@@ -171,7 +182,13 @@ export const createRoutes = (store) => {
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
       </Route>
       <Route path='actuaries' title='actuariesDemo'>
-        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={actuariesDemo} />
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={actuariesDemo} />
+      </Route>
+      <Route path='ensembleanomalyplots' title='ensembleAnomalyPlots'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={ensembleAnomalyPlots} />
+      </Route>
+      <Route path='diagnostics' title='Diagnostics'>
+        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} viewComponent={diagnostics} />
       </Route>
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
