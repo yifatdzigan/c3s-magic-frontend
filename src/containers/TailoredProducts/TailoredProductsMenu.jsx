@@ -13,11 +13,17 @@ export default class TailoredProductsMenu extends Component {
         <Navbar style={{ backgroundColor:'#941333', color:'white', height:'38px', textAlign: 'center' }} className='navbar-static-top'>
           <Nav>
             <NavItem>
+              <NavLink href='#/' active={pathname === '/'} >
+                Insurance / Actuaries index
+              </NavLink>
+            </NavItem>
+
+            { /* <NavItem>
               <NavLink href='#/tailoredproducts/home' active={pathname === '/tailoredproducts/home'} >
                 Tailored products
               </NavLink>
-            </NavItem>
-            <NavItem>
+            </NavItem> */ }
+            { /* <NavItem>
               <NavLink href='#/tailoredproducts/coastalareas' active={pathname === '/tailoredproducts/coastalareas'} >
                 Coastal areas
               </NavLink>
@@ -27,19 +33,19 @@ export default class TailoredProductsMenu extends Component {
                 <Icon name='' />
                 Energy
               </NavLink>
-            </NavItem>
-            <NavItem>
+            </NavItem> */ }
+            { /* <NavItem>
               <NavLink href='#/tailoredproducts/insurance' active={pathname === '/tailoredproducts/insurance'} >
                 <Icon name='' />
                 Insurance
               </NavLink>
-            </NavItem>
-            <NavItem>
+            </NavItem> */ }
+            { /* <NavItem>
               <NavLink href='#/tailoredproducts/userconsultation' active={pathname === '/tailoredproducts/userconsultation'} >
                 <Icon name='' />
                 User consultation
               </NavLink>
-            </NavItem>
+            </NavItem> */ }
             <NavItem>
               <NavLink href='#/tailoredproducts/waterhydrology' active={pathname === '/tailoredproducts/waterhydrology'} >
                 <Icon name='' />

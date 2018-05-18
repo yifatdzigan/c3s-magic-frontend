@@ -47,12 +47,32 @@ export default class TitleComponent extends Component {
             <Col xs='auto' className='signInOffButton'>
               {
                 clientId !== null ? <Button color='primary' onClick={this.logout}><Icon name='sign-out' />&nbsp;Sign out</Button>
-                : <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
+                  : <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
               }
             </Col>
           </Row>
         </Navbar>
         <Navbar style={{ backgroundColor:'#941333', color:'white', height:'38px', textAlign: 'center' }} className='navbar-static-top'>
+          <Nav>
+            <NavItem>
+              <NavLink href='#/' active={pathname === '/'} >Tailored products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Diagnostics</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>
+            </NavItem>
+            { /*<NavItem>
+              <NavLink href='#/jobs' active={pathname === '/jobs'}><Icon name='list' /> Joblist</NavLink>
+            </NavItem> */ }
+            <NavItem>
+              <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
+            </NavItem>
+
+          </Nav>
+        </Navbar>
+        { /* <Navbar style={{ backgroundColor:'#941333', color:'white', height:'38px', textAlign: 'center' }} className='navbar-static-top'>
           <Nav>
             <NavItem>
               <NavLink href='#/' active={pathname === '/'} ><Icon name='home' /> Home</NavLink>
@@ -78,20 +98,20 @@ export default class TitleComponent extends Component {
             <NavItem>
               <NavLink href='#/actuaries' active={pathname === '/actuaries'}><Icon name='gears' /> Actuaries index</NavLink>
             </NavItem>
-            { /* <NavItem>
+            <NavItem>
               <NavLink href='#/knmi_climexp_correlate' active={pathname === '/knmi_climexp_correlate'}><Icon name='gears' /> Correlate</NavLink>
-            </NavItem> */ }
+            </NavItem>
             <NavItem>
               <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>
             </NavItem>
-            { /* <NavItem>
+            <NavItem>
               <NavLink href='#/joblist' active={pathname === '/joblist'}><Icon name='list' /> Joblist</NavLink>
-            </NavItem> */ }
+            </NavItem>
             <NavItem>
               <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
             </NavItem>
           </Nav>
-        </Navbar>
+        </Navbar> */ }
       </div>);
   }
 
