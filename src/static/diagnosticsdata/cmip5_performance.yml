@@ -15,7 +15,7 @@ description_long: |
     Diagnostics for plotting the performance metrics for the CMIP5 models, including the "standard" ECVs as in Gleckler et al., plus some additional variables (like ozone, sea-ice, and aerosol)
 
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-media: /contents/images/perfmetrics_main_ta_cycle_monthlyclim__Glob.png
+media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
 map_data: anomaly_agreement_stippling
 reference:
   - Gleckler et al., J. Geophys. Res., 113, D06104, doi:10.1029/2007JD008972 (2008)

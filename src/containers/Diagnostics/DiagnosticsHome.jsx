@@ -7,57 +7,13 @@ import { Provider } from 'react-redux';
 import { getConfig } from '../../getConfig';
 let config = getConfig();
 
-import { UncontrolledAlert, Container, Row, Col, Card, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody, CardGroup } from 'reactstrap';
+import { UncontrolledAlert, Container, Row, Col, Card, CardLink, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody, CardGroup } from 'reactstrap';
 import Icon from 'react-fa';
 
 import DiagnosticPage from './DiagnosticPage';
 
 var $RefParser = require('json-schema-ref-parser');
 import Grid from 'react-css-grid'
-
-
-class DiagCard extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      cSelected: [],
-      selectedPage: null
-    };
-
-    this.onBtnClick = this.onBtnClick.bind(this);
-  }
-
-  onBtnClick(e) {
-    console.log("DiagCard::onBtnClick");
-    console.log("selected:", e);
-
-    this.setState({ selectedPage: e });
-    console.log(this.state);
-  }
-
-  render() {
-
-    const { url } = this.props;
-
-    // if (!this.props.diagItem)
-    //   return null;
-    // console.log(this.props.diagItem);
-
-
-    return (
-      <Card>
-
-        <CardBody>
-          <CardTitle> {this.props.diagItem.title} </CardTitle>
-          <CardSubtitle> {this.props.diagItem.sub_title} </CardSubtitle>
-          <CardText> {this.props.diagItem.info_text} </CardText>
-          <Button color="primary" onClick={() => this.onBtnClick(this.props.diagItem.info_file)} active={this.state.rSelected === this.props.diagItem.info_file}> More info </Button>
-        </CardBody>
-      </Card>
-    );
-  }
-}
 
 
 export default class DiagnosticsHome extends Component {
@@ -86,14 +42,23 @@ export default class DiagnosticsHome extends Component {
   getCard(item) {
     return (
       <div key={item.id} className="diagCard">
-        <Card key={item.id} onClick={() => this.clickEvent(item.info_file)}>
+
+        <Card key={item.id} onClick={() => this.clickEvent(item.info_file)}
+          body className="text-left" outline color="primary">
+
           <CardBody>
-            <CardImg width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360" alt="Card image cap" />
             <CardTitle> {item.title} </CardTitle>
             <CardSubtitle> {item.sub_title} </CardSubtitle>
+          </CardBody>
+
+          <CardImg width="100%" src={item.image_file} />
+
+          <CardBody>
             <CardText> {item.info_text} </CardText>
           </CardBody>
+
         </Card>
+
       </div>
     );
   }
@@ -122,17 +87,17 @@ export default class DiagnosticsHome extends Component {
 
     if (this.state.overview) {
       return (
-        <div>
+        <div className='vspace2em'>
           <Container>
             <Row>
 
-              <Col sm="12" md={{ size: 8, offset: 2 }}>
+              <Col sm="12" md={{ size: 10, offset: 1 }}>
                 <UncontrolledAlert color="info">
                   Click on a diagnostic to get more information!
                     </UncontrolledAlert>
               </Col>
 
-              <Col sm="12" md={{ size: 8, offset: 2 }}>
+              <Col sm="12" md={{ size: 10, offset: 1 }}>
                 <Grid width={320} gap={40}>
                   {tmpList}
                 </Grid>
@@ -145,7 +110,7 @@ export default class DiagnosticsHome extends Component {
     } else {
 
       return (
-        <div>
+        <div className='vspace2em'>
           <Container>
             <Row>
               <Col sm="12" md={{ size: 12, offset: 0 }}>
