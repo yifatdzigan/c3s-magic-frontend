@@ -209,9 +209,9 @@ export default class DiagnosticPage extends Component {
                   wmsurl={mapData}
                   parsedLayerCallback={(wmjsregistry) => {
                     this.wmjsregistry = wmjsregistry;
-                    if (!this.initialized) {
+                    if (!this.initialized && this.wmjsregistry.getLayers && this.wmjsregistry.getLayers().length > 0 ) {
                       this.initialized = true;
-                      this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer();
+                      this.wmjsregistry.getLayers()[0].zoomToLayer();
                     }
                   }
                   }
