@@ -1,0 +1,32 @@
+---
+name: cmip5
+id: 1
+authors:
+  - Franziska Frank (DLR, Germany)
+  - Mattia Righi (DLR, Germany)
+  - Veronika Eyring (DLR, Germany)
+contact:
+  - dr. A.M. Scientist a.scientist@magic.eu
+description_short: |
+    Diagnostics for plotting the performance metrics for the CMIP5 models, including the "standard" ECVs as in Gleckler et al., plus some additional variables (like ozone, sea-ice, and aerosol)
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+description_long: |
+    Diagnostics for plotting the performance metrics for the CMIP5 models, including the "standard" ECVs as in Gleckler et al., plus some additional variables (like ozone, sea-ice, and aerosol)
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+media: /contents/images/perfmetrics_main_ta_cycle_monthlyclim__Glob.png
+map_data: anomaly_agreement_stippling
+reference:
+  - Gleckler et al., J. Geophys. Res., 113, D06104, doi:10.1029/2007JD008972 (2008)
+settings:
+  - Models:
+      - ESM
+      - CSM
+      - ACCESS1-0
+      - CCSM4
+  - Start year: 1970
+  - End year: 2010
+  - Experiment: Historical
+title: CMIP5 Performance Metrics
+youtube: SjQ60KXfhO4

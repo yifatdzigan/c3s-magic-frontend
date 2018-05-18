@@ -1,0 +1,36 @@
+diagnostics:
+    diagnostics_0:
+        id: 0
+        title: CMIP5 Diagnostics Awesome
+        sub_title: sub_title_0
+        info_text: info_text_0
+        info_file: cmip5_performance.yml
+        image_file: image_0
+    diagnostics_1:
+        id: 1
+        title: title_1
+        sub_title: sub_title_1
+        info_text: info_text_1
+        info_file: file_1
+        image_file: image_1
+    diagnostics_2:
+        id: 2
+        title: title_2
+        sub_title: sub_title_2
+        info_text: info_text_2
+        info_file: file_2
+        image_file: image_2
+    diagnostics_3:
+        id: 3
+        title: title_3
+        sub_title: sub_title_3
+        info_text: info_text_3
+        info_file: file_3
+        image_file: image_3
+    diagnostics_4:
+        id: 4
+        title: title_4
+        sub_title: sub_title_4
+        info_text: info_text_4
+        info_file: file_4
+        image_file: image_4
