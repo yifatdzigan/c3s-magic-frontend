@@ -75,6 +75,9 @@ export default class TitleComponent extends Component {
             <NavItem>
               <NavLink href='#/demo' active={pathname === '/demo'}><Icon name='gears' /> Demo</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href='#/actuaries' active={pathname === '/actuaries'}><Icon name='gears' /> Actuaries index</NavLink>
+            </NavItem>
             { /* <NavItem>
               <NavLink href='#/knmi_climexp_correlate' active={pathname === '/knmi_climexp_correlate'}><Icon name='gears' /> Correlate</NavLink>
             </NavItem> */ }

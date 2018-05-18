@@ -150,8 +150,7 @@ const doXML2JSONCallWithToken = function (urlToXMLService, callback, failure) {
   console.log(requestURL);
   fetch(requestURL, {
     credentials: 'include'
-  })
-  .then(function (response) {
+  }).then(function (response) {
     let a = response.json();
     return a;
   }).then(json => {

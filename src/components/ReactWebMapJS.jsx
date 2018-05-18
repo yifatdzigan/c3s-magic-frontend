@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 const WMJSTileRendererTileSettings = require('../../config/basemaps');
-export default class ReactWebMapJS extends Component {
+export default class ReactWebMapJS extends PureComponent {
   constructor (props) {
     super(props);
     this.webMapJSCreated = false;
@@ -21,6 +21,10 @@ export default class ReactWebMapJS extends Component {
       }
       if (this.props.wmjsRegistry) {
         this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
+      }
+    } else {
+      if (this.props.wmjsRegistry) {
+        this.props.wmjsRegistry('first', this.webMapJS, true);
       }
     }
     // console.log('draw', this.webMapJS.getLayers());
@@ -59,6 +63,9 @@ export default class ReactWebMapJS extends Component {
       })
     ];
 
+    if (this.props.baselayers) {
+      baselayers = this.props.baselayers;
+    }
 
     this.webMapJS.setBaseLayers(baselayers);
 
@@ -78,9 +85,9 @@ export default class ReactWebMapJS extends Component {
 
 
 
-  componentWillUnMount () {
+  componentWillUnmount () {
     window.removeEventListener('resize', this._handleWindowResize);
-    if (this.props.wmjsRegistry) {
+    if (this.props.wmjsRegistry && this.props.layers && this.props.layers.length > 0) {
       this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, false);
     }
   }
@@ -118,6 +125,7 @@ export default class ReactWebMapJS extends Component {
 };
 ReactWebMapJS.propTypes = {
   layers: PropTypes.array,
+  baselayers: PropTypes.array,
   listeners: PropTypes.array,
   bbox: PropTypes.object,
   wmjsRegistry: PropTypes.func,

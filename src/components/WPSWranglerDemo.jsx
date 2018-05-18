@@ -2,48 +2,10 @@
 import React, { Component } from 'react';
 import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
-import { Button, Input, FormGroup, Form, Label,ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
+import { Button, FormGroup, Form, Label, Row, Col } from 'reactstrap';
 import ReactSlider from 'react-slider';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import { debounce } from 'throttle-debounce';
-
-
-
-class RenderProcesses extends Component {
-  renderProcess (process) {
-    // console.log(process);
-    let value = '-';
-    try {
-      value = process.result.ExecuteResponse.ProcessOutputs.Output.Data.LiteralData.value;
-    } catch (e) {
-    }
-    return (
-      <Card>
-        <Row>
-          <Col> <div className='text-center'>{process.percentageComplete} </div><Progress value={process.percentageComplete} /></Col>
-          <Col>{process.message}</Col>
-          <Col>{value}</Col>
-        </Row>
-      </Card>
-    );
-  }
-
-  iterProcesses (runningProcesses) {
-    let result = [];
-    for (var process in runningProcesses) {
-      result.push(Object.assign({}, this.renderProcess(runningProcesses[process]), { key: process }));
-    };
-    return result;
-  }
-  render () {
-    const { runningProcesses } = this.props;
-    return (<span>{this.iterProcesses(runningProcesses)}</span>);
-  }
-};
-
-RenderProcesses.propTypes = {
-  runningProcesses: PropTypes.object.isRequired
-};
 
 class WPSWranglerDemo extends Component {
   constructor (props) {
@@ -60,8 +22,7 @@ class WPSWranglerDemo extends Component {
       changeValue: 0,
       step: 1,
       min: 0,
-      max:100,
-
+      max:100
     };
     this.wmjsregistry = {};
     this.initialized = false;
@@ -109,9 +70,9 @@ class WPSWranglerDemo extends Component {
       [name]: value
     });
     if (name === 'inputa') {
-      let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
-      anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + parseInt(value)});
-      console.log(this.wmjsregistry.anomaly.getLayers()[0]);
+      let anomalyLayer = this.wmjsregistry.getLayers()[0];
+      anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + parseInt(value) });
+      console.log(this.wmjsregistry.getLayers()[0]);
     }
   };
 
@@ -120,77 +81,85 @@ class WPSWranglerDemo extends Component {
   }
 
   handleSliderChange (v) {
-    this.setState({currentValue:v});
-    if (! this.wmjsregistry || ! this.wmjsregistry.anomaly){
+    this.setState({ currentValue:v });
+    if (!this.wmjsregistry || !this.wmjsregistry) {
       console.log('No this.wmjsregistry');
       return;
     }
-    let anomalyLayer = this.wmjsregistry.anomaly.getLayers()[0];
+    let anomalyLayer = this.wmjsregistry.getLayers()[0];
     anomalyLayer.legendGraphic = '';
-    anomalyLayer.wmsextensions({colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1)});
-    this.wmjsregistry.anomaly.draw();
+    anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1) });
+    this.wmjsregistry.draw();
+  }
 
+  renderAnomalyAgreement () {
+    return (<div>
+      <h1>Ensemble anomaly plots</h1>
+      <Row>
+        <Col>
+          <Row>
+            <Col>
+              <div className='text'>
+                Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
+              </div>
+            </Col>
+          </Row>
+          <Form>
+            <FormGroup>
+              <Label>Stippling (% of members agreeing):</Label>
+              <Row>
+                { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
+                <Col xs='10'>
+                  <ReactSlider
+                    className={'horizontal-slider'}
+                    defaultValue={this.state.currentValue}
+                    onChange={(v) => { this.debouncedHandleSliderChange(v); }}
+                  />
+                </Col>
+                <Col xs='2'>{this.state.currentValue} %</Col>
+              </Row>
+            </FormGroup>
+          </Form>
+        </Col>
+        <Col xs='8'>
+          <ADAGUCViewerComponent
+            height={'70vh'}
+            stacklayers
+            wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
+            parsedLayerCallback={
+              (wmjsregistry) => {
+                // console.log('parsedLayerCallback', wmjsregistry);
+                this.wmjsregistry = wmjsregistry;
+                if (!this.initialized) {
+                  if (this.wmjsregistry && this.wmjsregistry.getLayers().length > 0) {
+                    this.wmjsregistry.getLayers()[0].zoomToLayer();
+                    this.wmjsregistry.draw();
+                    this.initialized = true;
+                  }
+                }
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>);
   }
 
   render () {
-    const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
     return (
       <div className='MainViewport'>
-        <Button style={{float:'right'}} color='link' onClick={() => {this.props.router.push('/');} }>(back)</Button>
-        <h1>Ensemble anomaly plots</h1>
-        <Row>
-          <Col>
-            { /*<Row>
-              <Col>
-                <div className='text'>
-                  Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
-                </div>
-              </Col>
-            </Row> */ }
-            <Form>
-              <FormGroup>
-                <Label>Stippling (% of members agreeing):</Label>
-                <Row>
-                  { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
-
-
-                  <Col xs='10'>
-                    <ReactSlider className={'horizontal-slider'} defaultValue={this.state.currentValue} onChange={(v) =>{this.debouncedHandleSliderChange(v);}} />
-                  </Col>
-                  <Col xs='2'>{this.state.currentValue} %</Col>
-                </Row>
-              </FormGroup>
-            </Form>
-          </Col>
-          <Col xs='8'>
-            <ADAGUCViewerComponent
-              height={'70vh'}
-              stacklayers={true}
-              wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
-              parsedLayerCallback={ (wmjsregistry) => {
-                // console.log(wmjsregistry);
-                this.wmjsregistry = wmjsregistry;
-                if (!this.initialized) {
-                  this.initialized = true;
-                  this.wmjsregistry.anomaly.getLayers()[0].zoomToLayer(); } }
-                }
-            />
-          </Col>
-        </Row>
+        <Button style={{ float:'right' }} color='link' onClick={() => { this.props.router.push('/'); }}>(back)</Button>
+        { this.renderAnomalyAgreement() }
       </div>);
   }
 }
 
 WPSWranglerDemo.propTypes = {
-  accessToken: PropTypes.string,
   domain: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   router: PropTypes.object,
-  nrOfStartedProcesses: PropTypes.number,
-  nrOfFailedProcesses: PropTypes.number,
-  nrOfCompletedProcesses: PropTypes.number,
-  runningProcesses: PropTypes.object.isRequired
+  nrOfStartedProcesses: PropTypes.number
 };
 
 export default withRouter(WPSWranglerDemo);
