@@ -10,8 +10,6 @@ import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import { Row, Col, Button, Table } from 'reactstrap';
 import Icon from 'react-fa';
 
-//import Parser from 'html-react-parser';
-
 var $RefParser = require('json-schema-ref-parser');
 
 export default class DiagnosticPage extends Component {
@@ -128,6 +126,14 @@ export default class DiagnosticPage extends Component {
   }
 
 
+  downloadReport(){
+    console.log('Download report...');
+  }
+
+  downloadData(){
+    console.log('Download data...');
+  }
+
 
   render() {
     const mapData = config.backendHost + 'wms?DATASET=' + 'anomaly_agreement_stippling' + '&';
@@ -170,8 +176,8 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                <Button color="primary">Download report <Icon name='file-pdf' /></Button>{' '}
-                <Button color="primary">Download data <Icon name='file-archive' /></Button>{' '}
+                <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
+                <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
               </div>
 
               <div className='text vspace2em'>
