@@ -24,7 +24,7 @@ class WPSWranglerDemo extends Component {
       min: 0,
       max:100
     };
-    this.wmjsregistry = {};
+    this.webMapJSInstance = {};
     this.initialized = false;
 
     this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -70,9 +70,9 @@ class WPSWranglerDemo extends Component {
       [name]: value
     });
     if (name === 'inputa') {
-      let anomalyLayer = this.wmjsregistry.getLayers()[0];
+      let anomalyLayer = this.webMapJSInstance.getLayers()[0];
       anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + parseInt(value) });
-      console.log(this.wmjsregistry.getLayers()[0]);
+      console.log(this.webMapJSInstance.getLayers()[0]);
     }
   };
 
@@ -82,14 +82,14 @@ class WPSWranglerDemo extends Component {
 
   handleSliderChange (v) {
     this.setState({ currentValue:v });
-    if (!this.wmjsregistry || !this.wmjsregistry) {
-      console.log('No this.wmjsregistry');
+    if (!this.webMapJSInstance || !this.webMapJSInstance) {
+      console.log('No this.webMapJSInstance');
       return;
     }
-    let anomalyLayer = this.wmjsregistry.getLayers()[0];
+    let anomalyLayer = this.webMapJSInstance.getLayers()[0];
     anomalyLayer.legendGraphic = '';
     anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1) });
-    this.wmjsregistry.draw();
+    this.webMapJSInstance.draw();
   }
 
   renderAnomalyAgreement () {
@@ -127,15 +127,15 @@ class WPSWranglerDemo extends Component {
             stacklayers
             wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
             parsedLayerCallback={
-              (wmjsregistry) => {
-                // console.log('parsedLayerCallback', wmjsregistry);
-                this.wmjsregistry = wmjsregistry;
+              (wmjsLayer, webMapJSInstance) => {
+                // console.log('parsedLayerCallback', webMapJSInstance);
+                this.webMapJSInstance = webMapJSInstance;
                 if (!this.initialized) {
-                  if (this.wmjsregistry && this.wmjsregistry.getLayers().length > 0) {
-                    this.wmjsregistry.getLayers()[0].zoomToLayer();
-                    this.wmjsregistry.zoomOut();
-                    this.wmjsregistry.zoomOut();
-                    this.wmjsregistry.draw();
+                  if (this.webMapJSInstance && this.webMapJSInstance.getLayers().length > 0) {
+                    this.webMapJSInstance.getLayers()[0].zoomToLayer();
+                    this.webMapJSInstance.zoomOut();
+                    this.webMapJSInstance.zoomOut();
+                    this.webMapJSInstance.draw();
                     this.initialized = true;
                   }
                 }

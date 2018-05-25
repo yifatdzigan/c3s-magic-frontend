@@ -89,6 +89,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
       title: null,
       error: null
     };
+    this.prevProps = {};
   }
 
   debouncedHandleSliderChange (v) {
@@ -130,14 +131,13 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-
-    if (nextProps.dapurl) {
+    if (nextProps.dapurl && this.prevProps.dapurl !== nextProps.dapurl) {
+      this.prevProps.dapurl = nextProps.dapurl;
       let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(nextProps.dapurl);
       this.getLayersForService(WMSGetCapabiltiesURL, nextProps.dapurl);
-    } else if(nextProps.wmsurl) {
+    } else if(nextProps.wmsurl && this.prevProps.wmsurl !== nextProps.wmsurl) {
+      this.prevProps.wmsurl = nextProps.wmsurl;
       this.getLayersForService(nextProps.wmsurl);
-    } else {
-      console.log('empty');
     }
   }
 
@@ -227,6 +227,9 @@ export default class ADAGUCViewerComponent extends PureComponent {
       let otherWebMapJS = this.webMapJSInstances[key];
       // console.log('Set projection', p, otherWebMapJS);
       otherWebMapJS.setProjection(p);
+      if (this.state.selectedLayer) {
+        this.state.selectedLayer.zoomToLayer();
+      }
       otherWebMapJS.draw();
     }
     this.setState({
@@ -248,6 +251,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
     if (wmjsLayer) {
       this.setState({ selectedLayer:wmjsLayer });
       this.webMapJSInstances['first'].addLayer(wmjsLayer);
+      if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(wmjsLayer, this.webMapJSInstances['first']);
     }
 
     this.webMapJSInstances['first'].draw();
@@ -292,7 +296,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
 
   render () {
     const { title, error } = this.state;
-    // console.log('ADAGUCViewerComponent render');
+
     // console.log('layer0', this.state.wmsLayers[0]);
     return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%' }}>
       <CardBody style={{ padding:'0' }}>
@@ -303,8 +307,9 @@ export default class ADAGUCViewerComponent extends PureComponent {
           <CardText>{this.WMSServiceStore.abstract}</CardText>
         </div>
           : null }
-        <Row>
-          { this.props.controls && this.props.controls.showprojectionbutton ? <Col>Projection: <Dropdown
+
+          { this.props.controls && this.props.controls.showprojectionbutton ? <Row>
+            <Col xs='3'>Projection</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showprojectionbutton']}
             toggle={() => { this.toggle('showprojectionbutton'); }}
             >
@@ -325,9 +330,10 @@ export default class ADAGUCViewerComponent extends PureComponent {
                 })
               }
             </DropdownMenu>
-          </Dropdown></Col> : null
+          </Dropdown></Col></Row> : null
           }
-          { this.props.controls && this.props.controls.showlayerselector ? <Col>Layer: <Dropdown
+          { this.props.controls && this.props.controls.showlayerselector ? <Row>
+            <Col xs='3'>Layer</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showlayerselector']}
             toggle={() => { this.toggle('showlayerselector'); }}
             >
@@ -348,11 +354,10 @@ export default class ADAGUCViewerComponent extends PureComponent {
                 })
               }
             </DropdownMenu>
-          </Dropdown></Col> : null
+          </Dropdown></Col></Row> : null
           }
-        </Row>
-        <Row>
-          { this.props.controls && this.props.controls.showstyleselector ? <Col>Style: <Dropdown
+          { this.props.controls && this.props.controls.showstyleselector ? <Row>
+            <Col xs='3'>Style</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showstyleselector']}
             toggle={() => { this.toggle('showstyleselector'); }}
             >
@@ -373,22 +378,27 @@ export default class ADAGUCViewerComponent extends PureComponent {
                 })
               }
             </DropdownMenu>
-          </Dropdown></Col> : null
+          </Dropdown></Col></Row> : null
           }
-          { this.props.controls && this.props.controls.showtimeselector ? <Col>Time:
-            <div>
-              <ReactSlider
-                className={'horizontal-slider'}
-                min={0}
-                max={parseInt(this.state.numTimeValues) - 1 }
-                value={this.state.currentValue}
-                onChange={(v) => { this.debouncedHandleSliderChange(v); }}
-              />
-            </div>
-            {this.state.timeValue + ' (' + (this.state.currentValue + 1)+ '/' + this.state.numTimeValues + ')'}
-          </Col> : null
+          { this.props.controls && this.props.controls.showtimeselector ? (<div><Row>
+            <Col xs='3'>Time:</Col>
+            <Col>
+              <div style={{
+                }}>
+                <ReactSlider
+                  className={'horizontal-slider'}
+                  min={0}
+                  max={parseInt(this.state.numTimeValues) - 1 }
+                  value={this.state.currentValue}
+                  onChange={(v) => { this.debouncedHandleSliderChange(v); }}
+                />
+              </div>
+            </Col>
+            </Row><Row>
+            <Col xs='3'>Timevalue (UTC)</Col><Col>{this.state.timeValue + ' (' + (this.state.currentValue + 1)+ '/' + this.state.numTimeValues + ')'}</Col>
+          </Row></div>) : null
           }
-        </Row>
+
         {
           (this.props.stacklayers === false) ? this.state.wmsLayers.map((wmjslayer, index) => {
             // console.log(' this.state.wmsLayers',  this.state.wmsLayers);
@@ -403,7 +413,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
                       layers={[wmjslayer]}
                       listeners={this.listeners}
                       layerReadyCallback={(layer, webMapJS) => {
-                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(webMapJS, layer); else webMapJS.draw();
+                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(layer, webMapJS); else webMapJS.draw();
                       }}
                       webMapJSInitializedCallback={(wmjs, appendOrRemove) => {
                         let id = wmjslayer.name;
@@ -427,7 +437,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
                   })}
                   listeners={this.listeners}
                   layerReadyCallback={(wmjsLayer, webMapJS) => {
-                    if (this.props.parsedLayerCallback && webMapJS) this.props.parsedLayerCallback(webMapJS, wmjsLayer);
+                    if (this.props.parsedLayerCallback && webMapJS) this.props.parsedLayerCallback(wmjsLayer, webMapJS);
                   }}
                   webMapJSInitializedCallback={(wmjs, appendOrRemove) => {
                     if (appendOrRemove) this.webMapJSInstances['first'] = wmjs; else delete this.webMapJSInstances['first'];

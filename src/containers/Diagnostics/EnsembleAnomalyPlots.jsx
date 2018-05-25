@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
 import { Button, FormGroup, Form, Label, Row, Col } from 'reactstrap';
@@ -7,12 +7,12 @@ import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router';
 import { debounce } from 'throttle-debounce';
 
-class WPSWranglerDemo extends Component {
+class WPSWranglerDemo extends PureComponent {
   constructor (props) {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      showSlider: this.props.showSlider,
+      showSlider: this.props.showSlider ,
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
@@ -23,7 +23,7 @@ class WPSWranglerDemo extends Component {
       min: 0,
       max:100
     };
-    this.wmjsregistry = {};
+    this.webMapJSInstance = {};
     this.initialized = false;
 
     this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -42,14 +42,14 @@ class WPSWranglerDemo extends Component {
 
   handleSliderChange (v) {
     this.setState({ currentValue:v });
-    if (!this.wmjsregistry || !this.wmjsregistry) {
-      console.log('No this.wmjsregistry');
+    if (!this.webMapJSInstance || !this.webMapJSInstance) {
+      console.log('No this.webMapJSInstance');
       return;
     }
-    let anomalyLayer = this.wmjsregistry.getLayers()[0];
+    let anomalyLayer = this.webMapJSInstance.getLayers()[0];
     anomalyLayer.legendGraphic = '';
     anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1) });
-    this.wmjsregistry.draw();
+    this.webMapJSInstance.draw();
   }
 
   renderAnomalyAgreement () {
@@ -92,15 +92,14 @@ class WPSWranglerDemo extends Component {
             stacklayers
             wmsurl={data_path}
             parsedLayerCallback={
-              (wmjsregistry) => {
-                this.wmjsregistry = wmjsregistry;
+              (wmjsLayer, webMapJSInstance) => {
+                this.webMapJSInstance = webMapJSInstance;
                 if (!this.initialized) {
-                  if (this.wmjsregistry && this.wmjsregistry.getLayers().length > 0) {
-                    console.log('parsedLayerCallback', this.wmjsregistry.getLayers().length);
-                    this.wmjsregistry.getLayers()[0].zoomToLayer();
-                    this.wmjsregistry.zoomOut();
-                    this.wmjsregistry.zoomOut();
-                    this.wmjsregistry.draw();
+                  if (this.webMapJSInstance && this.webMapJSInstance.getLayers().length > 0) {
+                    console.log('parsedLayerCallback', this.webMapJSInstance.getLayers().length);
+                    this.webMapJSInstance.getLayers()[0].zoomToLayer();
+                    this.webMapJSInstance.zoomOut();
+                    this.webMapJSInstance.draw();
                     this.initialized = true;
                   }
                 }

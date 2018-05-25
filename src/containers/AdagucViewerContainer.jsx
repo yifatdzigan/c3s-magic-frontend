@@ -34,7 +34,7 @@ export default class AdagucViewerContainer extends Component {
     return (
       <div className='MainViewport'>
         <Row>
-          <Col xs='1'>Dataset:</Col><Col xs='1'><Dropdown
+          <Col xs='3'>Dataset:</Col><Col xs='1'><Dropdown
             isOpen={this.state.dropdownOpen['datasets']}
             toggle={() => { this.toggle('datasets'); }}
             >
@@ -64,8 +64,9 @@ export default class AdagucViewerContainer extends Component {
               showtimeselector: true,
               showstyleselector: true
             }}
-            parsedLayerCallback={ (webMapJSInstance, layer) => {
+            parsedLayerCallback={ (layer, webMapJSInstance) => {
               console.log(webMapJSInstance);
+              layer.zoomToLayer();
               webMapJSInstance.draw();
             } }
             wmsurl={this.state.datasets[this.state.datasetIndex].wmsurl}

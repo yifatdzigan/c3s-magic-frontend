@@ -266,7 +266,6 @@ class ActuariesPage extends Component {
             webMapJSInitializedCallback={
               (webMapJSInstance) => {
                 webMapJSInstance.enableInlineGetFeatureInfo(false);
-                // console.log('parsedLayerCallback', webMapJSInstance);
                 if (!this.state.initialized) {
                   this.setState({ webMapJSInstance:webMapJSInstance, initialized: true });
                   // this.state.webMapJSInstance.getLayers()[0].zoomToLayer();
