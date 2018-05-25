@@ -186,7 +186,7 @@ class BasketTreeComponent extends Component {
         this.props.data.children.toggled = true;
       }
     }
-    console.log(this.props);
+    // console.log(this.props);
     return (
 
       <div className='basketTreeContainer'>

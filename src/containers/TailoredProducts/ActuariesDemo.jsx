@@ -110,14 +110,14 @@ class ActuariesPage extends Component {
             for (let featureIndex = 0; featureIndex < geojson.features.length; featureIndex++) {
               const feature = geojson.features[featureIndex];
               const featureProps = feature.properties;
-              if (featureProps.iso_a2 === 'NL' || featureProps.NUTS_ID === 'NL') {
-                featureProps.fill = '#FF0000';
-              }
+              // if (featureProps.iso_a2 === 'NL' || featureProps.NUTS_ID === 'NL') {
+              //   featureProps.fill = '#FF0000';
+              // }
             };
             this.setState({ geojson: src.data });
-            if (this.state.wmjsregistry && this.state.wmjsregistry) {
-              this.state.wmjsregistry.setProjection({ srs:'EPSG:32661', bbox:[422133.0051161968, -4614524.365473892, 4714402.927897792, -1179461.5805027087] });
-              this.state.wmjsregistry.draw();
+            if (this.state.webMapJSInstance && this.state.webMapJSInstance) {
+              this.state.webMapJSInstance.setProjection({ srs:'EPSG:32661', bbox:[422133.0051161968, -4614524.365473892, 4714402.927897792, -1179461.5805027087] });
+              this.state.webMapJSInstance.draw();
             }
             axios({
               method: 'get',
@@ -187,7 +187,7 @@ class ActuariesPage extends Component {
       }
     });
     this.setState({ geojson: this.geojson });
-    this.state.wmjsregistry.draw();
+    this.state.webMapJSInstance.draw();
   }
 
   debouncedHandleSliderChange (v) {
@@ -263,19 +263,19 @@ class ActuariesPage extends Component {
             stacklayers
             baselayers={[]}
             controls={{ showprojectionbutton: false }}
-            parsedLayerCallback={
-              (wmjsregistry) => {
-                // console.log('parsedLayerCallback', wmjsregistry);
+            webMapJSInitializedCallback={
+              (webMapJSInstance) => {
+                // console.log('parsedLayerCallback', webMapJSInstance);
                 if (!this.state.initialized) {
-                  this.setState({ wmjsregistry:wmjsregistry, initialized: true });
-                  // this.state.wmjsregistry.getLayers()[0].zoomToLayer();
+                  this.setState({ webMapJSInstance:webMapJSInstance, initialized: true });
+                  // this.state.webMapJSInstance.getLayers()[0].zoomToLayer();
                 }
               }
             }
           />
           { this.state.initialized ? <AdagucMapDraw
             geojson={this.state.geojson}
-            webmapjs={this.state.wmjsregistry}
+            webmapjs={this.state.webMapJSInstance}
             dispatch={this.props.dispatch}
             actions={this.props.actions}
             hoverFeatureCallback={this.hoverFeatureCallback}

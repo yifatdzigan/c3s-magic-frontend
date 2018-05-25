@@ -263,9 +263,14 @@ export default class ADAGUCViewerComponent extends PureComponent {
                       key={wmjslayer.name}
                       layers={[wmjslayer]}
                       listeners={this.listeners}
-                      wmjsRegistry={(id, wmjs, appendOrRemove) => {
+                      layerReadyCallback={(layer, webMapJS) => {
+                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(webMapJS, layer); else webMapJS.draw();
+                      }}
+                      webMapJSInitializedCallback={(wmjs, appendOrRemove) => {
+                        let id = wmjslayer.name;
+                        // console.log('stack', id, index, wmjslayer.name);
                         if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
-                        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry); else wmjs.draw();
+                        if (appendOrRemove && this.props.webMapJSInitializedCallback) this.props.webMapJSInitializedCallback(wmjs);
                       }}
                     />
                   </div>
@@ -281,10 +286,12 @@ export default class ADAGUCViewerComponent extends PureComponent {
                     return (this.props.layernames.includes(wmjsLayer.name) || this.props.layernames.length === 0);
                   })}
                   listeners={this.listeners}
-                  wmjsRegistry={(_id, wmjs, appendOrRemove) => {
-                    /* There is only one WebMapJS if stacklayers is true */
+                  layerReadyCallback={(layer, webMapJS) => {
+                    if (this.props.parsedLayerCallback && webMapJS) this.props.parsedLayerCallback(webMapJS, layer);
+                  }}
+                  webMapJSInitializedCallback={(wmjs, appendOrRemove) => {
                     if (appendOrRemove) this.wmjsRegistry['first'] = wmjs; else delete this.wmjsRegistry['first'];
-                    if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(this.wmjsRegistry['first'], wmjs); else wmjs.draw();
+                    if (appendOrRemove && this.props.webMapJSInitializedCallback) this.props.webMapJSInitializedCallback(wmjs);
                   }}
                 />
               </div>
@@ -310,6 +317,7 @@ ADAGUCViewerComponent.propTypes = {
   showmetadata: PropTypes.bool,
   controls: PropTypes.object,
   parsedLayerCallback: PropTypes.func,
+  webMapJSInitializedCallback: PropTypes.func,
   baselayers: PropTypes.array,
   layernames: PropTypes.array
 };
