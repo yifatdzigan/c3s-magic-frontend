@@ -1,7 +1,5 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 7
-  },
+  "ecmaVersion": 7,
   "parser": "babel-eslint",
   "extends": [
     "standard",
