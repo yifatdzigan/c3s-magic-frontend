@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { YoutubeVideo, DiagnosticPlot } from './DiagnosticMedia';
 
 import WPSWranglerDemo from './EnsembleAnomalyPlots';
+import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 
 import { Row, Col, Button, Table } from 'reactstrap';
 import Icon from 'react-fa';
@@ -26,12 +27,12 @@ export default class DiagnosticPage extends Component {
 
 
   readYaml() {
-    console.log("readYaml");
-    console.log(this.props.yamlFile);
+    // console.log("readYaml");
+    // console.log(this.props.yamlFile);
     var yamlPath = 'diagnosticsdata/' + this.props.yamlFile;
-    console.log(yamlPath);
+    // console.log(yamlPath);
     this.setState({ yamlPath: yamlPath });
-    console.log(this.state);
+    // console.log(this.state);
 
     var that = this;
     $RefParser.dereference(yamlPath)
@@ -104,6 +105,14 @@ export default class DiagnosticPage extends Component {
         return String(_element);
       }
       else if (elementName === "map_slider") {
+        _element = this.state.yamlData[elementName];
+        return Boolean(_element);
+      }
+      else if (elementName === "enableEnsembleAnomalyPlots") {
+        _element = this.state.yamlData[elementName];
+        return Boolean(_element);
+      }
+      else if (elementName === "enableADAGUC") {
         _element = this.state.yamlData[elementName];
         return Boolean(_element);
       }
@@ -206,8 +215,28 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
+                { this.renderPageElement('enableEnsembleAnomalyPlots') &&
+                  <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
                     showSlider={this.renderPageElement('map_slider')}/>
+                }
+                { this.renderPageElement('enableADAGUC') &&
+                  <ADAGUCViewerComponent
+                    height={'60vh'}
+                    layers={[]}
+                    controls={{
+                      showprojectionbutton: true,
+                      showlayerselector: true,
+                      showtimeselector: true,
+                      showstyleselector: true
+                    }}
+                    parsedLayerCallback={ (webMapJSInstance, layer) => {
+                      console.log(webMapJSInstance);
+                      webMapJSInstance.draw();
+                    } }
+                    wmsurl={'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm'}
+                  />
+                }
+
               </div>
 
               <div className='vspace2em'>
