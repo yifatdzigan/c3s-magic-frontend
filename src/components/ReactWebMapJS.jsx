@@ -11,31 +11,40 @@ export default class ReactWebMapJS extends PureComponent {
   _handleWindowResize () {
     this.resize();
   }
-  componentDidUpdate () {
+
+  shouldComponentUpdate (nextProps, nextState) {
+    // console.log('shouldComponentUpdate?');
+    if (this.props.layers.length !== nextProps.layers.length) return true;
+    for (let j = 0; j < this.props.layers.length; j++) {
+      if (nextProps.layers[j].name !== this.props.layers[j].name ||
+          nextProps.layers[j].service !== this.props.layers[j].service) {
+        return true;
+      }
+    }
+    // console.log('No shouldComponentUpdate');
+    return false;
+  }
+
+  componentDidUpdate (nextProps) {
     // console.log('componentDidUpdate');
-    // console.log('componentDidUpdate layers', this.props.layers);
-    if (this.props.layers && this.props.layers.length > 0 && this.props.layers[0]) {
+    if (this.props.layers.length) {
       this.webMapJS.removeAllLayers();
       for (let j = 0;j < this.props.layers.length; j++) {
         this.webMapJS.addLayer(this.props.layers[j]);
+        // console.log('add layer ok', this.props.layers[j].name);
+        if (this.props.layerReadyCallback) {
+          this.props.layers[j].parseLayer(
+            (wmjsLayer) => { this.props.layerReadyCallback(wmjsLayer, this.webMapJS); },
+            undefined, 'ReactWebMapJS::componentDidUpdate');
+        }
       }
-      if (this.props.wmjsRegistry) {
-        this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, true);
-      }
-    } else {
-      if (this.props.wmjsRegistry) {
-        this.props.wmjsRegistry('first', this.webMapJS, true);
-      }
+      // this.webMapJS.draw();
     }
-    // console.log('draw', this.webMapJS.getLayers());
-    // this.webMapJS.draw();
   }
   componentDidMount () {
     // console.log('componentDidMount');
-
     if (this.webMapJSCreated) {
-      // console.log('ok');
-      this.webMapJS.draw();
+      // this.webMapJS.draw();
       return;
     }
     this.webMapJSCreated = true;
@@ -69,26 +78,27 @@ export default class ReactWebMapJS extends PureComponent {
 
     this.webMapJS.setBaseLayers(baselayers);
 
-
     if (this.props.listeners) {
       this.props.listeners.forEach((listener) => {
         this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
       });
     }
 
-
     this.resize();
     this.componentDidUpdate();
-    this.webMapJS.draw();
+    // this.webMapJS.draw();
     window.addEventListener('resize', this._handleWindowResize);
+
+    if (this.props.webMapJSInitializedCallback && this.webMapJS) {
+      this.props.webMapJSInitializedCallback(this.webMapJS, true);
+    }
   }
 
-
-
   componentWillUnmount () {
+
     window.removeEventListener('resize', this._handleWindowResize);
-    if (this.props.wmjsRegistry && this.props.layers && this.props.layers.length > 0) {
-      this.props.wmjsRegistry(this.props.layers[0].name, this.webMapJS, false);
+    if (this.props.webMapJSInitializedCallback && this.props.layers && this.props.layers.length > 0) {
+      this.props.webMapJSInitializedCallback(this.webMapJS, false);
     }
   }
   resize () {
@@ -102,9 +112,6 @@ export default class ReactWebMapJS extends PureComponent {
       this.width = parseInt(this.container.clientWidth);
       this.height = parseInt(this.container.clientHeight);
     }
-
-    // console.log(this.refs.adaguccontainer.clientWidth);
-    // console.log('ReactWebMapJS render ', this.props);
     return (<div className='ReactWebMapJS' ref={(container) => { this.container = container; }}
       style={{ height:'100%', width:'100%', border:'none', display:'block', overflow:'hidden' }} >
       <div ref='adaguccontainer' style={{
@@ -128,6 +135,7 @@ ReactWebMapJS.propTypes = {
   baselayers: PropTypes.array,
   listeners: PropTypes.array,
   bbox: PropTypes.object,
-  wmjsRegistry: PropTypes.func,
+  webMapJSInitializedCallback: PropTypes.func,
+  layerReadyCallback: PropTypes.func,
   srs: PropTypes.string
 };

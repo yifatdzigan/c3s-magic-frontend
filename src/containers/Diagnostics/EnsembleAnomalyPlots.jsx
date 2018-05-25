@@ -86,10 +86,11 @@ class WPSWranglerDemo extends Component {
             wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
             parsedLayerCallback={
               (wmjsregistry) => {
-                // console.log('parsedLayerCallback', wmjsregistry);
+                console.log('parsedLayerCallback', wmjsregistry);
                 this.wmjsregistry = wmjsregistry;
                 if (!this.initialized) {
                   if (this.wmjsregistry && this.wmjsregistry.getLayers().length > 0) {
+                    console.log('parsedLayerCallback', this.wmjsregistry.getLayers().length);
                     this.wmjsregistry.getLayers()[0].zoomToLayer();
                     this.wmjsregistry.zoomOut();
                     this.wmjsregistry.zoomOut();
