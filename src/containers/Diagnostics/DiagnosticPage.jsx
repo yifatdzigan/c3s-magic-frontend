@@ -1,11 +1,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MarkdownFromFile from '../MarkdownFromFile';
 
 import { YoutubeVideo, DiagnosticPlot } from './DiagnosticMedia';
 
-import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
+import WPSWranglerDemo from './EnsembleAnomalyPlots';
 
 import { Row, Col, Button, Table } from 'reactstrap';
 import Icon from 'react-fa';
@@ -104,6 +103,10 @@ export default class DiagnosticPage extends Component {
         _element = this.state.yamlData[elementName];
         return String(_element);
       }
+      else if (elementName === "map_slider") {
+        _element = this.state.yamlData[elementName];
+        return Boolean(_element);
+      }
       else if (elementName === "media") {
         _element = this.state.yamlData[elementName];
         return _element;
@@ -126,11 +129,11 @@ export default class DiagnosticPage extends Component {
   }
 
 
-  downloadReport(){
+  downloadReport() {
     console.log('Download report...');
   }
 
-  downloadData(){
+  downloadData() {
     console.log('Download data...');
   }
 
@@ -203,19 +206,8 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                <ADAGUCViewerComponent
-                  height={'50vh'}
-                  stacklayers={true}
-                  wmsurl={mapData}
-                  parsedLayerCallback={(wmjsregistry) => {
-                    this.wmjsregistry = wmjsregistry;
-                    if (!this.initialized && this.wmjsregistry.getLayers && this.wmjsregistry.getLayers().length > 0 ) {
-                      this.initialized = true;
-                      this.wmjsregistry.getLayers()[0].zoomToLayer();
-                    }
-                  }
-                  }
-                />
+                <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
+                    showSlider={this.renderPageElement('map_slider')}/>
               </div>
 
               <div className='vspace2em'>
@@ -224,10 +216,6 @@ export default class DiagnosticPage extends Component {
 
               <div className='vspace2em'>
                 {this.renderPageElement('description_long')}
-              </div>
-
-              <div>
-
               </div>
 
             </Col>

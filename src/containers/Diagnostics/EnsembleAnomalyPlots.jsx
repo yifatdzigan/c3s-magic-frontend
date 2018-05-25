@@ -12,6 +12,7 @@ class WPSWranglerDemo extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
+      showSlider: this.props.showSlider,
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
@@ -52,9 +53,14 @@ class WPSWranglerDemo extends Component {
   }
 
   renderAnomalyAgreement () {
+    console.log("map_data:", this.props.map_data);
+    console.log("slider:", this.state.showSlider);
+    var data_path = config.backendHost + '/wms?DATASET=' + this.props.map_data + '&';
+
     return (<div>
       <h1>Ensemble anomaly plots</h1>
       <Row>
+      {this.state.showSlider ?
         <Col>
           <Row>
             <Col>
@@ -79,14 +85,14 @@ class WPSWranglerDemo extends Component {
             </FormGroup>
           </Form>
         </Col>
-        <Col xs='8'>
+         : ''}
+        <Col xs='12'>
           <ADAGUCViewerComponent
-            height={'70vh'}
+            height={'50vh'}
             stacklayers
-            wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
+            wmsurl={data_path}
             parsedLayerCallback={
               (wmjsregistry) => {
-                console.log('parsedLayerCallback', wmjsregistry);
                 this.wmjsregistry = wmjsregistry;
                 if (!this.initialized) {
                   if (this.wmjsregistry && this.wmjsregistry.getLayers().length > 0) {
@@ -108,8 +114,7 @@ class WPSWranglerDemo extends Component {
 
   render () {
     return (
-      <div className='MainViewport'>
-        <Button style={{ float:'right' }} color='link' onClick={() => { this.props.router.push('/'); }}>(back)</Button>
+      <div className='vspace2em'>
         { this.renderAnomalyAgreement() }
       </div>);
   }
@@ -117,10 +122,8 @@ class WPSWranglerDemo extends Component {
 
 WPSWranglerDemo.propTypes = {
   domain: PropTypes.string,
-  dispatch: PropTypes.func.isRequired,
-  actions: PropTypes.object.isRequired,
-  router: PropTypes.object,
-  nrOfStartedProcesses: PropTypes.number
+  map_data: PropTypes.string.isRequired,
+  showSlider: PropTypes.bool
 };
 
 export default withRouter(WPSWranglerDemo);
