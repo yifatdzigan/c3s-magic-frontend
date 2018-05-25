@@ -116,6 +116,14 @@ const mapStateToWPSProps = (state) => {
   return { ...state.WPSState, ...state.userState, ...state.windowManagerActions };
 };
 
+const mapStateToAnomalyEnsembleProps = (state) => {
+  return { ...state.WPSState,
+    ...state.userState,
+    ...state.windowManagerActions,
+    map_data:'anomaly_agreement_stippling',
+    showSlider:true
+  };
+};
 const mapDispatchToWPSProps = function (dispatch) {
   return ({
     dispatch: dispatch,
@@ -163,7 +171,7 @@ export const createRoutes = (store) => {
 
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
 
-  const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(EnsembleAnomalyPlots));
+  const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapStateToAnomalyEnsembleProps)(EnsembleAnomalyPlots));
 
   const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
 
