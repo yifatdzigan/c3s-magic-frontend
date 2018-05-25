@@ -38,7 +38,7 @@ export default class ReactWebMapJS extends PureComponent {
             undefined, 'ReactWebMapJS::componentDidUpdate');
         }
       }
-      // this.webMapJS.draw();
+      this.webMapJS.draw();
     }
   }
   componentDidMount () {
@@ -86,7 +86,7 @@ export default class ReactWebMapJS extends PureComponent {
 
     this.resize();
     this.componentDidUpdate();
-    // this.webMapJS.draw();
+    this.webMapJS.draw();
     window.addEventListener('resize', this._handleWindowResize);
 
     if (this.props.webMapJSInitializedCallback && this.webMapJS) {

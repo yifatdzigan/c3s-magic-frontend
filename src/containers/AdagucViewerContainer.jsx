@@ -1,44 +1,77 @@
 import React, { Component } from 'react';
 import MarkdownFromFile from './MarkdownFromFile';
-
-import { Row } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col } from 'reactstrap';
+import Icon from 'react-fa';
 import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 export default class AdagucViewerContainer extends Component {
+  constructor (props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      datasets: [{
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=AHUNTER',
+        name:'AHUNTER',
+        title:'AHUNTER'
+      },{
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm',
+        name:'WP7_ISAC_rainfarm',
+        title:'WP7_ISAC_rainfarm'
+      }],
+      datasetIndex:0,
+      dropdownOpen: {}
+    }
+  }
+
+  toggle (id) {
+    let dropDownOpen = Object.assign({}, { ...this.state.dropdownOpen });
+    dropDownOpen[id] = !dropDownOpen[id];
+    this.setState({
+      dropdownOpen: dropDownOpen
+    });
+  }
+
   render () {
     return (
       <div className='MainViewport'>
         <Row>
-
-          <div className='text'>
-            <ADAGUCViewerComponent parsedLayerCallback={ (wmjsregistry) => {console.log(wmjsregistry); } } stacklayers={true} dapurl='https://localportal.c3s-magic.eu:9000/opendap/c0a5bcec-8db4-477f-930d-88923f6fe3eb/google.108664741257531327255/anomaly_new.nc' />
-
-          </div>
+          <Col xs='1'>Dataset:</Col><Col xs='1'><Dropdown
+            isOpen={this.state.dropdownOpen['datasets']}
+            toggle={() => { this.toggle('datasets'); }}
+            >
+            <DropdownToggle caret>
+              <Icon name='globe' />&nbsp;{this.state.datasets[this.state.datasetIndex].title || 'Map projection'}
+            </DropdownToggle>
+            <DropdownMenu>
+              {
+                this.state.datasets.map((dataset, index) => {
+                  return (<DropdownItem key={index} onClick={(event) => {
+                    this.setState({datasetIndex: index});
+                  }
+                  }>{dataset.title}</DropdownItem>);
+                })
+              }
+            </DropdownMenu>
+          </Dropdown>
+          </Col>
         </Row>
+        <Row>
+          <ADAGUCViewerComponent
+            height={'60vh'}
+            layers={[]}
+            controls={{
+              showprojectionbutton: true,
+              showlayerselector: true,
+              showtimeselector: true,
+              showstyleselector: true
+            }}
+            parsedLayerCallback={ (webMapJSInstance, layer) => {
+              console.log(webMapJSInstance);
+              webMapJSInstance.draw();
+            } }
+            wmsurl={this.state.datasets[this.state.datasetIndex].wmsurl}
+          />
+        </Row>
+
       </div>);
   }
 }
-
-/*
-
-WP4 - Metrics
- - Mean state
- - Climate variability
- - Extreme events
-
-WP5 - MMP
- - Sub ensemble selections
- - Future climate
-
-WP6 - Timeseries
- - Indices on area averages
- - Spatio temporal analyses
- - Correlations
-
- WP7 - Tailored products
- - User consultations
- - Coastal areas
- - Water / Hydrology
- - Energy
- - Insurance
-
- */

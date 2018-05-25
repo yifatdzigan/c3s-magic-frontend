@@ -87,7 +87,7 @@ class BasketTreeComponent extends Component {
       let basename = baseName(node.dapurl);
       this.props.dispatch(this.props.actions.showWindow(
         {
-          component:(<ADAGUCViewerComponent className='AdagucPreview' width={'100%'} height={'300px'} dapurl={node.dapurl} />),
+          component:(<ADAGUCViewerComponent stacklayers={false} className='AdagucPreview' width={'100%'} height={'300px'} dapurl={node.dapurl} />),
           title: basename
         })
       );
@@ -191,7 +191,7 @@ class BasketTreeComponent extends Component {
 
       <div className='basketTreeContainer'>
         <Row className='basketTreeContainerMainSection'>
-          <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
+          { this.props.accessToken ? <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
             {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
             { this.props.data ? <Treebeard
               data={this.props.data}
@@ -199,15 +199,12 @@ class BasketTreeComponent extends Component {
               style={treeBeardStyling}
               decorators={decorators}
             /> : <div>{this.props.accessToken ? 'Loading basket ...' : 'Not signed in.'}</div> }
-          </ScrollArea>
+          </ScrollArea> : 'Not signed in.' }
         </Row>
-
-        <Row>
+        { this.props.accessToken && <Row>
 
           <hr />
           <Button className='basketButton' onClick={() => this.uploadBasketItem()}><Icon name='upload' /> Upload</Button>
-          { /* <Button className='basketButton' onClick={() => this.previewFile()}
-            disabled={this.isPreviewButtonDisabled()}>Preview</Button>*/ }
           <Button className='basketButton' onClick={() => this.downloadBasketItem()}
             disabled={this.isDownloadButtonDisabled()}><Icon name='download' /> Download</Button>
           <Button className='basketButton' onClick={() => this.deleteBasketItem()}><Icon name='recycle' /> Delete</Button>
@@ -222,7 +219,7 @@ class BasketTreeComponent extends Component {
               numberOfLinesDisplayed={30} />
             : null
           }
-        </Row>
+        </Row> }
       </div>
     );
   }

@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 import { debounce } from 'throttle-debounce';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
+import ReactSlider from 'react-slider';
 import Icon from 'react-fa';
 import ReactWebMapJS from './ReactWebMapJS';
 
@@ -67,14 +68,22 @@ export default class ADAGUCViewerComponent extends PureComponent {
 
     this.listeners = [];
     // console.log('wmjsRegistry = {}');
-    this.wmjsRegistry = {};
+    this.webMapJSInstances = {};
     this.drawDebounced = debounce(500, this.drawDebounced);
     this.updateBBOXDebounced = debounce(10, this.updateBBOXDebounced);
     this.toggle = this.toggle.bind(this);
+    this.selectLayer = this.selectLayer.bind(this);
+    this.selectStyle = this.selectStyle.bind(this);
+    this.handleSliderChange = this.handleSliderChange.bind(this);
+    this.debouncedHandleSliderChange = debounce(25, this.debouncedHandleSliderChange);
+
     this.state = {
-      dropdownOpen: false,
+      dropdownOpen: {},
       maprojection: 'Map projection',
       wmsLayers: [],
+      currentStyles: [],
+      numTimeValues: 0,
+      currentValue: 0,
       srs : 'EPSG:3857',
       bbox: [-19000000, -19000000, 19000000, 19000000],
       title: null,
@@ -82,9 +91,25 @@ export default class ADAGUCViewerComponent extends PureComponent {
     };
   }
 
+  debouncedHandleSliderChange (v) {
+    this.handleSliderChange(v);
+  }
+
+  handleSliderChange (v) {
+    // console.log(v);
+    this.setState({ currentValue:v });
+
+    if (this.timeDim) {
+      let timeValue = this.timeDim.getValueForIndex(v);
+      this.setState({ timeValue:timeValue });
+      this.webMapJSInstances['first'].setDimension('time', timeValue);
+      this.webMapJSInstances['first'].draw();
+    }
+  }
+
   drawDebounced (webmapjs) {
-    for (let key in this.wmjsRegistry) {
-      let otherWebMapJS = this.wmjsRegistry[key];
+    for (let key in this.webMapJSInstances) {
+      let otherWebMapJS = this.webMapJSInstances[key];
       if (webmapjs !== otherWebMapJS) {
         otherWebMapJS.suspendEvent('onmaploadingcomplete');
         otherWebMapJS.draw();
@@ -94,8 +119,8 @@ export default class ADAGUCViewerComponent extends PureComponent {
   };
 
   updateBBOXDebounced (webmapjs, bbox) {
-    for (let key in this.wmjsRegistry) {
-      let otherWebMapJS = this.wmjsRegistry[key];
+    for (let key in this.webMapJSInstances) {
+      let otherWebMapJS = this.webMapJSInstances[key];
       if (webmapjs !== otherWebMapJS) {
         otherWebMapJS.suspendEvent('onupdatebbox');
         otherWebMapJS.setBBOX(bbox);
@@ -104,17 +129,21 @@ export default class ADAGUCViewerComponent extends PureComponent {
     };
   }
 
-  componentDidMount () {
-    // console.log('ADAGUCViewerComponent componentDidMount');
+  componentWillReceiveProps(nextProps) {
 
-    if (this.props.dapurl) {
-      let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(this.props.dapurl);
-      this.getLayersForService(WMSGetCapabiltiesURL, this.props.dapurl);
-    } else if(this.props.wmsurl) {
-      this.getLayersForService(this.props.wmsurl);
+    if (nextProps.dapurl) {
+      let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(nextProps.dapurl);
+      this.getLayersForService(WMSGetCapabiltiesURL, nextProps.dapurl);
+    } else if(nextProps.wmsurl) {
+      this.getLayersForService(nextProps.wmsurl);
     } else {
       console.log('empty');
     }
+  }
+
+  componentDidMount () {
+    // console.log('ADAGUCViewerComponent componentDidMount');
+    this.componentWillReceiveProps(this.props);
 
     this.listeners = [
       { name:'onupdatebbox', callbackfunction: (webmapjs, bbox) => { this.updateBBOXDebounced(webmapjs, bbox); }, keep:true },
@@ -132,7 +161,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   getLayersForService (WMSGetCapabiltiesURL, dapurl) {
-    // console.log('getLayersForService');
+    console.log('getLayersForService' + WMSGetCapabiltiesURL);
     this.setState({ wmsLayers:[], error:null, title:'Loading...' });
     // console.log(WMSGetCapabiltiesURL);
 
@@ -174,6 +203,9 @@ export default class ADAGUCViewerComponent extends PureComponent {
           });
         }
       }
+      if (wmsLayers.length > 0 && this.props.controls && this.props.controls.showlayerselector === true) {
+        this.selectLayer(wmsLayers[0]);
+      }
       // console.log('layerNames', wmsLayers);
       this.setState({ wmsLayers:wmsLayers });
     };
@@ -191,8 +223,8 @@ export default class ADAGUCViewerComponent extends PureComponent {
     );
   }
   setProjection (p) {
-    for (let key in this.wmjsRegistry) {
-      let otherWebMapJS = this.wmjsRegistry[key];
+    for (let key in this.webMapJSInstances) {
+      let otherWebMapJS = this.webMapJSInstances[key];
       // console.log('Set projection', p, otherWebMapJS);
       otherWebMapJS.setProjection(p);
       otherWebMapJS.draw();
@@ -202,23 +234,65 @@ export default class ADAGUCViewerComponent extends PureComponent {
     });
   }
 
-  toggle () {
-    // console.log('toggle', this.state.dropdownOpen);
+  toggle (id) {
+    console.log('toggle', this.state.dropdownOpen);
+    let dropDownOpen = Object.assign({}, { ...this.state.dropdownOpen });
+    dropDownOpen[id] = !dropDownOpen[id];
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: dropDownOpen
     });
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
-    // console.log(this.props, nextProps);
-    // console.log(this.state, nextState);
-    if (nextState.wmsLayers && this.state.wmsLayers && nextState.wmsLayers.length !== this.state.wmsLayers.length) return true;
-    return false;
+  selectLayer (wmjsLayer) {
+    this.webMapJSInstances['first'].removeAllLayers();
+    if (wmjsLayer) {
+      this.setState({ selectedLayer:wmjsLayer });
+      this.webMapJSInstances['first'].addLayer(wmjsLayer);
+    }
+
+    this.webMapJSInstances['first'].draw();
+
+    if (wmjsLayer) {
+      let styles = wmjsLayer.getStyles();
+      if (styles.length > 0) {
+        // console.log(styles);
+        this.setState({ currentStyles: styles, selectedStyle: styles[0] });
+      } else {
+        this.setState({ currentStyles: [], selectedStyle: 'default' });
+      }
+    }
+
+    if (wmjsLayer && wmjsLayer.getDimension('time')) {
+      // console.log(wmjsLayer.getDimension('time').size());
+      this.timeDim = wmjsLayer.getDimension('time');
+      this.setState({ numTimeValues:this.timeDim.size() });
+      this.handleSliderChange(this.timeDim.size() - 1);
+      // console.log(this.state.numTimeValues);
+    } else {
+      // console.log('no time dim');
+      this.setState({ numTimeValues:0, timeValue:'No time dimension' });
+    }
   }
+
+  selectStyle (wmjsStyle) {
+    // console.log(wmjsStyle);
+    if (wmjsStyle) {
+      this.setState({ selectedStyle:wmjsStyle });
+      this.state.selectedLayer.setStyle(wmjsStyle.name);
+      this.webMapJSInstances['first'].draw();
+    }
+  }
+
+  // shouldComponentUpdate (nextProps, nextState) {
+  //   // console.log(this.props, nextProps);
+  //   // console.log(this.state, nextState);
+  //   if (nextState.wmsLayers && this.state.wmsLayers && nextState.wmsLayers.length !== this.state.wmsLayers.length) return true;
+  //   return false;
+  // }
 
   render () {
     const { title, error } = this.state;
-    console.log('ADAGUCViewerComponent render');
+    // console.log('ADAGUCViewerComponent render');
     // console.log('layer0', this.state.wmsLayers[0]);
     return (<div className={'ADAGUCViewerComponent'} style={{ width:this.props.width || '100%' }}>
       <CardBody style={{ padding:'0' }}>
@@ -229,29 +303,94 @@ export default class ADAGUCViewerComponent extends PureComponent {
           <CardText>{this.WMSServiceStore.abstract}</CardText>
         </div>
           : null }
-
-        { this.props.controls && this.props.controls.showprojectionbutton ? <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle caret>
-            <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
-          </DropdownToggle>
-          <DropdownMenu>
-            {
-              mapTypeConfiguration.map((proj, index) => {
-                return (<DropdownItem key={index} onClick={(event) => {
-                  mapTypeConfiguration.map((proj, index) => {
-                    if (proj.title === event.target.innerText) {
-                      this.setProjection(proj);
-                    }
-                  });
-                }
-                }>{proj.title}</DropdownItem>);
-              })
-            }
-          </DropdownMenu>
-        </Dropdown> : null
-        }
+        <Row>
+          { this.props.controls && this.props.controls.showprojectionbutton ? <Col>Projection: <Dropdown
+            isOpen={this.state.dropdownOpen['showprojectionbutton']}
+            toggle={() => { this.toggle('showprojectionbutton'); }}
+            >
+            <DropdownToggle caret>
+              <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
+            </DropdownToggle>
+            <DropdownMenu>
+              {
+                mapTypeConfiguration.map((proj, index) => {
+                  return (<DropdownItem key={index} onClick={(event) => {
+                    mapTypeConfiguration.map((proj, index) => {
+                      if (proj.title === event.target.innerText) {
+                        this.setProjection(proj);
+                      }
+                    });
+                  }
+                  }>{proj.title}</DropdownItem>);
+                })
+              }
+            </DropdownMenu>
+          </Dropdown></Col> : null
+          }
+          { this.props.controls && this.props.controls.showlayerselector ? <Col>Layer: <Dropdown
+            isOpen={this.state.dropdownOpen['showlayerselector']}
+            toggle={() => { this.toggle('showlayerselector'); }}
+            >
+            <DropdownToggle caret>
+              <Icon name='align-justify' />&nbsp;{(this.state.selectedLayer && this.state.selectedLayer.title) || 'Select a layer'}
+            </DropdownToggle>
+            <DropdownMenu>
+              {
+                this.state.wmsLayers.map((wmjsLayer, index) => {
+                  return (<DropdownItem key={index} onClick={(event) => {
+                    this.state.wmsLayers.map((wmjsLayer, index) => {
+                      if (wmjsLayer.title === event.target.innerText) {
+                        this.selectLayer(wmjsLayer);
+                      }
+                    });
+                  }
+                  }>{wmjsLayer.title}</DropdownItem>);
+                })
+              }
+            </DropdownMenu>
+          </Dropdown></Col> : null
+          }
+        </Row>
+        <Row>
+          { this.props.controls && this.props.controls.showstyleselector ? <Col>Style: <Dropdown
+            isOpen={this.state.dropdownOpen['showstyleselector']}
+            toggle={() => { this.toggle('showstyleselector'); }}
+            >
+            <DropdownToggle caret>
+              <Icon name='align-justify' />&nbsp;{(this.state.selectedStyle && this.state.selectedStyle.title) || 'Select a style'}
+            </DropdownToggle>
+            <DropdownMenu>
+              {
+                this.state.currentStyles.map((wmjsStyle, index) => {
+                  return (<DropdownItem key={index} onClick={(event) => {
+                    this.state.currentStyles.map((wmjsStyle, index) => {
+                      if (wmjsStyle.title === event.target.innerText) {
+                        this.selectStyle(wmjsStyle);
+                      }
+                    });
+                  }
+                  }>{wmjsStyle.title}</DropdownItem>);
+                })
+              }
+            </DropdownMenu>
+          </Dropdown></Col> : null
+          }
+          { this.props.controls && this.props.controls.showtimeselector ? <Col>Time:
+            <div>
+              <ReactSlider
+                className={'horizontal-slider'}
+                min={0}
+                max={parseInt(this.state.numTimeValues) - 1 }
+                value={this.state.currentValue}
+                onChange={(v) => { this.debouncedHandleSliderChange(v); }}
+              />
+            </div>
+            {this.state.timeValue + ' (' + (this.state.currentValue + 1)+ '/' + this.state.numTimeValues + ')'}
+          </Col> : null
+          }
+        </Row>
         {
-          (this.props.stacklayers !== true) ? this.state.wmsLayers.map((wmjslayer, index) => {
+          (this.props.stacklayers === false) ? this.state.wmsLayers.map((wmjslayer, index) => {
             // console.log(' this.state.wmsLayers',  this.state.wmsLayers);
             return (
               <Card style={{ padding:'0' }} body key={index} >
@@ -269,7 +408,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
                       webMapJSInitializedCallback={(wmjs, appendOrRemove) => {
                         let id = wmjslayer.name;
                         // console.log('stack', id, index, wmjslayer.name);
-                        if (appendOrRemove) this.wmjsRegistry[id] = wmjs; else delete this.wmjsRegistry[id];
+                        if (appendOrRemove) this.webMapJSInstances[id] = wmjs; else delete this.webMapJSInstances[id];
                         if (appendOrRemove && this.props.webMapJSInitializedCallback) this.props.webMapJSInitializedCallback(wmjs);
                       }}
                     />
@@ -283,14 +422,15 @@ export default class ADAGUCViewerComponent extends PureComponent {
                 <ReactWebMapJS
                   baselayers={this.props.baselayers}
                   layers={this.state.wmsLayers.filter(wmjsLayer => {
+                    if (this.props.controls && this.props.controls.showlayerselector === true) return false;
                     return (this.props.layernames.includes(wmjsLayer.name) || this.props.layernames.length === 0);
                   })}
                   listeners={this.listeners}
-                  layerReadyCallback={(layer, webMapJS) => {
-                    if (this.props.parsedLayerCallback && webMapJS) this.props.parsedLayerCallback(webMapJS, layer);
+                  layerReadyCallback={(wmjsLayer, webMapJS) => {
+                    if (this.props.parsedLayerCallback && webMapJS) this.props.parsedLayerCallback(webMapJS, wmjsLayer);
                   }}
                   webMapJSInitializedCallback={(wmjs, appendOrRemove) => {
-                    if (appendOrRemove) this.wmjsRegistry['first'] = wmjs; else delete this.wmjsRegistry['first'];
+                    if (appendOrRemove) this.webMapJSInstances['first'] = wmjs; else delete this.webMapJSInstances['first'];
                     if (appendOrRemove && this.props.webMapJSInitializedCallback) this.props.webMapJSInitializedCallback(wmjs);
                   }}
                 />
