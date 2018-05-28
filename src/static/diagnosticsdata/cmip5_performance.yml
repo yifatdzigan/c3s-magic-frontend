@@ -16,9 +16,6 @@ description_long: |
 
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
 media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
-enableEnsembleAnomalyPlots: |
-  - map_data: anomaly_agreement_stippling
-  - map_slider: true
 enableADAGUC: |
   - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm
   - projectionbutton: true

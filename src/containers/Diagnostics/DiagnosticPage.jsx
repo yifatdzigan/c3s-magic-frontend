@@ -161,7 +161,7 @@ export default class DiagnosticPage extends Component {
           </div>
 
           <Row>
-            <Col xs="6">
+            <Col xs="6" className='diagnosticsCol'>
 
               <div className='text vspace2em'>
                 <h2>Patners</h2>
@@ -204,7 +204,7 @@ export default class DiagnosticPage extends Component {
 
             </Col>
 
-            <Col xs="6">
+            <Col xs="6" className='diagnosticsCol'>
 
               <div className="videoWrapper vspace2em">
                 <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
@@ -229,8 +229,9 @@ export default class DiagnosticPage extends Component {
                       showtimeselector: true,
                       showstyleselector: true
                     }}
-                    parsedLayerCallback={ (webMapJSInstance, layer) => {
-                      console.log(webMapJSInstance);
+                    parsedLayerCallback={ (layer, webMapJSInstance) => {
+                      console.log('webMapJSInstance', webMapJSInstance);
+                      layer.zoomToLayer();
                       webMapJSInstance.draw();
                     } }
                     wmsurl={'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm'}
