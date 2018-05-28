@@ -21,7 +21,7 @@ diagnostics:
         sub_title: sub_title_2
         info_text: info_text_2
         info_file: file_2
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
         github_issue:
     diagnostics_3:
         id: 3
@@ -29,7 +29,7 @@ diagnostics:
         sub_title: sub_title_3
         info_text: info_text_3
         info_file: file_3
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
         github_issue:
     diagnostics_4:
         id: 4
@@ -37,5 +37,5 @@ diagnostics:
         sub_title: sub_title_4
         info_text: info_text_4
         info_file: file_4
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
         github_issue:
