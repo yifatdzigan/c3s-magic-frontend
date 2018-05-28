@@ -53,9 +53,9 @@ class WPSWranglerDemo extends PureComponent {
   }
 
   renderAnomalyAgreement () {
-    console.log("map_data:", this.props.map_data);
-    console.log("slider:", this.state.showSlider);
-    var data_path = config.backendHost + '/wms?DATASET=' + this.props.map_data + '&';
+    // console.log("map_data:", this.props.map_data);
+    // console.log("slider:", this.state.showSlider);
+    // var data_path = config.backendHost + '/wms?DATASET=' + this.props.map_data + '&';
 
     return (<div>
       <h1>Ensemble anomaly plots</h1>
@@ -90,7 +90,7 @@ class WPSWranglerDemo extends PureComponent {
           <ADAGUCViewerComponent
             height={'50vh'}
             stacklayers
-            wmsurl={data_path}
+            wmsurl={this.props.map_data}
             parsedLayerCallback={
               (wmjsLayer, webMapJSInstance) => {
                 this.webMapJSInstance = webMapJSInstance;

@@ -11,6 +11,7 @@ import { Row, Col, Button, Table } from 'reactstrap';
 import Icon from 'react-fa';
 
 var $RefParser = require('json-schema-ref-parser');
+var _ = require('lodash');
 
 export default class DiagnosticPage extends Component {
 
@@ -32,33 +33,30 @@ export default class DiagnosticPage extends Component {
       .then(data => {
         that.setState({ yamlData: data, readSuccess: true });
       });
-
   }
 
   componentWillMount() {
-    console.log("componentWillMount");
     this.readYaml();
-    console.log(this.state);
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
-    console.log(this.state);
   }
 
-  checkElementparameterBool(elementName, paramName) {
+  getElementProperty(elementName, paramName) {
     var elem = this.state.yamlData[elementName];
-    Object.keys(elem).forEach(function (key) {
-      var sub_elem = elem[key];
-      Object.keys(sub_elem).forEach(function (sub_key) {
-
-        var sub_elem_key_val = sub_elem[sub_key];
-        console.log(elem, sub_elem, sub_elem_key_val);
-
-      });
+    var paramVal = _.filter(elem, function (item) {
+      if (typeof item[paramName] !== 'undefined') {
+        return item[paramName];
+      }
     });
+    if (paramName === 'data_url') {
+      return paramVal[0].data_url;
+    }
+    if (paramVal.length == 0) {
+      return false;
+    }
+    return paramVal;
   }
-
 
   renderPageElement(elementName) {
     if (this.state.yamlData && this.state.readSuccess) {
@@ -103,21 +101,12 @@ export default class DiagnosticPage extends Component {
         });
         _element += '</tbody></Table>';
       }
-      else if (elementName === "map_data") {
-        _element = this.state.yamlData[elementName];
-        return String(_element);
-      }
-      else if (elementName === "map_slider") {
-        _element = this.state.yamlData[elementName];
-        return Boolean(_element);
-      }
       else if (elementName === "enableEnsembleAnomalyPlots") {
         _element = this.state.yamlData[elementName];
         return Boolean(_element);
       }
       else if (elementName === "enableADAGUC") {
         _element = this.state.yamlData[elementName];
-        console.log(_element);
         return Boolean(_element);
       }
       else if (elementName === "media") {
@@ -149,11 +138,10 @@ export default class DiagnosticPage extends Component {
     console.log('Download data...');
   }
 
-
   render() {
-    //    this.checkElementparameterBool(enableADAGUC, projectionbutton);
 
     if (this.state.readSuccess) {
+
       return (
         <div className='MainViewport'>
 
@@ -166,7 +154,7 @@ export default class DiagnosticPage extends Component {
           <Row>
             <Col xs="6" className='diagnosticsCol'>
 
-              <div className='text vspace2em'>
+              <div className='text'>
                 <h2>Partners</h2>
                 {this.renderPageElement('partner')}
               </div>
@@ -208,7 +196,6 @@ export default class DiagnosticPage extends Component {
               <div className='vspace2em'>
                 {this.renderPageElement('youtube') ?
                   [
-                    <h2>Youtube Video</h2>,
                     <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
                   ]
                   : null
@@ -216,11 +203,10 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-
                 {this.renderPageElement('enableEnsembleAnomalyPlots') ?
                   [
-                    <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
-                      showSlider={this.renderPageElement('map_slider')} />
+                    <WPSWranglerDemo map_data={this.getElementProperty('enableEnsembleAnomalyPlots', 'data_url')}
+                      showSlider={this.getElementProperty('enableEnsembleAnomalyPlots', 'map_slider')} />
                   ]
                   : null
                 }
@@ -230,20 +216,19 @@ export default class DiagnosticPage extends Component {
                     height={'60vh'}
                     layers={[]}
                     controls={{
-                      showprojectionbutton: true,
-                      showlayerselector: true,
-                      showtimeselector: true,
-                      showstyleselector: true
+                      showprojectionbutton: this.getElementProperty('enableADAGUC', 'showprojectionbutton'),
+                      showlayerselector: this.getElementProperty('enableADAGUC', 'showlayerselector'),
+                      showtimeselector: this.getElementProperty('enableADAGUC', 'showtimeselector'),
+                      showstyleselector: this.getElementProperty('enableADAGUC', 'showstyleselector')
                     }}
                     parsedLayerCallback={(layer, webMapJSInstance) => {
                       console.log('webMapJSInstance', webMapJSInstance);
                       layer.zoomToLayer();
                       webMapJSInstance.draw();
                     }}
-                    wmsurl={'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm'}
+                    wmsurl={this.getElementProperty('enableADAGUC', 'data_url')}
                   />
                 }
-
               </div>
 
               <div className='vspace2em'>
@@ -262,7 +247,8 @@ export default class DiagnosticPage extends Component {
     else {
       return (
         <div>
-          <p> This diagnostic pacge is not ready yet!</p>
+          <p> An error occured or this diagnostic pacge is not ready yet!</p>
+          <p> Please contact the developers...</p>
         </div>
       );
     }

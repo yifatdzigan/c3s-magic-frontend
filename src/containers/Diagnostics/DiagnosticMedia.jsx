@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class YoutubeVideo extends Component {
 
   componentWillMount () {
-    console.log("\n\nDEBUG Youtube:\n\n " + this.props.video);
-    console.log(this.props.video);
+    // console.log("\n\nDEBUG Youtube:\n\n " + this.props.video);
+    // console.log(this.props.video);
   }
 
   componentDidMount(){
@@ -26,11 +26,6 @@ class YoutubeVideo extends Component {
 
 }
 
-// YoutubeVideo.propTypes = {
-//   video: PropTypes.string
-// };
-
-
 class DiagnosticPlot extends Component {
   render () {
        return (
@@ -38,11 +33,6 @@ class DiagnosticPlot extends Component {
           );
   }
 }
-
-// DiagnosticPlot.propTypes = {
-//   url: PropTypes.string
-// };
-
 
 export {
   YoutubeVideo,
