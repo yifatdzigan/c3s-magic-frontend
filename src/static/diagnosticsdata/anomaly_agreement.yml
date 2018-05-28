@@ -1,5 +1,4 @@
 ---
-id: 1
 name: Anomaly Agreement
 partner: BSC
 authors:
@@ -25,7 +24,7 @@ description_long: |
     Selection of ensemble agreement threshold for stippling.
     Selection of models.
     Selection of temporal averaging (monthly, seasonal, or yearly anomalies)
-media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
+media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
 map_data: anomaly_agreement_stippling # TODO should go under enableEnsembleAnomalyPlots
 map_slider: true
 enableEnsembleAnomalyPlots: |

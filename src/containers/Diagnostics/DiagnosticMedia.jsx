@@ -18,11 +18,9 @@ class YoutubeVideo extends Component {
       this.props.rel + "&modestbranding=" +
       this.props.modest;
       return (
-        <div className="container">
-          <iframe className="player" type="text/html" width="100%" height="100%"
+          <iframe className="youtubeplayer" type="text/html"
             src={videoSrc}
             frameBorder="0" allowFullScreen />
-        </div>
           );
   }
 

@@ -24,16 +24,9 @@ export default class DiagnosticPage extends Component {
     this.readYaml = this.readYaml.bind(this);
   }
 
-
-
   readYaml() {
-    // console.log("readYaml");
-    // console.log(this.props.yamlFile);
     var yamlPath = 'diagnosticsdata/' + this.props.yamlFile;
-    // console.log(yamlPath);
     this.setState({ yamlPath: yamlPath });
-    // console.log(this.state);
-
     var that = this;
     $RefParser.dereference(yamlPath)
       .then(data => {
@@ -41,7 +34,6 @@ export default class DiagnosticPage extends Component {
       });
 
   }
-
 
   componentWillMount() {
     console.log("componentWillMount");
@@ -54,11 +46,22 @@ export default class DiagnosticPage extends Component {
     console.log(this.state);
   }
 
+  checkElementparameterBool(elementName, paramName) {
+    var elem = this.state.yamlData[elementName];
+    Object.keys(elem).forEach(function (key) {
+      var sub_elem = elem[key];
+      Object.keys(sub_elem).forEach(function (sub_key) {
+
+        var sub_elem_key_val = sub_elem[sub_key];
+        console.log(elem, sub_elem, sub_elem_key_val);
+
+      });
+    });
+  }
+
 
   renderPageElement(elementName) {
-    if (this.state.readSuccess) {
-      //      console.log(this.state);
-
+    if (this.state.yamlData && this.state.readSuccess) {
       var _element = '';
       if (elementName === "partner") {
         _element = this.state.yamlData[elementName];
@@ -114,6 +117,7 @@ export default class DiagnosticPage extends Component {
       }
       else if (elementName === "enableADAGUC") {
         _element = this.state.yamlData[elementName];
+        console.log(_element);
         return Boolean(_element);
       }
       else if (elementName === "media") {
@@ -132,7 +136,6 @@ export default class DiagnosticPage extends Component {
         console.warn("Could not find the key " + elementName + " in the configuration file!");
         _element = "No key was requested! Check the diagnostics settings.";
       }
-
       return (<div dangerouslySetInnerHTML={{ __html: _element }} />);
     }
   }
@@ -148,7 +151,7 @@ export default class DiagnosticPage extends Component {
 
 
   render() {
-    const mapData = config.backendHost + 'wms?DATASET=' + 'anomaly_agreement_stippling' + '&';
+    //    this.checkElementparameterBool(enableADAGUC, projectionbutton);
 
     if (this.state.readSuccess) {
       return (
@@ -164,17 +167,13 @@ export default class DiagnosticPage extends Component {
             <Col xs="6" className='diagnosticsCol'>
 
               <div className='text vspace2em'>
-                <h2>Patners</h2>
+                <h2>Partners</h2>
                 {this.renderPageElement('partner')}
               </div>
 
               <div className='text vspace2em'>
                 <h2>Description</h2>
                 {this.renderPageElement('description_short')}
-              </div>
-
-              <div className='vspace2em'>
-                <Button color="primary">Read more</Button>{' '}
               </div>
 
               <div className='text vspace2em'>
@@ -197,7 +196,7 @@ export default class DiagnosticPage extends Component {
                 {this.renderPageElement('settings')}
               </div>
 
-              <div className='text vspace2em'>
+              <div className='text vspace2em atBottom'>
                 <h2>Contact</h2>
                 {this.renderPageElement('contact')}
               </div>
@@ -206,20 +205,27 @@ export default class DiagnosticPage extends Component {
 
             <Col xs="6" className='diagnosticsCol'>
 
-              <div className="videoWrapper vspace2em">
-                <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
-              </div>
-
-              <div className='text vspace2em'>
-                {mapData}
+              <div className='vspace2em'>
+                {this.renderPageElement('youtube') ?
+                  [
+                    <h2>Youtube Video</h2>,
+                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                  ]
+                  : null
+                }
               </div>
 
               <div className='vspace2em'>
-                { this.renderPageElement('enableEnsembleAnomalyPlots') &&
-                  <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
-                    showSlider={this.renderPageElement('map_slider')}/>
+
+                {this.renderPageElement('enableEnsembleAnomalyPlots') ?
+                  [
+                    <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
+                      showSlider={this.renderPageElement('map_slider')} />
+                  ]
+                  : null
                 }
-                { this.renderPageElement('enableADAGUC') &&
+
+                {this.renderPageElement('enableADAGUC') &&
                   <ADAGUCViewerComponent
                     height={'60vh'}
                     layers={[]}
@@ -229,11 +235,11 @@ export default class DiagnosticPage extends Component {
                       showtimeselector: true,
                       showstyleselector: true
                     }}
-                    parsedLayerCallback={ (layer, webMapJSInstance) => {
+                    parsedLayerCallback={(layer, webMapJSInstance) => {
                       console.log('webMapJSInstance', webMapJSInstance);
                       layer.zoomToLayer();
                       webMapJSInstance.draw();
-                    } }
+                    }}
                     wmsurl={'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm'}
                   />
                 }
