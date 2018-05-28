@@ -1,7 +1,7 @@
 # Metrics
 
-Metrics of performance measure different aspects of model-data correspondence. 
-This can be a simple distance (bias), a measure of variability, or the correspondence between patterns. 
+Metrics of performance measure different aspects of model-data correspondence.
+This can be a simple distance (bias), a measure of variability, or the correspondence between patterns.
 They can take the form of a single number, a map of performance numbers or a diagram, and it can apply to daily, monthly or annual time scales.
 Several metrics have been proposed in the literature, and a lot of them have been incorporated in the ESMValTool, the s2dverification package, and other software packages.
 

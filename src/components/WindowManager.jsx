@@ -12,16 +12,16 @@ export default class WindowManager extends Component {
       { windows.map((v, i) => {
         return (<Draggable
           className='my-draggable'
-          key={i}
+          key={v.id}
           index={v.index}
           initialPos={{ x: v.x, y:v.y }}
           initialSize={{ w:v.w, h:v.h }}
           zIndex={v.zIndex}
-          title={v.title + v.id}
-          closeCallback={() => { dispatch(actions.closeWindow(v.id)); }}
+          title={v.title}
+          closeCallback={() => { console.log(v); dispatch(actions.closeWindow(v.id)); }}
           updateCallback={(updates) => { dispatch(actions.updateWindow({ id: v.id, updates: updates })); }}
           >
-          <div>{ v.element }</div>
+          <div style={{width:'100%'}}>{ v.element }</div>
         </Draggable>);
       })}
     </div>);

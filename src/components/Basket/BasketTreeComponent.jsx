@@ -5,7 +5,7 @@ import treeBeardStyling from '../../styles/stylingBasket/stylingBasket';
 import { Button, Row } from 'reactstrap';
 import ScrollArea from 'react-scrollbar';
 import PreviewComponent from '../PreviewComponent';
-import DapPreview from '../DapPreview';
+import ADAGUCViewerComponent from '../ADAGUCViewerComponent';
 import { withRouter } from 'react-router';
 import Moment from 'react-moment';
 import Icon from 'react-fa';
@@ -78,13 +78,17 @@ class BasketTreeComponent extends Component {
     this.setState({ cursor: node, previewActive: false });
 
     if (node.dapurl) {
+      let baseName = (str) => {
+        let base = str.substring(str.lastIndexOf('/') + 1);
+        if (base.lastIndexOf('.') !== -1) base = base.substring(0, base.lastIndexOf('.'));
+        return base;
+      };
+
+      let basename = baseName(node.dapurl);
       this.props.dispatch(this.props.actions.showWindow(
         {
-          component:(<DapPreview dapurl={node.dapurl} />),
-          title:'Preview',
-          dispatch: this.props.dispatch,
-          width:530,
-          height: 460
+          component:(<ADAGUCViewerComponent stacklayers={false} className='AdagucPreview' width={'100%'} height={'300px'} dapurl={node.dapurl} />),
+          title: basename
         })
       );
     }
@@ -182,28 +186,25 @@ class BasketTreeComponent extends Component {
         this.props.data.children.toggled = true;
       }
     }
+    // console.log(this.props);
     return (
 
       <div className='basketTreeContainer'>
         <Row className='basketTreeContainerMainSection'>
-          <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
+          { this.props.accessToken ? <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
             {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
             { this.props.data ? <Treebeard
               data={this.props.data}
               onToggle={this.onToggle}
               style={treeBeardStyling}
               decorators={decorators}
-            /> : <div>Not signed in.</div> }
-          </ScrollArea>
+            /> : <div>{this.props.accessToken ? 'Loading basket ...' : 'Not signed in.'}</div> }
+          </ScrollArea> : 'Not signed in.' }
         </Row>
-
-        <Row>
-          <hr />
+        { this.props.accessToken && <Row>
 
           <hr />
           <Button className='basketButton' onClick={() => this.uploadBasketItem()}><Icon name='upload' /> Upload</Button>
-          { /* <Button className='basketButton' onClick={() => this.previewFile()}
-            disabled={this.isPreviewButtonDisabled()}>Preview</Button>*/ }
           <Button className='basketButton' onClick={() => this.downloadBasketItem()}
             disabled={this.isDownloadButtonDisabled()}><Icon name='download' /> Download</Button>
           <Button className='basketButton' onClick={() => this.deleteBasketItem()}><Icon name='recycle' /> Delete</Button>
@@ -218,7 +219,7 @@ class BasketTreeComponent extends Component {
               numberOfLinesDisplayed={30} />
             : null
           }
-        </Row>
+        </Row> }
       </div>
     );
   }

@@ -50,6 +50,8 @@ import MeanState from '../containers/Metrics/MeanState';
 import ExtremeEvents from '../containers/Metrics/ExtremeEvents';
 import ClimateVariability from '../containers/Metrics/ClimateVariability';
 
+import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
+
 /* MultiModelProducts */
 import MultiModelProductsMenu from '../containers/MultiModelProducts/MultiModelProductsMenu';
 import MultiModelProductsHome from '../containers/MultiModelProducts/MultiModelProductsHome';
@@ -72,6 +74,10 @@ import Energy from '../containers/TailoredProducts/Energy';
 import Insurance from '../containers/TailoredProducts/Insurance';
 import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
 import UserConsultation from '../containers/TailoredProducts/UserConsultation';
+import ActuariesDemo from '../containers/TailoredProducts/ActuariesDemo';
+
+/* Diagnostics */
+import Diagnostics from '../containers/Diagnostics';
 
 /* System */
 import SystemMenu from '../containers/System/SystemMenu';
@@ -80,11 +86,16 @@ import Provenance from '../containers/System/Provenance';
 import Data from '../containers/System/Data';
 
 import TitleComponent from '../containers/TitleComponent';
-import WP1Home from '../containers/WP1Home';
+// import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
 
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
+
+import EnsembleAnomalyPlots from '../containers/Diagnostics/EnsembleAnomalyPlots';
+
 import BasketComponent from '../components/Basket/BasketComponent';
+
+import AdagucViewerContainer from '../containers/AdagucViewerContainer';
 
 import JoblistComponent from '../components/JobListComponent';
 
@@ -105,6 +116,14 @@ const mapStateToWPSProps = (state) => {
   return { ...state.WPSState, ...state.userState, ...state.windowManagerActions };
 };
 
+const mapStateToAnomalyEnsembleProps = (state) => {
+  return { ...state.WPSState,
+    ...state.userState,
+    ...state.windowManagerActions,
+    map_data:'anomaly_agreement_stippling',
+    showSlider:true
+  };
+};
 const mapDispatchToWPSProps = function (dispatch) {
   return ({
     dispatch: dispatch,
@@ -138,33 +157,60 @@ const mapDispatchToJoblistProps = function (dispatch) {
 export const createRoutes = (store) => {
   const mainmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TitleComponent));
   const metricsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MetricsMenu));
+
+  const diagnosticshome = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(DiagnosticsHome));
+
   const multimodelproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MultiModelProductsMenu));
   const timeseriesmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TimeSeriesMenu));
   const tailoredproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsMenu));
   const systemmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SystemMenu));
 
-  const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
+  // const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
+
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
   const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
+
+  const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapStateToAnomalyEnsembleProps)(EnsembleAnomalyPlots));
+
+  const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
+
+  const diagnostics = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(Diagnostics));
+
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
+
+  const adagucviewer = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(AdagucViewerContainer));
 
   const jobs = React.createElement(connect(mapStateToJoblistProps, mapDispatchToJoblistProps)(JoblistComponent));
 
-  console.log('createROutes');
   let ww = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WindowManager));
 
   return (
-    <Route path='/' component={BaseLayout} title='C3S-Magic' windowmanager={ww}>
-      <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wp1home} />
+    <Route path={'/'} component={BaseLayout} title={'C3S-Magic'} windowmanager={ww} >
+      <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu} viewComponent={actuariesDemo} />
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
+      </Route>
+      <Route path='diagnostics' title='Diagnostics'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={diagnosticshome} />
       </Route>
       <Route path='demo' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
       </Route>
+      <Route path='actuaries' title='actuariesDemo'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={actuariesDemo} />
+      </Route>
+      <Route path='ensembleanomalyplots' title='ensembleAnomalyPlots'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={ensembleAnomalyPlots} />
+      </Route>
+      <Route path='diagnostics' title='Diagnostics'>
+        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} viewComponent={diagnostics} />
+      </Route>
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />
+      </Route>
+      <Route path='adagucviewer' title='ADAGUC Viewer'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={adagucviewer} />
       </Route>
       <Route path='jobs' title='Jobs'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={jobs} />
@@ -178,7 +224,7 @@ export const createRoutes = (store) => {
         </Route>
         <Route path='meanstate'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={metricsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(MeanState))}
+            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(MeanState))}
           />
         </Route>
         <Route path='extremeevents'>

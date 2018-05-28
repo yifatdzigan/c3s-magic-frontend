@@ -1,6 +1,14 @@
 # Metrics of model performance to assess extreme events
 
-Demonstration video
+Demonstration video's
+
+<iframe width="700" height="400" src="https://www.youtube.com/embed/P3BCRFipKO0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+Rain farm run using ESMValtool
+
+<iframe width="700" height="400" src="https://www.youtube.com/embed/jCk9or69VF0" frameborder="0" allowfullscreen></iframe>
+
+Demonstration of calculation of Indices of hydro-climatic intensity.
 
 # Description
 Assessing the capability of the models in reproducing the statistics of extreme events is of crucial interest for impact modelling in several of the main sectors. To this end, in order to allow to measure characteristics of extremes, including frequency, amplitude and persistence, this task will include in ESMValTool metrics to assess the model performances in simulating selected climate extremes indices for temperature and precipitation defined by the Expert Team on Climate Change Detection and Indices (ETCCDI).

@@ -1,3 +1,6 @@
+import 'babel-polyfill';
+import 'isomorphic-fetch';
+
 /*
   Configuration is loaded from two configuration files:
     1) configDefault.js in ./src/static
@@ -19,10 +22,12 @@ export const getConfig = function () {
     // eslint-disable-next-line no-undef
     c = Object.assign({}, configDefault, config || {});
   }
-  console.log('Using config:', c);
+  // console.log('Using config:', c);
   try {
-  // eslint-disable-next-line no-undef
+    // eslint-disable-next-line no-undef
     xml2jsonrequestURL = c.backendHost + '/xml2json?';
+    // eslint-disable-next-line no-undef
+    requestProxy = c.backendHost + '/proxy?';
   } catch (e) {
     // console.log(e);
   }

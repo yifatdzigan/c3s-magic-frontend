@@ -17,13 +17,13 @@ export default class NavBarLayout extends Component {
           </Row>
           : null }
         { viewComponent
-          ? <Row className='map' tag='main'>
+          ? <Row className='ViewComponent' tag='main'>
             { viewComponent }
           </Row>
           : null }
-        <Row className='MainSection'>
+        { /* <Row className='MainSection'>
           {this.props.children}
-        </Row>
+        </Row> */ }
       </div>
     );
   }

@@ -9,3 +9,6 @@ coverage
 utils/latest
 .idea/
 .nyc_output
+c3smagic.sublime-project
+c3smagic.sublime-workspace
+src/static/config.js

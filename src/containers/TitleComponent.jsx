@@ -27,6 +27,9 @@ export default class TitleComponent extends Component {
   render () {
     const { clientId, location } = this.props;
     var { pathname } = location;
+
+    if (!pathname) pathname = '';
+
     return (
       <div className='TitleComponent'>
         <Navbar inverse >
@@ -44,7 +47,7 @@ export default class TitleComponent extends Component {
             <Col xs='auto' className='signInOffButton'>
               {
                 clientId !== null ? <Button color='primary' onClick={this.logout}><Icon name='sign-out' />&nbsp;Sign out</Button>
-                : <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
+                  : <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
               }
             </Col>
           </Row>
@@ -52,40 +55,66 @@ export default class TitleComponent extends Component {
         <Navbar style={{ backgroundColor:'#941333', color:'white', height:'38px', textAlign: 'center' }} className='navbar-static-top'>
           <Nav>
             <NavItem>
-              <NavLink href='#/' active={pathname === '/'} ><Icon name='home' /> Home</NavLink>
+              <NavLink href='#/' active={pathname === '/'} >Tailored products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/metrics/home' active={pathname === '/metrics/home'} ><Icon name='' /> Metrics</NavLink>
+              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Diagnostics</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href='#/multimodelproducts/home' active={pathname === '/multimodelproducts/home'} ><Icon name='' /> Multi Model Products</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='#/timeseries/home' active={pathname === '/timeseries/home'} ><Icon name='' /> Timeseries</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='#/tailoredproducts/home' active={pathname === '/tailoredproducts/home'} ><Icon name='' /> Tailored products</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='#/system/home' active={pathname === '/system/home'} ><Icon name='' /> System</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='#/demo' active={pathname === '/demo'}><Icon name='gears' /> Demo</NavLink>
-            </NavItem>
-            { /* <NavItem>
-              <NavLink href='#/knmi_climexp_correlate' active={pathname === '/knmi_climexp_correlate'}><Icon name='gears' /> Correlate</NavLink>
-            </NavItem> */ }
             <NavItem>
               <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>
             </NavItem>
-            { /* <NavItem>
-              <NavLink href='#/joblist' active={pathname === '/joblist'}><Icon name='list' /> Joblist</NavLink>
+            { /*<NavItem>
+              <NavLink href='#/jobs' active={pathname === '/jobs'}><Icon name='list' /> Joblist</NavLink>
             </NavItem> */ }
             <NavItem>
               <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
             </NavItem>
+
           </Nav>
         </Navbar>
+        { /* <Navbar style={{ backgroundColor:'#941333', color:'white', height:'38px', textAlign: 'center' }} className='navbar-static-top'>
+          <Nav>
+            <NavItem>
+              <NavLink href='#/' active={pathname === '/'} ><Icon name='home' /> Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/diagnostics' active={pathname.startsWith('/diagnostics')} ><Icon name='' /> Diagnostics</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/metrics/home' active={pathname.startsWith('/metrics')} ><Icon name='' /> Metrics</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/multimodelproducts/home' active={pathname.startsWith('/multimodelproducts')} ><Icon name='' /> Multi Model Products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/timeseries/home' active={pathname.startsWith('/timeseries')} ><Icon name='' /> Timeseries</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/tailoredproducts/home' active={pathname.startsWith('/tailoredproducts')} ><Icon name='' /> Tailored products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/system/home' active={pathname.startsWith('/system')} ><Icon name='' /> System</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/demo' active={pathname === '/demo'}><Icon name='gears' /> Demo</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/actuaries' active={pathname === '/actuaries'}><Icon name='gears' /> Actuaries index</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/knmi_climexp_correlate' active={pathname === '/knmi_climexp_correlate'}><Icon name='gears' /> Correlate</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/joblist' active={pathname === '/joblist'}><Icon name='list' /> Joblist</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
+            </NavItem>
+          </Nav>
+        </Navbar> */ }
       </div>);
   }
 
@@ -111,7 +140,7 @@ export default class TitleComponent extends Component {
         dispatch(actions.setClientId(obj.id));
         dispatch(actions.setEmailAddress(obj.email_address));
         dispatch(actions.setDomain(obj.domain));
-        console.log('Signed in', obj.domain);
+        // console.log('Signed in', obj.domain);
       }
     });
   }

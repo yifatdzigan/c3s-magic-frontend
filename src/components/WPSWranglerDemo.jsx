@@ -1,47 +1,15 @@
 
 import React, { Component } from 'react';
+import ADAGUCViewerComponent from '../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
-import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
+import { Button, FormGroup, Form, Label, Row, Col } from 'reactstrap';
+import ReactSlider from 'react-slider';
+import { withRouter } from 'react-router';
+import { debounce } from 'throttle-debounce';
 
-class RenderProcesses extends Component {
-  renderProcess (process) {
-    // console.log(process);
-    let value = '-';
-    try {
-      value = process.result.ExecuteResponse.ProcessOutputs.Output.Data.LiteralData.value;
-    } catch (e) {
-    }
-    return (
-      <Card>
-        <Row>
-          <Col> <div className='text-center'>{process.percentageComplete} </div><Progress value={process.percentageComplete} /></Col>
-          <Col>{process.message}</Col>
-          <Col>{value}</Col>
-        </Row>
-      </Card>
-    );
-  }
-
-  iterProcesses (runningProcesses) {
-    let result = [];
-    for (var process in runningProcesses) {
-      result.push(Object.assign({}, this.renderProcess(runningProcesses[process]), { key: process }));
-    };
-    return result;
-  }
-  render () {
-    const { runningProcesses } = this.props;
-    return (<span>{this.iterProcesses(runningProcesses)}</span>);
-  }
-};
-
-RenderProcesses.propTypes = {
-  runningProcesses: PropTypes.object.isRequired
-};
-
-export default class WPSWranglerDemo extends Component {
-  constructor () {
-    super();
+class WPSWranglerDemo extends Component {
+  constructor (props) {
+    super(props);
     this.wrangleClicked = this.wrangleClicked.bind(this);
     this.toggle = this.toggle.bind(this);
     this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
@@ -49,8 +17,18 @@ export default class WPSWranglerDemo extends Component {
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
-      inputb: 20
+      inputb: 20,
+      currentValue: 0,
+      changeValue: 0,
+      step: 1,
+      min: 0,
+      max:100
     };
+    this.webMapJSInstance = {};
+    this.initialized = false;
+
+    this.handleSliderChange = this.handleSliderChange.bind(this);
+    this.debouncedHandleSliderChange = debounce(25, this.debouncedHandleSliderChange);
   }
 
   toggle (e) {
@@ -91,46 +69,99 @@ export default class WPSWranglerDemo extends Component {
     this.setState({
       [name]: value
     });
+    if (name === 'inputa') {
+      let anomalyLayer = this.webMapJSInstance.getLayers()[0];
+      anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + parseInt(value) });
+      console.log(this.webMapJSInstance.getLayers()[0]);
+    }
   };
 
+  debouncedHandleSliderChange (v) {
+    this.handleSliderChange(v);
+  }
+
+  handleSliderChange (v) {
+    this.setState({ currentValue:v });
+    if (!this.webMapJSInstance || !this.webMapJSInstance) {
+      console.log('No this.webMapJSInstance');
+      return;
+    }
+    let anomalyLayer = this.webMapJSInstance.getLayers()[0];
+    anomalyLayer.legendGraphic = '';
+    anomalyLayer.wmsextensions({ colorscalerange:0 + ' ,' + (100 - parseInt(v / 1) * 1) });
+    this.webMapJSInstance.draw();
+  }
+
+  renderAnomalyAgreement () {
+    return (<div>
+      <h1>Ensemble anomaly plots</h1>
+      <Row>
+        <Col>
+          <Row>
+            <Col>
+              <div className='text'>
+                Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
+              </div>
+            </Col>
+          </Row>
+          <Form>
+            <FormGroup>
+              <Label>Stippling (% of members agreeing):</Label>
+              <Row>
+                { /* <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col> */ }
+                <Col xs='10'>
+                  <ReactSlider
+                    className={'horizontal-slider'}
+                    defaultValue={this.state.currentValue}
+                    onChange={(v) => { this.debouncedHandleSliderChange(v); }}
+                  />
+                </Col>
+                <Col xs='2'>{this.state.currentValue} %</Col>
+              </Row>
+            </FormGroup>
+          </Form>
+        </Col>
+        <Col xs='8'>
+          <ADAGUCViewerComponent
+            height={'70vh'}
+            stacklayers
+            wmsurl={config.backendHost + '/wms?DATASET=anomaly_agreement_stippling&'}
+            parsedLayerCallback={
+              (wmjsLayer, webMapJSInstance) => {
+                // console.log('parsedLayerCallback', webMapJSInstance);
+                this.webMapJSInstance = webMapJSInstance;
+                if (!this.initialized) {
+                  if (this.webMapJSInstance && this.webMapJSInstance.getLayers().length > 0) {
+                    this.webMapJSInstance.getLayers()[0].zoomToLayer();
+                    this.webMapJSInstance.zoomOut();
+                    this.webMapJSInstance.zoomOut();
+                    this.webMapJSInstance.draw();
+                    this.initialized = true;
+                  }
+                }
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>);
+  }
+
   render () {
-    const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
     return (
       <div className='MainViewport'>
-        <h1>WPS Demo</h1>
-        <Row>
-          <Col xs='2'><Input onChange={(event) => { this.handleChange('inputa', event.target.value); }} value={this.state.inputa} /></Col>
-          <Col xs='2'>
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret >
-                { this.state.dropDownValue }
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('add'); }}>add</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('divide'); }}>divide</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('substract'); }}>substract</DropdownItem>
-                <DropdownItem onClick={(e) => { this.dropDownSelectItem('multiply'); }}>multiply</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
-          </Col>
-          <Col xs='2'><Input onChange={(event) => { this.handleChange('inputb', event.target.value); }} value={this.state.inputb} /></Col>
-          <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.calculateClicked(); }}>Calculate</Button></Col>
-        </Row>
-        <p>nrOfStartedProcesses: {nrOfStartedProcesses}</p>
-        <p>nrOfFailedProcesses: {nrOfFailedProcesses}</p>
-        <p>nrOfCompletedProcesses: {nrOfCompletedProcesses}</p>
-        <RenderProcesses runningProcesses={runningProcesses} />
+        <Button style={{ float:'right' }} color='link' onClick={() => { this.props.router.push('/'); }}>(back)</Button>
+        { this.renderAnomalyAgreement() }
       </div>);
   }
 }
 
 WPSWranglerDemo.propTypes = {
-  accessToken: PropTypes.string,
   domain: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
-  nrOfStartedProcesses: PropTypes.number,
-  nrOfFailedProcesses: PropTypes.number,
-  nrOfCompletedProcesses: PropTypes.number,
-  runningProcesses: PropTypes.object.isRequired
+  router: PropTypes.object,
+  nrOfStartedProcesses: PropTypes.number
 };
+
+export default withRouter(WPSWranglerDemo);

@@ -1,5 +1,20 @@
 # C3S Magic Science Platform
 
+Content files can be found in [src/static/contents](src/static/contents). Markdown layout will automatically get picked up.
+
+If you would like to change anything, please do a pull-request to the master branch. You can use Docker (see below) to preview what the site will look like with your changes.
+
+# Docker
+```
+git clone https://github.com/c3s-magic/c3s-magic-frontend.git
+cd c3s-magic-frontend
+docker build -t c3s-magic-frontend .
+docker run -e CONTROLLER="https://portal.c3s-magic.eu/" -p 8081:5000 -it c3s-magic-frontend
+```
+Visit http://localhost:8081/
+
+
+
 This project is based on the KNMI start kit (https://github.com/maartenlterpstra/KNMI-React-Redux-Starter-Kit.git)
 
 ## What you'll find here

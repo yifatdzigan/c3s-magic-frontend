@@ -16,16 +16,14 @@ const fetchBasketItems = (state, payload) => {
   let result = null;
   fetch(config.backendHost + '/basket/list', {
     credentials: 'include'
-  })
-  .then((result) => {
+  }).then((result) => {
     console.log(result);
     if (result.ok) {
       return result.json();
     } else {
       return null;
     }
-  })
-  .then((json) => {
+  }).then((json) => {
     console.log(json);
     result = json;
     console.log('starting dispatch', payload);
@@ -47,15 +45,13 @@ const updateBasket = (state, payload) => {
 const deleteBasketItem = (state, payload) => {
   const accessToken = payload.accessToken;
   const path = payload.path;
-  fetch(config.backendHost + '/basket/remove?key=' + accessToken + '&path=' + path)
-  .then((result) => {
+  fetch(config.backendHost + '/basket/remove?key=' + accessToken + '&path=' + path).then((result) => {
     if (result.ok) {
       return result.json();
     } else {
       return null;
     }
-  })
-  .then((json) => {
+  }).then((json) => {
     console.log('Info deleting path \'' + path + '\'');
     console.log(json);
   });

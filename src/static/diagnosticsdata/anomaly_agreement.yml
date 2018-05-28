@@ -1,0 +1,44 @@
+---
+id: 1
+name: Anomaly Agreement
+partner: BSC
+authors:
+  - Alasdair Hunter
+  - Nicolau Manubens
+  - Louis-Philippe Caron
+  - Javier Vegas.
+contact:
+  - Alasdair Hunter @alasdairhunter
+  - Nicolau Manubens @nmanuben
+description_short: |
+    Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
+description_long: |
+    This diagnostic contains functions that will provide an integrated view of the historical evolution and projection of the climate system state in terms of the mean state, aggregating the multi-model data into a single signal. This diagnostic will also assess the ensemble variance and the agreement between ensemble members with the mean signal. ensemble mean anomalies for any variable with respect to its mean annual cycle computed on a pre-defined period. ensemble mean variance and agreement over any preselected period and variable of interest.
+
+
+    Description of user-changeable settings on webpage':'
+    Selection of period for defining the climatology.
+    Selection of bias correction method for computing the climatology.
+    Selection of either regular, cross-validated or rescaled anomalies.
+    Selection of period for projections.
+    Selection of longitudes and latitudes.
+    Selection of ensemble agreement threshold for stippling.
+    Selection of models.
+    Selection of temporal averaging (monthly, seasonal, or yearly anomalies)
+media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
+map_data: anomaly_agreement_stippling # TODO should go under enableEnsembleAnomalyPlots
+map_slider: true
+enableEnsembleAnomalyPlots: |
+  - map_data: anomaly_agreement_stippling
+  - map_slider: true
+reference:
+  - 'Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. "An R package for climate forecast verification." Environmental Modelling & Software 103 (2018): 29-42.'
+settings:
+  - Models:
+      - Model 1
+      - Model 2
+  - Start year: 0
+  - End year: 0
+  - Experiment: Unknown
+title: Anomaly Agreement
+youtube: CNWA4j2okcc
