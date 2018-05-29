@@ -68,7 +68,6 @@ export default class DiagnosticsHome extends Component {
     $RefParser.dereference('diagnosticsdata/index.yml')
       .then(data => {
         that.setState({ diagList: data.diagnostics });
-        console.log(data);
       });
   }
 

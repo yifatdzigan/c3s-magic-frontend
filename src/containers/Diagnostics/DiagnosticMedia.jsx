@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class YoutubeVideo extends Component {
 
   componentWillMount () {
-    console.log("\n\nDEBUG Youtube:\n\n " + this.props.video);
-    console.log(this.props.video);
+    // console.log("\n\nDEBUG Youtube:\n\n " + this.props.video);
+    // console.log(this.props.video);
   }
 
   componentDidMount(){
@@ -18,20 +18,13 @@ class YoutubeVideo extends Component {
       this.props.rel + "&modestbranding=" +
       this.props.modest;
       return (
-        <div className="container">
-          <iframe className="player" type="text/html" width="100%" height="100%"
+          <iframe className="youtubeplayer" type="text/html"
             src={videoSrc}
             frameBorder="0" allowFullScreen />
-        </div>
           );
   }
 
 }
-
-// YoutubeVideo.propTypes = {
-//   video: PropTypes.string
-// };
-
 
 class DiagnosticPlot extends Component {
   render () {
@@ -40,11 +33,6 @@ class DiagnosticPlot extends Component {
           );
   }
 }
-
-// DiagnosticPlot.propTypes = {
-//   url: PropTypes.string
-// };
-
 
 export {
   YoutubeVideo,

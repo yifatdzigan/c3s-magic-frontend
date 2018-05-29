@@ -11,6 +11,7 @@ import { Row, Col, Button, Table } from 'reactstrap';
 import Icon from 'react-fa';
 
 var $RefParser = require('json-schema-ref-parser');
+var _ = require('lodash');
 
 export default class DiagnosticPage extends Component {
 
@@ -24,41 +25,41 @@ export default class DiagnosticPage extends Component {
     this.readYaml = this.readYaml.bind(this);
   }
 
-
-
   readYaml() {
-    // console.log("readYaml");
-    // console.log(this.props.yamlFile);
     var yamlPath = 'diagnosticsdata/' + this.props.yamlFile;
-    // console.log(yamlPath);
     this.setState({ yamlPath: yamlPath });
-    // console.log(this.state);
-
     var that = this;
     $RefParser.dereference(yamlPath)
       .then(data => {
         that.setState({ yamlData: data, readSuccess: true });
       });
-
   }
 
-
   componentWillMount() {
-    console.log("componentWillMount");
     this.readYaml();
-    console.log(this.state);
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
-    console.log(this.state);
   }
 
+  getElementProperty(elementName, paramName) {
+    var elem = this.state.yamlData[elementName];
+    var paramVal = _.filter(elem, function (item) {
+      if (typeof item[paramName] !== 'undefined') {
+        return item[paramName];
+      }
+    });
+    if (paramName === 'data_url') {
+      return paramVal[0].data_url;
+    }
+    if (paramVal.length == 0) {
+      return false;
+    }
+    return paramVal;
+  }
 
   renderPageElement(elementName) {
-    if (this.state.readSuccess) {
-      //      console.log(this.state);
-
+    if (this.state.yamlData && this.state.readSuccess) {
       var _element = '';
       if (elementName === "partner") {
         _element = this.state.yamlData[elementName];
@@ -100,14 +101,6 @@ export default class DiagnosticPage extends Component {
         });
         _element += '</tbody></Table>';
       }
-      else if (elementName === "map_data") {
-        _element = this.state.yamlData[elementName];
-        return String(_element);
-      }
-      else if (elementName === "map_slider") {
-        _element = this.state.yamlData[elementName];
-        return Boolean(_element);
-      }
       else if (elementName === "enableEnsembleAnomalyPlots") {
         _element = this.state.yamlData[elementName];
         return Boolean(_element);
@@ -132,7 +125,6 @@ export default class DiagnosticPage extends Component {
         console.warn("Could not find the key " + elementName + " in the configuration file!");
         _element = "No key was requested! Check the diagnostics settings.";
       }
-
       return (<div dangerouslySetInnerHTML={{ __html: _element }} />);
     }
   }
@@ -146,11 +138,10 @@ export default class DiagnosticPage extends Component {
     console.log('Download data...');
   }
 
-
   render() {
-    const mapData = config.backendHost + 'wms?DATASET=' + 'anomaly_agreement_stippling' + '&';
 
     if (this.state.readSuccess) {
+
       return (
         <div className='MainViewport'>
 
@@ -163,18 +154,14 @@ export default class DiagnosticPage extends Component {
           <Row>
             <Col xs="6" className='diagnosticsCol'>
 
-              <div className='text vspace2em'>
-                <h2>Patners</h2>
+              <div className='text'>
+                <h2>Partners</h2>
                 {this.renderPageElement('partner')}
               </div>
 
               <div className='text vspace2em'>
                 <h2>Description</h2>
                 {this.renderPageElement('description_short')}
-              </div>
-
-              <div className='vspace2em'>
-                <Button color="primary">Read more</Button>{' '}
               </div>
 
               <div className='text vspace2em'>
@@ -197,7 +184,7 @@ export default class DiagnosticPage extends Component {
                 {this.renderPageElement('settings')}
               </div>
 
-              <div className='text vspace2em'>
+              <div className='text vspace2em atBottom'>
                 <h2>Contact</h2>
                 {this.renderPageElement('contact')}
               </div>
@@ -206,38 +193,42 @@ export default class DiagnosticPage extends Component {
 
             <Col xs="6" className='diagnosticsCol'>
 
-              <div className="videoWrapper vspace2em">
-                <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
-              </div>
-
-              <div className='text vspace2em'>
-                {mapData}
+              <div className='vspace2em'>
+                {this.renderPageElement('youtube') ?
+                  [
+                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                  ]
+                  : null
+                }
               </div>
 
               <div className='vspace2em'>
-                { this.renderPageElement('enableEnsembleAnomalyPlots') &&
-                  <WPSWranglerDemo map_data={this.renderPageElement('map_data')}
-                    showSlider={this.renderPageElement('map_slider')}/>
+                {this.renderPageElement('enableEnsembleAnomalyPlots') ?
+                  [
+                    <WPSWranglerDemo map_data={this.getElementProperty('enableEnsembleAnomalyPlots', 'data_url')}
+                      showSlider={this.getElementProperty('enableEnsembleAnomalyPlots', 'map_slider')} />
+                  ]
+                  : null
                 }
-                { this.renderPageElement('enableADAGUC') &&
+
+                {this.renderPageElement('enableADAGUC') &&
                   <ADAGUCViewerComponent
                     height={'60vh'}
                     layers={[]}
                     controls={{
-                      showprojectionbutton: true,
-                      showlayerselector: true,
-                      showtimeselector: true,
-                      showstyleselector: true
+                      showprojectionbutton: this.getElementProperty('enableADAGUC', 'showprojectionbutton'),
+                      showlayerselector: this.getElementProperty('enableADAGUC', 'showlayerselector'),
+                      showtimeselector: this.getElementProperty('enableADAGUC', 'showtimeselector'),
+                      showstyleselector: this.getElementProperty('enableADAGUC', 'showstyleselector')
                     }}
-                    parsedLayerCallback={ (layer, webMapJSInstance) => {
+                    parsedLayerCallback={(layer, webMapJSInstance) => {
                       console.log('webMapJSInstance', webMapJSInstance);
                       layer.zoomToLayer();
                       webMapJSInstance.draw();
-                    } }
-                    wmsurl={'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm'}
+                    }}
+                    wmsurl={this.getElementProperty('enableADAGUC', 'data_url')}
                   />
                 }
-
               </div>
 
               <div className='vspace2em'>
@@ -256,7 +247,8 @@ export default class DiagnosticPage extends Component {
     else {
       return (
         <div>
-          <p> This diagnostic pacge is not ready yet!</p>
+          <p> An error occured or this diagnostic pacge is not ready yet!</p>
+          <p> Please contact the developers...</p>
         </div>
       );
     }
