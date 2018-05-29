@@ -1,0 +1,40 @@
+---
+id: 1
+name: Blocking metrics and indices
+partner: ISAC-CNR
+authors:
+  - Jost von Hardenberg (ISAC-CNR, Italy)
+  - Paolo Davini (ISAC-CNR, Italy)
+  - Enrico Arnone (ISAC-CNR, Italy)
+contact:
+  - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
+  - Enrico Arnone e.arnone@isac.cnr.it
+description_short: | This tool calculates mid-latitude 1D and 2D blocking indices  
+description_long: | Description: This functionality is implemented in the namelist MId-Latitude Evaluation System (MiLES), also available as stand-alone package (https://github.com/oloapinivad/MiLES). The tool works on daily 500hPa geopotential height data (with data interpolated on a common 2.5x2.5 grid) and calculates the following diagnostics: 1D Atmospheric Blocking: 
+  - Tibaldi and Molteni (1990) index for Northern Hemisphere. Computed at fixed latitude of 60N, with delta of -5,-2.5,0,2.5,5 deg, fiN=80N and fiS=40N. Full timeseries and climatologies are provided in NetCDF4 Zip format.
+  - 2D Atmospheric blocking: following the index by Davini et al. (2012). It is a 2D version of Tibaldi and Molteni (1990) for Northern Hemisphere atmospheric blocking evaluating meridional gradient reversal at 500hPa. It includes also Meridional Gradient Index and Blocking Intensity index and Rossby wave orientation index, computing both Instantenous Blocking and Blocking Events frequency. Blocking Events allow the estimation of the blocking duration. A supplementary Instantaneous Blocking index with the GHGS2 conditon is also evaluted. Full timeseries and climatologies are provided in NetCDF4 Zip format. Description of user-changeable settings on webpage: 1) Selection of model; 2) Selection of reference dataset; 3) Selection of period; 4) Selection of season
+media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
+enableADAGUC: |
+  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP4-6_ISAC_miles
+  - projectionbutton: true
+  - layerselector: true
+  - timeselector: true
+  - styleselector: true
+  - layers: []
+reference:
+  - Davini, P., C. Cagnazzo, S. Gualdi, and A. Navarra, 2012: Bidimensional Diagnostics, Variability, and Trends of Northern Hemisphere Blocking. J. Climate, 25, 6496–6509, doi: 10.1175/JCLI-D-12-00032.1
+  - Tibaldi S, Molteni F. 1990. On the operational predictability of blocking. Tellus A 42(3): 343–365, doi:10.1034/j.1600- 0870.1990.t01- 2- 00003.x
+settings:
+  - Models:
+      - MPI-ESM-P
+  - Start year: 1950
+  - End year: 2005    
+  - Experiment: Historical
+  - Season: DJF
+  - Reference dataset: ERA-INTERIM
+title: Blocking metrics and indices 
+
+
+
+
+
