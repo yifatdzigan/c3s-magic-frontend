@@ -32,11 +32,20 @@ enableEnsembleAnomalyPlots:
 reference:
   - 'Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. "An R package for climate forecast verification." Environmental Modelling & Software 103 (2018): 29-42.'
 settings:
+  - Variable
+       - pr
   - Models:
-      - Model 1
-      - Model 2
-  - Start year: 0
-  - End year: 0
-  - Experiment: Unknown
+      - bcc-csm1-1
+      - GFDL-ESM2G
+      - MPI-ESM-LR
+  - Years
+      - start_historical: "2000-01-01"
+      - end_historical: "2002-12-01"
+      - start_projection: "2000-01-01"
+      - end_projection: "2002-12-01"
+  - Season
+      - first_month: 6
+      - last_month: 8
+  - Experiment: RCP8.5
 title: Anomaly Agreement
 youtube: CNWA4j2okcc
