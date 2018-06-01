@@ -154,12 +154,23 @@ export default class DiagnosticPage extends Component {
     console.log('Download data...');
   }
 
+  readMore(){
+    var element = document.getElementById("additional");
+    element.scrollIntoView();
+  }
+
+  toTop(){
+    var element = document.getElementById("pagetop");
+    element.scrollIntoView();
+  }
+
+
   render() {
 
     if (this.state.readSuccess) {
 
       return (
-        <div className='MainViewport'>
+        <div id="pagetop" className='MainViewport'>
 
           <div className='text vspace2em'>
             <h2>
@@ -168,7 +179,9 @@ export default class DiagnosticPage extends Component {
           </div>
 
           <Row>
-            <Col xs="6" className='diagnosticsCol'>
+
+
+            <Col xs="12" className='diagnosticsCol'>
 
               <div className='text'>
                 <h2>Partners</h2>
@@ -178,46 +191,14 @@ export default class DiagnosticPage extends Component {
               <div className='text vspace2em'>
                 <h2>Description</h2>
                 {this.renderPageElement('description_short')}
+                <div className='text vspace2em'>
+                  <Button color="primary" onClick={this.readMore}><Icon name='' />&nbsp;Read more</Button>{' '}
+                </div>
               </div>
 
               <div className='text vspace2em'>
                 <h2>Authors</h2>
                 {this.renderPageElement('authors')}
-              </div>
-
-                {this.isEnabled('references') ?
-                  [
-                    <MarkdownFromFile url={this.getElementProperty('references', 'md_file')} />
-                  ]
-                  : null
-                }
-
-              <div className='vspace2em'>
-                <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
-                <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
-              </div>
-
-              <div className='text vspace2em'>
-                <h2>Settings</h2>
-                {this.renderPageElement('settings')}
-              </div>
-
-              <div className='text vspace2em atBottom'>
-                <h2>Contact</h2>
-                {this.renderPageElement('contact')}
-              </div>
-
-            </Col>
-
-            <Col xs="6" className='diagnosticsCol'>
-
-              <div className='vspace2em'>
-                {this.isEnabled('youtube') ?
-                  [
-                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
-                  ]
-                  : null
-                }
               </div>
 
               <div className='vspace2em'>
@@ -249,12 +230,48 @@ export default class DiagnosticPage extends Component {
                 }
               </div>
 
+              {this.isEnabled('references') ?
+                [
+                  <MarkdownFromFile url={this.getElementProperty('references', 'md_file')} />
+                ]
+                : null
+              }
+
               <div className='vspace2em'>
-                <img width="100%" src={this.renderPageElement('media')} />
+                <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
+                <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
+              </div>
+
+              <div className='text vspace2em'>
+                <h2>Settings</h2>
+                {this.renderPageElement('settings')}
+              </div>
+
+              <div id="additional" className='text'>
+                <h2>Additional information</h2>
               </div>
 
               <div className='vspace2em'>
                 {this.renderPageElement('description_long')}
+              </div>
+
+              <div className='vspace2em'>
+                {this.isEnabled('youtube') ?
+                  [
+                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                  ]
+                  : null
+                }
+              </div>
+
+              <div className='vspace2em'>
+                <img width="100%" src={this.renderPageElement('media')} />
+              </div>
+
+              <div className='text vspace2em'>
+                <h2>Contact</h2>
+                {this.renderPageElement('contact')}
+                <Button color="primary" onClick={this.toTop}><Icon name='' />&nbsp;Go to the top of the page</Button>{' '}
               </div>
 
             </Col>
