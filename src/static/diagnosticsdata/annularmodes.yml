@@ -1,0 +1,37 @@
+---
+id: 1
+name: Indices of annular modes
+partner: ISAC-CNR
+authors:
+  - Jost von Hardenberg (ISAC-CNR, Italy)
+  - Federico Serva (ISAC-CNR, Italy)
+contact:
+  - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
+  - Federico Serva federico.serva@artov.isac.cnr.it
+description_short: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode pattern at the surface and in the stratosphere
+
+description_long: |
+    zmNAM is a Python tool which is used to evaluate the Northern Annular Mode in reanalysis and climate model simulations.
+    The calculations is based on that of Baldwin and Thompson 2009, and requires the geopotential height field on pressure levels, both in monthly averages (time-lev-lat-lon) and zonal mean daily averages (time-lev-lat). An EOF/PC decomposition of the zonal mean daily geopotential is used to derive latitude-dependent patterns and the associated time series. From these time series it is possible to obtain the probability distribution function of the boreal variability, as periods of stronger and weaker circulation are related to the tails of the distribution. By using monthly averaged daily PCs, it is possible to construct regression maps of the geopotential height, and the zonal averaging of the input fields allows to reduce the influence of other teleconnection patterns, such as those of the Pacific Ocean. The computational cost of this procedure is lower than other methods, which require much more data at high temporal resolution. This calculation can be performed on any climate model simulations for which the data are available, and then the results can be compared with those obtained for the climatology of modern reanalysis systems. The output of the diagnostics are both netCDF files and plots. For the netCDF files, daily timeseries on different pressure levels, and regression maps (so that further calculations are possible) are produced. For the plots, timeseries on specified levels, histograms of the index, and regression maps are provided.
+media: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360'
+enableADAGUC:
+  - data_url: 'https://portal.c3s-magic.eu/wms?DATASET=WP4-6_ISAC_zmnam'
+  - projectionbutton: true
+  - layerselector: true
+  - timeselector: true
+  - styleselector: true
+  - layers: []
+reference:
+  - Baldwin, M. P. and Thompson, D. W. (2009), A critical comparison of stratosphere–troposphere coupling indices. Q.J.R. Meteorol. Soc., 135':' 1661-1672. doi':'10.1002/qj.479
+settings:
+  - Models:
+      - MPI-ESM-LR
+  - Experiment: Historical
+  - Start year: 1979
+  - End year: 2008
+title: Indices of annular modes
+
+
+
+
+
