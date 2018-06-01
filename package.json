@@ -12,6 +12,7 @@
     "compile": "better-npm-run compile",
     "lint": "eslint bin build config server src",
     "lint:fix": "better-npm-run lint -- --fix",
+    "lint:yaml": "yamllint src/static/diagnosticsdata/**/*.yml",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
     "test": "better-npm-run test",
@@ -122,7 +123,8 @@
     "reactstrap": "5.0.0-beta",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "throttle-debounce": "^1.0.1"
+    "throttle-debounce": "^1.0.1",
+    "underscore": "^1.9.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -192,6 +194,7 @@
     "webpack": "^2.6.0",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0",
+    "yaml-lint": "^1.2.3",
     "yargs": "^8.0.1"
   },
   "pre-commit": [
