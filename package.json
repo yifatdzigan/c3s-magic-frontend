@@ -12,7 +12,7 @@
     "compile": "better-npm-run compile",
     "lint": "eslint bin build config server src",
     "lint:fix": "better-npm-run lint -- --fix",
-    "lint:yaml": "yamllint src/static/diagnosticsdata/**/*.yml",
+    "postlint": "yamllint src/static/diagnosticsdata/**/*.yml",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
     "test": "better-npm-run test",
