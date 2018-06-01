@@ -65,7 +65,7 @@ export default class AdagucViewerContainer extends Component {
               showstyleselector: true
             }}
             parsedLayerCallback={ (layer, webMapJSInstance) => {
-              console.log(webMapJSInstance);
+              // console.log(webMapJSInstance);
               layer.zoomToLayer();
               webMapJSInstance.draw();
             } }

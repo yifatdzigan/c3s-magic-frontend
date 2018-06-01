@@ -45,8 +45,9 @@ export default class ReactWebMapJS extends PureComponent {
     }
   }
   componentDidMount () {
-    // console.log('componentDidMount');
+    console.log('componentDidMount');
     if (this.webMapJSCreated) {
+      console.log('ret');
       // this.webMapJS.draw();
       return;
     }
@@ -81,8 +82,10 @@ export default class ReactWebMapJS extends PureComponent {
 
     this.webMapJS.setBaseLayers(baselayers);
 
+    console.log(this.props.listeners);
     if (this.props.listeners) {
       this.props.listeners.forEach((listener) => {
+        console.log('setting listeners');
         this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
       });
     }
