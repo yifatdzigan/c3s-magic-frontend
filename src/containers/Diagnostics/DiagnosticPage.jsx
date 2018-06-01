@@ -6,6 +6,7 @@ import { YoutubeVideo, DiagnosticPlot } from './DiagnosticMedia';
 
 import WPSWranglerDemo from './EnsembleAnomalyPlots';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
+import MarkdownFromFile from '../../containers/MarkdownFromFile';
 
 import { Row, Col, Button, Table } from 'reactstrap';
 import Icon from 'react-fa';
@@ -20,7 +21,8 @@ export default class DiagnosticPage extends Component {
     this.state = {
       yamlData: '',
       readSuccess: false,
-      yamlPath: ''
+      yamlPath: '',
+      staticPath: 'diagnosticsdata/'
     };
     this.readYaml = this.readYaml.bind(this);
   }
@@ -52,11 +54,24 @@ export default class DiagnosticPage extends Component {
     if (paramName === 'data_url') {
       return paramVal[0].data_url;
     }
+    if (paramName === 'md_file') {
+      paramVal = this.state.staticPath + paramVal[0].md_file;
+      return paramVal;
+    }
     if (paramVal.length == 0) {
       return false;
     }
     return paramVal;
   }
+
+
+  isEnabled(elementName) {
+    if (this.state.yamlData && this.state.readSuccess) {
+      var _element = this.state.yamlData[elementName];
+      return Boolean(_element);
+    }
+  }
+
 
   renderPageElement(elementName) {
     if (this.state.yamlData && this.state.readSuccess) {
@@ -84,9 +99,6 @@ export default class DiagnosticPage extends Component {
       else if (elementName === "description_long") {
         _element = this.state.yamlData[elementName];
       }
-      else if (elementName === "reference") {
-        _element = this.state.yamlData[elementName];
-      }
       else if (elementName === "settings") {
         _element = '<Table class="table table-bordered table-striped"> <thead> </thead> <tbody>';
         var elem = this.state.yamlData[elementName];
@@ -106,6 +118,10 @@ export default class DiagnosticPage extends Component {
         return Boolean(_element);
       }
       else if (elementName === "enableADAGUC") {
+        _element = this.state.yamlData[elementName];
+        return Boolean(_element);
+      }
+      else if (elementName === "references") {
         _element = this.state.yamlData[elementName];
         return Boolean(_element);
       }
@@ -169,10 +185,12 @@ export default class DiagnosticPage extends Component {
                 {this.renderPageElement('authors')}
               </div>
 
-              <div className='text vspace2em'>
-                <h2>Reference</h2>
-                {this.renderPageElement('reference')}
-              </div>
+                {this.isEnabled('references') ?
+                  [
+                    <MarkdownFromFile url={this.getElementProperty('references', 'md_file')} />
+                  ]
+                  : null
+                }
 
               <div className='vspace2em'>
                 <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
@@ -194,7 +212,7 @@ export default class DiagnosticPage extends Component {
             <Col xs="6" className='diagnosticsCol'>
 
               <div className='vspace2em'>
-                {this.renderPageElement('youtube') ?
+                {this.isEnabled('youtube') ?
                   [
                     <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
                   ]
@@ -203,7 +221,7 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                {this.renderPageElement('enableEnsembleAnomalyPlots') ?
+                {this.isEnabled('enableEnsembleAnomalyPlots') ?
                   [
                     <WPSWranglerDemo map_data={this.getElementProperty('enableEnsembleAnomalyPlots', 'data_url')}
                       showSlider={this.getElementProperty('enableEnsembleAnomalyPlots', 'map_slider')} />
@@ -211,7 +229,7 @@ export default class DiagnosticPage extends Component {
                   : null
                 }
 
-                {this.renderPageElement('enableADAGUC') &&
+                {this.isEnabled('enableADAGUC') &&
                   <ADAGUCViewerComponent
                     height={'60vh'}
                     layers={[]}

@@ -15,27 +15,11 @@ diagnostics:
         info_file: anomaly_agreement.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ParisAgreement.svg/2000px-ParisAgreement.svg.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
-    diagnostics_2:
-        id: 2
-        title: title_2
-        sub_title: sub_title_2
-        info_text: info_text_2
-        info_file: file_2
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
-        github_issue:
-    diagnostics_3:
-        id: 3
-        title: title_3
-        sub_title: sub_title_3
-        info_text: info_text_3
-        info_file: file_3
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
-        github_issue:
-    diagnostics_4:
-        id: 4
-        title: title_4
-        sub_title: sub_title_4
-        info_text: info_text_4
-        info_file: file_4
+    diagnostics_100:
+        id: 100
+        title: Test Markdown
+        sub_title:
+        info_text: Markdown test page
+        info_file: test/test_diag.yml
         image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
         github_issue:
