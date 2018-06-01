@@ -23,17 +23,16 @@ description_long: |
     Selection of longitudes and latitudes.
     Selection of models.
 report_file: report.pdf
-
+media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
 reference:
   - 'Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. "An R package for climate forecast verification." Environmental Modelling & Software 103 (2018): 29-42.'
 settings:
   - Models:
-      - IPSL
-  - Temporal periods
-      - start_historical: "1960-01-01"
-      - end_historical: "1991-12-01"
-      - start_projection: "1960-01-01"
-      - end_projection: "1991-12-01"
+    - IPSL
+  - start_historical: '1960-01-01'
+  - end_historical: '1991-12-01'
+  - start_projection: '1960-01-01'
+  - end_projection: '1991-12-01'
   - Experiment: RCP8.5
 title: ACI components
-youtube: 
+youtube:
