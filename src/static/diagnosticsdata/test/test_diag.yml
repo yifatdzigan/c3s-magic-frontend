@@ -1,7 +1,7 @@
 ---
 name: cmip5
 title: TEST MARKDOWN
-partner:
+partner: SOMEONE
 authors:
   - Franziska Frank (DLR, Germany)
   - Mattia Righi (DLR, Germany)
@@ -10,9 +10,9 @@ contact:
   - dr. A.M. Scientist a.scientist@magic.eu
 description_short: Diagnostics for plotting the performance metrics
 description_long:
-  - md_file: 'test/desc_long.md'
+  - md_file: 'test/description.md'
 report_file: report.pdf
-media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
+#media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
 enableADAGUC:
   - data_url: 'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm'
   - showprojectionbutton: true
@@ -31,4 +31,4 @@ settings:
   - Experiment: Historical
 youtube: SjQ60KXfhO4
 references:
-  - md_file: 'test/ref.md'
+  - "Baldwin, M. P. and Thompson, D. W. (2009), A critical comparison of stratosphere–troposphere coupling indices. Q.J.R. Meteorol. Soc., 135: 1661-1672. doi:10.1002/qj.479"

@@ -1,0 +1,2 @@
+- D'Onofrio et al. 2014, J of Hydrometeorology 15, 830-843
+- Rebora et. al 2006, JHM 7, 724

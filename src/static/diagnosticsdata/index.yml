@@ -12,7 +12,7 @@ diagnostics:
         title: Anomaly Agreement
         sub_title:
         info_text: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
-        info_file: anomaly_agreement.yml
+        info_file: anomaly_agreement/anomaly_agreement.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ParisAgreement.svg/2000px-ParisAgreement.svg.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
     diagnostics_2:
@@ -28,8 +28,8 @@ diagnostics:
         title: RainFARM stochastic downscaling
         sub_title:
         info_text: Tool to perform stochastic downscaling of precipitation fields predicting climate variables at local scale from information simulated by climate models at regional scale
-        info_file: rainfarm.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
+        info_file: rainfarm/rainfarm.yml
+        image_file: diagnosticsdata/rainfarm/rainfarm_thumbnail.png
         github_issue:
     diagnostics_4:
         id: 4

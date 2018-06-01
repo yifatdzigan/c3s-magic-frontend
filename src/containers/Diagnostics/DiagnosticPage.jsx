@@ -54,8 +54,9 @@ export default class DiagnosticPage extends Component {
     if (paramName === 'data_url') {
       return paramVal[0].data_url;
     }
-    if (paramName === 'md_file') {
+    if (paramName === 'description_file') {
       paramVal = this.state.staticPath + paramVal[0].md_file;
+      console.log(paramVal);
       return paramVal;
     }
     if (paramVal.length == 0) {
@@ -96,7 +97,7 @@ export default class DiagnosticPage extends Component {
       else if (elementName === "description_short") {
         _element = this.state.yamlData[elementName];
       }
-      else if (elementName === "description_long") {
+      else if (elementName === "description_file") {
         _element = this.state.yamlData[elementName];
       }
       else if (elementName === "settings") {
@@ -123,7 +124,6 @@ export default class DiagnosticPage extends Component {
       }
       else if (elementName === "references") {
         _element = this.state.yamlData[elementName];
-        return Boolean(_element);
       }
       else if (elementName === "media") {
         _element = this.state.yamlData[elementName];
@@ -229,12 +229,19 @@ export default class DiagnosticPage extends Component {
                 }
               </div>
 
-              {this.isEnabled('references') ?
+              {this.isEnabled('media') ?
                 [
-                  <MarkdownFromFile url={this.getElementProperty('references', 'md_file')} />
+                    <div className='vspace2em'>
+                        <img width="100%" src={this.renderPageElement('media')} />
+                    </div>
                 ]
                 : null
               }
+
+              <div className='text vspace2em'>
+                <h2>Reference</h2>
+                {this.renderPageElement('references')}
+              </div>
 
               <div className='vspace2em'>
                 <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
@@ -251,9 +258,9 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                {this.isEnabled('description_long') ?
+                {this.isEnabled('description_file') ?
                   [
-                    <MarkdownFromFile url={this.getElementProperty('description_long', 'md_file')} />
+                    <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
                   ]
                   : null
                 }
@@ -262,14 +269,13 @@ export default class DiagnosticPage extends Component {
               <div className='vspace2em'>
                 {this.isEnabled('youtube') ?
                   [
+                    <div className='vspace2em'>
+                    <h2>Screencast</h2>
                     <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                    </div>
                   ]
                   : null
                 }
-              </div>
-
-              <div className='vspace2em'>
-                <img width="100%" src={this.renderPageElement('media')} />
               </div>
 
               <div className='text vspace2em'>
