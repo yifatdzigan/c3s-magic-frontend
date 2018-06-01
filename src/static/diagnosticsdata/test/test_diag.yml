@@ -8,14 +8,9 @@ authors:
   - Veronika Eyring (DLR, Germany)
 contact:
   - dr. A.M. Scientist a.scientist@magic.eu
-description_short: |
-    Diagnostics for plotting the performance metrics for the CMIP5 models, including the "standard" ECVs as in Gleckler et al., plus some additional variables (like ozone, sea-ice, and aerosol)
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-description_long: |
-    Diagnostics for plotting the performance metrics for the CMIP5 models, including the "standard" ECVs as in Gleckler et al., plus some additional variables (like ozone, sea-ice, and aerosol)
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+description_short: Diagnostics for plotting the performance metrics
+description_long:
+  - md_file: 'test/desc_long.md'
 report_file: report.pdf
 media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
 enableADAGUC:

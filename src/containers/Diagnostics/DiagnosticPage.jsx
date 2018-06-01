@@ -180,7 +180,6 @@ export default class DiagnosticPage extends Component {
 
           <Row>
 
-
             <Col xs="12" className='diagnosticsCol'>
 
               <div className='text'>
@@ -252,7 +251,12 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                {this.renderPageElement('description_long')}
+                {this.isEnabled('description_long') ?
+                  [
+                    <MarkdownFromFile url={this.getElementProperty('description_long', 'md_file')} />
+                  ]
+                  : null
+                }
               </div>
 
               <div className='vspace2em'>

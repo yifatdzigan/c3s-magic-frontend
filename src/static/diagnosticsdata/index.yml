@@ -1,20 +1,4 @@
 diagnostics:
-    diagnostics_0:
-        id: 0
-        title: Performance Metrics
-        sub_title:
-        info_text: Diagnostics for plotting the performance metrics for the CMIP5 models, including the "standard" ECVs as in Gleckler et al., plus some additional variables (like ozone, sea-ice, and aerosol)
-        info_file: cmip5_performance.yml
-        image_file: https://www.klipfolio.com/sites/default/files/blog/metrics.jpeg
-        github_issue:
-    diagnostics_1:
-        id: 1
-        title: Anomaly Agreement
-        sub_title:
-        info_text: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
-        info_file: anomaly_agreement.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ParisAgreement.svg/2000px-ParisAgreement.svg.png
-        github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
     diagnostics_100:
         id: 100
         title: Test Markdown
