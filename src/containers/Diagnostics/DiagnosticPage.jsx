@@ -230,7 +230,9 @@ export default class DiagnosticPage extends Component {
               <div className='text vspace2em'>
                 <h2>Settings</h2>
                 {this.renderPageElement('settings')}
+                <Button color="primary" className="disabled"><Icon name='' />&nbsp;Change Settings</Button>{' '}
               </div>
+
             </Col>
 
           </Row>
