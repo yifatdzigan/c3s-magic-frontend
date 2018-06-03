@@ -1,7 +1,7 @@
 ---
 name: cmip5
-title: TEST MARKDOWN
-partner: SOMEONE
+title: Test Diagnostic
+partner: NLeSC
 authors:
   - Franziska Frank (DLR, Germany)
   - Mattia Righi (DLR, Germany)
@@ -9,8 +9,7 @@ authors:
 contact:
   - dr. A.M. Scientist a.scientist@magic.eu
 description_short: Diagnostics for plotting the performance metrics
-description_long:
-  - md_file: 'test/description.md'
+description_file: 'test/description.md'
 report_file: report.pdf
 #media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
 enableADAGUC:

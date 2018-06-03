@@ -199,7 +199,7 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='text vspace2em'>
-                <h2>Reference</h2>
+                <h2>References</h2>
                 {this.renderPageElement('references')}
               </div>
 
@@ -239,7 +239,9 @@ export default class DiagnosticPage extends Component {
 
           <Row>
             <Col xs="12" className='diagnosticsCol'>
-              <div className='text'>
+              <div className='text vspace2em'>
+                <h2>Metric Results</h2>
+
                 {this.isEnabled('enableEnsembleAnomalyPlots') ?
                   [
                     <WPSWranglerDemo map_data={this.getElementProperty('enableEnsembleAnomalyPlots', 'data_url')}
@@ -281,7 +283,7 @@ export default class DiagnosticPage extends Component {
                 <h2>Additional information</h2>
               </div>
 
-              <div className='text'>
+              <div className='vspace2em'>
                   {this.isEnabled('description_file') ?
                   [
                       <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />

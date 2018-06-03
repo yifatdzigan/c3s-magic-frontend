@@ -9,8 +9,7 @@ contact:
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
 description_short: Tool to perform stochastic downscaling of precipitation fields predicting climate variables at local scale from information simulated by climate models at regional scale
-description_long:
-   - md_file: 'rainfarm/description.md'
+description_file: 'rainfarm/description.md'
 #media used as an alternative to a live adaguc viewer
 #media: diagnosticsdata/rainfarm/RainFARM_example_64x64.png
 enableADAGUC:
@@ -21,7 +20,8 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 references:
-  - md_file: 'rainfarm/references.md'
+  - "D'Onofrio et al. 2014, J of Hydrometeorology 15, 830-843"
+  - "Rebora et. al 2006, JHM 7, 724"
 settings:
   - Models:
       - ACCESS1-0
