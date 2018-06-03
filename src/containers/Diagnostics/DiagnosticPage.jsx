@@ -179,9 +179,7 @@ export default class DiagnosticPage extends Component {
           </div>
 
           <Row>
-
-            <Col xs="12" className='diagnosticsCol'>
-
+            <Col xs="6" className='diagnosticsCol'>
               <div className='text'>
                 <h2>Partners</h2>
                 {this.renderPageElement('partner')}
@@ -200,7 +198,46 @@ export default class DiagnosticPage extends Component {
                 {this.renderPageElement('authors')}
               </div>
 
+              <div className='text vspace2em'>
+                <h2>Reference</h2>
+                {this.renderPageElement('references')}
+              </div>
+
+              <div className='text vspace2em'>
+                <h2>Contact</h2>
+                {this.renderPageElement('contact')}
+              </div>
+
               <div className='vspace2em'>
+                <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
+                <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
+              </div>
+
+            </Col>
+            <Col xs="6" className='diagnosticsCol'>
+              <div className='text'>
+                {this.isEnabled('youtube') ?
+                  [
+                    <div className='text'>
+                    <h2>Screencast</h2>
+                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                    </div>
+                  ]
+                  : null
+                }
+              </div>
+
+              <div className='text vspace2em'>
+                <h2>Settings</h2>
+                {this.renderPageElement('settings')}
+              </div>
+            </Col>
+
+          </Row>
+
+          <Row>
+            <Col xs="12" className='diagnosticsCol'>
+              <div className='text'>
                 {this.isEnabled('enableEnsembleAnomalyPlots') ?
                   [
                     <WPSWranglerDemo map_data={this.getElementProperty('enableEnsembleAnomalyPlots', 'data_url')}
@@ -238,55 +275,26 @@ export default class DiagnosticPage extends Component {
                 : null
               }
 
-              <div className='text vspace2em'>
-                <h2>Reference</h2>
-                {this.renderPageElement('references')}
-              </div>
-
-              <div className='vspace2em'>
-                <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
-                <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
-              </div>
-
-              <div className='text vspace2em'>
-                <h2>Settings</h2>
-                {this.renderPageElement('settings')}
-              </div>
-
-              <div id="additional" className='text'>
+              <div id="additional" className='vspace2em'>
                 <h2>Additional information</h2>
               </div>
 
-              <div className='vspace2em'>
-                {this.isEnabled('description_file') ?
+              <div className='text'>
+                  {this.isEnabled('description_file') ?
                   [
-                    <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
+                      <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
                   ]
                   : null
-                }
+                  }
               </div>
 
-              <div className='vspace2em'>
-                {this.isEnabled('youtube') ?
-                  [
-                    <div className='vspace2em'>
-                    <h2>Screencast</h2>
-                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
-                    </div>
-                  ]
-                  : null
-                }
-              </div>
-
-              <div className='text vspace2em'>
-                <h2>Contact</h2>
-                {this.renderPageElement('contact')}
+              <div className='text'>
                 <Button color="primary" onClick={this.toTop}><Icon name='' />&nbsp;Go to the top of the page</Button>{' '}
               </div>
 
             </Col>
-
           </Row>
+
         </div>);
     }
     else {
