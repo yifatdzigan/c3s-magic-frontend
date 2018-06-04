@@ -26,7 +26,7 @@ export default class ReactWebMapJS extends PureComponent {
   }
 
   componentDidUpdate (nextProps) {
-    console.log('componentDidUpdate');
+    // console.log('componentDidUpdate');
     if (this.props.layers.length) {
       this.webMapJS.removeAllLayers();
       for (let j = 0;j < this.props.layers.length; j++) {
@@ -45,9 +45,9 @@ export default class ReactWebMapJS extends PureComponent {
     }
   }
   componentDidMount () {
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
     if (this.webMapJSCreated) {
-      console.log('ret');
+      // console.log('ret');
       // this.webMapJS.draw();
       return;
     }
@@ -82,7 +82,7 @@ export default class ReactWebMapJS extends PureComponent {
 
     this.webMapJS.setBaseLayers(baselayers);
 
-    console.log(this.props.listeners);
+    // console.log(this.props.listeners);
     if (this.props.listeners) {
       this.props.listeners.forEach((listener) => {
         console.log('setting listeners');
@@ -115,7 +115,7 @@ export default class ReactWebMapJS extends PureComponent {
     }
   }
   render () {
-    console.log('ReactWebMapJS Render');
+    // console.log('ReactWebMapJS Render');
     if (this.container) {
       this.width = parseInt(this.container.clientWidth);
       this.height = parseInt(this.container.clientHeight);
