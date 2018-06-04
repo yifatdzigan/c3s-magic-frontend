@@ -1,4 +1,4 @@
-FROM node:6.11.4
+FROM node:8
 # The base node image sets a very verbose log level.
 ENV NPM_CONFIG_LOGLEVEL warn
 WORKDIR /frontend/c3s-magic-frontend/
