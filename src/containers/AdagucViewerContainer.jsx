@@ -9,14 +9,35 @@ export default class AdagucViewerContainer extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       datasets: [{
-        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=AHUNTER',
-        name:'AHUNTER',
-        title:'AHUNTER'
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP4-6_ISAC_miles&',
+        name:'WP4-6_ISAC_miles',
+        title:'WP4-6_ISAC_miles'
+      },{
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP4_ISAC_quantilebias&',
+        name:'WP4_ISAC_quantilebias',
+        title:'WP4_ISAC_quantilebias'
+      },{
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP5_ISAC_ensclus&',
+        name:'WP5_ISAC_ensclus',
+        title:'WP5_ISAC_ensclus'
+      },{
+        wmsurl:'https://portal.c3s-magic.eu/adagucserver?source=c3smagic%2FWP6_KNMI_Correlations%2Fclimexp_correlate_output.nc&',
+        name:'WP6_KNMI_correlations',
+        title:'WP6_KNMI_correlations'
+      },{
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP7_BSC_Energy',
+        name:'WP7_BSC_Energy',
+        title:'WP7_BSC_Energy'
       },{
         wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm',
         name:'WP7_ISAC_rainfarm',
         title:'WP7_ISAC_rainfarm'
-      }],
+      },{
+        wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP7_BSC_ACI_Components&',
+        name:'WP7_BSC_ACI_Components',
+        title:'WP7_BSC_ACI_Components'
+      }
+      ],
       datasetIndex:0,
       dropdownOpen: {}
     }

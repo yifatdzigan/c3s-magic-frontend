@@ -318,31 +318,6 @@ export default class ADAGUCViewerComponent extends PureComponent {
           <CardText>{this.WMSServiceStore.abstract}</CardText>
         </div>
           : null }
-
-          { this.props.controls && this.props.controls.showprojectionbutton ? <Row>
-            <Col xs='3'>Projection</Col><Col><Dropdown
-            isOpen={this.state.dropdownOpen['showprojectionbutton']}
-            toggle={() => { this.toggle('showprojectionbutton'); }}
-            >
-            <DropdownToggle caret>
-              <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
-            </DropdownToggle>
-            <DropdownMenu>
-              {
-                mapTypeConfiguration.map((proj, index) => {
-                  return (<DropdownItem key={index} onClick={(event) => {
-                    mapTypeConfiguration.map((proj, index) => {
-                      if (proj.title === event.target.innerText) {
-                        this.setProjection(proj);
-                      }
-                    });
-                  }
-                  }>{proj.title}</DropdownItem>);
-                })
-              }
-            </DropdownMenu>
-          </Dropdown></Col></Row> : null
-          }
           { this.props.controls && this.props.controls.showlayerselector ? <Row>
             <Col xs='3'>Layer</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showlayerselector']}
@@ -365,7 +340,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
                 })
               }
             </DropdownMenu>
-          </Dropdown></Col></Row> : null
+          </Dropdown></Col><Col>({this.state.wmsLayers.length} layers)</Col></Row> : null
           }
           { this.props.controls && this.props.controls.showstyleselector ? <Row>
             <Col xs='3'>Style</Col><Col><Dropdown
@@ -386,6 +361,30 @@ export default class ADAGUCViewerComponent extends PureComponent {
                     });
                   }
                   }>{wmjsStyle.title}</DropdownItem>);
+                })
+              }
+            </DropdownMenu>
+          </Dropdown></Col></Row> : null
+          }
+          { this.props.controls && this.props.controls.showprojectionbutton ? <Row>
+            <Col xs='3'>Projection</Col><Col><Dropdown
+            isOpen={this.state.dropdownOpen['showprojectionbutton']}
+            toggle={() => { this.toggle('showprojectionbutton'); }}
+            >
+            <DropdownToggle caret>
+              <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
+            </DropdownToggle>
+            <DropdownMenu>
+              {
+                mapTypeConfiguration.map((proj, index) => {
+                  return (<DropdownItem key={index} onClick={(event) => {
+                    mapTypeConfiguration.map((proj, index) => {
+                      if (proj.title === event.target.innerText) {
+                        this.setProjection(proj);
+                      }
+                    });
+                  }
+                  }>{proj.title}</DropdownItem>);
                 })
               }
             </DropdownMenu>
