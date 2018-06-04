@@ -9,7 +9,7 @@ contact:
   - Geert Jan van Oldenborgh gert.jan.van.oldenborgh@knmi.nl
   - Maarten Plieger maarten.plieger@knmi.nl
 description_short: Climate explorer allows the user to correlate a time series with other user-defined time series, as well as with system-defined time series of the same temporal resolution
-description_file: 'correlations/correlations.md'
+description_file: 'correlations/description.md'
 #media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
 enableADAGUC:
   - data_url: https://portal.c3s-magic.eu/adagucserver?source=c3smagic%2FWP6_KNMI_Correlations%2Fclimexp_correlate_output.nc&

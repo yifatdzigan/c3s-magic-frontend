@@ -1,0 +1,1 @@
+The drought indicator currently calculates indicators of meteorological drought by calculating the longest time period of consecutive dry days as well as the number of dry periods of a user defined minimum duration.
