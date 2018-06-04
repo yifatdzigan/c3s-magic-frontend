@@ -94,6 +94,14 @@ diagnostics:
         info_file: hyint_timeseries/hyint_timeseries.yml
         image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
         github_issue:
+    diagnostics_11:
+        id: 11
+        title: Climate explorer Correlate a field with a timeseries
+        sub_title:
+        info_text: Tool for correlating fields with timeseries as used in the KNMI climate explorer
+        info_file: correlations/correlations.yml
+        image_file: ./diagnosticsdata/correlations/climexp_correlations.png
+        github_issue:
 #    diagnostics_11:
 #        id: 11
 #        title: Modes of variability
@@ -134,3 +142,4 @@ diagnostics:
         info_file: risk_index/risk_index.yml
         image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
         github_issue:
+
