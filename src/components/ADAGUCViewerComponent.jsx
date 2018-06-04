@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 import { debounce } from 'throttle-debounce';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
+import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Card, CardText, CardBody, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
 import ReactSlider from 'react-slider';
 import Icon from 'react-fa';
 import ReactWebMapJS from './ReactWebMapJS';
@@ -66,7 +66,11 @@ export default class ADAGUCViewerComponent extends PureComponent {
     this.setProjection = this.setProjection.bind(this);
     this.getLayersForService = this.getLayersForService.bind(this);
 
-    this.listeners = [];
+    this.listeners = [
+      { name:'onupdatebbox', callbackfunction: (webmapjs, bbox) => { this.updateBBOXDebounced(webmapjs, bbox); }, keep:true },
+      { name: 'onmaploadingcomplete', callbackfunction: (webmapjs) => { this.drawDebounced(webmapjs); }, keep:true }
+    ];
+
     // console.log('wmjsRegistry = {}');
     this.webMapJSInstances = {};
     this.drawDebounced = debounce(500, this.drawDebounced);
@@ -84,8 +88,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
       currentStyles: [],
       numTimeValues: 0,
       currentValue: 0,
-      srs : 'EPSG:3857',
-      bbox: [-19000000, -19000000, 19000000, 19000000],
+      bbox: '',
       title: null,
       error: null
     };
@@ -103,8 +106,10 @@ export default class ADAGUCViewerComponent extends PureComponent {
     if (this.timeDim) {
       let timeValue = this.timeDim.getValueForIndex(v);
       this.setState({ timeValue:timeValue });
-      this.webMapJSInstances['first'].setDimension('time', timeValue);
-      this.webMapJSInstances['first'].draw();
+      if (this.webMapJSInstances['first']) {
+        this.webMapJSInstances['first'].setDimension('time', timeValue);
+        this.webMapJSInstances['first'].draw();
+      }
     }
   }
 
@@ -120,6 +125,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
   };
 
   updateBBOXDebounced (webmapjs, bbox) {
+
     for (let key in this.webMapJSInstances) {
       let otherWebMapJS = this.webMapJSInstances[key];
       if (webmapjs !== otherWebMapJS) {
@@ -128,6 +134,8 @@ export default class ADAGUCViewerComponent extends PureComponent {
         otherWebMapJS.resumeEvent('onupdatebbox');
       }
     };
+    this.setState({'bbox': bbox.toString()});
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -145,10 +153,6 @@ export default class ADAGUCViewerComponent extends PureComponent {
     // console.log('ADAGUCViewerComponent componentDidMount');
     this.componentWillReceiveProps(this.props);
 
-    this.listeners = [
-      { name:'onupdatebbox', callbackfunction: (webmapjs, bbox) => { this.updateBBOXDebounced(webmapjs, bbox); }, keep:true },
-      { name: 'onmaploadingcomplete', callbackfunction: (webmapjs) => { this.drawDebounced(webmapjs); }, keep:true }
-    ];
     mapTypeConfiguration.map((proj, index) => {
       if (proj.title === 'World Lat/Lon') {
         this.setProjection(proj);
@@ -161,7 +165,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   getLayersForService (WMSGetCapabiltiesURL, dapurl) {
-    console.log('getLayersForService' + WMSGetCapabiltiesURL);
+    // console.log('getLayersForService' + WMSGetCapabiltiesURL);
     this.setState({ wmsLayers:[], error:null, title:'Loading...' });
     // console.log(WMSGetCapabiltiesURL);
 
@@ -169,6 +173,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
     this.WMSServiceStore = WMJSgetServiceFromStore(WMSGetCapabiltiesURL);
 
     let httpCallbackWMSCapabilities = (_layerNames, serviceURL) => {
+      // console.log('httpCallbackWMSCapabilities');
       if (_layerNames.error) {
         console.log('error');
         return;
@@ -203,8 +208,10 @@ export default class ADAGUCViewerComponent extends PureComponent {
           });
         }
       }
-      if (wmsLayers.length > 0 && this.props.controls && this.props.controls.showlayerselector === true) {
+      if (wmsLayers.length > 0) { // } && this.props.controls && this.props.controls.showlayerselector) {
         this.selectLayer(wmsLayers[0]);
+      } else {
+        console.log('no selectLayer', wmsLayers, this.props.controls);
       }
       // console.log('layerNames', wmsLayers);
       this.setState({ wmsLayers:wmsLayers });
@@ -233,12 +240,13 @@ export default class ADAGUCViewerComponent extends PureComponent {
       otherWebMapJS.draw();
     }
     this.setState({
-      'maprojection':p.title
+      'maprojection':p.title,
+      'srs': p.srs
     });
   }
 
   toggle (id) {
-    console.log('toggle', this.state.dropdownOpen);
+    // console.log('toggle', this.state.dropdownOpen);
     let dropDownOpen = Object.assign({}, { ...this.state.dropdownOpen });
     dropDownOpen[id] = !dropDownOpen[id];
     this.setState({
@@ -247,14 +255,17 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   selectLayer (wmjsLayer) {
-    this.webMapJSInstances['first'].removeAllLayers();
+    // console.log('selectLayer', wmjsLayer)
+    if (this.webMapJSInstances['first']) this.webMapJSInstances['first'].removeAllLayers();
     if (wmjsLayer) {
       this.setState({ selectedLayer:wmjsLayer });
-      this.webMapJSInstances['first'].addLayer(wmjsLayer);
-      if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(wmjsLayer, this.webMapJSInstances['first']);
+      if (this.webMapJSInstances['first']) {
+        this.webMapJSInstances['first'].addLayer(wmjsLayer);
+        if (this.props.parsedLayerCallback) this.props.parsedLayerCallback(wmjsLayer, this.webMapJSInstances['first']);
+      }
     }
 
-    this.webMapJSInstances['first'].draw();
+    if (this.webMapJSInstances['first'])this.webMapJSInstances['first'].draw();
 
     if (wmjsLayer) {
       let styles = wmjsLayer.getStyles();
@@ -398,7 +409,45 @@ export default class ADAGUCViewerComponent extends PureComponent {
             <Col xs='3'>Timevalue (UTC)</Col><Col>{this.state.timeValue + ' (' + (this.state.currentValue + 1)+ '/' + this.state.numTimeValues + ')'}</Col>
           </Row></div>) : null
           }
+          { true || (this.props.controls && this.props.controls.showdownloadbutton !== false) ? (<div><Row>
+            <Col xs='3'>
+            </Col>
+            <Col xs='1'>
+              <abbr title='Use the Web Coverage service to download the data behind this map for current date, geographical location and projection. Right click and copy the link to get the GetCoverage URL.'>
+                <Button disabled={!this.state.selectedLayer} target={'_blank'} href={
+                  this.state.selectedLayer && this.webMapJSInstances['first'] ? this.state.selectedLayer.service + '&SERVICE=WCS&REQUEST=GetCoverage' +
+                  '&COVERAGE=' + this.state.selectedLayer.name + '&FORMAT=NetCDF3&' +
+                  '&CRS='+this.state.srs+'&BBOX='+this.state.bbox+'&width=1000&height=1000' +
+                  '&TIME=' + this.state.timeValue
+                  // '&TIME=*'
+                  : '#'}
+                ><Icon name='download' /></Button>
+              </abbr>
+            </Col>
+            <Col xs='1'>
+              <abbr title='Download high quality image of this map'>
+                <Button ref={'imagedownloadbutton'} disabled={!this.state.selectedLayer} onClick={() => {
+                  /* Set the map size to a high quality big image size, load and redraw the scene, capture the canvas and set orignal size back */
+                  let webMapJS = this.state.selectedLayer.parentMaps[0];
+                  let currentSize= webMapJS.getSize();
+                  webMapJS.setSize(1920, 1920, true);                           // New big size for high quality images
+                  webMapJS.addListener('onmaploadingcomplete',()=>{                 // Add a listener once to listen to load ready
+                    const ctx = webMapJS.getFrontBufferCanvasContext();              // Get the ctx
+                    let dataURL = ctx.canvas.toDataURL('image/png');                // Convert canvas to a data url (base64 encoded PNG image)
+                    window.open(dataURL);                                           // Open this in a new tab
+                    webMapJS.setSize(currentSize.width, currentSize.height, true);  // Set original size back
+                    webMapJS.draw();                                                // Redraw orignal smaller size
+                  }, false);
 
+                  webMapJS.draw();                                                   // Draw big size
+
+                }}
+                ><Icon name='image' /></Button>
+              </abbr>
+            </Col>
+
+          </Row></div>) : null
+        }
         {
           (this.props.stacklayers === false) ? this.state.wmsLayers.map((wmjslayer, index) => {
             // console.log(' this.state.wmsLayers',  this.state.wmsLayers);
@@ -432,7 +481,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
                 <ReactWebMapJS
                   baselayers={this.props.baselayers}
                   layers={this.state.wmsLayers.filter(wmjsLayer => {
-                    if (this.props.controls && this.props.controls.showlayerselector === true) return false;
+                    if (this.props.controls && this.props.controls.showlayerselector) return false;
                     return (this.props.layernames.includes(wmjsLayer.name) || this.props.layernames.length === 0);
                   })}
                   listeners={this.listeners}
