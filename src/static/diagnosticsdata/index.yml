@@ -16,11 +16,11 @@ diagnostics:
         image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
     diagnostics_101:
-        id: 100
+        id: 101
         title: ACI components
         sub_title:
         info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
-        info_file: risk_index.yml
+        info_file: risk_index/risk_index.yml
         image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
     diagnostics_2:
         id: 2
@@ -92,5 +92,45 @@ diagnostics:
         sub_title:
         info_text: Tool for calculation of timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
         info_file: hyint_timeseries/hyint_timeseries.yml
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        github_issue:
+#    diagnostics_11:
+#        id: 11
+#        title: Modes of variability
+#        sub_title:
+#        info_text: Tool to compute the RMSE between the observed and modelled patterns of variability obtained through classification and their relative relative bias in the percentage of occurrence and the persistence of each mode.
+#        info_file: modes_of_variability/modes_of_variability.yml
+#        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+#        github_issue:
+    diagnostics_12:
+        id: 12
+        title: Single and multi-model indices based on area averages
+        sub_title:
+        info_text: Tool to compute single and multi model indices based on area averages.
+        info_file: combine_indices/combine_indices.yml
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        github_issue:
+    diagnostics_13:
+        id: 13
+        title: Diurnal Temperature Variation (DTR) Indicator
+        sub_title:
+        info_text: Tool to compute the Diurnal temperature indicator, which can be used to estimate energy demand.
+        info_file: dtr/dtr.yml
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        github_issue:
+    diagnostics_14:
+        id: 14
+        title: Extreme Spells (Energy)
+        sub_title:
+        info_text: Tool to durations of heatwaves and coldwaves, to help understand changes in energy demand.
+        info_file: extreme_spells/extreme_spells.yml
+        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        github_issue:
+    diagnostics_15:
+        id: 15
+        title: Insurance risk indices
+        sub_title:
+        info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
+        info_file: risk_index/risk_index.yml
         image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
         github_issue:
