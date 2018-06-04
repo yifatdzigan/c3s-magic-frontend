@@ -1,0 +1,44 @@
+---
+name: Modes of variability
+partner: BSC
+authors:
+  - Alasdair Hunter
+  - Nicolau Manubens
+  - Louis-Philippe Caron
+  - Javier Vegas.
+contact:
+  - Alasdair Hunter @alasdairhunter
+  - Nicolau Manubens @nmanuben
+description_short: |
+    Tool to compute modes of variability for a set of predefined regions, e.g. the Euro-North Atlantic region.
+description_long: |
+    Tool to compute modes of variability for a set of predefined regions. This is done by k-means clustering applied either to the anomalies for the user selected field or after computing the EOFs. The user has the option to detrend the data, e.g. for Arctic sea ice, 2nd order polynomial detrending is recommended. The output includes plots of the mean anomaly for the input field for each mode, time series of the occurence of the modes and the frequency and persistence of each mode. 
+
+
+    Description of user-changeable settings on webpage':'
+    Selection of region.
+    Selection of variable.
+    Selection of temporal period.
+    Selection of RCP scenario.
+    Selection of models.
+    Selection of detrending method.
+    Selection of EOF or spatial data.
+report_file: report.pdf
+
+reference:
+  - 'Fučkar, Neven S., Virginie Guemas, Nathaniel C. Johnson, François Massonnet, and Francisco J. Doblas-Reyes. "Clusters of interannual sea ice variability in the northern hemisphere." Climate Dynamics 47, no. 5-6 (2016): 1527-1543.'
+settings:
+  - Region:
+      - Arctic
+  - Models:
+      - NASA
+  - Variable:
+      - sic
+  - Mode parameters:
+      - ncenters: 4
+      - cluster_method: "kmeans"
+      -  EOFS: "FALSE"
+      - detrend: 2
+  - Experiment: NULL
+title: Modes of variability
+youtube: 

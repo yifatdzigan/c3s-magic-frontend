@@ -1,0 +1,1 @@
+This namelist implements calculation of the quantile bias to allow evaluation of the precipitation bias based on a user defined quantile in models as compared to a reference dataset. The bias was shown to be typically stronger at higher quantiles (Mehran et al. 2014).

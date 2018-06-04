@@ -1,0 +1,40 @@
+---
+name: Single and multi-model indices based on area averages
+
+partner: BSC
+authors:
+  - Alasdair Hunter
+  - Nicolau Manubens
+  - Louis-Philippe Caron
+  - Javier Vegas.
+contact:
+  - Alasdair Hunter @alasdairhunter
+  - Nicolau Manubens @nmanuben
+description_short: |
+    Tool to compute single and multi model indices based on area averages.
+description_long: |
+    Tool to combine indices for gridded data from a single or multiple models. The user has the option to include weights, e.g. when combining the components of the insurance risk indice a user may want to give higher weighting to the flood index for a region where flooding is the highest source of insured losses. For the area weighting, grids are assumed to be regular.
+
+    Description of user-changeable settings on webpage':'
+    Selection of whether or not to compute area-weighted averages.
+    Selection of indices to combine.
+    Selection of RCP scenario.
+    Selection of longitudes and latitudes.
+    Selection of models.
+    Selection of weights.
+
+report_file: report.pdf
+
+reference:
+  - 'Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. "An R package for climate forecast verification." Environmental Modelling & Software 103 (2018): 29-42.'
+settings:
+  - Models:
+      - IPSL
+  - Temporal periods
+      - start_projection: "2020-01-01"
+      - end_projection: "2040-12-31"
+  - Indices: tx90p, tx10p, cdd, rx5day, wx
+  - Weights: NULL
+  - Experiment: RCP8.5
+title: ACI components
+youtube: 
