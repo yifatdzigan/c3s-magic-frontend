@@ -58,16 +58,14 @@ class WPSWranglerDemo extends PureComponent {
     // var data_path = config.backendHost + '/wms?DATASET=' + this.props.map_data + '&';
 
     return (<div>
-      <h1>Ensemble anomaly plots</h1>
+      <h2>Ensemble anomaly plots</h2>
       <Row>
       {this.state.showSlider ?
         <Col>
           <Row>
-            <Col>
-              <div className='text'>
-                Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
-              </div>
-            </Col>
+            <div>
+              Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
+            </div>
           </Row>
           <Form>
             <FormGroup>
@@ -113,7 +111,7 @@ class WPSWranglerDemo extends PureComponent {
 
   render () {
     return (
-      <div className='vspace2em'>
+      <div className='text'>
         { this.renderAnomalyAgreement() }
       </div>);
   }
