@@ -10,8 +10,8 @@ contact:
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
 description_short: This tool calculates the quantile bias between models and a reference dataset
-description_long: This namelist implements calculation of the quantile bias to allow evaluation of the precipitation bias based on a user defined quantile in models as compared to a reference dataset. The bias was shown to be typically stronger at higher quantiles (Mehran et al. 2014).
-media: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360'
+description_file: 'quantilebias/description.md'
+#media: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360'
 enableADAGUC:
   - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP4_ISAC_quantilebias
   - projectionbutton: true
