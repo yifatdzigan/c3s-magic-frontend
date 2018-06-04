@@ -86,7 +86,7 @@ import Provenance from '../containers/System/Provenance';
 import Data from '../containers/System/Data';
 
 import TitleComponent from '../containers/TitleComponent';
-// import WP1Home from '../containers/WP1Home';
+import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
 
 import WPSWranglerDemo from '../components/WPSWranglerDemo';
@@ -165,7 +165,7 @@ export const createRoutes = (store) => {
   const tailoredproductsmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsMenu));
   const systemmenu = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SystemMenu));
 
-  // const wp1home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
+  const home = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WP1Home));
 
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
@@ -187,7 +187,7 @@ export const createRoutes = (store) => {
 
   return (
     <Route path={'/'} component={BaseLayout} title={'C3S-Magic'} windowmanager={ww} >
-      <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu} viewComponent={actuariesDemo} />
+      <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={home} />
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
       </Route>
@@ -284,6 +284,11 @@ export const createRoutes = (store) => {
         </Route>
       </Route>
       <Route path='tailoredproducts' title='Tailored products'>
+        <Route path=''>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+            viewComponent={actuariesDemo}
+          />
+        </Route>
         <Route path='home'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
             viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsHome))}
