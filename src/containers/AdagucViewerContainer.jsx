@@ -56,7 +56,7 @@ export default class AdagucViewerContainer extends Component {
         </Row>
         <Row>
           <ADAGUCViewerComponent
-            height={'60vh'}
+            height={'50vh'}
             layers={[]}
             controls={{
               showprojectionbutton: true,
@@ -71,6 +71,16 @@ export default class AdagucViewerContainer extends Component {
             } }
             wmsurl={this.state.datasets[this.state.datasetIndex].wmsurl}
           />
+        </Row>
+        <Row>
+          <Col xs='8'>
+            <div className='text'>
+              <span>Our advanced adaguc viewer is available for expert users to browse and inspect available datasets. There you can combine different layers and change their styling individually. It allows you to view and set other NetCDF dimensions, like elevation, member, ensemble and threshold.
+                To browse our datasets, first click on the big gear and then on the AutoWMS menu. On the right pane you can explore our datasets.
+                Open it <a href={config.adagucViewerURL} target='_blank'>here </a>.
+              </span>
+            </div>
+          </Col>
         </Row>
 
       </div>);
