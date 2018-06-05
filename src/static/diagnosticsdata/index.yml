@@ -1,5 +1,5 @@
 diagnostics:
-    diagnostics_100:
+    test:
         id: 100
         title: Test Diagnostic
         sub_title:

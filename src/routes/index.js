@@ -50,8 +50,6 @@ import MeanState from '../containers/Metrics/MeanState';
 import ExtremeEvents from '../containers/Metrics/ExtremeEvents';
 import ClimateVariability from '../containers/Metrics/ClimateVariability';
 
-import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
-
 /* MultiModelProducts */
 import MultiModelProductsMenu from '../containers/MultiModelProducts/MultiModelProductsMenu';
 import MultiModelProductsHome from '../containers/MultiModelProducts/MultiModelProductsHome';
@@ -77,7 +75,7 @@ import UserConsultation from '../containers/TailoredProducts/UserConsultation';
 import ActuariesDemo from '../containers/TailoredProducts/ActuariesDemo';
 
 /* Diagnostics */
-import Diagnostics from '../containers/Diagnostics';
+import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
 
 /* System */
 import SystemMenu from '../containers/System/SystemMenu';
@@ -175,8 +173,6 @@ export const createRoutes = (store) => {
 
   const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
 
-  const diagnostics = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(Diagnostics));
-
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
   const adagucviewer = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(AdagucViewerContainer));
@@ -194,6 +190,9 @@ export const createRoutes = (store) => {
       <Route path='diagnostics' title='Diagnostics'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={diagnosticshome} />
       </Route>
+
+      <Route path='diagnostics/:diag' title='Diagnostics' header={mainmenu} component={DiagnosticsHome} />
+
       <Route path='demo' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
       </Route>
@@ -202,9 +201,6 @@ export const createRoutes = (store) => {
       </Route>
       <Route path='ensembleanomalyplots' title='ensembleAnomalyPlots'>
         <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={ensembleAnomalyPlots} />
-      </Route>
-      <Route path='diagnostics' title='Diagnostics'>
-        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} viewComponent={diagnostics} />
       </Route>
       <Route path='basket' title='Basket'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={basket} />

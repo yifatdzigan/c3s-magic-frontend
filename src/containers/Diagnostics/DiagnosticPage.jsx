@@ -154,12 +154,12 @@ export default class DiagnosticPage extends Component {
     console.log('Download data...');
   }
 
-  readMore(){
+  readMore() {
     var element = document.getElementById("additional");
     element.scrollIntoView();
   }
 
-  toTop(){
+  toTop() {
     var element = document.getElementById("pagetop");
     element.scrollIntoView();
   }
@@ -219,8 +219,8 @@ export default class DiagnosticPage extends Component {
                 {this.isEnabled('youtube') ?
                   [
                     <div className='text'>
-                    <h2>Screencast</h2>
-                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                      <h2>Screencast</h2>
+                      <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
                     </div>
                   ]
                   : null
@@ -272,9 +272,9 @@ export default class DiagnosticPage extends Component {
 
               {this.isEnabled('media') ?
                 [
-                    <div className='vspace2em'>
-                        <img width="100%" src={this.renderPageElement('media')} />
-                    </div>
+                  <div className='vspace2em'>
+                    <img width="100%" src={this.renderPageElement('media')} />
+                  </div>
                 ]
                 : null
               }
@@ -284,12 +284,12 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                  {this.isEnabled('description_file') ?
+                {this.isEnabled('description_file') ?
                   [
-                      <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
+                    <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
                   ]
                   : null
-                  }
+                }
               </div>
 
               <div className='text'>
