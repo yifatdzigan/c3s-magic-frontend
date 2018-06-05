@@ -12,7 +12,13 @@ contact:
 description_short: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
 description_file: 'risk_index/description.md'
 report_file: report.pdf
-media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
+enableADAGUC:
+  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP7_BSC_ACI_Components
+  - projectionbutton: true
+  - layerselector: true
+  - timeselector: true
+  - styleselector: true
+  - layers: []
 references:
   - "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."
 settings:
