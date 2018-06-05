@@ -36,6 +36,10 @@ export default class AdagucViewerContainer extends Component {
         wmsurl:'https://portal.c3s-magic.eu/wms?DATASET=WP7_BSC_ACI_Components&',
         name:'WP7_BSC_ACI_Components',
         title:'WP7_BSC_ACI_Components'
+      },{
+        wmsurl:'https://portal.c3s-magic.eu:443/adagucserver?source=c3smagic%2FWP7-surge_estimator%2Fsurge_heights_EC-Earth_s01r14_20131201-20140131.nc&',
+        name:'WP7_surge_estimator',
+        title:'WP7_surge_estimator'
       }
       ],
       datasetIndex:0,
