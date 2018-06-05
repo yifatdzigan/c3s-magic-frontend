@@ -10,10 +10,10 @@ RUN npm run deploy:prod
 # Install `serve` to run the application.
 RUN npm install -g serve
 # Set the command to start the node server.
-CMD echo "const config = { 'backendHost': '${CONTROLLER}', 'adagucServicesHost': '${COMPUTE}' };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
+CMD echo "const config = { 'backendHost': '${CONTROLLER}', 'adagucServicesHost': '${COMPUTE}',  'adagucViewerURL' : '${VIEWER}' };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
 
 EXPOSE 5000
 
 #docker build -t c3s-magic-frontend .
-#docker run -e COMPUTE="https://compute-test.c3s-magic.eu:8888" -e CONTROLLER="https://compute-test.c3s-magic.eu:7777" -p 8081:5000 -it c3s-magic-frontend
+#docker run -e COMPUTE="https://portal.c3s-magic.eu:9000" -e CONTROLLER="https://portal.c3s-magic.eu:443" -e VIEWER=https://portal.c3s-magic.eu:8080 -p 8081:3000 -it c3s-magic-frontend
 
