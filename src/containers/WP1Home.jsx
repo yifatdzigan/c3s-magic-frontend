@@ -1,18 +1,24 @@
 
 import React, { Component } from 'react';
 import MarkdownFromFile from './MarkdownFromFile';
+import EnsembleAnomalyPlots from '../containers/Diagnostics/EnsembleAnomalyPlots';
 
-import { Row } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 export default class WP1Home extends Component {
   render () {
     return (
       <div className='MainViewport'>
         <Row>
+          <Col xs='6'>
+            <div className='text'>
+              <MarkdownFromFile url={'/contents/Home.md'} />
+            </div>
+          </Col>
+          <Col xs='6'>
+            <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/wms?DATASET=anomaly_agreement_stippling&'} />
+          </Col>
 
-          <div className='text'>
-            <MarkdownFromFile url={'/contents/WP1Home.md'} />
-          </div>
         </Row>
       </div>);
   }

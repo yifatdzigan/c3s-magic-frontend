@@ -55,10 +55,16 @@ export default class TitleComponent extends Component {
         <Navbar style={{ backgroundColor: '#941333', color: 'white', height: '38px', textAlign: 'center' }} className='navbar-static-top'>
           <Nav>
             <NavItem>
-              <NavLink href='#/' active={pathname === '/'} >Tailored products</NavLink>
+              <NavLink href='#/' active={pathname === '/'} >Home</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Diagnostics</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/tailoredproducts' active={pathname === '/tailoredproducts'} >Tailored products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='#/adagucviewer' active={pathname === '/adagucviewer'} >Data viewer</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>

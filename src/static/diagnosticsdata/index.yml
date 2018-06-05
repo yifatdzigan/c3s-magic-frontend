@@ -1,27 +1,34 @@
 diagnostics:
-    test:
-        id: 100
-        title: Test Diagnostic
-        sub_title:
-        info_text: Markdown test diagnostic
-        info_file: test/test_diag.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Test%20Image&w=400&h=250
-        github_issue:
+#    diagnostics_100:
+#        id: 100
+#        title: Test Diagnostic
+#        sub_title:
+#        info_text: Markdown test diagnostic
+#        info_file: test/test_diag.yml
+#        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+#        github_issue:
     diagnostics_1:
         id: 1
         title: Anomaly Agreement
         sub_title:
         info_text: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
         info_file: anomaly_agreement/anomaly_agreement.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: diagnosticsdata/anomaly_agreement/bsc_anomaly_timeseries.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
+    diagnostics_101:
+        id: 101
+        title: ACI components
+        sub_title:
+        info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
+        info_file: risk_index/risk_index.yml
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
     diagnostics_2:
         id: 2
         title: Indices of annular modes
         sub_title:
         info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode pattern at the surface and in the stratosphere
         info_file: annularmodes/annularmodes.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_3:
         id: 3
@@ -37,7 +44,7 @@ diagnostics:
         sub_title:
         info_text: EnsClus is a cluster analysis tool in Python, based on the k-means algorithm, with the aim to group ensemble members according to similar characteristics and to select the most representative member for each cluster
         info_file: ensclus/ensclus.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_5:
         id: 5
@@ -45,7 +52,7 @@ diagnostics:
         sub_title:
         info_text: This namelist implements the MId-Latitude Evaluation System (MiLES) providing teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
         info_file: teleconnections/teleconnections.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_6:
         id: 6
@@ -53,7 +60,7 @@ diagnostics:
         sub_title:
         info_text: HyInt is a tool for calculation of the hydroclimatic intensity index HY-INT and additional hydroclimatic indices, which allow to evaluate the overall behaviour of the hydroclimatic cycle
         info_file: hyint/hyint.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_7:
         id: 7
@@ -61,7 +68,7 @@ diagnostics:
         sub_title:
         info_text: This tool calculates mid-latitude 1D and 2D blocking indices
         info_file: blocking/blocking.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_8:
         id: 8
@@ -69,7 +76,7 @@ diagnostics:
         sub_title:
         info_text: This tool calculates the quantile bias between models and a reference dataset
         info_file: quantilebias/quantilebias.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_9:
         id: 9
@@ -77,7 +84,7 @@ diagnostics:
         sub_title:
         info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the stratosphere-troposphere coupling
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
     diagnostics_10:
         id: 10
@@ -85,5 +92,69 @@ diagnostics:
         sub_title:
         info_text: Tool for calculation of timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
         info_file: hyint_timeseries/hyint_timeseries.yml
-        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        github_issue:
+    diagnostics_11:
+        id: 11
+        title: Climate explorer Correlate a field with a timeseries
+        sub_title:
+        info_text: Tool for correlating fields with timeseries as used in the KNMI climate explorer
+        info_file: correlations/correlations.yml
+        image_file: ./diagnosticsdata/correlations/climexp_correlations.png
+        github_issue:
+#    diagnostics_11:
+#        id: 11
+#        title: Modes of variability
+#        sub_title:
+#        info_text: Tool to compute the RMSE between the observed and modelled patterns of variability obtained through classification and their relative relative bias in the percentage of occurrence and the persistence of each mode.
+#        info_file: modes_of_variability/modes_of_variability.yml
+#        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
+#        github_issue:
+    diagnostics_12:
+        id: 12
+        title: Single and multi-model indices based on area averages
+        sub_title:
+        info_text: Tool to compute single and multi model indices based on area averages.
+        info_file: combine_indices/combine_indices.yml
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        github_issue:
+    diagnostics_13:
+        id: 13
+        title: Diurnal Temperature Variation (DTR) Indicator
+        sub_title:
+        info_text: Tool to compute the Diurnal temperature indicator, which can be used to estimate energy demand.
+        info_file: dtr/dtr.yml
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        github_issue:
+    diagnostics_14:
+        id: 14
+        title: Extreme Spells (Energy)
+        sub_title:
+        info_text: Tool to durations of heatwaves and coldwaves, to help understand changes in energy demand.
+        info_file: extreme_spells/extreme_spells.yml
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        github_issue:
+    diagnostics_15:
+        id: 15
+        title: Insurance risk indices
+        sub_title:
+        info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
+        info_file: risk_index/risk_index.yml
+        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        github_issue:
+    diagnostics_16:
+        id: 16
+        title: Shapefile selection
+        sub_title:
+        info_text: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
+        info_file: shapefile_selection/shapefile_selection.yml
+        image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
+        github_issue:
+    diagnostics_17:
+        id: 17
+        title: Drought indicator
+        sub_title:
+        info_text: The drought indicator calculates diagnostics for meteorological drought.
+        info_file: drought_indicator/drought_indicator.yml
+        image_file: ./diagnosticsdata/drought_indicator/dryfreq.png
         github_issue:
