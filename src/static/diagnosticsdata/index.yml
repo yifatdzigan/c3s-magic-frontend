@@ -148,7 +148,7 @@ diagnostics:
         sub_title:
         info_text: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
         info_file: shapefile_selection/shapefile_selection.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
         github_issue:
     diagnostics_17:
         id: 17
@@ -156,5 +156,5 @@ diagnostics:
         sub_title:
         info_text: The drought indicator calculates diagnostics for meteorological drought.
         info_file: drought_indicator/drought_indicator.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: ./diagnosticsdata/drought_indicator/dryfreq.png
         github_issue:

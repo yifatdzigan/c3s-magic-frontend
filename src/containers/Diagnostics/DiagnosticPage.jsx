@@ -280,10 +280,6 @@ export default class DiagnosticPage extends Component {
               }
 
               <div id="additional" className='vspace2em'>
-                <h2>Additional information</h2>
-              </div>
-
-              <div className='vspace2em'>
                   {this.isEnabled('description_file') ?
                   [
                       <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
