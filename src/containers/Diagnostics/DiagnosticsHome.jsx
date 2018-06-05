@@ -14,7 +14,7 @@ import DiagnosticPage from './DiagnosticPage';
 
 var $RefParser = require('json-schema-ref-parser');
 import Grid from 'react-css-grid'
-
+var _ = require('lodash');
 
 export default class DiagnosticsHome extends Component {
   constructor(props) {
@@ -22,7 +22,8 @@ export default class DiagnosticsHome extends Component {
     this.state = {
       diagList: [],
       overview: true,
-      selectedPage: ''
+      selectedPageYaml: '',
+      selectedPageId: ''
     }
     this.switchOverview = this.switchOverview.bind(this);
     this.getCard = this.getCard.bind(this);
@@ -33,17 +34,18 @@ export default class DiagnosticsHome extends Component {
     this.setState({ overview: !this.state.overview });
   }
 
-  clickEvent(info) {
-    this.setState({ selectedPage: info });
+  clickEvent(yamlFile, fileId) {
+    this.setState({ selectedPageYaml: yamlFile, selectedPageId: fileId });
     this.switchOverview();
-    console.log(info);
+    console.log(yamlFile);
+    console.log(fileId);
   }
 
   getCard(item) {
     return (
       <div key={item.id} className="diagCard">
 
-        <Card key={item.id} onClick={() => this.clickEvent(item.info_file)}
+        <Card key={item.id} onClick={() => this.clickEvent(item.info_file, item.id)}
           body className="text-left" outline color="primary">
 
           <CardBody>
@@ -72,6 +74,11 @@ export default class DiagnosticsHome extends Component {
   }
 
   componentWillMount() {
+    console.log('DiagnosticsHome:componentWillMount');
+  }
+
+  componentDidUpdate() {
+    console.log('DiagnosticsHome:componentDidUpdate');
   }
 
   render() {
@@ -82,14 +89,21 @@ export default class DiagnosticsHome extends Component {
       tmpList.push(that.getCard(diagList[key]));
     })
 
-    var destinationPage = this.state.selectedPage;
+    var destinationPage = this.state.selectedPageYaml;
+    console.log(destinationPage);
+
+    if (this.props.params && diagList.length != 0) {
+      if (diagList[that.props.params.diag]){
+        destinationPage = diagList[that.props.params.diag].info_file;
+        this.state.overview = false;
+      }
+    }
 
     if (this.state.overview) {
       return (
         <div className='vspace2em'>
           <Container>
             <Row>
-
               <Col sm="12" md={{ size: 10, offset: 1 }}>
                 <UncontrolledAlert color="info">
                   Click on a diagnostic to get more information!
@@ -110,10 +124,14 @@ export default class DiagnosticsHome extends Component {
 
       return (
         <div className='vspace2em'>
+
           <Container>
-            <Row>
+            <div className='overviewButton'>
+              <Button color="danger" onClick={this.switchOverview}> Back to the overview </Button>
+            </div>
+
+             <Row>
               <Col sm="12" md={{ size: 12, offset: 0 }}>
-                <Button color="success" onClick={this.switchOverview}> Back to the overview </Button>
                 <DiagnosticPage yamlFile={destinationPage} />
               </Col>
             </Row>

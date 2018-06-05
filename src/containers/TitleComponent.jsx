@@ -9,22 +9,22 @@ import PropTypes from 'prop-types';
 import Icon from 'react-fa';
 
 export default class TitleComponent extends Component {
-  constructor () {
+  constructor() {
     super();
     this.canRender = this.canRender.bind(this);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.canRender();
   }
 
-  componentWillUpdate () {
+  componentWillUpdate() {
     this.canRender();
   }
 
-  render () {
+  render() {
     const { clientId, location } = this.props;
     var { pathname } = location;
 
@@ -35,7 +35,7 @@ export default class TitleComponent extends Component {
         <Navbar inverse >
           <Row className='navbar-header-c3s'>
             <Col className='welcomeSign'>
-              <p style={{ marginLeft:'auto', marginRight:'auto', marginTop:'10px' }}>
+              <p style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
                 <a href='http://www.copernicus.eu/'>
                   <img alt='' src='/sites/default/files/copernicus-logo.png' style={{ marginRight: '40px', width: '187px', height: '69px' }} />
                 </a>
@@ -52,7 +52,7 @@ export default class TitleComponent extends Component {
             </Col>
           </Row>
         </Navbar>
-        <Navbar style={{ backgroundColor:'#941333', color:'white', height:'38px', textAlign: 'center' }} className='navbar-static-top'>
+        <Navbar style={{ backgroundColor: '#941333', color: 'white', height: '38px', textAlign: 'center' }} className='navbar-static-top'>
           <Nav>
             <NavItem>
               <NavLink href='#/' active={pathname === '/'} >Home</NavLink>
@@ -124,50 +124,50 @@ export default class TitleComponent extends Component {
       </div>);
   }
 
-  canRender () {
+  canRender() {
     const { dispatch, actions } = this.props;
     const { backendHost } = config;
     fetch(backendHost + '/getid', {
       credentials: 'include'
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(json => {
-      let obj = json;
-      if (obj.error) {
-        console.log('Not signed in');
-        dispatch(actions.setAccessToken(null));
-        dispatch(actions.setClientId(null));
-        dispatch(actions.setEmailAddress(null));
-        dispatch(actions.setDomain(null));
-      } else {
-        dispatch(actions.setAccessToken(obj.services_access_token));
-        dispatch(actions.setClientId(obj.id));
-        dispatch(actions.setEmailAddress(obj.email_address));
-        dispatch(actions.setDomain(obj.domain));
-        // console.log('Signed in', obj.domain);
-      }
-    });
+      .then(function (response) {
+        return response.json();
+      })
+      .then(json => {
+        let obj = json;
+        if (obj.error) {
+          console.log('Not signed in');
+          dispatch(actions.setAccessToken(null));
+          dispatch(actions.setClientId(null));
+          dispatch(actions.setEmailAddress(null));
+          dispatch(actions.setDomain(null));
+        } else {
+          dispatch(actions.setAccessToken(obj.services_access_token));
+          dispatch(actions.setClientId(obj.id));
+          dispatch(actions.setEmailAddress(obj.email_address));
+          dispatch(actions.setDomain(obj.domain));
+          // console.log('Signed in', obj.domain);
+        }
+      });
   }
 
-  login () {
+  login() {
     const { backendHost } = config;
     let currentLocation = window.location;
     window.location.assign(backendHost + '/oauth?provider=google&returnurl=' + encodeURIComponent(currentLocation));
   }
 
-  logout () {
+  logout() {
     const { backendHost } = config;
     fetch(backendHost + '/logout', {
       credentials: 'include'
     })
-    .then((response) => {
-      return response.json();
-    })
-    .then((json) => {
-      this.canRender();
-    });
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        this.canRender();
+      });
   }
 }
 

@@ -56,7 +56,6 @@ export default class DiagnosticPage extends Component {
     }
     if (paramName === 'description_file') {
       paramVal = this.state.staticPath + paramVal[0].md_file;
-      console.log(paramVal);
       return paramVal;
     }
     if (paramVal.length == 0) {
@@ -144,8 +143,6 @@ export default class DiagnosticPage extends Component {
       return (<div dangerouslySetInnerHTML={{ __html: _element }} />);
     }
   }
-
-
   downloadReport() {
     console.log('Download report...');
   }
@@ -154,19 +151,17 @@ export default class DiagnosticPage extends Component {
     console.log('Download data...');
   }
 
-  readMore(){
+  readMore() {
     var element = document.getElementById("additional");
     element.scrollIntoView();
   }
 
-  toTop(){
+  toTop() {
     var element = document.getElementById("pagetop");
     element.scrollIntoView();
   }
 
-
   render() {
-
     if (this.state.readSuccess) {
 
       return (
@@ -219,8 +214,8 @@ export default class DiagnosticPage extends Component {
                 {this.isEnabled('youtube') ?
                   [
                     <div className='text'>
-                    <h2>Screencast</h2>
-                    <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
+                      <h2>Screencast</h2>
+                      <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
                     </div>
                   ]
                   : null
@@ -255,13 +250,13 @@ export default class DiagnosticPage extends Component {
                     height={'60vh'}
                     layers={[]}
                     controls={{
-                      showprojectionbutton: this.getElementProperty('enableADAGUC', 'showprojectionbutton'),
-                      showlayerselector: this.getElementProperty('enableADAGUC', 'showlayerselector'),
-                      showtimeselector: this.getElementProperty('enableADAGUC', 'showtimeselector'),
-                      showstyleselector: this.getElementProperty('enableADAGUC', 'showstyleselector')
+                      showprojectionbutton: this.getElementProperty('enableADAGUC', 'projectionbutton'),
+                      showlayerselector: this.getElementProperty('enableADAGUC', 'layerselector'),
+                      showtimeselector: this.getElementProperty('enableADAGUC', 'timeselector'),
+                      showstyleselector: this.getElementProperty('enableADAGUC', 'styleselector')
                     }}
                     parsedLayerCallback={(layer, webMapJSInstance) => {
-                      console.log('webMapJSInstance', webMapJSInstance);
+                      // console.log('webMapJSInstance', webMapJSInstance);
                       layer.zoomToLayer();
                       webMapJSInstance.draw();
                     }}
@@ -272,9 +267,9 @@ export default class DiagnosticPage extends Component {
 
               {this.isEnabled('media') ?
                 [
-                    <div className='vspace2em'>
-                        <img width="100%" src={this.renderPageElement('media')} />
-                    </div>
+                  <div className='vspace2em'>
+                    <img width="100%" src={this.renderPageElement('media')} />
+                  </div>
                 ]
                 : null
               }
@@ -282,10 +277,10 @@ export default class DiagnosticPage extends Component {
               <div id="additional" className='vspace2em'>
                   {this.isEnabled('description_file') ?
                   [
-                      <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
+                    <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
                   ]
                   : null
-                  }
+                }
               </div>
 
               <div className='text'>
@@ -299,7 +294,7 @@ export default class DiagnosticPage extends Component {
     }
     else {
       return (
-        <div>
+        <div className='text vspace2em'>
           <p> An error occured or this diagnostic pacge is not ready yet!</p>
           <p> Please contact the developers...</p>
         </div>
