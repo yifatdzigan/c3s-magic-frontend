@@ -615,11 +615,10 @@ div.hpace2em {
   bottom: 0;
 }
 
-
-.OverviewButton {
-    padding-left: 10px;
-    position: fixed;
-    padding-bottom:10px;
-    left:7%;
-    z-index: 1;
+.overviewButton {
+  position: fixed;
+  padding-left: 10px;
+  padding-bottom:10px;
+  left:3%;
+  z-index: 1;
 }

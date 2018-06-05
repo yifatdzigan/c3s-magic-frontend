@@ -93,22 +93,10 @@ export default class DiagnosticsHome extends Component {
     console.log(destinationPage);
 
     if (this.props.params && diagList.length != 0) {
-      // var that = this;
-      // var result = _.find(diagList, function (item) {
-      //   //return item.id == that.props.params.diag
-      //   return item == that.props.params.diag;
-      // });
-      // console.log(result);
-      console.log(diagList[that.props.params.diag]);
-      // if (result.info_file) {
-      //   destinationPage = result.info_file;
-      //   this.state.overview = false;
-      // }
       if (diagList[that.props.params.diag]){
         destinationPage = diagList[that.props.params.diag].info_file;
         this.state.overview = false;
       }
-
     }
 
     if (this.state.overview) {
@@ -116,7 +104,6 @@ export default class DiagnosticsHome extends Component {
         <div className='vspace2em'>
           <Container>
             <Row>
-
               <Col sm="12" md={{ size: 10, offset: 1 }}>
                 <UncontrolledAlert color="info">
                   Click on a diagnostic to get more information!
@@ -139,9 +126,10 @@ export default class DiagnosticsHome extends Component {
         <div className='vspace2em'>
 
           <Container>
-          <Row>
-            <Button className='OverviewButton' color="success" onClick={this.switchOverview}> Back to the overview </Button>
-          </Row>
+            <div className='overviewButton'>
+              <Button color="danger" onClick={this.switchOverview}> Back to the overview </Button>
+            </div>
+
              <Row>
               <Col sm="12" md={{ size: 12, offset: 0 }}>
                 <DiagnosticPage yamlFile={destinationPage} />

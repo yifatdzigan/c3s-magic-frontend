@@ -56,7 +56,6 @@ export default class DiagnosticPage extends Component {
     }
     if (paramName === 'description_file') {
       paramVal = this.state.staticPath + paramVal[0].md_file;
-      console.log(paramVal);
       return paramVal;
     }
     if (paramVal.length == 0) {
@@ -144,8 +143,6 @@ export default class DiagnosticPage extends Component {
       return (<div dangerouslySetInnerHTML={{ __html: _element }} />);
     }
   }
-
-
   downloadReport() {
     console.log('Download report...');
   }
@@ -164,9 +161,7 @@ export default class DiagnosticPage extends Component {
     element.scrollIntoView();
   }
 
-
   render() {
-
     if (this.state.readSuccess) {
 
       return (
@@ -255,10 +250,10 @@ export default class DiagnosticPage extends Component {
                     height={'60vh'}
                     layers={[]}
                     controls={{
-                      showprojectionbutton: this.getElementProperty('enableADAGUC', 'showprojectionbutton'),
-                      showlayerselector: this.getElementProperty('enableADAGUC', 'showlayerselector'),
-                      showtimeselector: this.getElementProperty('enableADAGUC', 'showtimeselector'),
-                      showstyleselector: this.getElementProperty('enableADAGUC', 'showstyleselector')
+                      showprojectionbutton: this.getElementProperty('enableADAGUC', 'projectionbutton'),
+                      showlayerselector: this.getElementProperty('enableADAGUC', 'layerselector'),
+                      showtimeselector: this.getElementProperty('enableADAGUC', 'timeselector'),
+                      showstyleselector: this.getElementProperty('enableADAGUC', 'styleselector')
                     }}
                     parsedLayerCallback={(layer, webMapJSInstance) => {
                       // console.log('webMapJSInstance', webMapJSInstance);
@@ -303,7 +298,7 @@ export default class DiagnosticPage extends Component {
     }
     else {
       return (
-        <div>
+        <div className='text vspace2em'>
           <p> An error occured or this diagnostic pacge is not ready yet!</p>
           <p> Please contact the developers...</p>
         </div>
