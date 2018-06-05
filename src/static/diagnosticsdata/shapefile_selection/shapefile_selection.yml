@@ -9,7 +9,7 @@ contact:
 description_short: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
 description_file: 'shapefile_selection/description.md'
 report_file:
-media: diagnosticsdata/shapefile_selection/Basin_grid2.png
+#media: diagnosticsdata/shapefile_selection/Basin_grid2.png
 enableEnsembleAnomalyPlots:
 reference:
 settings:
