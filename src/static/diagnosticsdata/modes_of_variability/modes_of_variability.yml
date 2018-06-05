@@ -1,0 +1,30 @@
+---
+name: Modes of variability
+partner: BSC
+authors:
+  - Alasdair Hunter
+  - Nicolau Manubens
+  - Louis-Philippe Caron
+  - Javier Vegas.
+contact:
+  - Alasdair Hunter @alasdairhunter
+  - Nicolau Manubens @nmanuben
+description_short: Tool to compute modes of variability for a set of predefined regions, e.g. the Euro-North Atlantic region.
+description_file: 'modes_of_variability/description.md'
+report_file: report.pdf
+references:
+  - "Fučkar, Neven S., Virginie Guemas, Nathaniel C. Johnson, François Massonnet, and Francisco J. Doblas-Reyes. \"Clusters of interannual sea ice variability in the northern hemisphere.\" Climate Dynamics 47, no. 5-6 (2016): 1527-1543."
+settings:
+  - Region:
+      - Arctic
+  - Models:
+      - NASA
+  - Variable:
+      - sic
+  - ncenters: 4
+  - cluster_method: "kmeans"
+  -  EOFS: "FALSE"
+  - detrend: 2
+  - Experiment: NULL
+title: Modes of variability
+youtube:

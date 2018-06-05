@@ -23,5 +23,5 @@ settings:
   - Indices: tx90p, tx10p, cdd, rx5day, wx
   - Weights: NULL
   - Experiment: RCP8.5
-title: ACI components
+title: Single and multi-model indices based on area averages
 youtube: 
