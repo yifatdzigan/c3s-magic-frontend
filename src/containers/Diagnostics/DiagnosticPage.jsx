@@ -261,7 +261,7 @@ export default class DiagnosticPage extends Component {
                       showstyleselector: this.getElementProperty('enableADAGUC', 'showstyleselector')
                     }}
                     parsedLayerCallback={(layer, webMapJSInstance) => {
-                      console.log('webMapJSInstance', webMapJSInstance);
+                      // console.log('webMapJSInstance', webMapJSInstance);
                       layer.zoomToLayer();
                       webMapJSInstance.draw();
                     }}

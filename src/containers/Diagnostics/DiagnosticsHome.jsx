@@ -137,10 +137,13 @@ export default class DiagnosticsHome extends Component {
 
       return (
         <div className='vspace2em'>
+
           <Container>
-            <Row>
+          <Row>
+            <Button className='OverviewButton' color="success" onClick={this.switchOverview}> Back to the overview </Button>
+          </Row>
+             <Row>
               <Col sm="12" md={{ size: 12, offset: 0 }}>
-                <Button color="success" onClick={this.switchOverview}> Back to the overview </Button>
                 <DiagnosticPage yamlFile={destinationPage} />
               </Col>
             </Row>
