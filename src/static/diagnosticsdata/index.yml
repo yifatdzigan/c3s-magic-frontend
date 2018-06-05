@@ -7,7 +7,7 @@ diagnostics:
 #        info_file: test/test_diag.yml
 #        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
 #        github_issue:
-    diagnostics_1:
+    anomaly_agreement:
         id: 1
         title: Anomaly Agreement
         sub_title:
@@ -15,14 +15,14 @@ diagnostics:
         info_file: anomaly_agreement/anomaly_agreement.yml
         image_file: diagnosticsdata/anomaly_agreement/bsc_anomaly_timeseries.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
-    diagnostics_101:
+    risk_index:
         id: 101
-        title: ACI components
+        title: Insurance risk indices
         sub_title:
         info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
         info_file: risk_index/risk_index.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
-    diagnostics_2:
+    annularmodes:
         id: 2
         title: Indices of annular modes
         sub_title:
@@ -30,7 +30,7 @@ diagnostics:
         info_file: annularmodes/annularmodes.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_3:
+    rainfarm:
         id: 3
         title: RainFARM stochastic downscaling
         sub_title:
@@ -38,7 +38,7 @@ diagnostics:
         info_file: rainfarm/rainfarm.yml
         image_file: diagnosticsdata/rainfarm/rainfarm_thumbnail.png
         github_issue:
-    diagnostics_4:
+    ensclus:
         id: 4
         title: EnsClus - Ensemble Clustering
         sub_title:
@@ -46,7 +46,7 @@ diagnostics:
         info_file: ensclus/ensclus.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_5:
+    teleconnections:
         id: 5
         title: Teleconnection indices and weather regimes
         sub_title:
@@ -54,7 +54,7 @@ diagnostics:
         info_file: teleconnections/teleconnections.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_6:
+    hyint:
         id: 6
         title: Hydroclimatic intensity (HyInt) and extremes
         sub_title:
@@ -62,7 +62,7 @@ diagnostics:
         info_file: hyint/hyint.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_7:
+    blocking:
         id: 7
         title: Blocking metrics and indices
         sub_title:
@@ -70,7 +70,7 @@ diagnostics:
         info_file: blocking/blocking.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_8:
+    quantilebias:
         id: 8
         title: Precipitation quantile bias
         sub_title:
@@ -78,7 +78,7 @@ diagnostics:
         info_file: quantilebias/quantilebias.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_9:
+    stratosphere-troposphere:
         id: 9
         title: Stratosphere-troposphere coupling
         sub_title:
@@ -86,7 +86,7 @@ diagnostics:
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_10:
+    hyint_timeseries:
         id: 10
         title: HyInt and ETCCDI trends and significance testing
         sub_title:
@@ -94,7 +94,7 @@ diagnostics:
         info_file: hyint_timeseries/hyint_timeseries.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_11:
+    correlations:
         id: 11
         title: Climate explorer Correlate a field with a timeseries
         sub_title:
@@ -110,7 +110,7 @@ diagnostics:
 #        info_file: modes_of_variability/modes_of_variability.yml
 #        image_file: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=400&h=250
 #        github_issue:
-    diagnostics_12:
+    combine_indices:
         id: 12
         title: Single and multi-model indices based on area averages
         sub_title:
@@ -118,7 +118,7 @@ diagnostics:
         info_file: combine_indices/combine_indices.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_13:
+    dtr:
         id: 13
         title: Diurnal Temperature Variation (DTR) Indicator
         sub_title:
@@ -126,7 +126,7 @@ diagnostics:
         info_file: dtr/dtr.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_14:
+    extreme_spells:
         id: 14
         title: Extreme Spells (Energy)
         sub_title:
@@ -134,15 +134,7 @@ diagnostics:
         info_file: extreme_spells/extreme_spells.yml
         image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
         github_issue:
-    diagnostics_15:
-        id: 15
-        title: Insurance risk indices
-        sub_title:
-        info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
-        info_file: risk_index/risk_index.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
-        github_issue:
-    diagnostics_16:
+    shapefile_selection:
         id: 16
         title: Shapefile selection
         sub_title:
@@ -150,7 +142,7 @@ diagnostics:
         info_file: shapefile_selection/shapefile_selection.yml
         image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
         github_issue:
-    diagnostics_17:
+    drought_indicator:
         id: 17
         title: Drought indicator
         sub_title:
@@ -158,3 +150,20 @@ diagnostics:
         info_file: drought_indicator/drought_indicator.yml
         image_file: ./diagnosticsdata/drought_indicator/dryfreq.png
         github_issue:
+    perfmetrics:
+        id: 18
+        title: Performance metrics
+        sub_title:
+        info_text: Performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected "Essential Climate Variables"
+        info_file: perfmetrics/perfmetrics.yml
+        image_file: ./diagnosticsdata/perfmetrics/Portait.png
+        github_issue:
+    smpi:
+        id: 19
+        title: Single Model Performance index
+        sub_title:
+        info_text: This diagnostic calculates the Single Model Performance Index (SMPI) following Reichler and Kim (2008).
+        info_file: smpi/smpi.yml
+        image_file: ./diagnosticsdata/smpi/Single.png
+        github_issue:
+
