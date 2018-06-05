@@ -77,6 +77,6 @@ settings:
   - start_projection: "1980-01-01"
   - end_projection: "2012-12-01"
   - Experiment: historical
-title: Portrait diagram 
+title: Performance metrics
 
 youtube: 
