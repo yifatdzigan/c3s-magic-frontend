@@ -29,7 +29,7 @@ diagnostics:
         sub_title:
         info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the stratosphere-troposphere coupling
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/stratosphere-troposphere/test250.png
         github_issue:
     # a.k.a weather regimes https://github.com/nmanuben/ESMValTool/blob/bsc_wp5/esmvaltool/namelists/namelist_weather_regime.yml
     modes_of_variability:
@@ -38,7 +38,7 @@ diagnostics:
         sub_title:
         info_text: Tool to compute the RMSE between the observed and modelled patterns of variability obtained through classification and their relative relative bias in the percentage of occurrence and the persistence of each mode.
         info_file: modes_of_variability/modes_of_variability.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: ./diagnosticsdata/modes_of_variability/era_interim_1990-01-2010-01_clusters.png
         github_issue:
     hyint:
         id: 6
