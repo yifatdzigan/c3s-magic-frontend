@@ -13,7 +13,7 @@ description_short: This namelist implements the MId-Latitude Evaluation System (
 description_file: 'teleconnections/description.md'
 #media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
 enableADAGUC:
-  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP4-6_ISAC_miles
+  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP6_ISAC_teleconnections
   - projectionbutton: true
   - layerselector: true
   - timeselector: true

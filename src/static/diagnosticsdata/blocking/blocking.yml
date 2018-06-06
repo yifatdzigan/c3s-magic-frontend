@@ -8,6 +8,7 @@ authors:
   - Enrico Arnone (ISAC-CNR, Italy)
 contact:
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
+  - Paolo Davini p.davini@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
 description_short: This tool calculates mid-latitude 1D and 2D blocking indices
 description_file: 'blocking/description.md'
