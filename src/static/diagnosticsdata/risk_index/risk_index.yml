@@ -12,6 +12,7 @@ contact:
 description_short: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
 description_file: 'risk_index/description.md'
 report_file: report.pdf
+media: diagnosticsdata/risk_index/insurance_risk_indices.png
 enableADAGUC:
   - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP7_BSC_ACI_Components
   - projectionbutton: true

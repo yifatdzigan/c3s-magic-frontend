@@ -78,7 +78,7 @@ diagnostics:
         sub_title:
         info_text: Tool to compute single and multi model indices based on area averages.
         info_file: combine_indices/combine_indices.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/combine_indices/single_and_multi_model_indices_thumbnail.png
         github_issue:
     annularmodes:
         id: 2
@@ -143,7 +143,7 @@ diagnostics:
         sub_title:
         info_text: Tool to durations of heatwaves and coldwaves, to help understand changes in energy demand.
         info_file: extreme_spells/extreme_spells.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/extreme_spells/extreme_spells_energy.png
         github_issue:
     dtr:
         id: 13
@@ -151,7 +151,7 @@ diagnostics:
         sub_title:
         info_text: Tool to compute the Diurnal temperature indicator, which can be used to estimate energy demand.
         info_file: dtr/dtr.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/dtr/diurnal_temperature_variation.png
         github_issue:
     risk_index:
         id: 101
@@ -159,7 +159,7 @@ diagnostics:
         sub_title:
         info_text: Tool to compute extremes indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
         info_file: risk_index/risk_index.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/risk_index/insurance_risk_indices.png
 #    diagnostics_100:
 #        id: 100
 #        title: Test Diagnostic

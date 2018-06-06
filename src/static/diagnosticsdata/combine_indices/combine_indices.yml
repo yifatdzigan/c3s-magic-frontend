@@ -11,7 +11,7 @@ contact:
   - Nicolau Manubens @nmanuben
 description_short: Tool to compute single and multi model indices based on area averages.
 description_file: 'combine_indices/description.md'
-media: https://placeholdit.imgix.net/~text?txtsize=33&txt=Place%20Holder%20Image&w=512&h=360
+media: diagnosticsdata/combine_indices/single_and_multi_model_indices.png
 report_file: report.pdf
 references:
   - 'Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. "An R package for climate forecast verification." Environmental Modelling & Software 103 (2018): 29-42.'
