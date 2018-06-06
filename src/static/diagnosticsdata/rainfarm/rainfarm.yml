@@ -8,8 +8,7 @@ authors:
 contact:
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
-description_short: | Tool to perform stochastic precipitation downscaling, generating an ensemble of fine-scale precipitation fields from information simulated by climate models at regional scale
-
+description_short: Tool to perform stochastic precipitation downscaling, generating an ensemble of fine-scale precipitation fields from information simulated by climate models at regional scale.
 description_file: 'rainfarm/description.md'
 #media used as an alternative to a live adaguc viewer
 #media: diagnosticsdata/rainfarm/RainFARM_example_64x64.png

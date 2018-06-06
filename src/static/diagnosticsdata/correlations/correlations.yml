@@ -6,7 +6,7 @@ authors:
   - Geert Jan van Oldenborgh (KNMI, The Netherlands)
   - Maarten Plieger (KNMI, The Netherlands)
 contact:
-  - Geert Jan van Oldenborgh gert.jan.van.oldenborgh@knmi.nl
+  - Geert Jan van Oldenborgh gert.jan.van.olderenborgh@knmi.nl
   - Maarten Plieger maarten.plieger@knmi.nl
 description_short: Climate explorer allows the user to correlate a time series with other user-defined time series, as well as with system-defined time series of the same temporal resolution
 description_file: 'correlations/description.md'

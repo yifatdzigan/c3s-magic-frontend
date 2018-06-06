@@ -19,8 +19,8 @@ enableADAGUC:
   - timeselector: true
   - styleselector: true
   - layers: []
-reference:
-  - Mehran, A. et al., 2014, Journal of Geophysical Research (Atmospheres), Volume 119, Issue 4, pp. 1695-1707
+references:
+  - "Mehran, A. et al., 2014, Journal of Geophysical Research (Atmospheres), Volume 119, Issue 4, pp. 1695-1707"
 settings:
   - Models:
       - MPI-ESM-P

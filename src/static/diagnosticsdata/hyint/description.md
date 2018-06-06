@@ -1,7 +1,7 @@
 This namelist implements the HyInt tool to calculate a set of 6 indices that allow to evaluate the response of the hydrological cycle to global warming with a joint view of both wet and dry extremes. The indices were selected following Giorgi et al. (2014)':' the simple precipitation intensity index (SDII), the maximum dry spell length (DSL) and wet spell length (WSL), the hydroclimatic intensity index (HY-INT = normalized(SDII) x normalized(DSL)), a measure of the overall behaviour of the hydroclimatic cycle (Giorgi et al., 2011), and the precipitation area (PA), i.e. the area over which at any given day precipitation occurs, (Giorgi et al., 2014). The tool can then produce multi-model and multi-indices maps including the 27 ETCDDI climate extreme indices. 
 
 Figure: output figure type 1 for the hyint index calculated for EC-Earth rcp85 multi year mean over 1976-2100
-![example output](diagnosticsdata/rainfarm/hyint_EC-Earth_rcp85_r8i1p1_r320x160_1976_2100_ALL_myear-mean_Globe_map.png "Example Output")
+![example output](diagnosticsdata/hyint/hyint_EC-Earth_rcp85_r8i1p1_r320x160_1976_2100_ALL_myear-mean_Globe_map.png "Example Output")
 
 ### Description of user-changeable settings on webpage: 
 
