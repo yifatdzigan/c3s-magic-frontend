@@ -1,9 +1,16 @@
-zmNAM is a Python tool which is used to evaluate the Northern Annular Mode in reanalysis and climate model simulations.
-    The calculations is based on that of Baldwin and Thompson 2009, and requires the geopotential height field on pressure levels, both in monthly averages (time-lev-lat-lon) and zonal mean daily averages (time-lev-lat). An EOF/PC decomposition of the zonal mean daily geopotential is used to derive latitude-dependent patterns and the associated time series. From these time series it is possible to obtain the probability distribution function of the boreal variability, as periods of stronger and weaker circulation are related to the tails of the distribution. By using monthly averaged daily PCs, it is possible to construct regression maps of the geopotential height, and the zonal averaging of the input fields allows to reduce the influence of other teleconnection patterns, such as those of the Pacific Ocean. The computational cost of this procedure is lower than other methods, which require much more data at high temporal resolution. This calculation can be performed on any climate model simulations for which the data are available, and then the results can be compared with those obtained for the climatology of modern reanalysis systems. The output of the diagnostics are both netCDF files and plots. For the netCDF files, daily timeseries on different pressure levels, and regression maps (so that further calculations are possible) are produced. For the plots, timeseries on specified levels, histograms of the index, and regression maps are provided.
+This python tool is based on the algorithm proposed by [Baldwin and Thompson, 2009], and requires the daily geopotential height field on pressure levels as input. The method is based on an EOF/PC decomposition of the zonally averaged geopotential height, with the leading pattern of variability representative of the (zonal mean) NAM. The calculation is independently repeated at each available pressure level. The daily index can be used to characterize episodic variability of the stratosphere-troposphere connection, while regression on the monthly averaged index is used to quantify the signature of the NAM on the hemispheric climate.
 
-![example output](diagnosticsdata/stratosphere-troposphere/test50.png "Example Output")
+To evaluate the modelled strat-trop coupling, the metric is based on the spatial patterns of the zonal mean NAM index. This is obtained by projecting monthly anomalies of the geopotential height field onto the monthly averaged index, then normalized. The well-known annular pattern emerges at upper levels, and it is generally less longitudinally symmetric moving towards the surface.
+Having calculated the reanalysis-based spatial patterns, it is possible to compute the difference between these patterns and those reproduced by climate models. The resulting spatial patterns can be used to assess the differences in the strength of this mode of variability and the latitudinal extent.
 
 ![example output](diagnosticsdata/stratosphere-troposphere/test250.png "Example Output")
 
-![example output](diagnosticsdata/stratosphere-troposphere/test1000.png "Example Output")
+### Description of user-changeable settings on webpage
+
+1) Selection of model;
+
+2) Selection of period;
+
+3) Selection of supplementary pressure levels
+
 

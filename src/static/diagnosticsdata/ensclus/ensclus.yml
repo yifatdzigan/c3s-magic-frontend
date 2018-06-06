@@ -4,10 +4,8 @@ name: EnsClus - Ensemble Clustering
 title: Ensemble Clustering - cluster analysis tool based on the k-means algorithm for ensembles of climate model simulations
 partner: ISAC-CNR
 authors:
-  - Jost von Hardenberg (ISAC-CNR, Italy)
   - Irene Mavilia (ISAC-CNR, Italy)
   - Susanna Corti (ISAC-CNR, Italy)
-  - Enrico Arnone (ISAC-CNR, Italy)
 contact:
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
@@ -24,24 +22,21 @@ enableADAGUC:
 references:
   - "Straus, D. M., S. Corti, and F. Molteni, 2007':' Circulation regimes':' Chaotic variability vs. SST forced predictability. J. Climate, 20, 2251–2272"
 settings:
-  - Models:
-      - ACCESS1-0
-      - ACCESS1-3
-      - CanESM2
-      - CCSM4
-      - CESM1-BGC
-  - Variable: pr
-  - Number ensemble members: 5
-  - Season: 'JJA'
-  - Area: 'Eu'
+  - Models: ECEARTH31
+  - Varname: pr
+  - Number of ensemble members: 60
+  - Season: JJA
+  - Area: Eu
   - Experiment: Historical
-  - Start year: 1850
-  - End year: 2005
-  - Number of clusters: 3
-  - Extreme: '75th_percentile'
-  - Percentage of variance explained by PCs: 80
-  - Number of PCs: 'no'
+  - Start year: 1979
+  - End year: 2008
+  - Extreme: 75th_percentile
+  - Number of clusters: 6
+  - Percentage of variance explained by PCs (perc): 80
+  - Number of PCs (numpcs): 'no' 
 youtube: MktvzcvflL8
+
+
 
 
 
