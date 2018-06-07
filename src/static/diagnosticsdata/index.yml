@@ -33,7 +33,7 @@ diagnostics:
         github_issue:
     # a.k.a weather regimes https://github.com/nmanuben/ESMValTool/blob/bsc_wp5/esmvaltool/namelists/namelist_weather_regime.yml
     modes_of_variability:
-        id: 11
+        id: 112
         title: Modes of variability
         sub_title:
         info_text: Tool to compute the RMSE between the observed and modelled patterns of variability.
@@ -112,7 +112,14 @@ diagnostics:
         info_file: correlations/correlations.yml
         image_file: ./diagnosticsdata/correlations/climexp_correlations.png
         github_issue:
-    #surge_height (missing)
+    surge_height_estimator:
+        id: 122
+        title: Surge Height Estimator
+        sub_title:
+        info_text: Diagnostic to estimate surge levels along the coast of the North Sea from anomalies in mean sea level pressure and wind components.
+        info_file: surge_height/surge_height.yml
+        image_file: diagnosticsdata/surge_height/surge_height_thumbnail.png
+        github_issue:
     drought_indicator:
         id: 17
         title: Drought indicator
