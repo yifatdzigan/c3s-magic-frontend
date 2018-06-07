@@ -3,10 +3,11 @@ id: 1
 name: Teleconnection indices and weather regimes
 partner: ISAC-CNR
 authors:
-  - Jost von Hardenberg (ISAC-CNR, Italy)
   - Paolo Davini (ISAC-CNR, Italy)
+  - Jost von Hardenberg (ISAC-CNR, Italy)
   - Enrico Arnone (ISAC-CNR, Italy)
 contact:
+  - Paolo Davini p.davini@isac.cnr.it
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
 description_short: This namelist implements the MId-Latitude Evaluation System (MiLES) providing teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
@@ -19,9 +20,7 @@ enableADAGUC:
   - timeselector: true
   - styleselector: true
   - layers: []
-reference:
-  - Davini, P., C. Cagnazzo, S. Gualdi, and A. Navarra, 2012':' Bidimensional Diagnostics, Variability, and Trends of Northern Hemisphere Blocking. J. Climate, 25, 6496–6509, doi':' 10.1175/JCLI-D-12-00032.1
-  - Tibaldi S, Molteni F. 1990. On the operational predictability of blocking. Tellus A 42(3)':' 343–365, doi':'10.1034/j.1600- 0870.1990.t01- 2- 00003.x
+reference: Dawson, A., T. N. Palmer, and S. Corti 2012, “Simulating regime structures in weather and climate prediction models”, Geophys. Res. Lett., 39, L21805, doi:10.1029/2012GL053284; Straus D. M., S. Corti and F. Molteni, 2007: Circulation Regimes: Chaotic Variability vs. SST-Forced Predictability. Journal of Climate, 20, 2251-2272; Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo. http://doi.org/10.5281/zenodo.1237838
 settings:
   - Models:
       - MPI-ESM-P
