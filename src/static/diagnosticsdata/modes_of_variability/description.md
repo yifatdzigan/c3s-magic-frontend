@@ -1,4 +1,4 @@
-Tool to compute modes of variability for a set of predefined regions. This is done by k-means clustering applied either to the anomalies for the user selected field or after computing the EOFs. The user has the option to detrend the data, e.g. for Arctic sea ice, 2nd order polynomial detrending is recommended. The output includes plots of the mean anomaly for the input field for each mode, time series of the occurence of the modes and the frequency and persistence of each mode.
+Tool to compute the RMSE between the observed and modelled patterns of variability obtained through classification and their relative relative bias in the percentage of occurrence and the persistence of each mode. Modes of variability are first obtained through EOFs and/or k-mean clustering applied to the anomalies for any season or month, where the user can specify the number of clusters to be computed (e.g. 3 for Arctic sea ice or 4 for North Atlantic sea level pressure). The user also has the option to remove linear or second order trends from the data before obtaining the modes.
 
 
     Description of user-changeable settings on webpage':'
