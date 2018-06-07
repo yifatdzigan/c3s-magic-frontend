@@ -18,7 +18,8 @@ description_file: 'hyint_timeseries/description.md'
 #  - timeselector: true
 #  - styleselector: true
 #  - layers: []
-reference: Giorgi et al., 2014, J. Geophys. Res. Atmos., 119, 11,695–11,708, doi:10.1002/ 2014JD022238; Giorgi et al., 2011, J. Climate 24, 5309-5324, doi:10.1175/2011JCLI3979.1
+references:
+  - "Giorgi et al., 2014, J. Geophys. Res. Atmos., 119, 11,695–11,708, doi:10.1002/ 2014JD022238; Giorgi et al., 2011, J. Climate 24, 5309-5324, doi:10.1175/2011JCLI3979.1"
 settings:
   - Models:
       - EC-Earth
