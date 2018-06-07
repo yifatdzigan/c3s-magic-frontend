@@ -2,14 +2,16 @@
 name: Modes of variability
 partner: BSC
 authors:
+  - Verónica Torralba
+  - Neven Fuckar
+  - Nicola Cortesi
+  - Virginie Guemas
   - Alasdair Hunter
   - Nicolau Manubens
-  - Louis-Philippe Caron
-  - Javier Vegas.
 contact:
   - Alasdair Hunter @alasdairhunter
   - Nicolau Manubens @nmanuben
-description_short: Tool to compute modes of variability for a set of predefined regions, e.g. the Euro-North Atlantic region.
+description_short: Tool to compute the RMSE between the observed and modelled patterns of variability obtained through classification and their relative relative bias (percentage) in the frequency of occurrence and the persistence of each mode.
 description_file: 'modes_of_variability/description.md'
 media: diagnosticsdata/modes_of_variability/era_interim_1990-01-2010-01_clusters.png
 report_file: report.pdf

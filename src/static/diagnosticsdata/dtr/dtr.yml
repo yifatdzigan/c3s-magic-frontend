@@ -1,16 +1,18 @@
 ---
-name: Diurnal Temperature Variation (DTR) Indicator
+name: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
 partner: BSC
 authors:
+  - Llorenç Lledó 
+  - Nube González
   - Alasdair Hunter
   - Nicolau Manubens
   - Louis-Philippe Caron
-  - Javier Vegas.
+  - Javier Vegas
   - Dragana Bojovic
 contact:
   - Alasdair Hunter @alasdairhunter
   - Nicolau Manubens @nmanuben
-description_short: Tool to compute the Diurnal temperature indicator, which can be used to estimate energy demand.
+description_short: Tool to compute the diurnal temperature indicator to estimate energy demand, and the wind capacity factor to estimate energy supply.
 description_file: 'dtr/description.md'
 media: diagnosticsdata/dtr/diurnal_temperature_variation.png
 report_file: report.pdf
@@ -24,5 +26,5 @@ settings:
   - start_projection: "1960-01-01"
   - end_projection: "1991-12-01"
   - Experiment: RCP8.5
-title: DTR indicator
+title: Energy indicators
 youtube: 
