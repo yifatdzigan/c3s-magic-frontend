@@ -54,7 +54,7 @@ diagnostics:
         sub_title:
         info_text: This tool calculates the quantile bias between models and a reference dataset
         info_file: quantilebias/quantilebias.yml
-        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
+        image_file: diagnosticsdata/quantilebias/quantilebias_thumbnail.png
         github_issue:
     anomaly_agreement:
         id: 1

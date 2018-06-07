@@ -20,7 +20,7 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 references:
-  - "Straus, D. M., S. Corti, and F. Molteni, 2007':' Circulation regimes':' Chaotic variability vs. SST forced predictability. J. Climate, 20, 2251–2272"
+  - "Straus, D. M., S. Corti, and F. Molteni, 2007: Circulation regimes: Chaotic variability vs. SST forced predictability. J. Climate, 20, 2251–2272"
 settings:
   - Models: ECEARTH31
   - Varname: pr
