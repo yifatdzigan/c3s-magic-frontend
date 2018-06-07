@@ -6,7 +6,7 @@ Regarding the EOF analysis, the user can choose either how many Principal Compon
 
 Other outputs refer to the statistics of clustering: in the PC space, the minimum and the maximum distance between a member in a cluster and the cluster centroid (i.e. the closest and the furthest member), the intra-cluster standard deviation for each cluster (i.e. how much the cluster is compact).
 
-![example output](diagnosticsdata/teleconnections/JJApranomaly_hist-min.png "Example output")
+![example output](diagnosticsdata/ensclus/JJApranomaly_hist-min.png "Example output")
 
 ### Description of user-changeable settings on webpage
 
