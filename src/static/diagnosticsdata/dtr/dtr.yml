@@ -26,5 +26,5 @@ settings:
   - start_projection: "1960-01-01"
   - end_projection: "1991-12-01"
   - Experiment: RCP8.5
-title: Energy indicators
+title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
 youtube: 
