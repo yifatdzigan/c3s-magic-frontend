@@ -87,7 +87,9 @@ import TitleComponent from '../containers/TitleComponent';
 import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
 
-import WPSWranglerDemo from '../components/WPSWranglerDemo';
+import WPSBinaryOperator from '../components/WPSBinaryOperator';
+
+import RechartsDemo from '../components/RechartsDemo';
 
 import EnsembleAnomalyPlots from '../containers/Diagnostics/EnsembleAnomalyPlots';
 
@@ -167,8 +169,6 @@ export const createRoutes = (store) => {
 
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
-  const wpsdemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSWranglerDemo));
-
   const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapStateToAnomalyEnsembleProps)(EnsembleAnomalyPlots));
 
   const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
@@ -193,9 +193,13 @@ export const createRoutes = (store) => {
 
       <Route path='diagnostics/:diag' title='Diagnostics' header={mainmenu} component={DiagnosticsHome} />
 
-      <Route path='demo' title='Demo'>
-        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={wpsdemo} />
+      <Route path='calculator' title='Demo'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSBinaryOperator))} />
       </Route>
+      <Route path='recharts' title='Demo'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))} />
+      </Route>
+
       <Route path='actuaries' title='actuariesDemo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={actuariesDemo} />
       </Route>
