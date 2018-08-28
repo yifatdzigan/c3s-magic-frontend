@@ -16,7 +16,7 @@ export default class WP1Home extends Component {
             </div>
           </Col>
           <Col xs='6'>
-            <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/wms?DATASET=anomaly_agreement_stippling&'} />
+            <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'} />
           </Col>
 
         </Row>
