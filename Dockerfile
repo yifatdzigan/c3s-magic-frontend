@@ -10,7 +10,7 @@ RUN npm run deploy:prod
 # Install `serve` to run the application.
 RUN npm install -g serve
 # Set the command to start the node server.
-CMD echo "const config = { 'backendHost': '${CONTROLLER}', 'adagucServicesHost': '${COMPUTE}',  'adagucViewerURL' : '${VIEWER}' };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
+CMD echo "const config = { 'backendHost': '${BACKEND}', 'adagucServicesHost': '${COMPUTE}',  'adagucViewerURL' : '${VIEWER}', 'staticWMS' : {STATICWMS} };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
 
 EXPOSE 5000
 
