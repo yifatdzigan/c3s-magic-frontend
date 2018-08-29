@@ -1,8 +1,7 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
-
+import { xml2jsonparser } from '../utils/xml2jsonparser';
 class RenderProcesses extends Component {
   renderProcess (process) {
     // console.log(process);
@@ -81,19 +80,6 @@ export default class WPSWranglerDemo extends Component {
   };
 
   calculateClicked () {
-// try {
-//       let wps = 'http://145.23.212.232:5000/?service=wps&request=Execute&identifier=sleep&version=1.0.0&storeExecuteResponse=true&status=true&';
-//       let statusUpdateCallback = (message, percentageComplete) => {
-//         console.log(message, percentageComplete);
-//       };
-//       let executeCompletCallback = (json, processSucceeded) => {
-//         console.log(json, processSucceeded);
-//       };
-//       doWPSExecuteCall(wps, statusUpdateCallback, executeCompletCallback);
-//     } catch (e) {
-//       console.log(e);
-//     }
-
     const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
     dispatch(actions.startWPSExecute(domain, 'binaryoperatorfornumbers_10sec',
       '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
@@ -105,6 +91,16 @@ export default class WPSWranglerDemo extends Component {
       [name]: value
     });
   };
+
+  describeProcess () {
+    console.log('Starting describeProcess');
+    let url = 'https://climate4impact.eu/impactportal/WPS?service=WPS&version=1.0.0&request=describeprocess&identifier=is_enes_wps_polygonoverlay';
+    xml2jsonparser(url).then(result => {
+      console.log(JSON.stringify(result, null, 2));
+    }).catch(e => {
+      console.log(e);
+    });
+  }
 
   render () {
     const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
@@ -129,6 +125,7 @@ export default class WPSWranglerDemo extends Component {
           <Col xs='2'><Input onChange={(event) => { this.handleChange('inputb', event.target.value); }} value={this.state.inputb} /></Col>
           <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.calculateClicked(); }}>Calculate</Button></Col>
         </Row>
+        <Button onClick={this.describeProcess} >DescribeProcess</Button>
         <p>nrOfStartedProcesses: {nrOfStartedProcesses}</p>
         <p>nrOfFailedProcesses: {nrOfFailedProcesses}</p>
         <p>nrOfCompletedProcesses: {nrOfCompletedProcesses}</p>
