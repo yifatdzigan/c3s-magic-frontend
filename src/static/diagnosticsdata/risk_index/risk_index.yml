@@ -14,7 +14,7 @@ description_file: 'risk_index/description.md'
 report_file: report.pdf
 media: diagnosticsdata/risk_index/insurance_risk_indices.png
 enableADAGUC:
-  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP7_BSC_ACI_Components
+  - data_url: https://portal.c3s-magic.eu/backend/wms?DATASET=WP7_BSC_ACI_Components
   - projectionbutton: true
   - layerselector: true
   - timeselector: true

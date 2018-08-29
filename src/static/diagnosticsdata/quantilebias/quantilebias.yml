@@ -13,7 +13,7 @@ description_short: This tool calculates the quantile bias between models and a r
 description_file: 'quantilebias/description.md'
 #media: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360'
 enableADAGUC:
-  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP4_ISAC_quantilebias
+  - data_url: https://portal.c3s-magic.eu/backend/wms?DATASET=WP4_ISAC_quantilebias
   - projectionbutton: true
   - layerselector: true
   - timeselector: true
