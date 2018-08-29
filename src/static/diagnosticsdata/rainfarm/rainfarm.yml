@@ -13,7 +13,7 @@ description_file: 'rainfarm/description.md'
 #media used as an alternative to a live adaguc viewer
 #media: diagnosticsdata/rainfarm/RainFARM_example_64x64.png
 enableADAGUC:
-  - data_url: https://portal.c3s-magic.eu/wms?DATASET=WP7_ISAC_rainfarm
+  - data_url: https://portal.c3s-magic.eu/backend/wms?DATASET=WP7_ISAC_rainfarm
   - projectionbutton: true
   - layerselector: true
   - timeselector: true

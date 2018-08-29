@@ -10,10 +10,10 @@ RUN npm run deploy:prod
 # Install `serve` to run the application.
 RUN npm install -g serve
 # Set the command to start the node server.
-CMD echo "const config = { 'backendHost': '${BACKEND}', 'adagucServicesHost': '${COMPUTE}',  'adagucViewerURL' : '${VIEWER}', 'staticWMS' : {STATICWMS} };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist
+CMD echo "const config = { 'backendHost': '${BACKEND}', 'adagucServicesHost': '${COMPUTE}',  'adagucViewerURL' : '${VIEWER}', 'staticWMS' : '${STATICWMS}' };" > /frontend/c3s-magic-frontend/dist/config.js && serve -s dist --listen 80
 
-EXPOSE 5000
+EXPOSE 80
 
 #docker build -t c3s-magic-frontend .
-#docker run -e COMPUTE="https://portal.c3s-magic.eu:9000" -e CONTROLLER="https://portal.c3s-magic.eu:443" -e VIEWER=https://portal.c3s-magic.eu:8080 -p 8081:3000 -it c3s-magic-frontend
+#docker run -e COMPUTE="https://compute:9000" -e BACKEND="https://portal.c3s-magic.eu/backend" -e VIEWER=https://portal.c3s-magic.eu/adaguc-viewer -e "STATICWMS=https://portal.c3s-magic.eu/backend/wms" -p 8080:80 -it c3s-magic-frontend
 
