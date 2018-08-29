@@ -43,7 +43,7 @@ export default class RechartsDemo extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       scatterdata: { tas:[], tas_0:[] },
-      dataurl:'https://compute-test.c3s-magic.eu:9001/adagucopendap/ch09_fig09-42a.nc',
+      dataurl:'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc',
       error:''
     };
     this.loaddap();
