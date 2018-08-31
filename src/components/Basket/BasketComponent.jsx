@@ -12,9 +12,9 @@ export default class BasketComponent extends Component {
   }
 
   render () {
-    const { basket, dispatch, actions, accessToken, domain } = this.props;
+    const { basket, dispatch, actions, accessToken, backend } = this.props;
     return (
-      <BasketTreeComponent data={basket} dispatch={dispatch} actions={actions} accessToken={accessToken} domain={domain} />
+      <BasketTreeComponent data={basket} dispatch={dispatch} actions={actions} accessToken={accessToken} backend={backend} />
     );
   }
 }
@@ -24,5 +24,5 @@ BasketComponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   accessToken: PropTypes.string,
-  domain: PropTypes.string
+  backend: PropTypes.string
 };

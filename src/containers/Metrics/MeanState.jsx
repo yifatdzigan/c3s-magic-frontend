@@ -5,14 +5,14 @@ import ESMValToolPerfmetrics from '../../components/NewESMValToolPerfmetrics';
 
 export default class MeanState extends Component {
   render () {
-    let { dispatch, actions, domain, nrOfStartedProcesses, nrOfFailedProcesses, nrOfCompletedProcesses, runningProcesses } = this.props;
+    let { dispatch, actions, backend, nrOfStartedProcesses, nrOfFailedProcesses, nrOfCompletedProcesses, runningProcesses } = this.props;
     return (
       <div className='MainViewport'>
         <Row className='MainRow'>
           <ESMValToolPerfmetrics
             dispatch={dispatch}
             actions={actions}
-            domain={domain}
+            backend={backend}
             nrOfStartedProcesses={nrOfStartedProcesses}
             nrOfFailedProcesses={nrOfFailedProcesses}
             nrOfCompletedProcesses={nrOfCompletedProcesses}
@@ -24,7 +24,7 @@ export default class MeanState extends Component {
 }
 
 MeanState.propTypes = {
-  domain: PropTypes.string,
+  backend: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,

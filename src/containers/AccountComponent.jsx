@@ -14,8 +14,9 @@ export default class AccountComponent extends Component {
   }
 
   render () {
-    const { accessToken, emailAddress, clientId, domain } = this.props;
+    const { accessToken, emailAddress, clientId, backend, compute } = this.props;
     const { backendHost } = config;
+    console.log(this.props);
     return (
       <div className='MainViewport'>
         <Row>
@@ -38,10 +39,10 @@ export default class AccountComponent extends Component {
                 <p>Accesstoken: {accessToken}</p>
               }
               {
-                clientId !== null ? <p>Compute node: https://{domain}</p> : <p>Your Domain: Not logged in</p>
+                (compute && compute.length > 0) ? (<p>Compute Nodes:<br /><ol> {compute.map((d, i) => <li>{d.name + ' with url ' + d.url}</li>)}</ol></p>) : <p>No compute nodes found.</p>
               }
               {
-                <p>DSP Controller: {backendHost}</p>
+                <p>Backend: {backendHost}</p>
               }
             </Card>
           </Col>
@@ -54,5 +55,6 @@ AccountComponent.propTypes = {
   accessToken: PropTypes.string,
   emailAddress: PropTypes.string,
   clientId: PropTypes.string,
-  domain: PropTypes.string
+  backend: PropTypes.string,
+  compute: PropTypes.array
 };

@@ -118,7 +118,6 @@ class WPSWranglerDemo extends PureComponent {
 }
 
 WPSWranglerDemo.propTypes = {
-  domain: PropTypes.string,
   map_data: PropTypes.string.isRequired,
   showSlider: PropTypes.bool
 };

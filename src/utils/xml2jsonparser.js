@@ -41,7 +41,7 @@ export const xml2jsonparser = (url) => {
               newJson = json[nodeName];
             }
             // Value
-            if (child.childNodes && child.childNodes.length > 0 ) {
+            if (child.childNodes && child.childNodes.length > 0) {
               if (child.childNodes[0].nodeValue) {
                 let value = child.childNodes[0].nodeValue.trim();
                 if (value !== '\n' && value.length > 0) {
@@ -51,7 +51,7 @@ export const xml2jsonparser = (url) => {
             }
             // Attributes
             if (child.attributes && child.attributes.length > 0) {
-              for (let attrc = 0; attrc<child.attributes.length; attrc++) {
+              for (let attrc = 0; attrc < child.attributes.length; attrc++) {
                 newJson.attr[child.attributes[attrc].name] = child.attributes[attrc].value;
               }
             }

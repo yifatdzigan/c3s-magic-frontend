@@ -44,7 +44,7 @@ class WPSWranglerDemo extends Component {
   };
 
   wrangleClicked (id) {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
+    const { dispatch, actions, nrOfStartedProcesses, backend } = this.props;
 
     let dataInputs =
       'inputCSVPath=ExportOngevalsData.csv;' +
@@ -53,14 +53,14 @@ class WPSWranglerDemo extends Component {
       'dataVariables=image1_image_data;' +
       'limit=10';
 
-    dispatch(actions.startWPSExecute(domain, 'wrangleProcess',
+    dispatch(actions.startWPSExecute(backend, 'wrangleProcess',
       dataInputs,
       nrOfStartedProcesses));
   };
 
   calculateClicked () {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-    dispatch(actions.startWPSExecute(domain, 'binaryoperatorfornumbers_10sec',
+    const { dispatch, actions, nrOfStartedProcesses, backend } = this.props;
+    dispatch(actions.startWPSExecute(backend, 'binaryoperatorfornumbers_10sec',
       '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
   };
 
@@ -157,7 +157,7 @@ class WPSWranglerDemo extends Component {
 }
 
 WPSWranglerDemo.propTypes = {
-  domain: PropTypes.string,
+  backend: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   router: PropTypes.object,

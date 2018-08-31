@@ -27,7 +27,7 @@ export default class JobListComponent extends Component {
       return;
     }
 
-    fetch('https://' + this.props.domain + '/joblist/list?key=' + accessToken)
+    fetch('https://' + this.props.backend + '/joblist/list?key=' + accessToken)
     .then((result) => {
       if (result.ok) {
         return result.json();
@@ -50,7 +50,7 @@ export default class JobListComponent extends Component {
   deleteJobListItem () {
     if (!this.state.cursor) return;
     const { accessToken } = this.props;
-    fetch('https://' + this.props.domain + '/joblist/remove?key=' + accessToken +
+    fetch('https://' + this.props.backend + '/joblist/remove?key=' + accessToken +
       '&job=' + this.state.cursor.id)
     .then((result) => {
       if (result.ok) {
@@ -138,7 +138,7 @@ export default class JobListComponent extends Component {
 
 JobListComponent.propTypes = {
   accessToken: PropTypes.string,
-  domain: PropTypes.string,
+  backend: PropTypes.string,
   jobs: PropTypes.Array,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired

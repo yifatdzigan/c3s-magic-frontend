@@ -170,7 +170,7 @@ class BasketTreeComponent extends Component {
   uploadBasketItem () {
     this.props.dispatch(this.props.actions.showWindow(
       {
-        component:(<FileUploadComponent dispatch={this.props.dispatch} actions={this.props.actions} domain={this.props.domain} accessToken={this.props.accessToken} />),
+        component:(<FileUploadComponent dispatch={this.props.dispatch} actions={this.props.actions} backend={this.props.backend} accessToken={this.props.accessToken} />),
         title:'Upload',
         dispatch: this.props.dispatch,
         width: 700,
@@ -187,19 +187,21 @@ class BasketTreeComponent extends Component {
       }
     }
     // console.log(this.props);
+    let errorMessage = this.props.data ? this.props.data.error ? this.props.data.error : null : 'Unable to fetch basket list from server';
     return (
 
       <div className='basketTreeContainer'>
         <Row className='basketTreeContainerMainSection'>
-          { this.props.accessToken ? <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
-            {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
-            { this.props.data ? <Treebeard
-              data={this.props.data}
-              onToggle={this.onToggle}
-              style={treeBeardStyling}
-              decorators={decorators}
-            /> : <div>{this.props.accessToken ? 'Loading basket ...' : 'Not signed in.'}</div> }
-          </ScrollArea> : 'Not signed in.' }
+          { this.props.accessToken ? errorMessage ? ('Error getting basket: ' + errorMessage) : (
+            <ScrollArea speed={1} horizontal={false} contentClassName='content' className='scrollAreaBasket' >
+              {/* More about Treebeard: https://github.com/alexcurtis/react-treebeard */}
+              { this.props.data ? <Treebeard
+                data={this.props.data}
+                onToggle={this.onToggle}
+                style={treeBeardStyling}
+                decorators={decorators}
+              /> : <div>{this.props.accessToken ? 'Loading basket ...' : 'Not signed in.'}</div> }
+            </ScrollArea>) : 'Not signed in.' }
         </Row>
         { this.props.accessToken && <Row>
 
@@ -232,7 +234,7 @@ BasketTreeComponent.propTypes = {
   actions: PropTypes.object.isRequired,
   router: PropTypes.object,
   accessToken: PropTypes.string,
-  domain: PropTypes.string
+  backend: PropTypes.string
 };
 
 export default withRouter(BasketTreeComponent);

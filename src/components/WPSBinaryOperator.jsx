@@ -39,9 +39,8 @@ RenderProcesses.propTypes = {
 };
 
 export default class WPSWranglerDemo extends Component {
-  constructor () {
-    super();
-    this.wrangleClicked = this.wrangleClicked.bind(this);
+  constructor (props) {
+    super(props);
     this.toggle = this.toggle.bind(this);
     this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
     this.state = {
@@ -50,6 +49,7 @@ export default class WPSWranglerDemo extends Component {
       inputa: 10,
       inputb: 20
     };
+    console.log(props);
   }
 
   toggle (e) {
@@ -64,24 +64,9 @@ export default class WPSWranglerDemo extends Component {
     });
   };
 
-  wrangleClicked (id) {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-
-    let dataInputs =
-      'inputCSVPath=ExportOngevalsData.csv;' +
-      'metaCSVPath=metaDataCsv.json;' +
-      'dataURL=http%3A%2F%2Fopendap.knmi.nl%2Fknmi%2Fthredds%2FdodsC%2FDATALAB%2Fhackathon%2FradarFullWholeData.nc;' +
-      'dataVariables=image1_image_data;' +
-      'limit=10';
-
-    dispatch(actions.startWPSExecute(domain, 'wrangleProcess',
-      dataInputs,
-      nrOfStartedProcesses));
-  };
-
   calculateClicked () {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-    dispatch(actions.startWPSExecute(domain, 'binaryoperatorfornumbers_10sec',
+    const { dispatch, actions, nrOfStartedProcesses, compute } = this.props;
+    dispatch(actions.startWPSExecute(compute.filter(t => t.name === 'calculator')[0].url, 'binaryoperatorfornumbers_10sec',
       '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
   };
 
@@ -94,7 +79,7 @@ export default class WPSWranglerDemo extends Component {
 
   describeProcess () {
     console.log('Starting describeProcess');
-    let url = 'https://climate4impact.eu/impactportal/WPS?service=WPS&version=1.0.0&request=describeprocess&identifier=is_enes_wps_polygonoverlay';
+    let url = 'https://bovec.dkrz.de/ows/proxy/copernicus?Service=WPS&Request=GetCapabilities&Version=1.0.0';
     xml2jsonparser(url).then(result => {
       console.log(JSON.stringify(result, null, 2));
     }).catch(e => {
@@ -135,8 +120,8 @@ export default class WPSWranglerDemo extends Component {
 }
 
 WPSWranglerDemo.propTypes = {
-  accessToken: PropTypes.string,
-  domain: PropTypes.string,
+  compute: PropTypes.array,
+  backend: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,

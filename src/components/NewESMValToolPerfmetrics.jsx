@@ -90,7 +90,7 @@ export default class ESMValToolPerfmetrics extends Component {
   }
 
   wrangleClicked(id) {
-    const {dispatch, actions, nrOfStartedProcesses, domain} = this.props;
+    const {dispatch, actions, nrOfStartedProcesses, wpsDomain} = this.props;
 
     let dataInputs = '';
     Object.keys(this.state.inputs).map(
@@ -101,8 +101,8 @@ export default class ESMValToolPerfmetrics extends Component {
         dataInputs += this.state.inputs[key].identifier + '=' + this.state.inputs[key].default;
       }
     );
-    console.log(domain, dataInputs);
-    dispatch(actions.startWPSExecute(domain, 'esmvaltool-perfmetrics',
+    console.log(wpsDomain, dataInputs);
+    dispatch(actions.startWPSExecute(wpsDomain, 'esmvaltool-perfmetrics',
       dataInputs,
       nrOfStartedProcesses));
   };
@@ -142,7 +142,7 @@ export default class ESMValToolPerfmetrics extends Component {
   formSubmit(formData) {
     console.log("Data submitted: ", formData);
 
-    const {dispatch, actions, nrOfStartedProcesses, domain} = this.props;
+    const {dispatch, actions, nrOfStartedProcesses, wpsDomain} = this.props;
     let dataInputs = '';
 
     _.forIn(formData.formData.ModelEntry, function(value, key) {
@@ -156,8 +156,8 @@ export default class ESMValToolPerfmetrics extends Component {
     });
 
     dataInputs = dataInputs + ";variable=ta;mip=Amon;experiment=historical;ensemble_member=r1i1p1;start_year=2001;end_year=2002";
-    console.log(domain, dataInputs);
-    dispatch(actions.startWPSExecute(domain, 'esmvaltool-perfmetrics',
+    console.log(wpsDomain, dataInputs);
+    dispatch(actions.startWPSExecute(wpsDomain, 'esmvaltool-perfmetrics',
       dataInputs,
       nrOfStartedProcesses));
 
@@ -218,7 +218,7 @@ export default class ESMValToolPerfmetrics extends Component {
   render () {
     console.log("  render() ");
 
-    const { domain, runningProcesses, nrOfStartedProcesses, actions} = this.props;
+    const { wpsDomain, runningProcesses, nrOfStartedProcesses, actions} = this.props;
     const { form_schema, form_data, data_loaded, running_jobs } = this.state;
 
     if (!data_loaded){
@@ -268,10 +268,10 @@ export default class ESMValToolPerfmetrics extends Component {
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  {domain ?
+                  {wpsDomain ?
                     <div>
                       <Alert color="info">
-                        Your compute node = {domain}
+                        Your compute node = {wpsDomain}
                       </Alert>
                       <UncontrolledAlert color="danger" style={{textAlign: 'initial'}}>
                         <strong>Warning:</strong> The parameters given below cannot be changed at the moment.
@@ -292,7 +292,7 @@ export default class ESMValToolPerfmetrics extends Component {
                   <Alert color="info">
                     This tab will show the processes.
                   </Alert>
-                  {domain ?
+                  {wpsDomain ?
                     <div>
                       <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback}/>
                     </div>
@@ -307,7 +307,7 @@ export default class ESMValToolPerfmetrics extends Component {
 }
 
 ESMValToolPerfmetrics.propTypes = {
-  domain: PropTypes.string,
+  wpsDomain: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,

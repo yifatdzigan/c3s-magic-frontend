@@ -2,7 +2,7 @@
 import { doWPSExecuteCall } from '../utils/WPSRunner.js';
 import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_FAILED, START_WPS_EXECUTE_END, WPS_STATUS_UPDATE, WPS_COMPLETED, SET_CSV_FILE_TO_WRANGLE } from '../constants/WPSLabels';
 
-const startWPSExecute = (domain, identifier, dataInputs, nrOfStartedProcesses) => {
+const startWPSExecute = (wpsdomain, identifier, dataInputs, nrOfStartedProcesses) => {
   return (dispatch) => {
     dispatch({
       type: START_WPS_EXECUTE_START,
@@ -13,7 +13,7 @@ const startWPSExecute = (domain, identifier, dataInputs, nrOfStartedProcesses) =
       }
     });
     try {
-      let wps = 'https://' + domain + '/wps?' + 'service=wps&request=Execute&identifier=' + identifier + '&version=1.0.0&' +
+      let wps = wpsdomain + 'service=wps&request=Execute&identifier=' + identifier + '&version=1.0.0&' +
       'DataInputs=' + dataInputs + '&storeExecuteResponse=true&status=true&';
       let statusUpdateCallback = (message, percentageComplete) => {
         dispatch({ type: WPS_STATUS_UPDATE, payload: { message: message, percentageComplete: percentageComplete, id: nrOfStartedProcesses } });

@@ -147,7 +147,7 @@ const doXML2JSONCallWithToken = function (urlToXMLService, callback, failure) {
   // let encodedWPSURL = encodeURIComponent(urlToXMLService
   let encodedWPSURL = encodeURIComponent(urlToXMLService);
   let requestURL = config.backendHost + '/xml2json?request=' + encodedWPSURL + '&rand=' + Math.random();
-  console.log(requestURL);
+  // console.log(requestURL);
   fetch(requestURL, {
     credentials: 'include'
   }).then(function (response) {
