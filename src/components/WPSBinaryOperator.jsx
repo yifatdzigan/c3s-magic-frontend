@@ -1,8 +1,7 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col, Progress, Card } from 'reactstrap';
-
+import { xml2jsonparser } from '../utils/xml2jsonparser';
 class RenderProcesses extends Component {
   renderProcess (process) {
     // console.log(process);
@@ -40,9 +39,8 @@ RenderProcesses.propTypes = {
 };
 
 export default class WPSWranglerDemo extends Component {
-  constructor () {
-    super();
-    this.wrangleClicked = this.wrangleClicked.bind(this);
+  constructor (props) {
+    super(props);
     this.toggle = this.toggle.bind(this);
     this.dropDownSelectItem = this.dropDownSelectItem.bind(this);
     this.state = {
@@ -51,6 +49,7 @@ export default class WPSWranglerDemo extends Component {
       inputa: 10,
       inputb: 20
     };
+    console.log(props);
   }
 
   toggle (e) {
@@ -65,37 +64,9 @@ export default class WPSWranglerDemo extends Component {
     });
   };
 
-  wrangleClicked (id) {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-
-    let dataInputs =
-      'inputCSVPath=ExportOngevalsData.csv;' +
-      'metaCSVPath=metaDataCsv.json;' +
-      'dataURL=http%3A%2F%2Fopendap.knmi.nl%2Fknmi%2Fthredds%2FdodsC%2FDATALAB%2Fhackathon%2FradarFullWholeData.nc;' +
-      'dataVariables=image1_image_data;' +
-      'limit=10';
-
-    dispatch(actions.startWPSExecute(domain, 'wrangleProcess',
-      dataInputs,
-      nrOfStartedProcesses));
-  };
-
   calculateClicked () {
-// try {
-//       let wps = 'http://145.23.212.232:5000/?service=wps&request=Execute&identifier=sleep&version=1.0.0&storeExecuteResponse=true&status=true&';
-//       let statusUpdateCallback = (message, percentageComplete) => {
-//         console.log(message, percentageComplete);
-//       };
-//       let executeCompletCallback = (json, processSucceeded) => {
-//         console.log(json, processSucceeded);
-//       };
-//       doWPSExecuteCall(wps, statusUpdateCallback, executeCompletCallback);
-//     } catch (e) {
-//       console.log(e);
-//     }
-
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-    dispatch(actions.startWPSExecute(domain, 'binaryoperatorfornumbers_10sec',
+    const { dispatch, actions, nrOfStartedProcesses, compute } = this.props;
+    dispatch(actions.startWPSExecute(compute.filter(t => t.name === 'calculator')[0].url, 'binaryoperatorfornumbers_10sec',
       '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
   };
 
@@ -105,6 +76,16 @@ export default class WPSWranglerDemo extends Component {
       [name]: value
     });
   };
+
+  describeProcess () {
+    console.log('Starting describeProcess');
+    let url = 'https://bovec.dkrz.de/ows/proxy/copernicus?Service=WPS&Request=GetCapabilities&Version=1.0.0';
+    xml2jsonparser(url).then(result => {
+      console.log(JSON.stringify(result, null, 2));
+    }).catch(e => {
+      console.log(e);
+    });
+  }
 
   render () {
     const { nrOfStartedProcesses, runningProcesses, nrOfFailedProcesses, nrOfCompletedProcesses } = this.props;
@@ -129,6 +110,7 @@ export default class WPSWranglerDemo extends Component {
           <Col xs='2'><Input onChange={(event) => { this.handleChange('inputb', event.target.value); }} value={this.state.inputb} /></Col>
           <Col xs='2'><Button color='primary' id='wrangleButton' onClick={() => { this.calculateClicked(); }}>Calculate</Button></Col>
         </Row>
+        <Button onClick={this.describeProcess} >DescribeProcess</Button>
         <p>nrOfStartedProcesses: {nrOfStartedProcesses}</p>
         <p>nrOfFailedProcesses: {nrOfFailedProcesses}</p>
         <p>nrOfCompletedProcesses: {nrOfCompletedProcesses}</p>
@@ -138,8 +120,8 @@ export default class WPSWranglerDemo extends Component {
 }
 
 WPSWranglerDemo.propTypes = {
-  accessToken: PropTypes.string,
-  domain: PropTypes.string,
+  compute: PropTypes.array,
+  backend: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,

@@ -11,7 +11,8 @@ const initialState = {
     accessToken: null,
     clientId: null,
     emailAddress: null,
-    domain: null
+    backend: null,
+    compute: []
   },
   WPSState: {
     nrOfStartedProcesses: 0,

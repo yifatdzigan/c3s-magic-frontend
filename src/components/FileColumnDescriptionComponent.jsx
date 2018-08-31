@@ -45,7 +45,7 @@ class FileColumnDescriptionComponent extends Component {
     var completeFileDescription = JSON.stringify(Object.assign({}, this.props.fileColumnDescription, this.props.fileStructureDescription), this.props.replacer);
     var originalFileName = this.props.fileName;
     var fileName = originalFileName.replace(/\.[^/.]+$/, '_descr.json');
-    const { accessToken, dispatch, actions, uploadActions, nrOfStartedProcesses, router, domain } = this.props;
+    const { accessToken, dispatch, actions, uploadActions, nrOfStartedProcesses, router, backend } = this.props;
 
     var formData = new FormData();
     formData.append('files', new Blob([completeFileDescription], { type:'' }), fileName);
@@ -65,7 +65,7 @@ class FileColumnDescriptionComponent extends Component {
         var scanProcess = originalFileName + '_scanProcess_' + new Date().toString();
         dispatch(uploadActions.setUploadScanProcess(scanProcess));
 
-        dispatch(actions.startWPSExecute(domain, accessToken, 'scanCSVProcess',
+        dispatch(actions.startWPSExecute(backend, accessToken, 'scanCSVProcess',
           '[inputCSVPath=' + originalFileName + ';descCSVPath=' + fileName + ';]',
           scanProcess));
       });

@@ -73,7 +73,7 @@ export default class UploadComponent extends Component {
           fileColumnDescription={this.props.fileColumnDescription}
           fileStructureDescription={this.props.fileStructureDescription}
           replacer={this.replacer}
-          domain={this.props.domain}
+          backend={this.props.backend}
           nrOfStartedProcesses={this.props.nrOfStartedProcesses}
           runningProcesses={this.props.runningProcesses}
           uploadScanProcess={this.props.uploadScanProcess}/>
@@ -92,7 +92,7 @@ UploadComponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   wpsActions: PropTypes.object,
   actions: PropTypes.object.isRequired,
-  domain: PropTypes.string,
+  backend: PropTypes.string,
   nrOfStartedProcesses: PropTypes.number,
   runningProcesses: PropTypes.number,
   uploadScanProcess: PropTypes.string

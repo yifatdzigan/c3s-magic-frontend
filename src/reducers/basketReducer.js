@@ -30,6 +30,9 @@ const fetchBasketItems = (state, payload) => {
     if (payload) {
       payload.dispatch(payload.actions.setBasketItems(result));
     }
+  }).catch((e) => {
+    payload.dispatch(payload.actions.setBasketItems({ basket: { error: 'Unable to get basket list ' + e } }));
+    throw new Error('Unable to get basket list ' + e);
   });
 
   return Object.assign({}, state, { isFetching: true, hasFetched: false });

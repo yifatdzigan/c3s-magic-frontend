@@ -121,7 +121,7 @@ export default class KNMIClimpExpCorrelate extends Component {
   };
 
   wrangleClicked (id) {
-    const { dispatch, actions, nrOfStartedProcesses, domain } = this.props;
+    const { dispatch, actions, nrOfStartedProcesses, backend } = this.props;
 
     let dataInputs = '';
     Object.keys(this.state.inputs).map(
@@ -132,17 +132,11 @@ export default class KNMIClimpExpCorrelate extends Component {
         dataInputs += this.state.inputs[key].identifier + '=' + this.state.inputs[key].default;
       }
     );
-    console.log(domain, dataInputs);
-    dispatch(actions.startWPSExecute(domain, 'climexp',
+    console.log(backend, dataInputs);
+    dispatch(actions.startWPSExecute(backend, 'climexp',
       dataInputs,
       nrOfStartedProcesses));
   };
-
-  // calculateClicked () {
-  //   const { accessToken, dispatch, actions, nrOfStartedProcesses, domain } = this.props;
-  //   dispatch(actions.startWPSExecute(domain, accessToken, 'binaryoperatorfornumbers_10sec',
-  //     '[inputa=' + this.state.inputa + ';inputb=' + this.state.inputb + ';operator=' + this.state.dropDownValue + ';]', nrOfStartedProcesses));
-  // };
 
   handleChange (name, value) {
     console.log(name, value);
@@ -179,14 +173,14 @@ export default class KNMIClimpExpCorrelate extends Component {
   }
 
   render () {
-    const { domain, runningProcesses } = this.props;
+    const { backend, runningProcesses } = this.props;
     return (
       <div style={{ backgroundColor:'#FFF', width: '100%' }} >
         <div className='text'>
           <MarkdownFromFile url={'/contents/Correlations.md'} />
         </div>
-        { domain ? <div>
-          <span>Your compute node = {domain}</span>
+        { backend ? <div>
+          <span>Your compute node = {backend}</span>
           <div className='WPSCalculatorForm'>
             { Object.keys(this.state.inputs).map(
               (key, value2) => {
@@ -220,7 +214,7 @@ export default class KNMIClimpExpCorrelate extends Component {
 }
 
 KNMIClimpExpCorrelate.propTypes = {
-  domain: PropTypes.string,
+  backend: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,

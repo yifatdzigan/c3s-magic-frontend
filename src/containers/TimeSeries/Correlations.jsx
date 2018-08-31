@@ -6,14 +6,14 @@ import KNMIClimpExpCorrelate from '../../components/KNMIClimpExpCorrelate';
 
 export default class Correlations extends Component {
   render () {
-    let { dispatch, actions, domain, nrOfStartedProcesses, nrOfFailedProcesses, nrOfCompletedProcesses, runningProcesses } = this.props;
+    let { dispatch, actions, backend, nrOfStartedProcesses, nrOfFailedProcesses, nrOfCompletedProcesses, runningProcesses } = this.props;
     return (
       <div className='MainViewport'>
         <Row className='MainRow'>
           <KNMIClimpExpCorrelate
             dispatch={dispatch}
             actions={actions}
-            domain={domain}
+            backend={backend}
             nrOfStartedProcesses={nrOfStartedProcesses}
             nrOfFailedProcesses={nrOfFailedProcesses}
             nrOfCompletedProcesses={nrOfCompletedProcesses}
@@ -25,7 +25,7 @@ export default class Correlations extends Component {
 }
 
 Correlations.propTypes = {
-  domain: PropTypes.string,
+  backend: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,

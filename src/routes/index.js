@@ -132,7 +132,7 @@ const mapDispatchToWPSProps = function (dispatch) {
 };
 
 const mapStateToBasketProps = (state) => {
-  return { ...state.basketState, ...state.userState, domain: state.userState.domain };
+  return { ...state.basketState, ...state.userState, backend: state.userState.backend, compute: state.userState.compute };
 };
 
 const mapDispatchToBasketProps = function (dispatch) {

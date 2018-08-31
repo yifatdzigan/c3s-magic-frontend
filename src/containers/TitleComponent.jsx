@@ -21,7 +21,7 @@ export default class TitleComponent extends Component {
   }
 
   componentWillUpdate() {
-    this.canRender();
+    // this.canRender();
   }
 
   render() {
@@ -124,7 +124,7 @@ export default class TitleComponent extends Component {
       </div>);
   }
 
-  canRender() {
+  canRender () {
     const { dispatch, actions } = this.props;
     const { backendHost } = config;
     fetch(backendHost + '/getid', {
@@ -140,24 +140,27 @@ export default class TitleComponent extends Component {
           dispatch(actions.setAccessToken(null));
           dispatch(actions.setClientId(null));
           dispatch(actions.setEmailAddress(null));
-          dispatch(actions.setDomain(null));
+          dispatch(actions.setBackend(null));
+          dispatch(actions.setCompute(null));
         } else {
+          console.log(json);
           dispatch(actions.setAccessToken(obj.services_access_token));
           dispatch(actions.setClientId(obj.id));
           dispatch(actions.setEmailAddress(obj.email_address));
-          dispatch(actions.setDomain(obj.domain));
+          dispatch(actions.setBackend(obj.backend));
+          dispatch(actions.setCompute(obj.compute));
           // console.log('Signed in', obj.domain);
         }
       });
   }
 
-  login() {
+  login () {
     const { backendHost } = config;
     let currentLocation = window.location;
     window.location.assign(backendHost + '/oauth?provider=google&returnurl=' + encodeURIComponent(currentLocation));
   }
 
-  logout() {
+  logout () {
     const { backendHost } = config;
     fetch(backendHost + '/logout', {
       credentials: 'include'
