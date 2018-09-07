@@ -91,6 +91,8 @@ import WPSBinaryOperator from '../components/WPSBinaryOperator';
 
 import RechartsDemo from '../components/RechartsDemo';
 
+import ESGFSearch from '../components/ESGFSearch';
+
 import EnsembleAnomalyPlots from '../containers/Diagnostics/EnsembleAnomalyPlots';
 
 import BasketComponent from '../components/Basket/BasketComponent';
@@ -196,8 +198,11 @@ export const createRoutes = (store) => {
       <Route path='calculator' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSBinaryOperator))} />
       </Route>
-      <Route path='recharts' title='Demo'>
+      <Route path='interactivecharts' title='Interactive charts'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))} />
+      </Route>
+      <Route path='esgfsearch' title='ESGF Search'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ESGFSearch))} />
       </Route>
 
       <Route path='actuaries' title='actuariesDemo'>
