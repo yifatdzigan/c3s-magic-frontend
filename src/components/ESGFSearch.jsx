@@ -13,7 +13,7 @@ export default class RechartsDemo extends Component {
       <div className='MainViewport'>
         <h1 style={{float:'left'}}>Search</h1>
         <iframe className='esgfsearchframe' type='text/html'
-            src = {'/search/esgfsearch.html'}
+            src = {'/esgfsearch/esgfsearch.html'}
             frameBorder = '0' allowFullScreen />
       </div>);
   }
