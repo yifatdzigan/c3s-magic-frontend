@@ -64,7 +64,7 @@ export default class UploadComponent extends Component {
                 <input
                   type='file'
                   style={{ display: 'none' }}
-                  onChange={(event) => { this.fileName = event.target.files[0].name; this.forceUpdate();}}
+                  onChange={(event) => { this.fileName = event.target.files[0].name; this.forceUpdate(); }}
                   ref={(input) => { this.fileInput = input; }} />
               </label>
               <input type='text' className='form-control btn-input-text' value={this.fileName} />
