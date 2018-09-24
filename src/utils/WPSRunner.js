@@ -103,6 +103,7 @@ export const doWPSExecuteCall = function (wps, statusCallBack, executeCompleteCa
         return;
       }
       let pollCallBack = (json) => {
+        setTimeout(pol, 300);
         let percentageComplete = 0;
         let message = '';
 
@@ -135,10 +136,12 @@ export const doWPSExecuteCall = function (wps, statusCallBack, executeCompleteCa
           statusCallBack(message, percentageComplete);
         }
       };
+      if (wps.startsWith('https://')) {
+        statusLocation = statusLocation.replace('http://', 'https://');
+      }
       doXML2JSONCallWithToken(statusLocation, pollCallBack, failure);
-      setTimeout(pol, 300);
     };
-    pol();
+    setTimeout(pol, 500);
   };
   doXML2JSONCallWithToken(wps, wpsExecuteCallback, failure);
 };

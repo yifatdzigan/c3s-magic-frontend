@@ -89,6 +89,8 @@ import AccountComponent from '../containers/AccountComponent';
 
 import WPSBinaryOperator from '../components/WPSBinaryOperator';
 
+import WPSDemoCopernicus from '../components/WPSDemoCopernicus';
+
 import RechartsDemo from '../components/RechartsDemo';
 
 import ESGFSearch from '../components/ESGFSearch';
@@ -194,9 +196,11 @@ export const createRoutes = (store) => {
       </Route>
 
       <Route path='diagnostics/:diag' title='Diagnostics' header={mainmenu} component={DiagnosticsHome} />
-
       <Route path='calculator' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSBinaryOperator))} />
+      </Route>
+      <Route path='copernicus-wps' title='Demo'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
       <Route path='interactivecharts' title='Interactive charts'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))} />
