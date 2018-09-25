@@ -199,11 +199,14 @@ export const createRoutes = (store) => {
       <Route path='calculator' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSBinaryOperator))} />
       </Route>
-      <Route path='wps-submit' title='Demo'>
+      <Route path='wpssubmit' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
       <Route path='interactivecharts' title='Interactive charts'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))} />
+      </Route>
+      <Route path='wpsprocess' title='WPS'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
       <Route path='esgfsearch' title='ESGF Search'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ESGFSearch))} />
