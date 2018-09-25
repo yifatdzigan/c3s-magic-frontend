@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Progress, Card } from 'reactstrap';
+import ImagePreview from './ImagePreview';
 
 export default class RenderProcesses extends Component {
   renderProcess (process) {
+    // console.log('RenderProcesses::renderProcess(process)');
     // console.log(process);
     let value = '-';
+    let shown = '-';
     try {
-      value = process.result.ExecuteResponse.ProcessOutputs.Output.Data.LiteralData.value;
+      value = 'data:image/png;base64,' + process.result.ExecuteResponse.ProcessOutputs.Output.Data.ComplexData.value;
+      shown = 'click for output';
     } catch (e) {
     }
     return (
@@ -15,7 +19,7 @@ export default class RenderProcesses extends Component {
         <Row>
           <Col> <div className='text-center'>{process.percentageComplete} </div><Progress value={process.percentageComplete} /></Col>
           <Col>{process.message}</Col>
-          <Col>{value}</Col>
+          <Col style={{ backgroundColor: '#d9edf7', cursor: 'pointer', color: '#31708f' }} onClick={() => { this.props.resultClickCallback(value); }}>{shown}</Col>
         </Row>
       </Card>
     );
@@ -35,5 +39,6 @@ export default class RenderProcesses extends Component {
 };
 
 RenderProcesses.propTypes = {
-  runningProcesses: PropTypes.object.isRequired
+  runningProcesses: PropTypes.object.isRequired,
+  resultClickCallback: PropTypes.func.isRequired
 };

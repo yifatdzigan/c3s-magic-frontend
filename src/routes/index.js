@@ -199,7 +199,7 @@ export const createRoutes = (store) => {
       <Route path='calculator' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSBinaryOperator))} />
       </Route>
-      <Route path='copernicus-wps' title='Demo'>
+      <Route path='wps-submit' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
       <Route path='interactivecharts' title='Interactive charts'>
