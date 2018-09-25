@@ -499,9 +499,11 @@ export default class WPSWranglerDemo extends Component {
     if (isBusy) {
       return (
         <div>
+          {domain ?
           <Alert color='info'>
             Busy: { isBusyMessage }
           </Alert>
+          : ''}
         </div>
       );
     }
@@ -509,9 +511,11 @@ export default class WPSWranglerDemo extends Component {
     if (!wpsInfoFetched) {
       return (
         <div>
+          {domain ?
           <Alert color='warning'>
             Couldn't fetch WPS Process info.
           </Alert>
+          :''}
         </div>
       );
     } else {
@@ -524,7 +528,7 @@ export default class WPSWranglerDemo extends Component {
 
           <Row>
             <Col sm='12'>
-              {/* {domain ? */}
+              {domain ?
               <div>
                 <Alert color='info'>
                   Compute node = { 'https://portal.c3s-magic.eu/copernicus-wps' }
@@ -550,14 +554,13 @@ export default class WPSWranglerDemo extends Component {
                         <CardBody>
                           <form onSubmit={this.formSubmit}>
                             {wpsFormElements}
-                            {/* <input type='submit' value='Submit' /> */}
                             <Button key={'submitButton'} color='primary' onClick={() => { that.formSubmit(); }}>Start</Button>
                           </form>
                         </CardBody>
                       </Card> : ''
                 }
               </div>
-              {/* : <div>You need to sign in to use this functionality</div>} */}
+              : <div>You need to sign in to use this functionality</div>}
             </Col>
           </Row>
           <Row>
@@ -567,11 +570,11 @@ export default class WPSWranglerDemo extends Component {
                 The submitted jobs will be show below.
               </Alert>
               : '' }
-              {/* {domain ? */}
+              {domain ?
               <div>
                 <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
               </div>
-              {/* : <div>You need to sign in to use this functionality</div>} */}
+              : ''}
             </Col>
           </Row>
         </div>);
