@@ -21,8 +21,8 @@ export default class WPSWranglerDemo extends Component {
       wpsFormCurrent: [],
       showForm: false,
       formNoInputFound: false,
-      formNoOutputFound: false,   
-      selectedProcess: null,   
+      formNoOutputFound: false,
+      selectedProcess: null,
       isBusy: false,
       isBusyMessage: '',
       runningJobs: [],
@@ -97,7 +97,7 @@ export default class WPSWranglerDemo extends Component {
 
           }, (error) => {
 
-          console.log(error);        
+          console.log(error);
           that.setState({ describeProcessDocument: error });
 
           that.setState({ isBusy: false });
@@ -118,9 +118,9 @@ export default class WPSWranglerDemo extends Component {
         // console.log(response);
         // console.log(this.state);
         this.setState({ isBusy: false });
-        this.setState({ isBusyMessage: '' });  
-        this.setState({ selectedProcess: wpsName }); 
-              
+        this.setState({ isBusyMessage: '' });
+        this.setState({ selectedProcess: wpsName });
+
         return response;
       }).catch(function(e) {
           console.log('Couldnot get the process list!');
@@ -166,7 +166,7 @@ export default class WPSWranglerDemo extends Component {
 
             var newInput = {};
             var itemTitle = item['Title'].value;
-            var itemIdentifier = item['Identifier'].value;            
+            var itemIdentifier = item['Identifier'].value;
             var itemDataType = item.LiteralData['DataType'].value;
 
             var itemDefaultValue = '';
@@ -217,7 +217,7 @@ export default class WPSWranglerDemo extends Component {
             // });
 
           }
-      } catch (err) { 
+      } catch (err) {
           console.log('No input settings found!');
           console.log('error:', err);
           that.setState({ formNoInputFound: true });
@@ -228,7 +228,7 @@ export default class WPSWranglerDemo extends Component {
 
         // wpsOutputList.forEach(function (item, index) {
         for (var key in wpsOutputList) {
-          var outItem = wpsOutputList[key];        
+          var outItem = wpsOutputList[key];
 
           // console.log('output outItem\n', outItem);
 
@@ -441,7 +441,7 @@ export default class WPSWranglerDemo extends Component {
     // console.log('value:', value);
     // console.log('name:', name);
     // console.log(that.state.processInputs);
- 
+
     var stateItemIndex = that.state.processInputs.map(function (e) { return e.title; }).indexOf(name);
     // console.log('stateItemIndex:', stateItemIndex);
 
@@ -490,8 +490,7 @@ export default class WPSWranglerDemo extends Component {
   render () {
     // console.log('WPSCalculate::render()');
     var that = this;
-
-    const { domain, runningProcesses, nrOfStartedProcesses, actions } = this.props;
+    const { compute, runningProcesses, nrOfStartedProcesses, actions } = this.props;
     const { showForm, isBusy, isBusyMessage, wpsProcessName, wpsInfoFetched, runningJobs } = this.state;
     const { errorExists, errorContent, formNoInputFound } = this.state;
     const { wpsFormElements } = this.state;
@@ -499,7 +498,7 @@ export default class WPSWranglerDemo extends Component {
     if (isBusy) {
       return (
         <div>
-          {domain ?
+          {compute ?
           <Alert color='info'>
             Busy: { isBusyMessage }
           </Alert>
@@ -511,7 +510,7 @@ export default class WPSWranglerDemo extends Component {
     if (!wpsInfoFetched) {
       return (
         <div>
-          {domain ?
+          {compute ?
           <Alert color='warning'>
             Couldn't fetch WPS Process info.
           </Alert>
@@ -528,7 +527,7 @@ export default class WPSWranglerDemo extends Component {
 
           <Row>
             <Col sm='12'>
-              {domain ?
+              {compute ?
               <div>
                 <Alert color='info'>
                   Compute node = { 'https://portal.c3s-magic.eu/copernicus-wps' }
@@ -570,7 +569,7 @@ export default class WPSWranglerDemo extends Component {
                 The submitted jobs will be show below.
               </Alert>
               : '' }
-              {domain ?
+              {compute ?
               <div>
                 <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
               </div>
