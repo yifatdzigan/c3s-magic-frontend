@@ -1,13 +1,16 @@
 ###############################################################################
-# nameslist_multimodel_products.yml
+# recipe_multimodel_products_wp5.yml
 #
 # Description
 # Namelist to compute the ensemble mean anomaly and the ensemble
 # variance and agreement and plot the results as maps and time series.
 #
 # Authors
-# Nicolaur Manubens (BSC)
 # Alasdair Hunter (BSC)
+# Louis-Philippe Caron (BSC)
+# Núria Pérez-Zanón (BSC)
+# Javier Vegas (BSC)
+# Nicolau Manubens (BSC)
 #
 #
 # Project
@@ -20,7 +23,7 @@
 # Modelling & Software 103 (2018): 29-42.
 #
 #
-# This namelist is part of the ESMValTool
+# This recipe is part of the ESMValTool
 ###############################################################################
 ---
 
