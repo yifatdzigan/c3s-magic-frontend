@@ -147,5 +147,8 @@ webpackConfig.module.rules.push(
     loader: 'file-loader'
   }
 );
-
+// Required for yamljs parser
+webpackConfig.node = {
+  fs: 'empty'
+};
 module.exports = webpackConfig;

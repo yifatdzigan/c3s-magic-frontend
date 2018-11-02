@@ -224,7 +224,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
       },
       (error) => {
         this.setState({ title:null, error: error });
-        console.log(error);
+        throw new Error(error);
       },
       true
     );

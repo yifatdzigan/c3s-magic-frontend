@@ -108,6 +108,7 @@
     "react-css-grid": "^2.0.0-0",
     "react-dom": "^15.6.1",
     "react-json-table": "^0.1.1",
+    "react-json-view": "^1.19.1",
     "react-jsonschema-form": "^1.0.0",
     "react-linkify": "^0.2.1",
     "react-markdown": "^3.0.2",
@@ -125,7 +126,8 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "throttle-debounce": "^1.0.1",
-    "underscore": "^1.9.0"
+    "underscore": "^1.9.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

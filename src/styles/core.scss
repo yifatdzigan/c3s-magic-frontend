@@ -645,3 +645,11 @@ div.hpace2em {
   -webkit-transform: scale(1.25);
   -webkit-transform-origin: 0 0;*/
 }
+
+.wpsOutputComponentContainer {
+  max-height:300px;
+  overflow-y:scroll;
+  margin:6px;
+  background-color:white;
+  border:1px solid darkgrey;
+}

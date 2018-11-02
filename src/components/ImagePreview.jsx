@@ -14,9 +14,8 @@ export default class ImagePreview extends Component {
     const { closeCallback } = this.props;
       return (<div>
               <img
-                width='480'
-                style={{ border: '1px solid #000', maxWidth:'480px', maxHeight:'300px' }}
-                src= { this.state.imagedata }  
+                style={{ border: '1px solid #000', maxWidth:'480px', maxHeight:'480px' }}
+                src= { this.state.imagedata }
               />
               </div>);
   }

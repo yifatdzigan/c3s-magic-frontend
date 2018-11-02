@@ -64,7 +64,7 @@ export default class TitleComponent extends Component {
               <NavLink href='#/tailoredproducts' active={pathname === '/tailoredproducts'} >Tailored products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/wpsprocess' active={pathname === '/wpsprocess'} >WPS</NavLink>
+              <NavLink href='#/wpsprocess/' active={pathname === '/wpsprocess/'} >WPS</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/esgfsearch' active={pathname === '/esgfsearch'} >Search</NavLink>
@@ -78,9 +78,9 @@ export default class TitleComponent extends Component {
             <NavItem>
               <NavLink href='#/basket' active={pathname === '/basket'}><Icon name='shopping-basket' /> Basket</NavLink>
             </NavItem>
-            { /*<NavItem>
+            <NavItem>
               <NavLink href='#/jobs' active={pathname === '/jobs'}><Icon name='list' /> Joblist</NavLink>
-            </NavItem> */ }
+            </NavItem>
             <NavItem>
               <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
             </NavItem>
@@ -152,7 +152,7 @@ export default class TitleComponent extends Component {
           dispatch(actions.setBackend(null));
           dispatch(actions.setCompute(null));
         } else {
-          console.log(json);
+          // console.log(json);
           dispatch(actions.setAccessToken(obj.services_access_token));
           dispatch(actions.setClientId(obj.id));
           dispatch(actions.setEmailAddress(obj.email_address));

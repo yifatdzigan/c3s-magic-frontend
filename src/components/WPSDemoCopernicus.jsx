@@ -4,12 +4,17 @@ import { Card, CardBody, Button, Input, Row, Col, Alert } from 'reactstrap';
 import { xml2jsonparser } from '../utils/xml2jsonparser';
 import RenderProcesses from './RenderProcesses';
 import { doWPSCall } from '../utils/WPSRunner';
+import ImagePreview from './ImagePreview';
+import { withRouter } from 'react-router';
 
-export default class WPSWranglerDemo extends Component {
+class WPSDemoCopernicus extends Component {
   constructor (props) {
     super(props);
     this.wpsExecute = this.wpsExecute.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.resultClickCallback = this.resultClickCallback.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
+
 
     this.state = {
       describeProcessDocument: null,
@@ -29,7 +34,7 @@ export default class WPSWranglerDemo extends Component {
       errorExists: false,
       errorContent: ''
     };
-    console.log(props);
+    // console.log(props);
   }
 
   async componentDidMount () {
@@ -46,6 +51,7 @@ export default class WPSWranglerDemo extends Component {
           that.setState({ wpsInfoFetched: true });
           that.setState({ isBusy: false });
           that.setState({ isBusyMessage: '' });
+          that.handleLocationChange(that.props.location);
         }
       }
     ).catch( function (error) {
@@ -97,7 +103,7 @@ export default class WPSWranglerDemo extends Component {
 
           }, (error) => {
 
-          console.log(error);
+          console.error(error);
           that.setState({ describeProcessDocument: error });
 
           that.setState({ isBusy: false });
@@ -113,6 +119,7 @@ export default class WPSWranglerDemo extends Component {
 
   onWpsButtonClick (wpsName) {
     // console.log('Clicked on button --> ', wpsName);
+    this.props.router.push('/wpsprocess/' + wpsName);
     this.getWPSProcessInfo(wpsName)
       .then(response => {
         // console.log(response);
@@ -123,7 +130,7 @@ export default class WPSWranglerDemo extends Component {
 
         return response;
       }).catch(function(e) {
-          console.log('Couldnot get the process list!');
+          console.error('Couldnot get the process list!');
       });
 
     // this.setState({ isBusy: false });
@@ -393,7 +400,7 @@ export default class WPSWranglerDemo extends Component {
     // console.log('event submitted: ', event);
 
 
-    console.log(that.state.processInputs);
+    // console.log(that.state.processInputs);
 
     // let dataInputs = '[';
     let dataInputs = '';
@@ -468,7 +475,21 @@ export default class WPSWranglerDemo extends Component {
     this.setState({ isBusyMessage: '' });
   }
 
+  handleLocationChange (newLocation) {
+    const {hash, pathname} = newLocation;
+    let location = hash && hash.length > 0 ? hash : pathname;
+    console.log('newlocation', location)
+    const hashParts = location.split('/')
+    const lastPart = hashParts[hashParts.length -1];
+    this.onWpsButtonClick(lastPart);
+  }
 
+  componentWillUpdate(nextProps) {
+    if (nextProps && this.props && nextProps.location && nextProps.location.hash && this.props.location && this.props.location.hash && this.props.location.hash != nextProps.location.hash) {
+      console.log('location willl change to', nextProps.location.hash);
+      this.handleLocationChange(nextProps.location);
+    }
+  }
 
   resultClickCallback (value) {
     // const { dispatch, actions, nrOfStartedProcesses, compute } = this.props;
@@ -488,9 +509,8 @@ export default class WPSWranglerDemo extends Component {
 
 
   render () {
-    // console.log('WPSCalculate::render()');
     var that = this;
-    const { compute, runningProcesses, nrOfStartedProcesses, actions } = this.props;
+    const { compute, runningProcesses, nrOfStartedProcesses, actions, dispatch } = this.props;
     const { showForm, isBusy, isBusyMessage, wpsProcessName, wpsInfoFetched, runningJobs } = this.state;
     const { errorExists, errorContent, formNoInputFound } = this.state;
     const { wpsFormElements } = this.state;
@@ -566,12 +586,12 @@ export default class WPSWranglerDemo extends Component {
             <Col sm='12'>
               {showForm
               ? <Alert color='info'>
-                The submitted jobs will be show below.
+                The submitted jobs will be shown below.
               </Alert>
               : '' }
               {compute ?
               <div>
-                <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} />
+                <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} dispatch={dispatch} actions={actions} />
               </div>
               : ''}
             </Col>
@@ -583,12 +603,15 @@ export default class WPSWranglerDemo extends Component {
 
 }
 
-WPSWranglerDemo.propTypes = {
+WPSDemoCopernicus.propTypes = {
   compute: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   nrOfStartedProcesses: PropTypes.number,
   nrOfFailedProcesses: PropTypes.number,
   nrOfCompletedProcesses: PropTypes.number,
-  runningProcesses: PropTypes.object.isRequired
+  runningProcesses: PropTypes.object.isRequired,
+  location: PropTypes.object
 };
+
+export default  withRouter(WPSDemoCopernicus);

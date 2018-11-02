@@ -1,7 +1,7 @@
-import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_END, START_WPS_EXECUTE_FAILED, WPS_STATUS_UPDATE, WPS_COMPLETED, SET_CSV_FILE_TO_WRANGLE } from '../constants/WPSLabels';
+import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_END, START_WPS_EXECUTE_FAILED, WPS_STATUS_UPDATE, WPS_COMPLETED, SET_CSV_FILE_TO_WRANGLE, WPS_REMOVERESULT } from '../constants/WPSLabels';
 
 const handleWPSExecute = (state, payload) => {
-  console.log('reducer handleWPSExecute', payload);
+  // console.log('reducer handleWPSExecute', payload);
   let newRunningProcesses = Object.assign({}, state.runningProcesses);
   let nrOfStartedProcesses = state.nrOfStartedProcesses;
   newRunningProcesses[payload.id] = Object.assign({}, Object.assign({}, payload, { isStarted:true, hasFailed: false, isComplete:false, percentageComplete: 0, message:'' }));
@@ -12,12 +12,12 @@ const handleWPSExecute = (state, payload) => {
 };
 
 const handleWPSFailed = (state, payload) => {
-  console.log('reducer handleWPSFailed', payload);
+  // console.log('reducer handleWPSFailed', payload);
   return Object.assign({}, state);
 };
 
 const handleWPSEnd = (state, payload) => {
-  console.log('reducer handleWPSEnd', payload);
+  // console.log('reducer handleWPSEnd', payload);
   return Object.assign({}, state);
 };
 
@@ -40,6 +40,14 @@ const handleWPSComplete = (state, payload) => {
   });
 };
 
+const removeWPSResult = (state, payload) => {
+  let newRunningProcesses = Object.assign({}, state.runningProcesses);
+  delete newRunningProcesses[payload.id];
+  return Object.assign({}, state, {
+    runningProcesses: newRunningProcesses
+  });
+};
+
 /**
  * Deleting an item from the basket.
  **/
@@ -53,6 +61,7 @@ const ACTION_HANDLERS = {
   [START_WPS_EXECUTE_END] : (state, action) => handleWPSEnd(state, action.payload),
   [WPS_STATUS_UPDATE] : (state, action) => handleWPSStatusUpdate(state, action.payload),
   [WPS_COMPLETED] : (state, action) => handleWPSComplete(state, action.payload),
+  [WPS_REMOVERESULT] : (state, action) => removeWPSResult(state, action.payload),
   [SET_CSV_FILE_TO_WRANGLE] : (state, action) => setCSVFileToWrangle(state, action.payload)
 };
 
