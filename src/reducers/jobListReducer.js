@@ -14,7 +14,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { basket: null, hasFetched: false };
+const initialState = { jobs: [] };
 export default function userReducer (state = initialState, action) {
   if (!action) {
     return state;

@@ -27,7 +27,7 @@ export default class JobListComponent extends Component {
       return;
     }
 
-    fetch('https://' + this.props.backend + '/joblist/list?key=' + accessToken)
+    fetch(this.props.backend + '/joblist/list?', {credentials: 'include' })
     .then((result) => {
       if (result.ok) {
         return result.json();
@@ -50,8 +50,7 @@ export default class JobListComponent extends Component {
   deleteJobListItem () {
     if (!this.state.cursor) return;
     const { accessToken } = this.props;
-    fetch('https://' + this.props.backend + '/joblist/remove?key=' + accessToken +
-      '&job=' + this.state.cursor.id)
+    fetch(this.props.backend + '/joblist/remove?&job=' + this.state.cursor.id, {credentials: 'include' })
     .then((result) => {
       if (result.ok) {
         return result.json();
@@ -61,6 +60,7 @@ export default class JobListComponent extends Component {
     })
     .then((json) => {
       console.log(json.message);
+      this.fetchJobListItems();
     });
   }
 
@@ -75,6 +75,7 @@ export default class JobListComponent extends Component {
   }
 
   render () {
+    console.log(this.props);
     if (!this.props.jobs) return null;
     const jobs = this.props.jobs;
 

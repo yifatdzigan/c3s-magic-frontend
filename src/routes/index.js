@@ -117,7 +117,7 @@ const mapDispatchToTitleProps = function (dispatch) {
 };
 
 const mapStateToWPSProps = (state) => {
-  return { ...state.WPSState, ...state.userState, ...state.windowManagerActions };
+  return { ...state.WPSState, ...state.userState, ...state.windowManagerActions, location: state.location };
 };
 
 const mapStateToAnomalyEnsembleProps = (state) => {
@@ -148,7 +148,7 @@ const mapDispatchToBasketProps = function (dispatch) {
 
 const mapStateToJoblistProps = (state) => {
   console.log(state);
-  return { ...state.JoblistState, ...state.userState };
+  return { ...state.jobListState, ...state.userState };
 };
 
 const mapDispatchToJoblistProps = function (dispatch) {
@@ -205,7 +205,7 @@ export const createRoutes = (store) => {
       <Route path='interactivecharts' title='Interactive charts'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))} />
       </Route>
-      <Route path='wpsprocess' title='WPS'>
+      <Route path='wpsprocess/*' title='WPS'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
       <Route path='esgfsearch' title='ESGF Search'>
