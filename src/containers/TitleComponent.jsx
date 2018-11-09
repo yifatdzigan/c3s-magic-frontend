@@ -166,7 +166,7 @@ export default class TitleComponent extends Component {
   login () {
     const { backendHost } = config;
     let currentLocation = window.location;
-    window.location.assign(backendHost + '/oauth?provider=google&returnurl=' + encodeURIComponent(currentLocation));
+    window.location.assign(backendHost + '/oauth?provider=ceda&returnurl=' + encodeURIComponent(currentLocation));
   }
 
   logout () {
