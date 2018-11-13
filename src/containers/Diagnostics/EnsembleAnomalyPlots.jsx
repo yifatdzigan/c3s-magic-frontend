@@ -96,7 +96,7 @@ class WPSWranglerDemo extends PureComponent {
                   if (this.webMapJSInstance && this.webMapJSInstance.getLayers().length > 0) {
                     console.log('parsedLayerCallback', this.webMapJSInstance.getLayers().length);
                     this.webMapJSInstance.getLayers()[0].zoomToLayer();
-                    this.webMapJSInstance.zoomOut();
+                    // this.webMapJSInstance.zoomOut();
                     this.webMapJSInstance.draw();
                     this.initialized = true;
                   }

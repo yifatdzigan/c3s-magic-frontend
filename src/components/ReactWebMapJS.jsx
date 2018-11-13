@@ -43,9 +43,11 @@ export default class ReactWebMapJS extends PureComponent {
       }
       this.webMapJS.draw();
     }
+    this._handleWindowResize();
   }
   componentDidMount () {
     // console.log('componentDidMount');
+    
     if (this.webMapJSCreated) {
       // console.log('ret');
       // this.webMapJS.draw();
