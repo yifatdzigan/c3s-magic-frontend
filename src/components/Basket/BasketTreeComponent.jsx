@@ -5,11 +5,12 @@ import treeBeardStyling from '../../styles/stylingBasket/stylingBasket';
 import { Button, Row } from 'reactstrap';
 import ScrollArea from 'react-scrollbar';
 import PreviewComponent from '../PreviewComponent';
-import ADAGUCViewerComponent from '../ADAGUCViewerComponent';
+import RenderWPSProcessOutput from '../WPS/RenderWPSProcessOutput';
 import { withRouter } from 'react-router';
 import Moment from 'react-moment';
 import Icon from 'react-fa';
 import FileUploadComponent from '../FileUploadComponent';
+import { ENOBUFS } from 'constants';
 
 var fileDownload = require('js-file-download');
 
@@ -76,21 +77,33 @@ class BasketTreeComponent extends Component {
 
     /* When toggled, preview is always not active. */
     this.setState({ cursor: node, previewActive: false });
+    console.log(node);
+    if (node.type === 'LEAF') {
+      
+      if (node.httpurl.endsWith('.png')) {
 
-    if (node.dapurl) {
-      let baseName = (str) => {
-        let base = str.substring(str.lastIndexOf('/') + 1);
-        if (base.lastIndexOf('.') !== -1) base = base.substring(0, base.lastIndexOf('.'));
-        return base;
-      };
+      }
+      if (node.dapurl) {
+        let baseName = (str) => {
+          let base = str.substring(str.lastIndexOf('/') + 1);
+          if (base.lastIndexOf('.') !== -1) base = base.substring(0, base.lastIndexOf('.'));
+          return base;
+        };
 
-      let basename = baseName(node.dapurl);
-      this.props.dispatch(this.props.actions.showWindow(
-        {
-          component:(<ADAGUCViewerComponent stacklayers={false} className='AdagucPreview' width={'100%'} height={'300px'} dapurl={node.dapurl} />),
-          title: basename
-        })
-      );
+        let basename = baseName(node.dapurl);
+        let url = node.dapurl;
+        if (node.httpurl.endsWith('.png') || node.httpurl.endsWith('.yml') || node.httpurl.endsWith('.txt') || node.httpurl.endsWith('.svg')){
+          url = node.httpurl;
+        }
+        
+
+        this.props.dispatch(this.props.actions.showWindow(
+          {
+            component:(<RenderWPSProcessOutput width={'100%'} height={'300px'} url={url} title={basename} identifier={basename} abstract={""}/>),
+            title: basename
+          })
+        );
+      }
     }
   }
 
@@ -105,7 +118,7 @@ class BasketTreeComponent extends Component {
     const pathItemWithoutGoogleId =
       pathItem.substring(pathItem.indexOf('/'), pathItem.length);
 
-    dispatch(actions.deleteBasketItem({ path: pathItemWithoutGoogleId }));
+    dispatch(actions.deleteBasketItem({ path: pathItemWithoutGoogleId, actions:actions, dispatch:dispatch }));
   }
 
   /**

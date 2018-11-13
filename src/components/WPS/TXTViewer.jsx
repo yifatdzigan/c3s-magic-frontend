@@ -25,8 +25,8 @@ export default class TXTViewer extends Component {
 
   render () {
     const { closeCallback } = this.props;
-      return (<div className='wpsOutputComponentContainer2'>
-        <textarea style={{ fontSize:'10px', lineHeight:'12px', width: '100%', height:'300px',maxHeight:'400px', border:'none',resize:'none',overflowY:'scroll',outline:'none' }} value={this.state.data} />
+      return (<div className='wpsOutputComponentContainer'>
+        <textarea style={{ fontSize:'10px', lineHeight:'12px', width: '100%', height:'400px', border:'none',resize:'none',overflowY:'scroll',outline:'none' }} value={this.state.data} />
       </div>);
   }
 }
