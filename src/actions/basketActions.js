@@ -28,11 +28,14 @@ const updateBasketItems = (payload) => {
 };
 
 const deleteBasketItem = (payload) => {
+  console.log(payload);
   return {
     type: DELETE_BASKET_ITEM,
     payload: {
       accessToken: payload.accessToken,
-      path: payload.path
+      path: payload.path,
+      actions:payload.actions,
+      dispatch:payload.dispatch
     }
   };
 };
