@@ -56,7 +56,7 @@ export default class RenderProcesses extends Component {
             {
               Object.keys(processOutputs).map((k, i) => {
                 const processOutput = processOutputs[k];
-                return (<RenderWPSProcessOutput style={{maxHeight:'500px', overflowY:'scroll'}} key={i} processOutput={processOutput} />);
+                return (<RenderWPSProcessOutput key={i} processOutput={processOutput} />);
               })
             }
           </Col>
