@@ -10,15 +10,16 @@ export default class WP1Home extends Component {
     return (
       <div className='MainViewport'>
         <Row>
-          <Col xs='6'>
-            <div className='text'>
+          <Col xs='2'></Col>
+          <Col xs='8'>
+            <Row>
               <MarkdownFromFile url={'/contents/Home.md'} />
-            </div>
+            </Row>
+            <Row>
+              <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'} />
+            </Row>
           </Col>
-          <Col xs='6'>
-            <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'} />
-          </Col>
-
+          <Col xs='2'></Col>
         </Row>
       </div>);
   }
