@@ -45,6 +45,9 @@ export default class TitleComponent extends Component {
               </p>
             </Col>
             <Col xs='auto' className='signInOffButton'>
+              <Button color='success' href='https://goo.gl/forms/AaQf8yoRjWAMh8T22' target='_blank'>Feedback</Button>
+            </Col>
+            <Col xs='auto' className='signInOffButton'>
               {
                 clientId !== null ? <Button color='primary' onClick={this.logout}><Icon name='sign-out' />&nbsp;Sign out</Button>
                   : <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>

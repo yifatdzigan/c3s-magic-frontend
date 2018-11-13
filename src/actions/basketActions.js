@@ -28,7 +28,6 @@ const updateBasketItems = (payload) => {
 };
 
 const deleteBasketItem = (payload) => {
-  console.log(payload);
   return {
     type: DELETE_BASKET_ITEM,
     payload: {
