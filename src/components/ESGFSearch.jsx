@@ -26,7 +26,7 @@ export default class RechartsDemo extends Component {
           </Col>
           <Col xs='8'>
             <iframe className='esgfsearchframe' type='text/html'
-                src = {'https://compute-test.c3s-magic.eu/esgfsearch/esgfsearch.html#'}
+                src = {'https://portal.c3s-magic.eu/esgfsearch/esgfsearch.html#'}
                 frameBorder = '0' allowFullScreen />
           </Col>
           <Col xs='2'>
