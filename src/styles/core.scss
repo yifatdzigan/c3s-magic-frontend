@@ -339,8 +339,9 @@ body {
   background-color:#FFF;
   padding-top:10px;
   padding-left:20px;
-  padding-right:0px;
+  padding-right:20px;
   padding-bottom:10px;
+
 }
 
 iframe {
@@ -350,6 +351,20 @@ iframe {
   -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
   box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+}
+
+.ADAGUCViewerComponent{
+  flex: 1;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y:hidden;
+  display:block;
+  height:inherit;
+  width:inherit;
+  text-align: justify;
+  text-justify: inter-word;
+  margin:0;
+  background-color:#FFF;
 }
 
 .ADAGUCViewerComponentMap{

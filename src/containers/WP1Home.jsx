@@ -8,16 +8,18 @@ import { Row, Col } from 'reactstrap';
 export default class WP1Home extends Component {
   render () {
     return (
-      <div className='MainViewport'>
+      <div className='MainViewportNoOverflow' style={{display:'flex',flexDirection:'column'}}>
         <Row>
           <Col xs='2'></Col>
           <Col xs='8'>
-            <Row>
-              <MarkdownFromFile url={'/contents/Home.md'} />
-            </Row>
-            <Row>
-              <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'} />
-            </Row>
+            <MarkdownFromFile url={'/contents/Home.md'} />
+          </Col>
+          <Col xs='2'></Col>    
+        </Row>
+        <Row style={{flex:2}}>
+          <Col xs='2'></Col>
+          <Col xs='8' style={{display:'flex',flexDirection:'column'}}>
+            <EnsembleAnomalyPlots showSlider map_data={'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'} />
           </Col>
           <Col xs='2'></Col>
         </Row>

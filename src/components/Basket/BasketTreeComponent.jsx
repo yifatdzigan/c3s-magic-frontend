@@ -127,10 +127,14 @@ class BasketTreeComponent extends Component {
   downloadBasketItem () {
     // There's always an if..
     if (!this.state.cursor) return;
+    console.log(this.state.cursor.httpurl);
 
-    /* this.state.cursor is always the current selected item in the basket. */
-    let link = this.state.cursor.httpurl + '?key=' + this.props.accessToken;
-    fileDownload(link, this.state.cursor.httpurl.substring(this.state.cursor.httpurl.lastIndexOf('/') + 1));
+    var win = window.open(this.state.cursor.httpurl, '_blank');
+    win.focus();
+
+    // /* this.state.cursor is always the current selected item in the basket. */
+    // let link = this.state.cursor.httpurl + '?key=' + this.props.accessToken;
+    // fileDownload(link, this.state.cursor.httpurl.substring(this.state.cursor.httpurl.lastIndexOf('/') + 1));
   }
 
   previewFile () {

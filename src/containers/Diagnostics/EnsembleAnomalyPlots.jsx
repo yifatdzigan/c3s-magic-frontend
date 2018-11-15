@@ -57,63 +57,61 @@ class WPSWranglerDemo extends PureComponent {
     // console.log("slider:", this.state.showSlider);
     // var data_path = config.backendHost + '/wms?DATASET=' + this.props.map_data + '&';
 
-    return (<div>
-      <h2>Ensemble anomaly plots</h2>
+    return (<div className='MainViewportNoOverflow' style={{display:'flex', flexDirection:'column', padding:0}}>
       <Row>
-      {this.state.showSlider ?
+        <h3>Ensemble anomaly plots</h3>
+      </Row>
+      <Row>
+      
+        {this.state.showSlider ?
         <Col>
           <Row>
-            <div>
-              Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
-            </div>
+            Maps with percentage of models agreeing on the sign of (sub-)ensemble-mean anomalies
           </Row>
-          <Form>
-            <FormGroup>
+          <Row>
+            <Col xs='auto'>
               <Label>Stippling (% of members agreeing):</Label>
-              <Row>
-                <Col xs='10'>
-                  <ReactSlider
-                    className={'horizontal-slider'}
-                    defaultValue={this.state.currentValue}
-                    onChange={(v) => { this.debouncedHandleSliderChange(v); }}
-                  />
-                </Col>
-                <Col xs='2'>{this.state.currentValue} %</Col>
-              </Row>
-            </FormGroup>
-          </Form>
+            </Col>
+            <Col>
+              <ReactSlider
+                className={'horizontal-slider'}
+                defaultValue={this.state.currentValue}
+                onChange={(v) => { this.debouncedHandleSliderChange(v); }}
+              />
+            </Col>
+            <Col xs='2'>{this.state.currentValue} %</Col>
+          </Row>
         </Col>
          : ''}
-        <Col xs='12'>
-          <ADAGUCViewerComponent
-            height={'50vh'}
-            stacklayers
-            wmsurl={this.props.map_data}
-            parsedLayerCallback={
-              (wmjsLayer, webMapJSInstance) => {
-                this.webMapJSInstance = webMapJSInstance;
-                if (!this.initialized) {
-                  if (this.webMapJSInstance && this.webMapJSInstance.getLayers().length > 0) {
-                    console.log('parsedLayerCallback', this.webMapJSInstance.getLayers().length);
-                    this.webMapJSInstance.getLayers()[0].zoomToLayer();
-                    // this.webMapJSInstance.zoomOut();
-                    this.webMapJSInstance.draw();
-                    this.initialized = true;
-                  }
+      </Row>
+      <Row style={{flex:2}}>
+      
+        <ADAGUCViewerComponent
+          controls={{showdownloadbutton: false}}
+          stacklayers
+          height={'50vh'}
+          wmsurl={this.props.map_data}
+          parsedLayerCallback={
+            (wmjsLayer, webMapJSInstance) => {
+              this.webMapJSInstance = webMapJSInstance;
+              if (!this.initialized) {
+                if (this.webMapJSInstance && this.webMapJSInstance.getLayers().length > 0) {
+                  console.log('parsedLayerCallback', this.webMapJSInstance.getLayers().length);
+                  this.webMapJSInstance.getLayers()[0].zoomToLayer();
+                  // this.webMapJSInstance.zoomOut();
+                  this.webMapJSInstance.draw();
+                  this.initialized = true;
                 }
               }
             }
-          />
-        </Col>
+          }
+        />
       </Row>
     </div>);
   }
 
   render () {
-    return (
-      <div className='text'>
-        { this.renderAnomalyAgreement() }
-      </div>);
+    return this.renderAnomalyAgreement();
   }
 }
 

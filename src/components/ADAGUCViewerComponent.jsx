@@ -408,7 +408,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
             <Col xs='3'>Timevalue (UTC)</Col><Col>{this.state.timeValue + ' (' + (this.state.currentValue + 1)+ '/' + this.state.numTimeValues + ')'}</Col>
           </Row></div>) : null
           }
-          { true || (this.props.controls && this.props.controls.showdownloadbutton !== false) ? (<div><Row>
+          {  (this.props.controls && this.props.controls.showdownloadbutton !== false) ? (<div><Row>
             <Col xs='3'>
             </Col>
             <Col xs='1'>
