@@ -47,12 +47,24 @@ export default class TitleComponent extends Component {
             <Col xs='auto' className='signInOffButton'>
               <Button color='success' href='https://goo.gl/forms/AaQf8yoRjWAMh8T22' target='_blank'>Feedback</Button>
             </Col>
+            {
+                clientId !== null ? 
             <Col xs='auto' className='signInOffButton'>
+              <Button href='#/account'>Account</Button>
+            </Col> : null
+            }
               {
-                clientId !== null ? <Button color='primary' onClick={this.logout}><Icon name='sign-out' />&nbsp;Sign out</Button>
-                  : <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
+                clientId !== null ? (
+                  
+                  <Col xs='auto' className='signInOffButton'>
+                    <Button color='primary' onClick={this.logout}><Icon name='sign-out' />&nbsp;Sign out</Button>
+                  </Col>
+                )
+                  : <Col xs='auto' className='signInOffButton'>
+                      <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
+                    </Col>
               }
-            </Col>
+            
           </Row>
         </Navbar>
         <Navbar style={{ backgroundColor: '#941333', color: 'white', height: '38px', textAlign: 'center' }} className='navbar-static-top'>
@@ -61,18 +73,21 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} >Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Diagnostics</NavLink>
+              <NavLink href='#/tailoredproducts' active={pathname === '/tailoredproducts'} >Tailored Products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/tailoredproducts' active={pathname === '/tailoredproducts'} >Tailored products</NavLink>
+              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Metrics &amp; Diagnostics</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/wpsprocess/' active={pathname === '/wpsprocess/'} >WPS</NavLink>
+              <NavLink href='#/calculate/' active={pathname === '/calculate/'} >Calculate</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/esgfsearch' active={pathname === '/esgfsearch'} >Search</NavLink>
+              <NavLink href='#/esgfsearch' active={pathname === '/esgfsearch'} >Explore Data</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href='#/about' active={pathname === '/about'} >About</NavLink>
+            </NavItem>
+            { /* <NavItem>
               <NavLink href='#/interactivecharts' active={pathname === '/interactivecharts'} >Charts</NavLink>
             </NavItem>
             <NavItem>
@@ -86,7 +101,7 @@ export default class TitleComponent extends Component {
             </NavItem>
             <NavItem>
               <NavLink href='#/account' active={pathname === '/account'}><Icon name='user-o' /> Account</NavLink>
-            </NavItem>
+            </NavItem> */ }
 
           </Nav>
         </Navbar>

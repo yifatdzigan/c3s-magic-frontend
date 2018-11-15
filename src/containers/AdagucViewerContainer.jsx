@@ -111,7 +111,7 @@ export default class AdagucViewerContainer extends Component {
         </Row>
         <Row>
           <ADAGUCViewerComponent
-            height={'50vh'}
+            height={'40vh'}
             layers={[]}
             controls={{
               showprojectionbutton: true,

@@ -119,7 +119,7 @@ class WPSDemoCopernicus extends Component {
 
   onWpsButtonClick (wpsName) {
     // console.log('Clicked on button --> ', wpsName);
-    this.props.router.push('/wpsprocess/' + wpsName);
+    this.props.router.push('/calculate/' + wpsName);
     this.getWPSProcessInfo(wpsName)
       .then(response => {
         // console.log(response);

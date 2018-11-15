@@ -83,6 +83,9 @@ import SystemHome from '../containers/System/SystemHome';
 import Provenance from '../containers/System/Provenance';
 import Data from '../containers/System/Data';
 
+/* Calculate */
+import CalculateMenu from '../containers/Calculate/CalculateMenu';
+
 import TitleComponent from '../containers/TitleComponent';
 import WP1Home from '../containers/WP1Home';
 import AccountComponent from '../containers/AccountComponent';
@@ -332,8 +335,39 @@ export const createRoutes = (store) => {
           />
         </Route>
       </Route>
-      <Route path='system' title='System'>
-        <Route path='home'>
+
+      <Route path='calculate' title='Calculate'>
+        <Route path=''>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu}
+            secondNavbar={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(CalculateMenu))}
+            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))}
+          />
+        </Route>
+        <Route path='basket'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu}
+            secondNavbar={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(CalculateMenu))}
+            viewComponent={basket}
+          />
+        </Route>
+        <Route path='joblist'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu}
+            secondNavbar={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(CalculateMenu))}
+            viewComponent={jobs}
+          />
+        </Route>
+      </Route>
+
+      <Route path='calculate/*' title='Calculate'>
+        <Route path=''>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu}
+            secondNavbar={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(CalculateMenu))}
+            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))}
+          />
+        </Route>
+      </Route>
+
+      <Route path='about' title='About'>
+        <Route path=''>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu}
             viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(SystemHome))}
           />
@@ -348,6 +382,15 @@ export const createRoutes = (store) => {
             viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Data))}
           />
         </Route>
+        <Route path='adagucviewer'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu} viewComponent={adagucviewer} />
+        </Route>
+        <Route path='interactivecharts'>
+          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu}
+            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))}
+          />
+        </Route>
+
       </Route>
 
     </Route>
