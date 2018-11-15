@@ -125,6 +125,7 @@
     "recharts": "^1.1.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "svg-inline-react": "^3.1.0",
     "throttle-debounce": "^1.0.1",
     "underscore": "^1.9.0",
     "yamljs": "^0.3.0"

@@ -6,6 +6,7 @@ import { Row, Col,  Card, CardBody, CardText, CardLink, CardTitle,  Button } fro
 import ImagePreview from '../ImagePreview';
 import YMLViewer from './YMLViewer';
 import TXTViewer from './TXTViewer';
+import SVGViewer from './SVGViewer';
 import ADAGUCViewerComponent from '../ADAGUCViewerComponent';
 import Icon from 'react-fa';
 
@@ -44,7 +45,8 @@ export default class RenderWPSProcessOutput extends Component {
         reference: null,
         esmRecipe: null,
         txtViewer:null,
-        netcdfOpenDAP: null
+        netcdfOpenDAP: null,
+        svgViewer: null
       };
       if (myProcessOutput && myProcessOutput.Identifier && myProcessOutput.Identifier.value) { output.identifier = myProcessOutput.Identifier.value; }
       if (output.identifier === null) {
@@ -79,6 +81,10 @@ export default class RenderWPSProcessOutput extends Component {
           if (output.reference.endsWith('.nc')) {
             output.netcdfOpenDAP = output.reference;
           }
+          /* Check if this is a svg file */
+          if (output.reference.endsWith('.svg')) {
+            output.svgViewer = output.reference;
+          }
         }
       }
       console.log(output);
@@ -97,6 +103,7 @@ export default class RenderWPSProcessOutput extends Component {
             }
             { output.esmRecipe && (<Row><Col xs='10'><YMLViewer url={output.esmRecipe}></YMLViewer></Col></Row>) }
             { output.txtViewer && (<Row><Col xs='10'><TXTViewer url={output.txtViewer}></TXTViewer></Col></Row>) }
+            { output.svgViewer && (<Row><Col xs='12'><SVGViewer url={output.svgViewer}></SVGViewer></Col></Row>) }
             { output.netcdfOpenDAP && (<Row><Col xs='10'>
                     <ADAGUCViewerComponent
                       height={'300px'}
