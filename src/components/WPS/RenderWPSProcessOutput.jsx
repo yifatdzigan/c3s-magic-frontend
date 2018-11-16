@@ -119,7 +119,7 @@ export default class RenderWPSProcessOutput extends Component {
                         layer.zoomToLayer();
                         webMapJSInstance.draw();
                       }}
-                      wmsurl={output.netcdfOpenDAP}
+                      dapurl={output.netcdfOpenDAP}
                     />
   
   
