@@ -27,6 +27,7 @@ class DiagnosticPage extends Component {
       staticPath: 'diagnosticsdata/'
     };
     this.readYaml = this.readYaml.bind(this);
+    this.calculate = this.calculate.bind(this);
     console.log('DiagnosticPage');
     console.log(this.props.params.diag);
     // console.log(this.props.params);
@@ -88,14 +89,14 @@ class DiagnosticPage extends Component {
         _element = this.state.yamlData[elementName];
       }
       else if (elementName === "authors") {
-        _element = '<ul class="list-unstyled">';
+        _element = '<ul>';
         this.state.yamlData[elementName].forEach(function (element) {
           _element += '<li>' + element + '</li>';
         });
         _element += '</ul>';
       }
       else if (elementName === "contact") {
-        _element = '<ul class="list-unstyled">';
+        _element = '<ul>';
         this.state.yamlData[elementName].forEach(function (element) {
           _element += '<li>' + element + '</li>';
         });
@@ -130,7 +131,11 @@ class DiagnosticPage extends Component {
         return Boolean(_element);
       }
       else if (elementName === "references") {
-        _element = this.state.yamlData[elementName];
+        _element = '<ul>';
+        this.state.yamlData[elementName].forEach(function (element) {
+          _element += '<li>' + element + '</li>';
+        });
+        _element += '</ul>';
       }
       else if (elementName === "media") {
         _element = this.state.yamlData[elementName];
@@ -155,7 +160,7 @@ class DiagnosticPage extends Component {
       return (<div dangerouslySetInnerHTML={{ __html: _element }} />);
     }
   }
-  downloadReport() {
+  viewProvenance() {
     console.log('Download report...');
   }
 
@@ -171,6 +176,10 @@ class DiagnosticPage extends Component {
   toTop() {
     var element = document.getElementById("pagetop");
     element.scrollIntoView();
+  }
+
+  calculate() {
+    this.context.router.push('/calculate/');
   }
 
   render() {
@@ -216,7 +225,7 @@ class DiagnosticPage extends Component {
               </div>
 
               <div className='vspace2em'>
-                <Button color="primary" onClick={this.downloadReport}><Icon name='file-pdf-o' />&nbsp;Download report</Button>{' '}
+                <Button color="primary" onClick={this.viewProvenance}>&nbsp;View provenance</Button>{' '}
                 <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
               </div>
 
@@ -238,7 +247,9 @@ class DiagnosticPage extends Component {
               <div className='text vspace2em'>
                 <h2 style={{ color: '#921A36'}}>Settings</h2>
                 {this.renderPageElement('settings')}
-                <Button color="primary" className="disabled"><Icon name='' />&nbsp;Change Settings</Button>{' '}
+                <Button color="primary" onClick={this.calculate}><Icon name='' />&nbsp;Calculate metric</Button>{' '}
+
+
               </div>
 
             </Col>
@@ -364,6 +375,5 @@ DiagnosticPage.propTypes = {
 DiagnosticPage.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
-
 
 export default  withRouter(DiagnosticPage);

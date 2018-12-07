@@ -34,12 +34,6 @@ export default class SystemMenu extends Component {
                 Data Viewer
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href='#/about/interactivecharts' active={pathname === '/about/interactivecharts'} >
-                <Icon name='' />
-                Charts
-              </NavLink>
-            </NavItem>
           </Nav>
         </Navbar>
       </div>);

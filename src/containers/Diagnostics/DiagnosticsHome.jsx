@@ -38,9 +38,7 @@ export default class DiagnosticsHome extends Component {
 
   clickEvent(item) {
     this.setState({ selectedPageYaml: item.info_file, selectedPageId: item.id });
-    console.log(item.name);
     this.context.router.push('/diagnostics/' + item.name);
-
   }
 
 
