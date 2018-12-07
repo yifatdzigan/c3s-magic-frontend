@@ -72,7 +72,8 @@ import Energy from '../containers/TailoredProducts/Energy';
 import Insurance from '../containers/TailoredProducts/Insurance';
 import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
 import UserConsultation from '../containers/TailoredProducts/UserConsultation';
-import ActuariesDemo from '../containers/TailoredProducts/ActuariesDemo';
+import TPActuaries from '../containers/TailoredProducts/TPActuaries';
+import TPStormSurge from '../containers/TailoredProducts/TPStormSurge';
 
 /* Diagnostics */
 import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
@@ -178,7 +179,9 @@ export const createRoutes = (store) => {
 
   const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapStateToAnomalyEnsembleProps)(EnsembleAnomalyPlots));
 
-  const actuariesDemo = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ActuariesDemo));
+  const tpActuaries = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(TPActuaries));
+
+  const tpStormSurge = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(TPStormSurge));
 
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
@@ -215,8 +218,12 @@ export const createRoutes = (store) => {
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(ESGFSearch))} />
       </Route>
 
-      <Route path='actuaries' title='actuariesDemo'>
-        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={actuariesDemo} />
+      <Route path='tailoredproduct_actuaries' title='Tailored product actuaries'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={tpActuaries} />
+      </Route>
+
+      <Route path='tailoredproduct_stormsurge' title='Tailored product surge height estimator'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={tpStormSurge} />
       </Route>
       <Route path='ensembleanomalyplots' title='ensembleAnomalyPlots'>
         <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={ensembleAnomalyPlots} />
@@ -301,7 +308,7 @@ export const createRoutes = (store) => {
       <Route path='tailoredproducts' title='Tailored products'>
         <Route path=''>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={actuariesDemo}
+            viewComponent={tpActuaries}
           />
         </Route>
         <Route path='home'>
