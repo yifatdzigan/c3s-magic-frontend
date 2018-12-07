@@ -251,8 +251,26 @@ class DiagnosticPage extends Component {
                     {this.renderPageElement('settings')}
                     <Button color="primary" onClick={this.calculate}><Icon name='' />&nbsp;Calculate metric</Button>{' '}
 
+<<<<<<< HEAD
 
                   </div>
+=======
+          <Row>
+            <Col xs="12" className='diagnosticsCol'>
+              <div className='text'>
+                {this.isEnabled('chart') ?
+                  [
+                    <div className='text'>
+                      <h2 style={{ color: '#921A36'}}>Interactive chart</h2>
+                      <DiagnosticsChart data={this.renderPageElement('chart')}/>
+                    </div>
+                  ]
+                  : null
+                }
+              </div>
+            </Col>
+          </Row>
+>>>>>>> origin
 
                 </Col>
               </Row>
