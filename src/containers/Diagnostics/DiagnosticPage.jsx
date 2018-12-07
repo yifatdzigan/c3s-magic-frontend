@@ -28,10 +28,6 @@ class DiagnosticPage extends Component {
     };
     this.readYaml = this.readYaml.bind(this);
     this.calculate = this.calculate.bind(this);
-    console.log('DiagnosticPage');
-    console.log(this.props.params.diag);
-    // console.log(this.props.params);
-    // console.log(this.props.match.params.diag);
   }
 
   readYaml() {
@@ -253,11 +249,23 @@ class DiagnosticPage extends Component {
 
 
                   </div>
-
+                  <Row>
+                    <Col xs="12" className='diagnosticsCol'>
+                      <div className='text'>
+                        {this.isEnabled('chart') ?
+                          [
+                            <div className='text'>
+                              <h2 style={{ color: '#921A36'}}>Interactive chart</h2>
+                              <DiagnosticsChart data={this.renderPageElement('chart')}/>
+                            </div>
+                          ]
+                          : null
+                        }
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
-
-
               <Row>
                 <Col xs="12" className='diagnosticsCol'>
                   <div className='text'>

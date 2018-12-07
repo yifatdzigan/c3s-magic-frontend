@@ -66,7 +66,7 @@ export default class RechartsDemo extends Component {
     .catch(error => {
       throw error;
     }).then(data => {
-      console.log(data);
+      // console.log(data);
       let tas = [];
       data.data.tas.map((d, i) => {
         tas.push({ y: data.data.tas[i], x: data.data.ecs[i], model: data.data.models[i].trim() });
@@ -96,7 +96,7 @@ export default class RechartsDemo extends Component {
   }
 
   render () {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className=''>
         <Row>

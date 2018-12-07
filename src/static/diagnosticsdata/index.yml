@@ -136,7 +136,7 @@ diagnostics:
         github_issue:
     surge_height_estimator:
         id: 122
-        name: surge_height_estimator
+        name: surge_height
         title: Surge Height Estimator
         sub_title:
         info_text: Diagnostic to estimate surge levels along the coast of the North Sea from anomalies in mean sea level pressure and wind components.
@@ -181,7 +181,7 @@ diagnostics:
         github_issue:
     dtr:
         id: 13
-        name: dtrs
+        name: dtr
         title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
         sub_title:
         info_text: Tool to compute the diurnal temperature indicator to estimate energy demand, and the wind capacity factor to estimate energy supply.
