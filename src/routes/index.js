@@ -214,9 +214,6 @@ export const createRoutes = (store) => {
       <Route path='wpssubmit' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
-      <Route path='interactivecharts' title='Interactive charts'>
-        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))} />
-      </Route>
       <Route path='wpsprocess/*' title='WPS'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSDemoCopernicus))} />
       </Route>
