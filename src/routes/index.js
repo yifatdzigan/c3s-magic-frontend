@@ -68,12 +68,12 @@ import SpatioTemporalAnalyses from '../containers/TimeSeries/SpatioTemporalAnaly
 import TPHome from '../containers/TailoredProducts/TPHome';
 
 import TailoredProductsMenu from '../containers/TailoredProducts/TailoredProductsMenu';
-import TailoredProductsHome from '../containers/TailoredProducts/TailoredProductsHome';
-import CoastalAreas from '../containers/TailoredProducts/CoastalAreas';
-import Energy from '../containers/TailoredProducts/Energy';
-import Insurance from '../containers/TailoredProducts/Insurance';
+// import TailoredProductsHome from '../containers/TailoredProducts/TailoredProductsHome';
+// import CoastalAreas from '../containers/TailoredProducts/CoastalAreas';
+// import Energy from '../containers/TailoredProducts/Energy';
+// import Insurance from '../containers/TailoredProducts/Insurance';
 import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
-import UserConsultation from '../containers/TailoredProducts/UserConsultation';
+// import UserConsultation from '../containers/TailoredProducts/UserConsultation';
 import TPActuaries from '../containers/TailoredProducts/TPActuaries';
 import TPStormSurge from '../containers/TailoredProducts/TPStormSurge';
 
@@ -313,8 +313,6 @@ export const createRoutes = (store) => {
         </Route>
       </Route>
 
-
-
       <Route path='tailoredproducts' title='Tailored products'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={tphome} />
       </Route>
@@ -350,7 +348,6 @@ export const createRoutes = (store) => {
           viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WaterHydrology))}
         />
       </Route>
-
 
       <Route path='calculate' title='Calculate'>
         <Route path=''>
