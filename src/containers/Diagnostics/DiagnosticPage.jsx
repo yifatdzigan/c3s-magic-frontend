@@ -27,10 +27,6 @@ class DiagnosticPage extends Component {
       staticPath: 'diagnosticsdata/'
     };
     this.readYaml = this.readYaml.bind(this);
-    console.log('DiagnosticPage');
-    console.log(this.props.params.diag);
-    // console.log(this.props.params);
-    // console.log(this.props.match.params.diag);
   }
 
   readYaml() {
