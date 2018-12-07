@@ -254,12 +254,6 @@ class DiagnosticPage extends Component {
                   : null
                 }
               </div>
-
-              <div className='text vspace2em'>
-                <h2 style={{ color: '#921A36'}}>Settings</h2>
-                {this.renderPageElement('settings')}
-                <Button color="primary" className="disabled"><Icon name='' />&nbsp;Change Settings</Button>{' '}
-              </div>
             </Col>
           </Row>
 
