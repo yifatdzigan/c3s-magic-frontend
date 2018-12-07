@@ -3,21 +3,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { YoutubeVideo, DiagnosticPlot } from './DiagnosticMedia';
+import { DiagnosticsChart } from './DiagnosticsChart';
+import { withRouter } from 'react-router';
 
 import WPSWranglerDemo from './EnsembleAnomalyPlots';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import MarkdownFromFile from '../../containers/MarkdownFromFile';
 
-import { Row, Col, Button, Table } from 'reactstrap';
+import { Row, Col, Button, Alert, Container } from 'reactstrap';
 import Icon from 'react-fa';
 
 var $RefParser = require('json-schema-ref-parser');
 var _ = require('lodash');
 
-export default class DiagnosticPage extends Component {
+class DiagnosticPage extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       yamlData: '',
       readSuccess: false,
@@ -25,10 +27,15 @@ export default class DiagnosticPage extends Component {
       staticPath: 'diagnosticsdata/'
     };
     this.readYaml = this.readYaml.bind(this);
+    console.log('DiagnosticPage');
+    console.log(this.props.params.diag);
+    // console.log(this.props.params);
+    // console.log(this.props.match.params.diag);
   }
 
   readYaml() {
-    var yamlPath = 'diagnosticsdata/' + this.props.yamlFile;
+    var yamlPath = 'diagnosticsdata/' + this.props.params.diag + '/' + this.props.params.diag + '.yml';
+    console.log(yamlPath);
     this.setState({ yamlPath: yamlPath });
     var that = this;
     $RefParser.dereference(yamlPath)
@@ -39,6 +46,7 @@ export default class DiagnosticPage extends Component {
 
   componentWillMount() {
     this.readYaml();
+    console.log(this.props);
   }
 
   componentDidMount() {
@@ -136,6 +144,10 @@ export default class DiagnosticPage extends Component {
         _element = this.state.yamlData[elementName];
         return _element;
       }
+      else if (elementName === "chart") {
+        _element = this.state.yamlData[elementName];
+        return _element;
+      }
       else {
         console.warn("Could not find the key " + elementName + " in the configuration file!");
         _element = "No key was requested! Check the diagnostics settings.";
@@ -167,21 +179,21 @@ export default class DiagnosticPage extends Component {
       return (
         <div id="pagetop" className='MainViewport'>
 
-          <div className='text vspace2em'>
-            <h2>
+          <div className='text vspace2em text-center'>
+            <h1>
               {this.renderPageElement('title')}
-            </h2>
+            </h1>
           </div>
 
           <Row>
             <Col xs="6" className='diagnosticsCol'>
               <div className='text'>
-                <h2>Partners</h2>
+                <h2 style={{ color: '#921A36'}}>Partners</h2>
                 {this.renderPageElement('partner')}
               </div>
 
               <div className='text vspace2em'>
-                <h2>Description</h2>
+                <h2 style={{ color: '#921A36'}}>Description</h2>
                 {this.renderPageElement('description_short')}
                 <div className='text vspace2em'>
                   <Button color="primary" onClick={this.readMore}><Icon name='' />&nbsp;Read more</Button>{' '}
@@ -189,17 +201,17 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='text vspace2em'>
-                <h2>Authors</h2>
+                <h2 style={{ color: '#921A36'}}>Authors</h2>
                 {this.renderPageElement('authors')}
               </div>
 
               <div className='text vspace2em'>
-                <h2>References</h2>
+                <h2 style={{ color: '#921A36'}}>References</h2>
                 {this.renderPageElement('references')}
               </div>
 
               <div className='text vspace2em'>
-                <h2>Contact</h2>
+                <h2 style={{ color: '#921A36'}}>Contact</h2>
                 {this.renderPageElement('contact')}
               </div>
 
@@ -210,11 +222,12 @@ export default class DiagnosticPage extends Component {
 
             </Col>
             <Col xs="6" className='diagnosticsCol'>
+
               <div className='text'>
                 {this.isEnabled('youtube') ?
                   [
                     <div className='text'>
-                      <h2>Screencast</h2>
+                      <h2 style={{ color: '#921A36'}}>Screencast</h2>
                       <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
                     </div>
                   ]
@@ -223,19 +236,43 @@ export default class DiagnosticPage extends Component {
               </div>
 
               <div className='text vspace2em'>
-                <h2>Settings</h2>
+                <h2 style={{ color: '#921A36'}}>Settings</h2>
                 {this.renderPageElement('settings')}
                 <Button color="primary" className="disabled"><Icon name='' />&nbsp;Change Settings</Button>{' '}
               </div>
 
             </Col>
-
           </Row>
+
+
+          <Row>
+            <Col xs="12" className='diagnosticsCol'>
+              <div className='text'>
+                {this.isEnabled('chart') ?
+                  [
+                    <div className='text'>
+                      <h2 style={{ color: '#921A36'}}>Interactive chart</h2>
+                      <DiagnosticsChart data={this.renderPageElement('chart')}/>
+                    </div>
+                  ]
+                  : null
+                }
+              </div>
+
+              <div className='text vspace2em'>
+                <h2 style={{ color: '#921A36'}}>Settings</h2>
+                {this.renderPageElement('settings')}
+                <Button color="primary" className="disabled"><Icon name='' />&nbsp;Change Settings</Button>{' '}
+              </div>
+            </Col>
+          </Row>
+
+
 
           <Row>
             <Col xs="12" className='diagnosticsCol'>
               <div className='text vspace2em'>
-                <h2>Metric Results</h2>
+                <h2 style={{ color: '#921A36'}}>Metric Results</h2>
 
                 {this.isEnabled('enableEnsembleAnomalyPlots') ?
                   [
@@ -294,9 +331,25 @@ export default class DiagnosticPage extends Component {
     }
     else {
       return (
-        <div className='text vspace2em'>
-          <p> An error occured or this diagnostic pacge is not ready yet!</p>
-          <p> Please contact the developers...</p>
+        <div style={{display: 'flex', justifyContent: 'center'}} className='text vspace2em'>
+
+          <Container>
+            <Row>
+              <Col sm={{ size: 8, offset: 2 }}>
+
+                <Alert color="danger">
+                  <h4 className="alert-heading">Error!</h4>
+                  <p>
+                    This diagnostic is not ready yet or there is a technical problem.
+                  </p>
+                  <hr />
+                  <p className="mb-0">
+                    If you think this is an error, please contact us at magicians@c3s-magic.eu
+                  </p>
+                </Alert>
+              </Col>
+            </Row>
+          </Container>
         </div>
       );
     }
@@ -307,3 +360,10 @@ export default class DiagnosticPage extends Component {
 DiagnosticPage.propTypes = {
   yamlFile: PropTypes.string
 };
+
+DiagnosticPage.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+
+export default  withRouter(DiagnosticPage);
