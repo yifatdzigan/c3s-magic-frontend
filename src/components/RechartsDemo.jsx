@@ -108,7 +108,7 @@ export default class RechartsDemo extends Component {
           </Col>
         </Row>
         { this.state.error && this.state.error.length > 0 ? (<Alert style={{ margin: '10px' }} color='danger'>{this.state.error.replace('\n', '<br />')}</Alert>) : null }
-        <ScatterChart width={1000} height={600} margin={{ top: 50, right: 50, bottom: 50, left: 50 }}>
+        <ScatterChart width={800} height={600} margin={{ top: 50, right: 50, bottom: 50, left: 50 }}>
           <XAxis label={{ value: 'ECS /°C', angle: 0, position: 'insideBottomRight', offset: 0 }} type='number' dataKey={'x'} name='ecs' unit=''
             domain={[dataMin => Math.round(dataMin * 0.9), dataMax => Math.round(dataMax * 1.2)]}
           />

@@ -65,13 +65,15 @@ import IndicesOnAreaAverages from '../containers/TimeSeries/IndicesOnAreaAverage
 import SpatioTemporalAnalyses from '../containers/TimeSeries/SpatioTemporalAnalyses';
 
 /* TailoredProducts */
+import TPHome from '../containers/TailoredProducts/TPHome';
+
 import TailoredProductsMenu from '../containers/TailoredProducts/TailoredProductsMenu';
-import TailoredProductsHome from '../containers/TailoredProducts/TailoredProductsHome';
-import CoastalAreas from '../containers/TailoredProducts/CoastalAreas';
-import Energy from '../containers/TailoredProducts/Energy';
-import Insurance from '../containers/TailoredProducts/Insurance';
+// import TailoredProductsHome from '../containers/TailoredProducts/TailoredProductsHome';
+// import CoastalAreas from '../containers/TailoredProducts/CoastalAreas';
+// import Energy from '../containers/TailoredProducts/Energy';
+// import Insurance from '../containers/TailoredProducts/Insurance';
 import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
-import UserConsultation from '../containers/TailoredProducts/UserConsultation';
+// import UserConsultation from '../containers/TailoredProducts/UserConsultation';
 import TPActuaries from '../containers/TailoredProducts/TPActuaries';
 import TPStormSurge from '../containers/TailoredProducts/TPStormSurge';
 
@@ -179,6 +181,8 @@ export const createRoutes = (store) => {
   const account = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(AccountComponent));
 
   const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapStateToAnomalyEnsembleProps)(EnsembleAnomalyPlots));
+
+  const tphome = React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TPHome));
 
   const tpActuaries = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(TPActuaries));
 
@@ -308,42 +312,41 @@ export const createRoutes = (store) => {
           />
         </Route>
       </Route>
+
       <Route path='tailoredproducts' title='Tailored products'>
-        <Route path=''>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={tpActuaries}
-          />
-        </Route>
-        <Route path='home'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TailoredProductsHome))}
-          />
-        </Route>
-        <Route path='coastalareas'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(CoastalAreas))}
-          />
-        </Route>
-        <Route path='energy'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Energy))}
-          />
-        </Route>
-        <Route path='insurance'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Insurance))}
-          />
-        </Route>
-        <Route path='userconsultation'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(UserConsultation))}
-          />
-        </Route>
-        <Route path='waterhydrology'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
-            viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WaterHydrology))}
-          />
-        </Route>
+        <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={tphome} />
+      </Route>
+
+      {/* <Route path='coastalareas'>
+        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(CoastalAreas))}
+        />
+      </Route>
+      <Route path='energy'>
+        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Energy))}
+        />
+      </Route>
+      <Route path='insurance'>
+        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(Insurance))}
+        />
+      </Route>
+      <Route path='userconsultation'>
+        <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(UserConsultation))}
+        />
+      </Route> */}
+
+      <Route path='/tailoredproducts/actuaries'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(TPActuaries))}
+        />
+      </Route>
+      <Route path='/tailoredproducts/waterhydrology'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={tailoredproductsmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(WaterHydrology))}
+        />
       </Route>
 
       <Route path='calculate' title='Calculate'>
