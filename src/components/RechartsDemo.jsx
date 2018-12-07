@@ -35,15 +35,16 @@ CustomTooltip.propTypes = {
 };
 
 export default class RechartsDemo extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
 
     this.loaddap = this.loaddap.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       scatterdata: { tas:[], tas_0:[] },
-      dataurl:'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc',
+      // dataurl:'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc',
+      dataurl: this.props.data,
       error:''
     };
     this.loaddap();
@@ -97,15 +98,13 @@ export default class RechartsDemo extends Component {
   render () {
     console.log(this.state);
     return (
-      <div className='MainViewport'>
-        <h1>Interactive scatterplot demo</h1>
-        <h2>Reproducing selected figures from IPCC AR5, chap. 9 (Flato et al., 2013) 9.42a</h2>
+      <div className=''>
         <Row>
-          <Col xs='10'>
+          {/* <Col xs='10'>
             <input style={{ width:'100%' }} type='text' name='name' value={this.state.dataurl} onChange={this.handleChange} />
-          </Col>
+          </Col> */}
           <Col xs='1'>
-            <Button color='primary' onClick={this.handleSubmit}>Load chart</Button>
+            <Button color='primary' onClick={this.handleSubmit}>Refresh</Button>
           </Col>
         </Row>
         { this.state.error && this.state.error.length > 0 ? (<Alert style={{ margin: '10px' }} color='danger'>{this.state.error.replace('\n', '<br />')}</Alert>) : null }

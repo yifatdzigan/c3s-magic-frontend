@@ -1,19 +1,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+
 import { connect } from 'react-redux';
 import { Provider } from 'react-redux';
 import { getConfig } from '../../getConfig';
 let config = getConfig();
 
-import { UncontrolledAlert, Container, Row, Col, Card, CardLink, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody, CardGroup } from 'reactstrap';
+import { UncontrolledAlert, Badge, Container, Row, Col, Card, CardLink, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody, CardGroup } from 'reactstrap';
 import Icon from 'react-fa';
 
 import DiagnosticPage from './DiagnosticPage';
 
 var $RefParser = require('json-schema-ref-parser');
-import Grid from 'react-css-grid'
 var _ = require('lodash');
 
 export default class DiagnosticsHome extends Component {
@@ -26,40 +25,77 @@ export default class DiagnosticsHome extends Component {
       selectedPageId: ''
     }
     this.switchOverview = this.switchOverview.bind(this);
+    this.getTags = this.getTags.bind(this);
     this.getCard = this.getCard.bind(this);
     this.clickEvent = this.clickEvent.bind(this);
+    console.log('DiagnosticsHome');
   }
+
 
   switchOverview() {
     this.setState({ overview: !this.state.overview });
   }
 
-  clickEvent(yamlFile, fileId) {
-    this.setState({ selectedPageYaml: yamlFile, selectedPageId: fileId });
-    this.switchOverview();
-    console.log(yamlFile);
-    console.log(fileId);
+  clickEvent(item) {
+    this.setState({ selectedPageYaml: item.info_file, selectedPageId: item.id });
+    console.log(item.name);
+    this.context.router.push('/diagnostics/' + item.name);
+
+  }
+
+
+  getTags(item) {
+    var tagList = [];
+    for (var key in item.tags) {
+      if (item.tags.hasOwnProperty(key)) {
+          tagList.push(item.tags[key]);
+      }
+    }
+
+    var tagBadges = tagList.map(function(name){
+       return <Badge key={name} style={{ fontSize: '15px', marginLeft: '10px', marginTop: '10px', backgroundColor: '#921A36'}} color="success">{name}</Badge>
+    })
+
+    return <div style={{ }}> {tagBadges} </div>
   }
 
   getCard(item) {
+
+    var tagList = this.getTags(item);
+
     return (
-      <div key={item.id} className="diagCard">
+      <div key={item.id} className='diagCard' >
 
-        <Card key={item.id} onClick={() => this.clickEvent(item.info_file, item.id)}
-          body className="text-left" outline color="primary">
+          <Card key={item.id}
+            onClick={() => this.clickEvent(item)}
+            body className='text-left' outline color='primary'
+            style={{ backgroundColor: '#ffffff', borderColor: '#921A36', borderWidth: '2px', marginBottom: '30px', overflowX: 'auto' }}
+          >
 
-          <CardBody>
-            <CardTitle> {item.title} </CardTitle>
-            <CardSubtitle> {item.sub_title} </CardSubtitle>
-          </CardBody>
+            <CardBody key={item.id}>
+              <Row key={item.id}>
+                <Col key={item.id}>
+                  <CardBody>
+                      <h4 style={{ fontSize: '25px', color:'#921A36', textAlign: 'center', marginTop: '25px' }}> {item.title} </h4>
+                      <CardSubtitle style={{ marginTop: '20px' }}> {item.sub_title} </CardSubtitle>
+                  </CardBody>
 
-          <CardImg width="100%" src={item.image_file} />
+                  <CardText style = {{ }} > {item.info_text} </CardText>
 
-          <CardBody>
-            <CardText> {item.info_text} </CardText>
-          </CardBody>
+                </Col>
+                <Col>
+                  <CardImg style ={{ marginLeft: '20%', width: '60%'}} src={item.image_file} />
+                </Col>
+              </Row>
+              <Row>
+                <div>
+                  {tagList}
+                </div>
+              </Row>
 
-        </Card>
+            </CardBody>
+
+          </Card>
 
       </div>
     );
@@ -83,14 +119,22 @@ export default class DiagnosticsHome extends Component {
 
   render() {
     var diagList = this.state.diagList;
-    var tmpList = [];
+    var diagOverviewList = [];
     var that = this;
+
+    console.log('Props')
+    console.log(that.props);
+    console.log(that.props.routeParams);
+    console.log(that.props.params);
+
+
     Object.keys(diagList).forEach(function (key, i) {
-      tmpList.push(that.getCard(diagList[key]));
+      diagOverviewList.push(that.getCard(diagList[key]));
     })
 
     var destinationPage = this.state.selectedPageYaml;
     console.log(destinationPage);
+    console.log(this.state.selectedPageId);
 
     if (this.props.params && diagList.length != 0) {
       if (diagList[that.props.params.diag]){
@@ -99,48 +143,44 @@ export default class DiagnosticsHome extends Component {
       }
     }
 
-    if (this.state.overview) {
+    // if (this.state.overview) {
       return (
         <div className='vspace2em'>
           <Container>
             <Row>
-              <Col sm="12" md={{ size: 10, offset: 1 }}>
-                <UncontrolledAlert color="info">
-                  Click on a diagnostic to get more information!
-                    </UncontrolledAlert>
-              </Col>
-
-              <Col sm="12" md={{ size: 10, offset: 1 }}>
-                <Grid width={320} gap={40}>
-                  {tmpList}
-                </Grid>
+              <Col sm='12'>
+                  {diagOverviewList}
               </Col>
             </Row>
           </Container>
 
         </div>
       )
-    } else {
+    // } else {
 
-      return (
-        <div className='vspace2em'>
+      // return (
+      //   <div className='vspace2em'>
 
-          <Container>
-            <div className='overviewButton'>
-              <Button color="danger" onClick={this.switchOverview}> Back to the overview </Button>
-            </div>
+      //     <Container>
 
-             <Row>
-              <Col sm="12" md={{ size: 12, offset: 0 }}>
-                <DiagnosticPage yamlFile={destinationPage} />
-              </Col>
-            </Row>
-          </Container>
+      //       <div className='overviewButton'>
+      //         <Button color='danger' onClick={this.switchOverview}> Back to the overview </Button>
+      //       </div>
 
-        </div>
-      );
+      //        <Row>
+      //         <Col sm='12' md={{ size: 12, offset: 0 }}>
+      //           <DiagnosticPage yamlFile={destinationPage} />
+      //         </Col>
+      //       </Row>
+      //     </Container>
 
-    }
+      //   </div>
+      // );
+
+    // }
   }
 }
 
+DiagnosticsHome.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};

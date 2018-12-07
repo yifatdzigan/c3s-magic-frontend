@@ -76,6 +76,7 @@ import ActuariesDemo from '../containers/TailoredProducts/ActuariesDemo';
 
 /* Diagnostics */
 import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
+import DiagnosticPage from '../containers/Diagnostics/DiagnosticPage';
 
 /* System */
 import SystemMenu from '../containers/System/SystemMenu';
@@ -194,11 +195,16 @@ export const createRoutes = (store) => {
       <Route path='account' title='Account'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={account} />
       </Route>
+
       <Route path='diagnostics' title='Diagnostics'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={diagnosticshome} />
       </Route>
+      <Route path='diagnostics/:diag'>
+        <IndexRoute component={NavBarLayout} header={mainmenu}
+          viewComponent={React.createElement(connect(mapStateToTitleProps, mapDispatchToTitleProps)(DiagnosticPage))}
+        />
+      </Route>
 
-      <Route path='diagnostics/:diag' title='Diagnostics' header={mainmenu} component={DiagnosticsHome} />
       <Route path='calculator' title='Demo'>
         <IndexRoute component={NavBarLayout} header={mainmenu} viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(WPSBinaryOperator))} />
       </Route>

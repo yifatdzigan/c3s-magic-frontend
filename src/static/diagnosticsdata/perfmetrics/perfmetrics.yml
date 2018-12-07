@@ -1,5 +1,5 @@
 ---
-name: Performance metrics 
+name: Performance metrics
 partner: DLR
 authors:
   - Veronika Eyring
@@ -7,7 +7,7 @@ authors:
   - Mattia Righi
   - Birgit Hassler
 contact:
-  - Veronika Eyring @veyring 
+  - Veronika Eyring @veyring
   - Mattia Righi @mattiarighi
 description_short: The goal is to create a standard namelist for the calculation of performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected "Essential Climate Variables" (ECVs) plus some additional corresponding diagnostics and plots to better understand and interpret the results. The namelist can be used to calculate performance metrics at different vertical levels (e.g., 5, 30, 200, 850 hPa as in Gleckler et al., 2008) and in four regions (global, tropics 20°N-20°S, northern extratropics 20°-90°N, southern extratropics 20°-90°S). As an additional reference, we consider the Righi et al. (2015) paper.
 description_file: 'perfmetrics/description.md'
@@ -71,7 +71,7 @@ settings:
       - bcc-csm1-1-m
       - HadGEM2-ES
       - bcc-csm1-1
-      - CESM1-CAM5 
+      - CESM1-CAM5
   - start_reference: "1980-01-01"
   - end_reference: "2012-12-01"
   - start_projection: "1980-01-01"
@@ -79,4 +79,6 @@ settings:
   - Experiment: historical
 title: Performance metrics
 
-youtube: 
+youtube:
+
+chart: 'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc'

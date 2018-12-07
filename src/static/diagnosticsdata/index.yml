@@ -1,22 +1,33 @@
 diagnostics:
     perfmetrics:
         id: 18
+        name: perfmetrics
         title: Performance metrics
         sub_title:
         info_text: Performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected "Essential Climate Variables"
         info_file: perfmetrics/perfmetrics.yml
         image_file: ./diagnosticsdata/perfmetrics/Portait.png
         github_issue:
+        tags:
+          - performance
+          - mean annual cycle
+          - Essential Climate Variables
     smpi:
         id: 19
+        name: smpi
         title: Single Model Performance index
         sub_title:
         info_text: This diagnostic calculates the Single Model Performance Index (SMPI) following Reichler and Kim (2008).
         info_file: smpi/smpi.yml
         image_file: ./diagnosticsdata/smpi/Single.png
         github_issue:
+        tags:
+          - tag1
+          - tag2
+          - tag3
     blocking:
         id: 7
+        name: blocking
         title: Blocking metrics and indices
         sub_title:
         info_text: This tool calculates mid-latitude 1D and 2D blocking indices
@@ -25,6 +36,7 @@ diagnostics:
         github_issue:
     stratosphere-troposphere:
         id: 9
+        name: stratosphere-troposphere
         title: Stratosphere-troposphere coupling
         sub_title:
         info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the stratosphere-troposphere coupling
@@ -34,6 +46,7 @@ diagnostics:
     # a.k.a weather regimes https://github.com/nmanuben/ESMValTool/blob/bsc_wp5/esmvaltool/namelists/namelist_weather_regime.yml
     modes_of_variability:
         id: 112
+        name: modes_of_variability
         title: Modes of variability
         sub_title:
         info_text: Tool to compute the RMSE between the observed and modelled patterns of variability.
@@ -42,6 +55,7 @@ diagnostics:
         github_issue:
     hyint:
         id: 6
+        name: hyint
         title: Hydroclimatic intensity (HyInt) and extremes
         sub_title:
         info_text: HyInt is a tool for calculation of the hydroclimatic intensity index HY-INT and additional hydroclimatic indices, which allow to evaluate the overall behaviour of the hydroclimatic cycle
@@ -50,6 +64,7 @@ diagnostics:
         github_issue:
     quantilebias:
         id: 8
+        name: quantilebias
         title: Precipitation quantile bias
         sub_title:
         info_text: This tool calculates the quantile bias between models and a reference dataset
@@ -58,6 +73,7 @@ diagnostics:
         github_issue:
     anomaly_agreement:
         id: 1
+        name: anomaly_agreement
         title: Generic multi-model products
         sub_title:
         info_text: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
@@ -66,6 +82,7 @@ diagnostics:
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
     ensclus:
         id: 4
+        name: ensclus
         title: EnsClus - Ensemble Clustering
         sub_title:
         info_text: EnsClus is a cluster analysis tool in Python, based on the k-means algorithm, with the aim to group ensemble members according to similar characteristics and to select the most representative member for each cluster
@@ -74,6 +91,7 @@ diagnostics:
         github_issue:
     combine_indices:
         id: 12
+        name: combine_indices
         title: Single and multi-model indices based on area averages
         sub_title:
         info_text: Tool to compute single and multi model indices based on area averages.
@@ -82,6 +100,7 @@ diagnostics:
         github_issue:
     annularmodes:
         id: 2
+        name: annularmodes
         title: Indices of annular modes
         sub_title:
         info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode pattern at the surface and in the stratosphere
@@ -90,6 +109,7 @@ diagnostics:
         github_issue:
     teleconnections:
         id: 5
+        name: teleconnections
         title: Teleconnection indices and weather regimes
         sub_title:
         info_text: This namelist implements the MId-Latitude Evaluation System (MiLES) providing teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
@@ -98,6 +118,7 @@ diagnostics:
         github_issue:
     hyint_timeseries:
         id: 10
+        name: hyint_timeseries
         title: HyInt and ETCCDI trends and significance testing
         sub_title:
         info_text: Tool for calculation of timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
@@ -106,6 +127,7 @@ diagnostics:
         github_issue:
     correlations:
         id: 11
+        name: correlations
         title: Climate explorer Correlate a field with a timeseries
         sub_title:
         info_text: Tool for correlating fields with timeseries as used in the KNMI climate explorer
@@ -114,6 +136,7 @@ diagnostics:
         github_issue:
     surge_height_estimator:
         id: 122
+        name: surge_height_estimator
         title: Surge Height Estimator
         sub_title:
         info_text: Diagnostic to estimate surge levels along the coast of the North Sea from anomalies in mean sea level pressure and wind components.
@@ -122,6 +145,7 @@ diagnostics:
         github_issue:
     drought_indicator:
         id: 17
+        name: drought_indicator
         title: Drought indicator
         sub_title:
         info_text: The drought indicator calculates diagnostics for meteorological drought.
@@ -130,6 +154,7 @@ diagnostics:
         github_issue:
     shapefile_selection:
         id: 16
+        name: shapefile_selection
         title: Shapefile selection
         sub_title:
         info_text: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
@@ -138,6 +163,7 @@ diagnostics:
         github_issue:
     rainfarm:
         id: 3
+        name: rainfarm
         title: RainFARM stochastic downscaling
         sub_title:
         info_text: Tool to perform stochastic downscaling of precipitation fields predicting climate variables at local scale from information simulated by climate models at regional scale
@@ -146,6 +172,7 @@ diagnostics:
         github_issue:
     extreme_spells:
         id: 14
+        name: extreme_spells
         title: Heatwave and coldwave duration
         sub_title:
         info_text: Tool to compute the duration of heatwaves and coldwaves, to help understand potential changes in energy demand.
@@ -154,6 +181,7 @@ diagnostics:
         github_issue:
     dtr:
         id: 13
+        name: dtrs
         title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
         sub_title:
         info_text: Tool to compute the diurnal temperature indicator to estimate energy demand, and the wind capacity factor to estimate energy supply.
@@ -162,24 +190,11 @@ diagnostics:
         github_issue:
     risk_index:
         id: 101
+        name: risk_index
         title: Insurance risk indices
         sub_title:
         info_text: Tool to compute extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
         info_file: risk_index/risk_index.yml
         image_file: diagnosticsdata/risk_index/insurance_risk_indices.png
-#    diagnostics_100:
-#        id: 100
-#        title: Test Diagnostic
-#        sub_title:
-#        info_text: Markdown test diagnostic
-#        info_file: test/test_diag.yml
-#        image_file: https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg
-#        github_issue:
-
-
-
-
-
-
 
 
