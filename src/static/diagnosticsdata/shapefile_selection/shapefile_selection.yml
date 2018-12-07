@@ -6,7 +6,7 @@ authors:
   - Anna Kuenz
 contact:
   - Peter Berg @PeterBergSMHI
-description_short: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
+description_short: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or Excel file.
 description_file: 'shapefile_selection/description.md'
 report_file:
 #media: diagnosticsdata/shapefile_selection/Basin_grid2.png
@@ -14,13 +14,15 @@ enableEnsembleAnomalyPlots:
 reference:
 settings:
   - Models:
-      - ERA-Interim
-  - Start year: 2000
-  - End year: 2000
-  - Experiment: reanaly
-  - shppath: 'hydrosheds/rhineselection.shp'
+      - EC-EARTH
+  - Start year: 1990
+  - End year: 1999
+  - Experiment: CMIP5
+  - shppath: 'Elbe.shp'
   - wgtmet: 'mean_inside'
-  - write_csv: False
+  - write_xlsx: true
+  - write_netcdf: true
+  - evalplot: false
 title: Shapefile selection
 youtube:
 
