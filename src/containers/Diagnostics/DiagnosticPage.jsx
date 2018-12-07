@@ -27,10 +27,6 @@ class DiagnosticPage extends Component {
       staticPath: 'diagnosticsdata/'
     };
     this.readYaml = this.readYaml.bind(this);
-    console.log('DiagnosticPage');
-    console.log(this.props.params.diag);
-    // console.log(this.props.params);
-    // console.log(this.props.match.params.diag);
   }
 
   readYaml() {
@@ -258,12 +254,6 @@ class DiagnosticPage extends Component {
                   : null
                 }
               </div>
-
-              <div className='text vspace2em'>
-                <h2 style={{ color: '#921A36'}}>Settings</h2>
-                {this.renderPageElement('settings')}
-                <Button color="primary" className="disabled"><Icon name='' />&nbsp;Change Settings</Button>{' '}
-              </div>
             </Col>
           </Row>
 
@@ -364,6 +354,5 @@ DiagnosticPage.propTypes = {
 DiagnosticPage.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
-
 
 export default  withRouter(DiagnosticPage);
