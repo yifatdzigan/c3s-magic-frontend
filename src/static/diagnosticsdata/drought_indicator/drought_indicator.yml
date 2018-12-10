@@ -5,21 +5,36 @@ authors:
   - Peter Berg
 contact:
   - Peter Berg @PeterBergSMHI
-description_short: The drought indicator calculates diagnostics for meteorological drought.
+description_short: The drought indicator calculates the SPI and SPEI diagnostics.
 description_file: 'drought_indicator/description.md'
 report_file:
 #images in description.md
 #media: diagnosticsdata/drought_indicator/dryfreq.png
 references:
-  - "Peterson, T. C., C. Folland, G. Gruza, W. Hogg, A. Mokssit, and N. Plummer, 2001: Report on the activities of the Working Group on Climate Change Detection and Related Rapporteurs 1998–2001. World Meteorological Organisation Rep. WCDMP-47, WMO-TD 1071, Geneva, Switzerland, 143 pp."
+  - "McKee, T. B., Doesken, N. J., & Kleist, J. (1993). The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology (Vol. 17, No. 22, pp. 179-183). Boston, MA: American Meteorological Society."
+  - "Vicente-Serrano, S. M., Beguería, S., & López-Moreno, J. I. (2010). A multiscalar drought index sensitive to global warming: the standardized precipitation evapotranspiration index. Journal of climate, 23(7), 1696-1718."
 settings:
   - Models:
-      - bcc-csm1-1-m
+      - ACCESS1-0
+      - ACCESS1-3
+      - BNU-ESM
+      - CNRM-CM5
+      - EC-EARTH
+      - GFDL-CM3
+      - GISS-E2-H
+      - HadGEM2-CC
+      - HadGEM2-ES
+      - inmcm4
+      - IPSL-CM5A-LR
+      - IPSL-CM5A-MR
+      - IPSL-CM5B-LR
+      - MPI-ESM-MR
+      - NorESM1-M
   - Start year: 1990
   - End year: 1999
   - Experiment: Historical
-  - dryindex: 'cdd'
-  - Dry day limit: 1 mm/day
-  - Minimum duration limit: 5 days
-title: Drought Indicator
+  - dryindex:
+      - SPI
+      - SPEI
+title: Drought indicator
 youtube:
