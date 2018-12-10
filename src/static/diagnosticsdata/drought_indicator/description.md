@@ -1,4 +1,9 @@
-EXAMPLE OUTPUT: recipe_spi_20181108_132957/plots/diagnostic1/script1/histplot.png and recipe_spei_20181108_160736/plots/diagnostic1/script1/histplot.png
+
+
+![example output](/data/recipes/recipe_spi_20181108_132957/plots/diagnostic1/script1/histplot.png "Example Output")
+
+
+![example output](/data/recipes/recipe_spei_20181108_160736/plots/diagnostic1/script1/histplot.png "Example Output")
 
 ### Description
 Droughts can be separated into three main types: (i) meteorological, (ii) hydrological,  and (iii) agricultural drought. Common for all types is that a drought needs to be put in context of local and seasonal characteristics, i.e. a drought should not be defined with an absolute threshold, but as an anomalous condition.
