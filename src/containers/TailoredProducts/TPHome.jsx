@@ -140,6 +140,11 @@ export default class TPHome extends Component {
           <Container>
             <Row>
               <Col sm='12'>
+                The tailored products are showcases of our diagnostics, targeted to specific user groups.
+              </Col>
+            </Row>
+            <Row>
+              <Col sm='12'>
                   {diagOverviewList}
               </Col>
             </Row>

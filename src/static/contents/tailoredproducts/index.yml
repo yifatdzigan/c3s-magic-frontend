@@ -5,7 +5,7 @@ diagnostics:
         title: Insurance / Actuaries Index
         sub_title:
         info_text: "The changing risks between the recent past and the future are of great interest to the insurance industry because even slight changes in climate characteristics can translate into large impacts on risk distribution/management and expected losses. Comprehensive risk indices such as the ACRI, which integrates changes in frequency and magnitude of key climate indicators and elements of hazard, exposure and vulnerability, are crucial for decision making processes."
-        page_link: /tailoredproducts/actuaries
+        page_link: /tailoredproduct_actuaries
         image_file: ./contents/tailoredproducts/actuaries.png
         github_issue:
         tags:
@@ -19,10 +19,53 @@ diagnostics:
         title: Water and Hydrology
         sub_title:
         info_text: "Develop software to locate relevant data sets and extract the relevant data for the water sector. The C3S SWICCA project provides a list of climate indices which are defined through direct user interaction in a range of hydrological sectors (including agriculture and flood management), and further indices are defined for the urban case studies within UrbanSIS."
-        page_link: /tailoredproducts/waterhydrology
+        page_link: /tailoredproduct_catchmentselector
         image_file: ./contents/tailoredproducts/water.png
         github_issue:
         tags:
           - tag1
           - tag2
           - tag3
+
+    stormsurge:
+        id: 3
+        name: stormsurge
+        title: Storm surge
+        sub_title:
+        info_text: "TBD"
+        page_link: /tailoredproduct_stormsurge
+        image_file: ./diagnosticsdata/surge_height/surge_height_thumbnail.png
+        github_issue:
+        tags:
+          - tag1
+          - tag2
+          - tag3
+          
+    droughtindicator:
+        id: 4
+        name: droughtindicator
+        title: Drought indicator
+        sub_title:
+        info_text: "TBD"
+        page_link: /tailoredproduct_droughtindicator
+        image_file: https://dummyimage.com/600x400/000/fff
+        github_issue:
+        tags:
+          - tag1
+          - tag2
+          - tag3
+
+    rainfarm:
+        id: 5
+        name: rainfarm
+        title: Rain farm
+        sub_title:
+        info_text: "TBD"
+        page_link: /tailoredproduct_droughtindicator
+        image_file: https://dummyimage.com/600x400/000/fff
+        github_issue:
+        tags:
+          - tag1
+          - tag2
+          - tag3
+

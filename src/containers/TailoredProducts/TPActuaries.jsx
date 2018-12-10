@@ -215,6 +215,9 @@ class ActuariesPage extends Component {
         Comprehensive risk indices such as the ACRI, which integrates changes in frequency and magnitude of key climate indicators and elements of hazard,
          exposure and vulnerability, are crucial for decision making processes.
         </div>
+        <div className='text' style={{ paddingBottom:'15px' }}>
+          The data behind this tailored product can be calculated with the <a href='#/diagnostics/risk_index'>insurance risk indices</a> diagnostic.
+        </div>
       </Row>
       <Row>
         <Col x>

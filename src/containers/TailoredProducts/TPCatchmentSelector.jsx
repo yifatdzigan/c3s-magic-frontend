@@ -7,7 +7,9 @@ import { debounce } from 'throttle-debounce';
 import axios from 'axios';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import AdagucMapDraw from '../../components/ADAGUC/AdagucMapDraw.js';
-import { WMJSLayer, WMJSMap } from 'adaguc-webmapjs';
+import { WMJSLayer } from 'adaguc-webmapjs';
+import { XAxis, YAxis, Tooltip, CartesianGrid, LabelList, ScatterChart, Scatter, Cell } from 'recharts';
+
 
 class TPCatchmentSelector extends Component {
   constructor (props) {
@@ -155,17 +157,16 @@ class TPCatchmentSelector extends Component {
             height={'60vh'}
             stacklayers
             baselayers={[new WMJSLayer({
-                service: config.backendHost + '/wms?dataset=baselayers&',
-                name:"OSM",
-                title:"World base layer Natural Earth ",
-                type:"twms",
+                name: "Klokantech_Basic_NL_NoLabels",
+                title: "World base layer Natural Earth ",
+                type: "twms",
                 enabled: true
               }),new WMJSLayer({
                 service: config.backendHost + '/wms?dataset=baselayers&',
                 name:'overlay',
                 format:'image/png',
                 title:'World country borders',
-                enabled: true,
+                enabled: false,
                 keepOnTop:true
               })]}
             controls={{ showprojectionbutton: false, showdownloadbutton: false }}
