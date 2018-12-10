@@ -919,15 +919,15 @@ export default class AdagucMapDraw extends PureComponent {
   }
 
   componentDidMount () {
-    // console.log('Mapdraw componentWillMount');
+    console.log('Mapdraw componentWillMount');
     document.addEventListener('keydown', this.handleKeyDown);
   }
   componentWillUnmount () {
-    // console.log('Mapdraw componentWillUnMount');
+    console.log('Mapdraw componentWillUnMount');
     document.removeEventListener('keydown', this.handleKeyDown);
     const { webmapjs } = this.props;
     if (webmapjs !== undefined && this.listenersInitialized === true) {
-      // console.log('Remove listeners webmapjs');
+      console.log('Remove listeners webmapjs');
       this.listenersInitialized = undefined;
       webmapjs.removeListener('beforecanvasdisplay', this.adagucBeforeDraw);
       webmapjs.removeListener('beforemousemove', this.adagucMouseMove);
