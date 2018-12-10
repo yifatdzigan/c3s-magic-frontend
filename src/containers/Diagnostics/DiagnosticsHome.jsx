@@ -105,11 +105,9 @@ export default class DiagnosticsHome extends Component {
   }
 
   componentWillMount() {
-    console.log('DiagnosticsHome:componentWillMount');
   }
 
   componentDidUpdate() {
-    console.log('DiagnosticsHome:componentDidUpdate');
   }
 
   render() {
@@ -117,10 +115,6 @@ export default class DiagnosticsHome extends Component {
     var diagOverviewList = [];
     var that = this;
 
-    console.log('Props')
-    console.log(that.props);
-    console.log(that.props.routeParams);
-    console.log(that.props.params);
 
 
     Object.keys(diagList).forEach(function (key, i) {
@@ -128,8 +122,6 @@ export default class DiagnosticsHome extends Component {
     })
 
     var destinationPage = this.state.selectedPageYaml;
-    console.log(destinationPage);
-    console.log(this.state.selectedPageId);
 
     if (this.props.params && diagList.length != 0) {
       if (diagList[that.props.params.diag]){

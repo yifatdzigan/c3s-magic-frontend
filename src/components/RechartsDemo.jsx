@@ -116,7 +116,7 @@ export default class RechartsDemo extends Component {
             domain={[dataMin => Math.floor(dataMin * 1), dataMax => Math.ceil(dataMax * 1)]}
           />
           <CartesianGrid />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<CustomTooltip active={()=>{}} />} />
           <Scatter name='tas' data={this.state.scatterdata.tas} fill='#8884d8' shape='triangle' >
             {
               this.state.scatterdata.tas.map((entry, index) => {
