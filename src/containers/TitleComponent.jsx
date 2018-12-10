@@ -37,10 +37,10 @@ export default class TitleComponent extends Component {
             <Col className='welcomeSign'>
               <p style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
                 <a href='http://www.copernicus.eu/'>
-                  <img alt='' src='/sites/default/files/copernicus-logo.png' style={{ marginRight: '40px', width: '187px', height: '69px' }} />
+                  <img alt='' src='./sites/default/files/copernicus-logo.png' style={{ marginRight: '40px', width: '187px', height: '69px' }} />
                 </a>
                 <a href='/'>
-                  <img alt='' src='/sites/default/files/repository/website-structure/c3s-logo.png' style={{ width: '236px', height: '69px' }} />
+                  <img alt='' src='./sites/default/files/repository/website-structure/c3s-logo.png' style={{ width: '236px', height: '69px' }} />
                 </a>
               </p>
             </Col>

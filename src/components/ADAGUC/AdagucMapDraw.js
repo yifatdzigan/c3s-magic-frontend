@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Enum from 'es6-enum';
-import cloneDeep from 'lodash.clonedeep';
+import { cloneDeep } from 'lodash';
 let Proj4js = window.proj4;
 // Cache for for storing and reusing Proj4 instances
 var projectorCache = {};

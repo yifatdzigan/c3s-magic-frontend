@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 let config = getConfig();
 
-import JsonTable from 'react-json-table';
+//import JsonTable from 'react-json-table';
 import ScrollArea from 'react-scrollbar';
 import { Button } from 'reactstrap';
 import Moment from 'react-moment';
@@ -122,13 +122,13 @@ export default class JobListComponent extends Component {
     return (
       <div className='MainViewport'>
         <ScrollArea speed={1} horizontal className='jobListScrollComponent' >
-          <JsonTable
+          {/* <JsonTable
             rows={jobs}
             className='joblistTable'
             columns={columns}
             onClickRow={this.onClickRow}
             settings={settings}
-          />
+          /> */}
         </ScrollArea>
         <hr />
         <Button disabled={!this.state.cursor} onClick={() => this.deleteJobListItem()}>Delete</Button>
