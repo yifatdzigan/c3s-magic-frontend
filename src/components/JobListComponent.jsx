@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 let config = getConfig();
 
-//import JsonTable from 'react-json-table';
+import JsonTable from 'ts-react-json-table';
 import ScrollArea from 'react-scrollbar';
 import { Button } from 'reactstrap';
 import Moment from 'react-moment';
@@ -70,7 +70,11 @@ export default class JobListComponent extends Component {
 
   async componentWillUpdate () {
     /* Little hacky, needs to be improved by passing state correctly. */
-    await this.sleep(1000);
+    // await this.sleep(1000);
+    // this.fetchJobListItems();
+  }
+
+  componentDidMount () {
     this.fetchJobListItems();
   }
 
@@ -128,7 +132,7 @@ export default class JobListComponent extends Component {
             columns={columns}
             onClickRow={this.onClickRow}
             settings={settings}
-          /> */}
+          />  */}
         </ScrollArea>
         <hr />
         <Button disabled={!this.state.cursor} onClick={() => this.deleteJobListItem()}>Delete</Button>

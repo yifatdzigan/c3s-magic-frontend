@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
 // import { WMJSLayer, WMJSGetServiceFromStore } from 'adaguc-webmapjs';
 let config = getConfig();
-console.log(config);
 
 export default class BasketComponent extends Component {
   constructor (props) {

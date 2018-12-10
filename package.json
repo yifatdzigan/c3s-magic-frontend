@@ -1,5 +1,5 @@
 {
-  "name": "adaguc-webmapjs-reactdemo",
+  "name": "c3s-magic-frontend",
   "version": "3.2.2",
   "description": "Interactive maps library, capable of parsing a OGC WMS getcapabilities and display geographical layers",
   "main": "main.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/maartenplieger/adaguc-webmapjs-reactdemo.git"
+    "url": "git+ssh://git@github.com/c3s-magic/c3s-magic-frontend.git"
   },
   "keywords": [
     "OGC",
@@ -25,9 +25,9 @@
   "author": "Maarten Plieger",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maartenplieger/adaguc-webmapjs/issues"
+    "url": "https://portal.c3s-magic.eu/"
   },
-  "homepage": "https://github.com/maartenplieger/adaguc-webmapjs#readme",
+  "homepage": "https://portal.c3s-magic.eu",
   "peerDependencies": {
     "moment": "^2.22.2",
     "jquery-ui-dist": "^1.12.1",
@@ -45,6 +45,7 @@
     "json-schema-ref-parser": "^6.0.2",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
+    "react-dom-factories": "^1.0.2",
     "react-fa": "^5.0.0",
     "react-json-view": "^1.19.1",
     "react-jsonschema-form": "^1.0.6",
@@ -59,6 +60,7 @@
     "recharts": "^1.4.1",
     "svg-inline-react": "^3.1.0",
     "throttle-debounce": "^2.0.1",
+    "ts-react-json-table": "^0.1.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
@@ -80,7 +82,7 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "react-dom": "^16.6.3",
     "react-redux": "^5.1.0",
     "react-scrollbar": "^0.5.4",
     "redbox-react": "^1.6.0",

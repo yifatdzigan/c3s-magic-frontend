@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import JsonTable from 'react-json-table';
+import JsonTable from 'ts-react-json-table';
 import ScrollArea from 'react-scrollbar';
 
 export default class PreviewComponent extends Component {
@@ -70,12 +70,12 @@ export default class PreviewComponent extends Component {
     return (
       <div className={componentClassName} >
         <ScrollArea speed={1} horizontal className={componentClassName} >
-          {/* <JsonTable
+          <JsonTable
             rows={this.state.rows}
             settings={settingsJsonTable}
             className={tableClassName}
             columns={this.state.columns}
-          /> */}
+          />
         </ScrollArea>
       </div>);
   }

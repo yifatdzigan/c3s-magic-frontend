@@ -101,11 +101,11 @@ export default class TPHome extends Component {
   }
 
   componentWillMount() {
-    console.log('TPHome:componentWillMount');
+    // console.log('TPHome:componentWillMount');
   }
 
   componentDidUpdate() {
-    console.log('TPHome:componentDidUpdate');
+    // console.log('TPHome:componentDidUpdate');
   }
 
   render() {
@@ -113,10 +113,10 @@ export default class TPHome extends Component {
     var diagOverviewList = [];
     var that = this;
 
-    console.log('Props')
-    console.log(that.props);
-    console.log(that.props.routeParams);
-    console.log(that.props.params);
+    // console.log('Props')
+    // console.log(that.props);
+    // console.log(that.props.routeParams);
+    // console.log(that.props.params);
 
 
     Object.keys(diagList).forEach(function (key, i) {
@@ -124,8 +124,8 @@ export default class TPHome extends Component {
     })
 
     var destinationPage = this.state.selectedPageYaml;
-    console.log(destinationPage);
-    console.log(this.state.selectedPageId);
+    // console.log(destinationPage);
+    // console.log(this.state.selectedPageId);
 
     if (this.props.params && diagList.length != 0) {
       if (diagList[that.props.params.diag]){
