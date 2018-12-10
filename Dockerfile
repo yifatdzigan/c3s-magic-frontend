@@ -5,8 +5,8 @@ WORKDIR /frontend/c3s-magic-frontend/
 COPY . /frontend/c3s-magic-frontend/
 
 RUN npm install --silent
-RUN npm run clean
-RUN npm run deploy:prod
+#RUN npm run clean
+RUN npm run build
 # Install `serve` to run the application.
 RUN npm install -g serve
 # Set the command to start the node server.

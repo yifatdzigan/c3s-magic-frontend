@@ -220,7 +220,7 @@ class ActuariesPage extends Component {
         </div>
       </Row>
       <Row>
-        <Col x>
+        <Col>
           <Form>
             <FormGroup>
               <Row>

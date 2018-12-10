@@ -30,7 +30,9 @@ const initialState = {
   }
 };
 
-const store = createStore(initialState, __DEV__);
+const store = createStore(initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+//const store = createStore(initialState, __DEV__);
 // ========================================================
 // Render Setup
 // ========================================================
@@ -45,7 +47,7 @@ let render = () => {
 };
 
 // This code is excluded from production bundle
-if (__DEV__ && module.hot) {
+if (module.hot) {
   // Development render functions
   const renderApp = render;
   const renderError = (error) => {

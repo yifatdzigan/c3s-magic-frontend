@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
-import { WMJSLayer, WMJSGetServiceFromStore } from 'adaguc-webmapjs';
+// import { WMJSLayer, WMJSGetServiceFromStore } from 'adaguc-webmapjs';
 let config = getConfig();
 console.log(config);
 

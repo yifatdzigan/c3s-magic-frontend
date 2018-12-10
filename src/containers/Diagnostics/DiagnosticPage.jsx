@@ -128,9 +128,11 @@ class DiagnosticPage extends Component {
       }
       else if (elementName === "references") {
         _element = '<ul>';
-        this.state.yamlData[elementName].forEach(function (element) {
-          _element += '<li>' + element + '</li>';
-        });
+        if (this.state.yamlData[elementName]) {
+          this.state.yamlData[elementName].forEach(function (element) {
+            _element += '<li key={element}>' + element + '</li>';
+          });
+        }
         _element += '</ul>';
       }
       else if (elementName === "media") {
@@ -360,7 +362,7 @@ DiagnosticPage.propTypes = {
 };
 
 DiagnosticPage.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default  withRouter(DiagnosticPage);

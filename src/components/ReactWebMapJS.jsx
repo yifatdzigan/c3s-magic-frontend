@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { WMJSLayer, WMJSMap } from 'adaguc-webmapjs';
-const WMJSTileRendererTileSettings = require('../../config/basemaps');
-export default class ReactWebMapJS extends PureComponent {
+const WMJSTileRendererTileSettings = require('./ADAGUC/basemaps.json');
+export default class ReactWebMapJS extends Component {
   constructor (props) {
     super(props);
     this.webMapJSCreated = false;
@@ -113,6 +113,14 @@ export default class ReactWebMapJS extends PureComponent {
     window.removeEventListener('resize', this._handleWindowResize);
     if (this.props.webMapJSInitializedCallback && this.props.layers && this.props.layers.length > 0) {
       this.props.webMapJSInitializedCallback(this.webMapJS, false);
+    }
+
+    console.log('unmount');
+    if (this.props.listeners) {
+      this.props.listeners.forEach((listener) => {
+        console.log('removing listeners');
+        this.webMapJS.removeListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
+      });
     }
   }
   resize () {

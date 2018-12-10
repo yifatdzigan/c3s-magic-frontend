@@ -1,5 +1,0 @@
---compilers js:babel-register
---require jsdom-global/register
---require ignore-styles
---require test/testSetup.js
-src/**/*.spec.js

@@ -1,4 +1,4 @@
-import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_END, START_WPS_EXECUTE_FAILED, WPS_STATUS_UPDATE, WPS_COMPLETED, SET_CSV_FILE_TO_WRANGLE, WPS_REMOVERESULT } from '../constants/WPSLabels';
+import { START_WPS_EXECUTE_START, START_WPS_EXECUTE_END, START_WPS_EXECUTE_FAILED, WPS_STATUS_UPDATE, WPS_COMPLETED, WPS_REMOVERESULT } from '../constants/WPSLabels';
 
 const handleWPSExecute = (state, payload) => {
   // console.log('reducer handleWPSExecute', payload);
@@ -61,8 +61,7 @@ const ACTION_HANDLERS = {
   [START_WPS_EXECUTE_END] : (state, action) => handleWPSEnd(state, action.payload),
   [WPS_STATUS_UPDATE] : (state, action) => handleWPSStatusUpdate(state, action.payload),
   [WPS_COMPLETED] : (state, action) => handleWPSComplete(state, action.payload),
-  [WPS_REMOVERESULT] : (state, action) => removeWPSResult(state, action.payload),
-  [SET_CSV_FILE_TO_WRANGLE] : (state, action) => setCSVFileToWrangle(state, action.payload)
+  [WPS_REMOVERESULT] : (state, action) => removeWPSResult(state, action.payload)
 };
 
 // ------------------------------------

@@ -59,8 +59,8 @@ export default class TPHome extends Component {
 
           <Card key={item.id}
             onClick={() => this.clickEvent(item)}
-            body className='text-left' outline color='primary'
-            style={{ backgroundColor: '#ffffff', borderColor: '#4899b1', borderWidth: '2px', marginBottom: '30px', overflowX: 'auto' }}
+            body className='text-left tailoredProducts' outline color='primary'
+            style={{ backgroundColor: '#ffffff', borderColor: '#4899b1 !important', borderWidth: '2px', marginBottom: '30px', overflowX: 'auto' }}
           >
 
             <CardBody key={item.id}>
@@ -156,5 +156,6 @@ export default class TPHome extends Component {
 }
 
 TPHome.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: 
+    PropTypes.object.isRequired
 };
