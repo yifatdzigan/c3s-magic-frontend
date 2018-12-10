@@ -48,14 +48,14 @@ export default class TitleComponent extends Component {
               <Button color='success' href='https://goo.gl/forms/AaQf8yoRjWAMh8T22' target='_blank'>Feedback</Button>
             </Col>
             {
-                clientId !== null ? 
+                clientId !== null ?
             <Col xs='auto' className='signInOffButton'>
               <Button href='#/account'>Account</Button>
             </Col> : null
             }
               {
                 clientId !== null ? (
-                  
+
                   <Col xs='auto' className='signInOffButton'>
                     <Button color='primary' onClick={this.logout}><Icon name='sign-out' />&nbsp;Sign out</Button>
                   </Col>
@@ -64,7 +64,7 @@ export default class TitleComponent extends Component {
                       <Button onClick={this.login}><Icon name='sign-in' />&nbsp;Sign in</Button>
                     </Col>
               }
-            
+
           </Row>
         </Navbar>
         <Navbar style={{ backgroundColor: '#941333', color: 'white', height: '38px', textAlign: 'center' }} className='navbar-static-top'>
@@ -73,7 +73,7 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} >Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/tailoredproducts' active={pathname === '/tailoredproducts'} >Tailored Products</NavLink>
+              <NavLink href='#/tailoredproducts' active={pathname === '/tphome'} >Tailored Products</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Metrics &amp; Diagnostics</NavLink>
