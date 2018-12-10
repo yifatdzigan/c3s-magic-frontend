@@ -6,7 +6,7 @@ import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert, Ca
 import ReactSlider from 'react-slider';
 import Icon from 'react-fa';
 import ReactWebMapJS from './ReactWebMapJS';
-
+import { WMJSLayer, WMJSGetServiceFromStore } from 'adaguc-webmapjs';
 let config = getConfig();
 // console.log(config);
 
@@ -170,7 +170,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
     // console.log(WMSGetCapabiltiesURL);
 
     // eslint-disable-next-line no-undef
-    this.WMSServiceStore = WMJSgetServiceFromStore(WMSGetCapabiltiesURL);
+    this.WMSServiceStore = WMJSGetServiceFromStore(WMSGetCapabiltiesURL);
 
     let httpCallbackWMSCapabilities = (_layerNames, serviceURL) => {
       // console.log('httpCallbackWMSCapabilities');

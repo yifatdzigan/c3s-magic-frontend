@@ -7,76 +7,11 @@ import { debounce } from 'throttle-debounce';
 import axios from 'axios';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import AdagucMapDraw from '../../components/ADAGUC/AdagucMapDraw.js';
+import { WMJSLayer } from 'adaguc-webmapjs';
+import { XAxis, YAxis, Tooltip, CartesianGrid, LabelList, ScatterChart, Scatter, Cell } from 'recharts';
 
-const colorBar = [{
-  min: 2.0,
-  max:10000,
-  text:'2 or more',
-  fillColor:'#A30000',
-  textColor:'white'
-}, {
-  min:1.5,
-  max:2.0,
-  text: '1.5 till 2.0',
-  fillColor:'#E30000',
-  textColor:'white'
-}, {
-  min:1.0,
-  max:1.5,
-  text:'1.0 till 1.5',
-  fillColor:'#FF1F1F',
-  textColor:'white'
-}, {
-  min:0.5,
-  max:1.0,
-  text:'0.5 till 1.0',
-  fillColor:'#FF5C5C',
-  textColor:'white'
-}, {
-  min:0.25,
-  max:0.5,
-  text:'0.25 till 0.5',
-  fillColor:'#F99',
-  textColor:'white'
-}, {
-  min:-0.25,
-  max:0.25,
-  text:'-0.25 till 0.25',
-  fillColor:'#FFF',
-  textColor:'black'
-}, {
-  min:-0.5,
-  max:-0.25,
-  text:'-0.25 till -0.5',
-  fillColor:'#99D3FF',
-  textColor:'white'
-}, {
-  min:-1.0,
-  max:-0.5,
-  text:'-0.5 till -1.0',
-  fillColor:'#5CB8FF',
-  textColor:'white'
-}, {
-  min: -1.5,
-  max: -1.0,
-  text: '-1.0 till -1.5',
-  fillColor: '#1F9EFF',
-  textColor:'white'
-}, {
-  min:-2.0,
-  max:-1.5,
-  text:'-1.5 till -2.0',
-  fillColor: '#007FE0',
-  textColor:'white'
-}, {
-  min:-100000,
-  max:-2,
-  text:'-2 or more',
-  fillColor: '#005CA3',
-  textColor:'white'
-}];
 
-class ActuariesPage extends Component {
+class TPCatchmentSelector extends Component {
   constructor (props) {
     super(props);
     this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -99,9 +34,11 @@ class ActuariesPage extends Component {
     };
     let fetchGeoJSON = () => {
       return new Promise((resolve, reject) => {
+        //ogr2ogr bundle.shp Thames.shp && ogr2ogr -append bundle.shp Elbe.shp && ogr2ogr -append bundle.shp MotalaStrom.shp && ogr2ogr -f GeoJSON catchments.geojson bundle.shp
+
         axios({
           method: 'get',
-          url: 'geodata/eu-countries.geo.json',
+          url: 'tailoredproducts/catchments/catchments.geojson',
           withCredentials: true,
           responseType: 'json'
         }).then(src => {
@@ -114,9 +51,15 @@ class ActuariesPage extends Component {
               //   featureProps.fill = '#FF0000';
               // }
             };
-            this.setState({ geojson: src.data });
+            geojson.features.map((feature) => {
+                const featureProps = feature.properties;
+                featureProps['fill-opacity'] = 1.0;
+                featureProps['stroke-width'] = .8;
+                featureProps['fill'] = '#0077be';
+              });
+            this.setState({ geojson: geojson });
             if (this.state.webMapJSInstance && this.state.webMapJSInstance) {
-              this.state.webMapJSInstance.setProjection({ srs:'EPSG:32661', bbox:[422133.0051161968, -4614524.365473892, 4714402.927897792, -1179461.5805027087] });
+              this.state.webMapJSInstance.setProjection({ srs:'EPSG:3857', bbox:[-2713059.775840599,3550095.1576090357,6074940.224159404,10784052.816388614] });
               this.state.webMapJSInstance.draw();
             }
             axios({
@@ -128,14 +71,9 @@ class ActuariesPage extends Component {
               if (src.data) {
                 let csvData = csvJSON(src.data);
 
-                geojson.features.map((feature) => {
-                  const featureProps = feature.properties;
-                  featureProps['fill-opacity'] = 0.0;
-                  featureProps['stroke-width'] = 0.1;
-                });
                 this.geojson = geojson;
                 this.csvData = csvData;
-                this.extractValuesFromCSV();
+                // this.extractValuesFromCSV();
               }
               resolve('Fetched FIR');
             });
@@ -196,7 +134,7 @@ class ActuariesPage extends Component {
 
   handleSliderChange (v) {
     this.setState({ currentValue:v });
-    this.extractValuesFromCSV();
+    // this.extractValuesFromCSV();
   }
 
   hoverFeatureCallback (featureIndex) {
@@ -207,65 +145,31 @@ class ActuariesPage extends Component {
 
   render () {
     return (<div className='MainViewport'>
-      <h1>Actuaries index</h1>
+      <h1>Hydrology - catchment selector</h1>
       <Row>
         <div className='text' style={{ paddingBottom:'15px' }}>
-        The changing risks between the recent past and the future are of great interest to the insurance industry
-        because even slight changes in climate characteristics can translate into large impacts on risk distribution/management and expected losses.
-        Comprehensive risk indices such as the ACRI, which integrates changes in frequency and magnitude of key climate indicators and elements of hazard,
-         exposure and vulnerability, are crucial for decision making processes.
-        </div>
-        <div className='text' style={{ paddingBottom:'15px' }}>
-          The data behind this tailored product can be calculated with the <a href='#/diagnostics/risk_index'>insurance risk indices</a> diagnostic.
+        BLA BLA BLA ...
         </div>
       </Row>
       <Row>
-        <Col x>
-          <Form>
-            <FormGroup>
-              <Row>
-                <Col xs='1'>
-                  <Label>Year: </Label>
-                </Col>
-                <Col xs='9'>
-                  <ReactSlider
-                    className={'horizontal-slider'}
-                    min={this.state.min}
-                    max={this.state.max}
-                    defaultValue={this.state.currentValue}
-                    onChange={(v) => { this.debouncedHandleSliderChange(v); }}
-                  />
-                </Col>
-                <Col xs='2'>{this.state.currentValue}</Col>
-              </Row>
-            </FormGroup>
-          </Form>
-          <Card>
-            <CardBody>
-              <CardTitle>Standard deviations:</CardTitle>
-              <CardText>
-                {
-                  colorBar.map((item, i) => {
-                    return (<div key={i} style={{
-                      background:item.fillColor,
-                      color: item.textColor,
-                      padding:'6px 8px 6px 8px',
-                      textAlign:'center',
-                      margin: '0px 12px 0px 12px',
-                      border: this.state.hoveredValue >= item.min && this.state.hoveredValue < item.max ? '2px solid black' : '2px solid' + item.fillColor
-                    }} >{item.text}</div>);
-                  })
-                }
-              </CardText>
-            </CardBody>
-          </Card>
-        </Col>
         <Col xs='9'>
           <ADAGUCViewerComponent
             height={'60vh'}
             stacklayers
-            baselayers={[]}
-            controls={{ showprojectionbutton: false }}
+            baselayers={[new WMJSLayer({
+                name: "Klokantech_Basic_NL_NoLabels",
+                title: "World base layer Natural Earth ",
+                type: "twms",
+                enabled: true
+              }),new WMJSLayer({
+                service: config.backendHost + '/wms?dataset=baselayers&',
+                name:'overlay',
+                format:'image/png',
+                title:'World country borders',
+                enabled: false,
+                keepOnTop:true
+              })]}
+            controls={{ showprojectionbutton: false, showdownloadbutton: false }}
             webMapJSInitializedCallback={
               (webMapJSInstance) => {
                 webMapJSInstance.enableInlineGetFeatureInfo(false);
@@ -284,17 +188,18 @@ class ActuariesPage extends Component {
             hoverFeatureCallback={this.hoverFeatureCallback}
           /> : null }
         </Col>
+        <Col xs='3'>
+            test
+        </Col>
       </Row>
-      <Row>
-        <a href='#/tailoredproducts/insurance'>Checkout our video about actuaries.</a>
-      </Row>
+     
     </div>);
   }
 };
 
-ActuariesPage.propTypes = {
+TPCatchmentSelector.propTypes = {
   dispatch: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired
 };
 
-export default withRouter(ActuariesPage);
+export default withRouter(TPCatchmentSelector);

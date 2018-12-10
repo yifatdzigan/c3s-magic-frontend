@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '../getConfig';
+import { WMJSLayer, WMJSGetServiceFromStore } from 'adaguc-webmapjs';
 let config = getConfig();
 console.log(config);
 
@@ -24,7 +25,7 @@ export default class BasketComponent extends Component {
     console.log(WMSGetCapabiltiesURL);
 
     // eslint-disable-next-line no-undef
-    var service = WMJSgetServiceFromStore(WMSGetCapabiltiesURL);
+    var service = WMJSGetServiceFromStore(WMSGetCapabiltiesURL);
 
     let httpCallbackWMSCapabilities = (_layerNames, serviceURL) => {
       if (_layerNames.error) {

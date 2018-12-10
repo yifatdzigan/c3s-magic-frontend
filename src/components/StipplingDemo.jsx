@@ -6,6 +6,7 @@ import { Button, FormGroup, Form, Label, Row, Col } from 'reactstrap';
 import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router';
 import { debounce } from 'throttle-debounce';
+import { WMJSLayer, WMJSMap } from 'adaguc-webmapjs';
 
 class WPSWranglerDemo extends Component {
   constructor (props) {

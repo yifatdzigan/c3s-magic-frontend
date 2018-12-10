@@ -5,5 +5,5 @@ config.staticWMS='https://portal.c3s-magic.eu/backend/wms';
 // config.backendHost = 'https://localportal.c3s-magic.eu:7777';
 config.backendHost = 'https://compute-test.c3s-magic.eu:93/backend/';
 // config.backendHost = 'https://localportal.c3s-magic.eu/backend/';
-// config.backendHost = 'https://portal.c3s-magic.eu/backend/';
+config.backendHost = 'https://portal.c3s-magic.eu/backend/';
 // export const config = { 'backendHost': 'https://compute-test.c3s-magic.eu:7777', 'adagucServicesHost': 'https://compute-test.c3s-magic.eu:8888' };

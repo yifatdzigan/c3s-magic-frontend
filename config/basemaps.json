@@ -62,6 +62,14 @@
             "tileServerType": "arcgisonline"
         }
     },
+    "Klokantech_Basic_NL_NoLabels":{
+        "EPSG:3857": {
+            "home": "https://s3.eu-central-1.amazonaws.com/knmi-basemaps/Klokantech_Basic_NL_NoLabels/EPSG3857/",
+            "minLevel": 1,
+            "maxLevel": 16,
+            "tileServerType": "osm"
+        }        
+    },
     "OSM": {
         "EPSG:3857": {
             "home": "//b.tile.openstreetmap.org/",
