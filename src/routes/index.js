@@ -74,6 +74,7 @@ import WaterHydrology from '../containers/TailoredProducts/WaterHydrology';
 import UserConsultation from '../containers/TailoredProducts/UserConsultation';
 import TPActuaries from '../containers/TailoredProducts/TPActuaries';
 import TPStormSurge from '../containers/TailoredProducts/TPStormSurge';
+import TPCatchmentSelector from '../containers/TailoredProducts/TPCatchmentSelector';
 
 /* Diagnostics */
 import DiagnosticsHome from '../containers/Diagnostics/DiagnosticsHome';
@@ -181,8 +182,8 @@ export const createRoutes = (store) => {
   const ensembleAnomalyPlots = React.createElement(connect(mapStateToWPSProps, mapStateToAnomalyEnsembleProps)(EnsembleAnomalyPlots));
 
   const tpActuaries = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(TPActuaries));
-
   const tpStormSurge = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(TPStormSurge));
+  const tpCatchmentSelector = React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(TPCatchmentSelector));
 
   const basket = React.createElement(connect(mapStateToBasketProps, mapDispatchToBasketProps)(BasketComponent));
 
@@ -224,9 +225,11 @@ export const createRoutes = (store) => {
       <Route path='tailoredproduct_actuaries' title='Tailored product actuaries'>
         <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={tpActuaries} />
       </Route>
-
       <Route path='tailoredproduct_stormsurge' title='Tailored product surge height estimator'>
         <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={tpStormSurge} />
+      </Route>
+      <Route path='tailoredproduct_catchmentselector' title='Tailored product catchment selector'>
+        <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={tpCatchmentSelector} />
       </Route>
       <Route path='ensembleanomalyplots' title='ensembleAnomalyPlots'>
         <IndexRoute component={NavBarLayout} header={mainmenu} secondNavbar={metricsmenu} viewComponent={ensembleAnomalyPlots} />

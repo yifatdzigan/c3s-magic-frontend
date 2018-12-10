@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { WMJSLayer, WMJSMap } from 'adaguc-webmapjs';
 const WMJSTileRendererTileSettings = require('../../config/basemaps');
 export default class ReactWebMapJS extends PureComponent {
   constructor (props) {
@@ -55,9 +56,11 @@ export default class ReactWebMapJS extends PureComponent {
     }
     this.webMapJSCreated = true;
     this.webMapJS = new WMJSMap(this.refs.adagucwebmapjs);
+    console.log("WMJSTileRendererTileSettings", WMJSTileRendererTileSettings);
+    this.webMapJS.setWMJSTileRendererTileSettings(WMJSTileRendererTileSettings);
     this.webMapJS.setBaseURL('./adagucwebmapjs/');
     this.webMapJS.setProjection({ srs:this.props.srs || 'EPSG:3857', bbox:this.props.bbox || [-19000000, -19000000, 19000000, 19000000] });
-    this.webMapJS.setWMJSTileRendererTileSettings(WMJSTileRendererTileSettings);
+    
     let baselayers = [
       // new WMJSLayer({ 'name': 'OSM', type: 'twms' }),
       new WMJSLayer({
@@ -81,6 +84,8 @@ export default class ReactWebMapJS extends PureComponent {
     if (this.props.baselayers) {
       baselayers = this.props.baselayers;
     }
+
+    console.log(baselayers);
 
     this.webMapJS.setBaseLayers(baselayers);
 

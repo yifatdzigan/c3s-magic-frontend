@@ -80,6 +80,7 @@
   "author": "KNMI, based on work by David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
   "dependencies": {
+    "adaguc-webmapjs": "^3.2.3",
     "axios": "^0.16.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.0",
@@ -98,8 +99,6 @@
     "isomorphic-fetch": "^2.2.1",
     "js-file-download": "^0.4.1",
     "json-schema-ref-parser": "^4.1.1",
-    "moment": "^2.18.1",
-    "moment-timezone": "^0.5.13",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.6.2",
     "react": "^15.6.1",
@@ -111,7 +110,7 @@
     "react-jsonschema-form": "^1.0.0",
     "react-linkify": "^0.2.1",
     "react-markdown": "^3.0.2",
-    "react-moment": "^0.2.4",
+    "react-moment": "^0.8.4",
     "react-redux": "^5.0.5",
     "react-redux-form": "1.12.1",
     "react-router": "^3.0.5",
@@ -200,6 +199,12 @@
     "webpack-hot-middleware": "^2.18.0",
     "yaml-lint": "^1.2.3",
     "yargs": "^8.0.1"
+  },
+  "peerDependencies": {
+    "moment": "^2.22.2",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery": "^3.3.1",
+    "proj4": "^2.5.0"
   },
   "pre-commit": [
     "lint"

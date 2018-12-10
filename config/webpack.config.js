@@ -151,4 +151,11 @@ webpackConfig.module.rules.push(
 webpackConfig.node = {
   fs: 'empty'
 };
+
+webpackConfig.externals = {
+  jquery: 'jQuery',
+  moment: 'moment',
+  proj4:  'proj4'
+};
+
 module.exports = webpackConfig;
