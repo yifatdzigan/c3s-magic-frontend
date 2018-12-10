@@ -742,7 +742,7 @@ export default class AdagucMapDraw extends PureComponent {
         feature.geometry.coordinates.push([this.mouseGeoCoord.x, this.mouseGeoCoord.y]);
         this.featureHasChanged('point added to multipoint');
         this.pointNumber = feature.geometry.coordinates.length;
-        console.log(this.pointNumber);
+        // console.log(this.pointNumber);
         this.adagucMouseMove(event);
         return false;
       }
@@ -919,11 +919,11 @@ export default class AdagucMapDraw extends PureComponent {
   }
 
   componentDidMount () {
-    console.log('Mapdraw componentWillMount');
+    // console.log('Mapdraw componentWillMount');
     document.addEventListener('keydown', this.handleKeyDown);
   }
   componentWillUnmount () {
-    console.log('Mapdraw componentWillUnMount');
+    // console.log('Mapdraw componentWillUnMount');
     document.removeEventListener('keydown', this.handleKeyDown);
     const { webmapjs } = this.props;
     if (webmapjs !== undefined && this.listenersInitialized === true) {
@@ -945,7 +945,7 @@ export default class AdagucMapDraw extends PureComponent {
 
     if (webmapjs !== undefined && this.listenersInitialized === undefined) {
       this.listenersInitialized = true;
-      // console.log('adding event listeners');
+      console.log('adding event listeners');
       webmapjs.addListener('beforecanvasdisplay', this.adagucBeforeDraw, true);
       webmapjs.addListener('beforemousemove', this.adagucMouseMove, true);
       webmapjs.addListener('beforemousedown', this.adagucMouseDown, true);

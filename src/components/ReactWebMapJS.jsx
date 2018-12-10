@@ -36,7 +36,7 @@ export default class ReactWebMapJS extends Component {
         if (this.props.layerReadyCallback) {
           this.props.layers[j].parseLayer(
             (wmjsLayer) => {
-              console.log('ReactWebMapJS layerReadyCallback');
+              // console.log('ReactWebMapJS layerReadyCallback');
               this.props.layerReadyCallback(wmjsLayer, this.webMapJS);
             },
             undefined, 'ReactWebMapJS::componentDidUpdate');
@@ -56,7 +56,6 @@ export default class ReactWebMapJS extends Component {
     }
     this.webMapJSCreated = true;
     this.webMapJS = new WMJSMap(this.refs.adagucwebmapjs);
-    console.log("WMJSTileRendererTileSettings", WMJSTileRendererTileSettings);
     this.webMapJS.setWMJSTileRendererTileSettings(WMJSTileRendererTileSettings);
     this.webMapJS.setBaseURL('./adagucwebmapjs/');
     this.webMapJS.setProjection({ srs:this.props.srs || 'EPSG:3857', bbox:this.props.bbox || [-19000000, -19000000, 19000000, 19000000] });
@@ -85,17 +84,15 @@ export default class ReactWebMapJS extends Component {
       baselayers = this.props.baselayers;
     }
 
-    console.log(baselayers);
 
     this.webMapJS.setBaseLayers(baselayers);
 
-    // console.log(this.props.listeners);
-    if (this.props.listeners) {
-      this.props.listeners.forEach((listener) => {
-        console.log('setting listeners');
-        this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
-      });
-    }
+    // if (this.props.listeners) {
+    //   this.props.listeners.forEach((listener) => {
+    //     console.log('setting listeners');
+    //     this.webMapJS.addListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
+    //   });
+    // }
 
     this.resize();
     this.componentDidUpdate();
@@ -103,7 +100,6 @@ export default class ReactWebMapJS extends Component {
     window.addEventListener('resize', this._handleWindowResize);
 
     if (this.props.webMapJSInitializedCallback && this.webMapJS) {
-      console.log('ReactWebMapJS webMapJSInitializedCallback');
       this.props.webMapJSInitializedCallback(this.webMapJS, true);
     }
   }
@@ -115,10 +111,8 @@ export default class ReactWebMapJS extends Component {
       this.props.webMapJSInitializedCallback(this.webMapJS, false);
     }
 
-    console.log('unmount');
     if (this.props.listeners) {
       this.props.listeners.forEach((listener) => {
-        console.log('removing listeners');
         this.webMapJS.removeListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
       });
     }

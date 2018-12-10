@@ -209,15 +209,15 @@ class ActuariesPage extends Component {
     return (<div className='MainViewport'>
       <h1>Actuaries index</h1>
       <Row>
-        <div className='text' style={{ paddingBottom:'15px' }}>
+        <span className='text' style={{ paddingBottom:'15px' }}>
         The changing risks between the recent past and the future are of great interest to the insurance industry
         because even slight changes in climate characteristics can translate into large impacts on risk distribution/management and expected losses.
         Comprehensive risk indices such as the ACRI, which integrates changes in frequency and magnitude of key climate indicators and elements of hazard,
          exposure and vulnerability, are crucial for decision making processes.
-        </div>
-        <div className='text' style={{ paddingBottom:'15px' }}>
+        </span>
+        <span className='text' style={{ paddingBottom:'15px' }}>
           The data behind this tailored product can be calculated with the <a href='#/diagnostics/risk_index'>insurance risk indices</a> diagnostic.
-        </div>
+        </span>
       </Row>
       <Row>
         <Col>
@@ -246,14 +246,15 @@ class ActuariesPage extends Component {
               <CardText>
                 {
                   colorBar.map((item, i) => {
-                    return (<div key={i} style={{
+                    return (<span key={i} style={{
                       background:item.fillColor,
                       color: item.textColor,
                       padding:'6px 8px 6px 8px',
                       textAlign:'center',
+                      display:'block',
                       margin: '0px 12px 0px 12px',
                       border: this.state.hoveredValue >= item.min && this.state.hoveredValue < item.max ? '2px solid black' : '2px solid' + item.fillColor
-                    }} >{item.text}</div>);
+                    }} >{item.text}</span>);
                   })
                 }
               </CardText>

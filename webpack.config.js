@@ -11,7 +11,7 @@ module.exports = {
   mode:'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'adaguc-webmapjs-reactdemo.js'
+    filename: 'c3s-magic-frontend.js'
   },
   devtool: 'source-map',
   module: {

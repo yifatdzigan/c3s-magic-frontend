@@ -4,6 +4,7 @@ import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import { Button, Row, Col } from 'reactstrap';
 import Icon from 'react-fa';
+import DOM from 'react-dom-factories';
 
 export default class Draggable extends Component {
   constructor (props) {
@@ -156,7 +157,7 @@ export default class Draggable extends Component {
       zIndex: this.state.zIndex
     });
     console.log('render index ' + this.props.index);
-    return React.DOM.div(
+    return DOM.div(
       {
         ref: (element) => { this.divRef = element; },
         className: this.props.className,
