@@ -1,10 +1,7 @@
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { XAxis, YAxis, Tooltip, CartesianGrid, LabelList, ScatterChart, Scatter, Cell } from 'recharts';
-import { Button, Row, Col, Alert } from 'reactstrap';
+import { Row} from 'reactstrap';
 
-export default class RechartsDemo extends Component {
+export default class ESGFSearch extends Component {
   constructor () {
     super();
   }
@@ -24,6 +21,3 @@ export default class RechartsDemo extends Component {
       </div>);
   }
 }
-
-RechartsDemo.propTypes = {
-};

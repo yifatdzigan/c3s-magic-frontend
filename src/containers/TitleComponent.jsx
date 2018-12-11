@@ -73,10 +73,10 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} >Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/tailoredproducts' active={pathname === '/tphome'} >Tailored Products</NavLink>
+              <NavLink href='#/tailoredproducts' active={pathname === '/tphome' || pathname.indexOf('/tailored') !== -1} >Tailored Products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Metrics &amp; Diagnostics</NavLink>
+              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'  || pathname.indexOf('/diagnostics') !== -1} >Metrics &amp; Diagnostics</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/calculate/' active={pathname === '/calculate/'} >Calculate</NavLink>
