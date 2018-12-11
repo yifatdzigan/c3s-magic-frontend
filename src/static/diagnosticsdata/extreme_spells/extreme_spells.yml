@@ -22,7 +22,7 @@ settings:
   - Ensemble: "r1p1i1"
   - Reference: "1961 - 1990"
   - Projection: "2020 - 2040"
-  - Experiment: RCP8.5
+  - Experiment: "RCP8.5"
   - Quantile_threshold: 0.95
   - Min_consec_days: 5
   - variables: "daily maximum temperature at 2M"

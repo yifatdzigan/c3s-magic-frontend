@@ -20,14 +20,15 @@ references:
 settings:
   - Region: North Atlantic
   - Model: MIROC5
+  - Ensemble: "i0p1"
   - Variables: daily pressure at sea level (psl) at 2M
   - ncenters: 4
   - cluster_method: "kmeans"
   - EOFS: "TRUE"
   - detrend_order: 2
-  - Experiment: NULL
-  - historical simulation i0p1: "1981 - 1990"
-  - projection rcp8.5 : "2006 - 2026"
+  - Experiment: "rcp8.5"
+  - historical simulation: "1981 - 1990"
+  - projection : "2006 - 2026"
   - frequency: 'JJA'
 title: Modes of variability
 youtube:
