@@ -24,7 +24,7 @@ settings:
   - Ensemble: "r1p1i1"
   - Historical Simulation: "1961 - 1990"
   - Projection: "2020 - 2040"
-  - Experiment: RCP8.5
+  - Experiment: "RCP8.5"
   - Area: "-10 to 40East - 27 to 70North"
   - variables: "daily maximum and minimum temperature at 2M"
 title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
