@@ -478,9 +478,9 @@ class WPSDemoCopernicus extends Component {
   handleLocationChange (newLocation) {
     const {hash, pathname} = newLocation;
     let location = hash && hash.length > 0 ? hash : pathname;
-    console.log('newlocation', location);
+    // console.log('newlocation', location);
     const hashParts = location.split('/');
-    console.log(hashParts);
+    // console.log(hashParts);
     if(hashParts.length === 3){
       const lastPart = hashParts[hashParts.length -1];
       if (lastPart && lastPart.length > 0){

@@ -30,8 +30,7 @@ class CustomTooltip extends Component {
 };
 
 CustomTooltip.propTypes = {
-  payload: PropTypes.array,
-  active: PropTypes.function
+  payload: PropTypes.array
 };
 
 export default class RechartsDemo extends Component {
@@ -47,11 +46,13 @@ export default class RechartsDemo extends Component {
       dataurl: this.props.data,
       error:''
     };
+  }
+
+  componentDidMount () {
     this.loaddap();
   }
 
   loaddap () {
-    console.log('loaddap');
     this.setState({ scatterdata: { tas: [], tas_0: [] }, error: '' });
     fetch(this.state.dataurl + '.dods', {
       method: 'GET',
@@ -95,6 +96,10 @@ export default class RechartsDemo extends Component {
     this.loaddap();
   }
 
+  handleToolTip(event) {
+
+  }
+
   render () {
     // console.log(this.state);
     return (
@@ -116,7 +121,7 @@ export default class RechartsDemo extends Component {
             domain={[dataMin => Math.floor(dataMin * 1), dataMax => Math.ceil(dataMax * 1)]}
           />
           <CartesianGrid />
-          <Tooltip content={<CustomTooltip active={()=>{}} />} />
+          <Tooltip content={<CustomTooltip />} />
           <Scatter name='tas' data={this.state.scatterdata.tas} fill='#8884d8' shape='triangle' >
             {
               this.state.scatterdata.tas.map((entry, index) => {

@@ -123,7 +123,7 @@ class ActuariesPage extends Component {
               method: 'get',
               url: 'actuaries/c3s-magic-actuaries-countriesextract.csv',
               withCredentials: true,
-              responseType: 'csv'
+              responseType: 'text'
             }).then(src => {
               if (src.data) {
                 let csvData = csvJSON(src.data);

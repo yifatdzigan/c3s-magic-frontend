@@ -32,7 +32,7 @@ export default class TitleComponent extends Component {
 
     return (
       <div className='TitleComponent'>
-        <Navbar inverse >
+        <Navbar dark >
           <Row className='navbar-header-c3s'>
             <Col className='welcomeSign'>
               <p style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
@@ -163,7 +163,7 @@ export default class TitleComponent extends Component {
       .then(json => {
         let obj = json;
         if (obj.error) {
-          console.log('Not signed in');
+          // console.log('Not signed in');
           dispatch(actions.setAccessToken(null));
           dispatch(actions.setClientId(null));
           dispatch(actions.setEmailAddress(null));

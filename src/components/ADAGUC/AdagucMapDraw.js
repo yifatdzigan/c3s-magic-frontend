@@ -927,7 +927,6 @@ export default class AdagucMapDraw extends PureComponent {
     document.removeEventListener('keydown', this.handleKeyDown);
     const { webmapjs } = this.props;
     if (webmapjs !== undefined && this.listenersInitialized === true) {
-      console.log('Remove listeners webmapjs');
       this.listenersInitialized = undefined;
       webmapjs.removeListener('beforecanvasdisplay', this.adagucBeforeDraw);
       webmapjs.removeListener('beforemousemove', this.adagucMouseMove);
@@ -945,7 +944,7 @@ export default class AdagucMapDraw extends PureComponent {
 
     if (webmapjs !== undefined && this.listenersInitialized === undefined) {
       this.listenersInitialized = true;
-      console.log('adding event listeners');
+      // console.log('adding event listeners');
       webmapjs.addListener('beforecanvasdisplay', this.adagucBeforeDraw, true);
       webmapjs.addListener('beforemousemove', this.adagucMouseMove, true);
       webmapjs.addListener('beforemousedown', this.adagucMouseDown, true);
