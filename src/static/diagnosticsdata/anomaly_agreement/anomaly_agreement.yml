@@ -13,7 +13,7 @@ description_file: 'anomaly_agreement/description.md'
 report_file: report.pdf
 media: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/Area-averaged%20tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png
 enableEnsembleAnomalyPlots:
-  - data_url: 'https://portal.c3s-magic.eu/wms?DATASET=anomaly_agreement_stippling&'
+  - data_url: 'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'
   - map_slider: true
 references:
   - "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."

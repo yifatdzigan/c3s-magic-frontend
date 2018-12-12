@@ -79,7 +79,7 @@ export default class TPHome extends Component {
                   </Row>
                 </Col>
                 <Col style={{display:'inherit'}} >
-                  <CardImg style = {{ margin:'auto', width: '350px', height:'100%', display:'block'}} src={item.image_file} />
+                  <CardImg style = {{ marginLeft:'auto', marginRight:'auto', width: '350px', display:'block', minWidth:'350px'}} src={item.image_file} />
                 </Col>
               </Row>            
             </CardBody>
