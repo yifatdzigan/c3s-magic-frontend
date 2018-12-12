@@ -24,21 +24,9 @@ class StormSurge extends Component {
                     showstyleselector: true
                   }}
                   parsedLayerCallback={(layer, webMapJSInstance) => {
-                    console.log('webMapJSInstance', webMapJSInstance, layer);
-                    console.log(layer.name);
-                    // layer.parentMaps.length = 0;
-                    // layer.parentMaps.push(webMapJSInstance);
-                    console.log(webMapJSInstance.getId());
-
-                    for( let j=0;j<layer.parentMaps.length;j++){
-                    console.log(j+ ') ' +  layer.parentMaps[j].getId());
-                    }
-
-                    
+                    // console.log('webMapJSInstance', webMapJSInstance);
                     layer.zoomToLayer();
-                    layer.draw();
-                    console.log('done');
-                    //webMapJSInstance.draw();
+                    webMapJSInstance.draw();
                   }}
                 />
 

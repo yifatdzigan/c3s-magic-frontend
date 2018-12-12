@@ -151,13 +151,12 @@ export default class ADAGUCViewerComponent extends PureComponent {
 
   componentDidMount () {
     // console.log('ADAGUCViewerComponent componentDidMount');
-    this.componentWillReceiveProps(this.props);
-
     mapTypeConfiguration.map((proj, index) => {
       if (proj.title === 'World Lat/Lon') {
         this.setProjection(proj);
       }
     });
+    this.componentWillReceiveProps(this.props);
   }
 
   componentWillUnmount () {
