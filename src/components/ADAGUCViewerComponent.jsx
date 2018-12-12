@@ -161,7 +161,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   componentWillUnmount () {
-    console.log('Viewer componentWillUnMount');
+    // console.log('Viewer componentWillUnMount');
   }
 
   getLayersForService (WMSGetCapabiltiesURL, dapurl) {
@@ -226,7 +226,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
         this.setState({ title:null, error: error });
         throw new Error(error);
       },
-      true
+      false
     );
   }
   setProjection (p) {

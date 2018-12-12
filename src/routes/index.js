@@ -99,8 +99,6 @@ import WPSBinaryOperator from '../components/WPSBinaryOperator';
 
 import WPSDemoCopernicus from '../components/WPSDemoCopernicus';
 
-import RechartsDemo from '../components/RechartsDemo';
-
 import ESGFSearch from '../components/ESGFSearch';
 
 import EnsembleAnomalyPlots from '../containers/Diagnostics/EnsembleAnomalyPlots';
@@ -401,11 +399,7 @@ export const createRoutes = (store) => {
         <Route path='adagucviewer'>
           <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu} viewComponent={adagucviewer} />
         </Route>
-        <Route path='interactivecharts'>
-          <IndexRoute component={DoubleNavBarLayout} header={mainmenu} secondNavbar={systemmenu}
-            viewComponent={React.createElement(connect(mapStateToWPSProps, mapDispatchToWPSProps)(RechartsDemo))}
-          />
-        </Route>
+      
 
       </Route>
 

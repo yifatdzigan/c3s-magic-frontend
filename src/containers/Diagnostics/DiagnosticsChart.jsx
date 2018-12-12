@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import RechartsDemo from '../../components/RechartsDemo';
+import RechartsComponent from '../../components/RechartsComponent';
 
 class DiagnosticsChart extends Component {
   componentWillMount () {
@@ -13,7 +13,7 @@ class DiagnosticsChart extends Component {
   render () {
 
     return (
-      <RechartsDemo data={this.props.data} />
+      <RechartsComponent dapurl={this.props.data} type={'scatter_1'} />
     );
   }
 }

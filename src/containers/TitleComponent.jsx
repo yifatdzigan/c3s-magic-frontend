@@ -32,7 +32,7 @@ export default class TitleComponent extends Component {
 
     return (
       <div className='TitleComponent'>
-        <Navbar inverse >
+        <Navbar dark >
           <Row className='navbar-header-c3s'>
             <Col className='welcomeSign'>
               <p style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
@@ -73,10 +73,10 @@ export default class TitleComponent extends Component {
               <NavLink href='#/' active={pathname === '/'} >Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/tailoredproducts' active={pathname === '/tphome'} >Tailored Products</NavLink>
+              <NavLink href='#/tailoredproducts' active={pathname === '/tphome' || pathname.indexOf('/tailored') !== -1} >Tailored Products</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'} >Metrics &amp; Diagnostics</NavLink>
+              <NavLink href='#/diagnostics' active={pathname === '/diagnostics'  || pathname.indexOf('/diagnostics') !== -1} >Metrics &amp; Diagnostics</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='#/calculate/' active={pathname === '/calculate/'} >Calculate</NavLink>
@@ -163,7 +163,7 @@ export default class TitleComponent extends Component {
       .then(json => {
         let obj = json;
         if (obj.error) {
-          console.log('Not signed in');
+          // console.log('Not signed in');
           dispatch(actions.setAccessToken(null));
           dispatch(actions.setClientId(null));
           dispatch(actions.setEmailAddress(null));

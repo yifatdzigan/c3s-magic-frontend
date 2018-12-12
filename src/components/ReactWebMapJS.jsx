@@ -39,7 +39,7 @@ export default class ReactWebMapJS extends Component {
               // console.log('ReactWebMapJS layerReadyCallback');
               this.props.layerReadyCallback(wmjsLayer, this.webMapJS);
             },
-            undefined, 'ReactWebMapJS::componentDidUpdate');
+            false, 'ReactWebMapJS::componentDidUpdate');
         }
       }
       this.webMapJS.draw();
@@ -47,8 +47,6 @@ export default class ReactWebMapJS extends Component {
     this._handleWindowResize();
   }
   componentDidMount () {
-    // console.log('componentDidMount');
-    
     if (this.webMapJSCreated) {
       // console.log('ret');
       // this.webMapJS.draw();
@@ -105,16 +103,14 @@ export default class ReactWebMapJS extends Component {
   }
 
   componentWillUnmount () {
-
+    // console.log('ReactWebMAPJSDidMount will unmount');
     window.removeEventListener('resize', this._handleWindowResize);
     if (this.props.webMapJSInitializedCallback && this.props.layers && this.props.layers.length > 0) {
       this.props.webMapJSInitializedCallback(this.webMapJS, false);
     }
 
-    if (this.props.listeners) {
-      this.props.listeners.forEach((listener) => {
-        this.webMapJS.removeListener(listener.name, (data) => { listener.callbackfunction(this.webMapJS, data); }, listener.keep);
-      });
+    if (this.webMapJS) {
+      this.webMapJS.destroy();
     }
   }
   resize () {

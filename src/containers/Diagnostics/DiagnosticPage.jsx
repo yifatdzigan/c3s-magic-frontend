@@ -32,7 +32,6 @@ class DiagnosticPage extends Component {
 
   readYaml() {
     var yamlPath = 'diagnosticsdata/' + this.props.params.diag + '/' + this.props.params.diag + '.yml';
-    console.log(yamlPath);
     this.setState({ yamlPath: yamlPath });
     var that = this;
     $RefParser.dereference(yamlPath)
@@ -42,11 +41,12 @@ class DiagnosticPage extends Component {
   }
 
   componentWillMount() {
-    this.readYaml();
-    console.log(this.props);
+    
+    
   }
 
   componentDidMount() {
+    this.readYaml();
   }
 
   getElementProperty(elementName, paramName) {
@@ -85,16 +85,16 @@ class DiagnosticPage extends Component {
         _element = this.state.yamlData[elementName];
       }
       else if (elementName === "authors") {
-        _element = '<ul>';
+        _element = '<ul key={elementName + \'partner\'}>';
         this.state.yamlData[elementName].forEach(function (element) {
-          _element += '<li>' + element + '</li>';
+          _element += '<li key={element}>' + element + '</li>';
         });
         _element += '</ul>';
       }
       else if (elementName === "contact") {
-        _element = '<ul>';
+        _element = '<ul  key={elementName + \'contact\'}>';
         this.state.yamlData[elementName].forEach(function (element) {
-          _element += '<li>' + element + '</li>';
+          _element += '<li key={element}>' + element + '</li>';
         });
         _element += '</ul>';
       }
@@ -155,7 +155,7 @@ class DiagnosticPage extends Component {
         console.warn("Could not find the key " + elementName + " in the configuration file!");
         _element = "No key was requested! Check the diagnostics settings.";
       }
-      return (<div dangerouslySetInnerHTML={{ __html: _element }} />);
+      return (<div key={elementName} dangerouslySetInnerHTML={{ __html: _element }} />);
     }
   }
   viewProvenance() {
@@ -234,12 +234,10 @@ class DiagnosticPage extends Component {
 
                   <div className='text'>
                     {this.isEnabled('youtube') ?
-                      [
-                        <div className='text'>
+                        <div key={'youtube'} className='text'>
                           <h2 style={{ color: '#921A36'}}>Screencast</h2>
                           <YoutubeVideo video={this.renderPageElement('youtube')} autoplay="0" rel="0" modest="1" />
                         </div>
-                      ]
                       : null
                     }
                   </div>
@@ -255,12 +253,10 @@ class DiagnosticPage extends Component {
                 <Col xs="12" className='diagnosticsCol'>
                   <div className='text'>
                     {this.isEnabled('chart') ?
-                      [
-                        <div className='text'>
-                          <h2 style={{ color: '#921A36'}}>Interactive chart</h2>
-                          <DiagnosticsChart data={this.renderPageElement('chart')}/>
-                        </div>
-                      ]
+                      <div key={'chart'} className='text'>
+                        <h2 style={{ color: '#921A36'}}>Interactive chart</h2>
+                        <DiagnosticsChart data={this.renderPageElement('chart')}/>
+                      </div>
                       : null
                     }
                   </div>
@@ -301,7 +297,7 @@ class DiagnosticPage extends Component {
 
                   {this.isEnabled('media') ?
                     [
-                      <div className='vspace2em'>
+                      <div key={'media'} className='vspace2em'>
                         <img width="100%" src={this.renderPageElement('media')} />
                       </div>
                     ]
@@ -311,7 +307,7 @@ class DiagnosticPage extends Component {
                   <div id="additional" className='vspace2em'>
                       {this.isEnabled('description_file') ?
                       [
-                        <MarkdownFromFile url={this.state.staticPath + this.state.yamlData['description_file']} />
+                        <MarkdownFromFile key={'description_file'} url={this.state.staticPath + this.state.yamlData['description_file']} />
                       ]
                       : null
                     }

@@ -12,8 +12,8 @@ export default class NavBarLayout extends Component {
           </Row>
           : null }
         { secondNavbar
-          ? <Row className='secondNavbar' tag='secondNavbar'>
-            {React.cloneElement(secondNavbar, this.props) || 'secondNavbar Oops'}
+          ? <Row className='secondNavbar'>
+            {React.cloneElement(secondNavbar, this.props) || 'SecondNavbar Oops'}
           </Row>
           : null }
         { viewComponent
