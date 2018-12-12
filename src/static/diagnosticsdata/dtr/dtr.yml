@@ -30,3 +30,4 @@ settings:
 title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
 youtube:
 data: https://portal.c3s-magic.eu/data/recipes/recipe_diurnal_temperature_index_wp7_20181210_113406.zip
+image_file: diagnosticsdata/dtr/diurnal_temperature_variation.png

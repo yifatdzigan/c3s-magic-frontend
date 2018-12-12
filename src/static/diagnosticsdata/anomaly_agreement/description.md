@@ -1,5 +1,3 @@
-![output map](https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png "Output Map")
-
 This diagnostic provides an integrated view of the historical evolution and projection of the climate system state in terms of the mean state, aggregating the multi-model data into a single signal. This diagnostic assess the ensemble variance and the agreement between ensemble members with the mean signal. The anomalies for any variable with respect to a reference period is computed on any preselected period. The mean signal and agreement between methods are computed over the preselected period and variable of interest.
 
 ### Description of user-changeable settings on webpage

@@ -27,7 +27,7 @@ settings:
   - Lag: 3
   - Time frequency: mon
 title: KNMI Climate explorer Correlate a field with a timeseries
-
+image_file: ./diagnosticsdata/correlations/climexp_correlations.png
 
 
 

@@ -11,7 +11,9 @@ contact:
 description_short: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
 description_file: 'anomaly_agreement/description.md'
 report_file: report.pdf
-media: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/Area-averaged%20tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png
+media:
+  - https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/Area-averaged%20tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png
 enableEnsembleAnomalyPlots:
   - data_url: 'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'
   - map_slider: true
@@ -32,3 +34,4 @@ settings:
 title: Generic multi-model products
 #youtube: CNWA4j2okcc
 data: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442.zip
+image_file: diagnosticsdata/anomaly_agreement/bsc_anomaly_timeseries.png

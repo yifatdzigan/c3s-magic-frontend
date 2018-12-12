@@ -81,4 +81,5 @@ title: Performance metrics
 
 youtube:
 
-chart: 'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc'
+#chart: 'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc'
+image_file: ./diagnosticsdata/perfmetrics/Portait.png

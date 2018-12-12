@@ -33,3 +33,4 @@ title: python demonstrator
 process: /calculate/python_demonstrator_metric
 data: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601.zip
 provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg
+image_file: ./diagnosticsdata/python_example/CMIP5_bcc-csm1-1_Amon_historical_r1i1p1_T3M_ta_2001-2002_mean_r_2i936e.png

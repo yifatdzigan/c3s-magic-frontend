@@ -29,7 +29,7 @@ settings:
   - End year: 2005
   - Quantile: 75
 title: Precipitation quantile bias
-
+image_file: diagnosticsdata/quantilebias/quantilebias_thumbnail.png
 
 
 

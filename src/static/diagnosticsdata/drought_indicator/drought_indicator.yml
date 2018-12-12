@@ -37,4 +37,5 @@ settings:
       - SPI
       - SPEI
 title: Drought indicator
-youtube:
+# youtube:
+image_file: ./diagnosticsdata/drought_indicator/dryfreq.png

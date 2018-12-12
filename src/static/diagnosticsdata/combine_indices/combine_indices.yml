@@ -24,4 +24,5 @@ settings:
   - Weights: NULL
   - Experiment: RCP8.5
 title: Single and multi-model indices based on area averages
-youtube: 
+# youtube: 
+image_file: diagnosticsdata/combine_indices/single_and_multi_model_indices_thumbnail.png
