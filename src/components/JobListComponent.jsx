@@ -14,7 +14,10 @@ export default class JobListComponent extends Component {
     this.state = {
       cursor: null
     };
+    this.pollingActive = false;
     this.onClickRow = this.onClickRow.bind(this);
+    this.pollJobList = this.pollJobList.bind(this);
+    
   }
   /* Sleep function. */
   sleep (ms) {
@@ -64,22 +67,24 @@ export default class JobListComponent extends Component {
     });
   }
 
-  componentWillMount () {
+  pollJobList () {
+    
+    if (!this.pollingActive) return;
     this.fetchJobListItems();
-  }
-
-  async componentWillUpdate () {
-    /* Little hacky, needs to be improved by passing state correctly. */
-    // await this.sleep(1000);
-    // this.fetchJobListItems();
+    this.sleep(2000).then(this.pollJobList);
   }
 
   componentDidMount () {
-    this.fetchJobListItems();
+    this.pollingActive = true;
+    this.pollJobList();
   }
 
+  componentWillUnmount () {
+    this.pollingActive = false;
+  }
+
+
   render () {
-    console.log(this.props);
     if (!this.props.jobs) return null;
     const jobs = this.props.jobs;
 
@@ -126,13 +131,13 @@ export default class JobListComponent extends Component {
     return (
       <div className='MainViewport'>
         <ScrollArea speed={1} horizontal className='jobListScrollComponent' >
-          {/* <JsonTable
+          { <JsonTable
             rows={jobs}
             className='joblistTable'
             columns={columns}
             onClickRow={this.onClickRow}
             settings={settings}
-          />  */}
+          /> }
         </ScrollArea>
         <hr />
         <Button disabled={!this.state.cursor} onClick={() => this.deleteJobListItem()}>Delete</Button>
