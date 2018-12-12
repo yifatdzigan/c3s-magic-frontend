@@ -28,6 +28,10 @@ class DiagnosticPage extends Component {
     };
     this.readYaml = this.readYaml.bind(this);
     this.calculate = this.calculate.bind(this);
+    this.downloadData = this.downloadData.bind(this);
+    this.renderPageElement = this.renderPageElement.bind(this);
+    
+    
   }
 
   readYaml() {
@@ -150,8 +154,10 @@ class DiagnosticPage extends Component {
       else if (elementName === "chart") {
         _element = this.state.yamlData[elementName];
         return _element;
-      }
-      else {
+      } else if (elementName === "data") {
+        _element = this.state.yamlData[elementName];
+        return _element;
+      } else {
         console.warn("Could not find the key " + elementName + " in the configuration file!");
         _element = "No key was requested! Check the diagnostics settings.";
       }
@@ -163,7 +169,8 @@ class DiagnosticPage extends Component {
   }
 
   downloadData() {
-    console.log('Download data...');
+    var win = window.open( this.renderPageElement("data"), '_blank');
+    win.focus();
   }
 
   readMore() {
@@ -174,6 +181,7 @@ class DiagnosticPage extends Component {
   toTop() {
     var element = document.getElementById("pagetop");
     element.scrollIntoView();
+    window.scrollTo(0, 0);
   }
 
   calculate() {
@@ -226,7 +234,7 @@ class DiagnosticPage extends Component {
 
                   <div className='vspace2em'>
                     <Button color="primary" onClick={this.viewProvenance}>&nbsp;View provenance</Button>{' '}
-                    <Button color="primary" onClick={this.downloadData}><Icon name='file-archive-o' />&nbsp;Download data</Button>{' '}
+                    { this.renderPageElement("data") && (<Button color="primary" onClick={this.downloadData}><Icon name='download' />&nbsp;Download data</Button>) }
                   </div>
 
                 </Col>

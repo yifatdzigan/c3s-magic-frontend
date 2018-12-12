@@ -83,7 +83,7 @@ export default class DiagnosticsHome extends Component {
                   </Row>
                 </Col>
                 <Col>
-                  <CardImg style = {{ margin:'auto', width: '350px', height:'100%', display:'block'}} src={item.image_file} />
+                  <CardImg style = {{ width: '350px', display:'block' }} src={item.image_file} />
                 </Col>
               </Row>
    
