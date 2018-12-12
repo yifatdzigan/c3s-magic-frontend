@@ -72,18 +72,16 @@ export default class TPHome extends Component {
                   </CardBody>
 
                   <CardText style = {{ }} > {item.info_text} </CardText>
-
+                  <Row>
+                    <div>
+                      {tagList}
+                    </div>
+                  </Row>
                 </Col>
-                <Col>
-                  <CardImg style ={{ marginLeft: '20%', width: '60%'}} src={item.image_file} />
+                <Col style={{display:'inherit'}} >
+                  <CardImg style = {{ margin:'auto', width: '350px', height:'100%', display:'block'}} src={item.image_file} />
                 </Col>
-              </Row>
-              <Row>
-                <div>
-                  {tagList}
-                </div>
-              </Row>
-
+              </Row>            
             </CardBody>
 
           </Card>
