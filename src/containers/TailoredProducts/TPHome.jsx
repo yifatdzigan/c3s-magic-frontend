@@ -64,7 +64,7 @@ export default class TPHome extends Component {
           >
 
             <CardBody key={item.id}>
-              <Row key={item.id}>
+              <Row key={item.id} style={{height: 'inherit'}}>
                 <Col key={item.id}>
                   <CardBody>
                       <h4 style={{ fontSize: '25px', color:'#4899b1', textAlign: 'center', marginTop: '25px' }}> {item.title} </h4>
@@ -78,8 +78,8 @@ export default class TPHome extends Component {
                     </div>
                   </Row>
                 </Col>
-                <Col style={{display:'inherit'}} >
-                  <CardImg style = {{ marginLeft:'auto', marginRight:'auto', width: '350px', display:'block', minWidth:'350px'}} src={item.image_file} />
+                <Col style={{minHeight:'300px', border:'1px solid #FFF', margin:'1px', padding:'1px'}}>
+                  <CardImg style = {{ width: '350px', display:'block', height:'auto' }} src={item.image_file} />
                 </Col>
               </Row>            
             </CardBody>

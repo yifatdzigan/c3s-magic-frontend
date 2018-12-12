@@ -15,17 +15,24 @@ export default class SVGViewer extends Component {
     axios({
       method: 'get',
       url: this.state.url,
-      withCredentials: true
+      withCredentials: true 
     }).then(src => {
       this.setState({data: src.data});
     }).catch((e) => {
       console.error(e);
+      axios({
+        method: 'get',
+        url: this.state.url
+      }).then(src => {
+        this.setState({data: src.data});
+      }).catch((e) => {
+        console.error(e);
+      })
     })
   }
 
   render () {
     const { closeCallback } = this.props;
-    console.log(this.state.data);
     if (this.state.data === null) {
       return (<div className='wpsOutputComponentContainer'>loading</div>);
     }

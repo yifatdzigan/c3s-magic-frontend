@@ -1,0 +1,35 @@
+---
+name: ESMMValtool Backend
+partner: DLR
+authors:
+  - Veronika Eyring
+  - Bouwe Andela
+  - Bjoern Broetz
+  - Niels Drost
+  - Nikolay Koldunov
+  - Axel Lauer
+  - Benjamin Mueller
+  - Valeriu Predoi
+  - Mattia Righi
+  - Javier Vegas-Regidor
+contact:
+  - Veronika Eyring (PI; DLR, Germany - veronika.eyring@dlr.de)
+description_short: ESMMValtool backend demo
+description_file: 'python_example/description.md'
+#report_file: report.pdf
+#media: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/Area-averaged%20tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png
+references:
+  - TBD
+settings:
+  - Models:
+      - GFDL-ESM2G
+      - MPI-ESM-MR
+      - bcc-csm1-1
+  - Experiment: Historical
+  - Ensemble: "r1i1p1"
+  - Start year: 2000
+  - End year: 2001
+title: python demonstrator
+process: /calculate/python_demonstrator_metric
+data: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601.zip
+provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg

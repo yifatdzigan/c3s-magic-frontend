@@ -12,7 +12,7 @@ import MarkdownFromFile from '../../containers/MarkdownFromFile';
 
 import { Row, Col, Button, Alert, Container } from 'reactstrap';
 import Icon from 'react-fa';
-
+import RenderWPSProcessOutput from '../../components/WPS/RenderWPSProcessOutput';
 var $RefParser = require('json-schema-ref-parser');
 var _ = require('lodash');
 
@@ -29,6 +29,7 @@ class DiagnosticPage extends Component {
     this.readYaml = this.readYaml.bind(this);
     this.calculate = this.calculate.bind(this);
     this.downloadData = this.downloadData.bind(this);
+    this.viewProvenance = this.viewProvenance.bind(this);
     this.renderPageElement = this.renderPageElement.bind(this);
     
     
@@ -157,6 +158,12 @@ class DiagnosticPage extends Component {
       } else if (elementName === "data") {
         _element = this.state.yamlData[elementName];
         return _element;
+      } else if (elementName === "provenance") {
+        _element = this.state.yamlData[elementName];
+        return _element;
+      } else if (elementName === "process") {
+        _element = this.state.yamlData[elementName];
+        return _element;
       } else {
         console.warn("Could not find the key " + elementName + " in the configuration file!");
         _element = "No key was requested! Check the diagnostics settings.";
@@ -165,7 +172,12 @@ class DiagnosticPage extends Component {
     }
   }
   viewProvenance() {
-    console.log('Download report...');
+    this.props.dispatch(this.props.actions.showWindow(
+      {
+        component:(<RenderWPSProcessOutput width={'100%'} height={'300px'} url={ this.renderPageElement("provenance")} title={'Provenance'} identifier={''} abstract={''}/>),
+        title: 'provenance'
+      })
+    );
   }
 
   downloadData() {
@@ -185,7 +197,7 @@ class DiagnosticPage extends Component {
   }
 
   calculate() {
-    this.context.router.push('/calculate/');
+    this.context.router.push( this.renderPageElement("process"),);
   }
 
   render() {
@@ -233,7 +245,8 @@ class DiagnosticPage extends Component {
                   </div>
 
                   <div className='vspace2em'>
-                    <Button color="primary" onClick={this.viewProvenance}>&nbsp;View provenance</Button>{' '}
+                    { this.renderPageElement("provenance") && (<Button color="primary" onClick={this.viewProvenance}>&nbsp;View provenance</Button>) }
+                    &nbsp;
                     { this.renderPageElement("data") && (<Button color="primary" onClick={this.downloadData}><Icon name='download' />&nbsp;Download data</Button>) }
                   </div>
 
@@ -253,7 +266,7 @@ class DiagnosticPage extends Component {
                   <div className='text vspace2em'>
                     <h2 style={{ color: '#921A36'}}>Settings</h2>
                     {this.renderPageElement('settings')}
-                    <Button color="primary" onClick={this.calculate}><Icon name='' />&nbsp;Calculate metric</Button>{' '}
+                    { this.renderPageElement("process") && <Button color="primary" onClick={this.calculate}><Icon name='' />&nbsp;Calculate metric</Button> }
                   </div>
                 </Col>
               </Row>
