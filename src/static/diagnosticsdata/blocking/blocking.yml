@@ -31,7 +31,7 @@ settings:
   - Season: DJF
   - Reference dataset: ERA-INTERIM
 title: Blocking metrics and indices
-
+image_file: diagnosticsdata/blocking/blocking_thumbnail.png
 
 
 

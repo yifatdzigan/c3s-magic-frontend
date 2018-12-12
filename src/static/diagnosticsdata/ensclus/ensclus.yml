@@ -35,6 +35,7 @@ settings:
   - Percentage of variance explained by PCs (perc): 80
   - Number of PCs (numpcs): 'no' 
 youtube: MktvzcvflL8
+image_file: diagnosticsdata/ensclus/ensclus_thumbnail.png
 
 
 

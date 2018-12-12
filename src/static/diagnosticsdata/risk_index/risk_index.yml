@@ -32,3 +32,4 @@ settings:
   - Experiment: RCP8.5
 title: Insurance risk indices
 youtube:
+info_file: risk_index/risk_index.yml

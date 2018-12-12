@@ -32,7 +32,7 @@ settings:
   - Reference dataset: ERA-INTERIM
   - Teleconnection index: NAO
 title: Teleconnection indices and weather regimes
-
+image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
 
 
 

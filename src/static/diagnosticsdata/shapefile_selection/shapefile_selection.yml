@@ -25,6 +25,6 @@ settings:
   - evalplot: false
 title: Shapefile selection
 youtube:
-
+image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
 ###
 # An example output is presented in the form of the figure 'Basin_grid2.png' with the caption: 'Example of grid point selection for a river basin of the hydrosheds data base. Red points are all grid points of the model, blue points are within the two largest polygons, and the orange polygon defaults to the grid point nearest to a representative point inside the polygon, which is most often the centroid point.'
