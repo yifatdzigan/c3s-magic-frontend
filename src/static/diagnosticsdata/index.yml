@@ -1,4 +1,17 @@
 diagnostics:
+    python_example:
+        id: 20
+        name: python_example
+        title: Python demonstrator
+        sub_title:
+        info_text: Demonstration of ESMValtool backend
+        info_file: python_example/python_example.yml
+        image_file: ./diagnosticsdata/python_example/CMIP5_bcc-csm1-1_Amon_historical_r1i1p1_T3M_ta_2001-2002_mean_r_2i936e.png
+        github_issue:
+        tags:
+          - ESMValtool
+          - demo
+
     perfmetrics:
         id: 18
         name: perfmetrics

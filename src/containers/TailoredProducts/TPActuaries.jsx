@@ -9,69 +9,69 @@ import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import AdagucMapDraw from '../../components/ADAGUC/AdagucMapDraw.js';
 
 const colorBar = [{
-  min: 2.0,
+  min: -2.0,
   max:10000,
-  text:'2 or more',
+  text:'-2 or more',
   fillColor:'#A30000',
   textColor:'white'
 }, {
-  min:1.5,
-  max:2.0,
-  text: '1.5 till 2.0',
+  min:-2.5,
+  max:-2.0,
+  text: '-2.5 till -2.0',
   fillColor:'#E30000',
   textColor:'white'
 }, {
-  min:1.0,
-  max:1.5,
-  text:'1.0 till 1.5',
+  min:-3.0,
+  max:-2.5,
+  text:'-3.0 till -2.5',
   fillColor:'#FF1F1F',
   textColor:'white'
 }, {
-  min:0.5,
-  max:1.0,
-  text:'0.5 till 1.0',
+  min:-3.5,
+  max:-3.0,
+  text:'-3.5 till -3.0',
   fillColor:'#FF5C5C',
   textColor:'white'
 }, {
-  min:0.25,
-  max:0.5,
-  text:'0.25 till 0.5',
+  min:-3.75,
+  max:-3.5,
+  text:'-3.75 till -3.5',
   fillColor:'#F99',
   textColor:'white'
 }, {
-  min:-0.25,
-  max:0.25,
-  text:'-0.25 till 0.25',
+  min:-4.25,
+  max:-3.75,
+  text:'-4.25 till -3.75',
   fillColor:'#FFF',
   textColor:'black'
 }, {
-  min:-0.5,
-  max:-0.25,
-  text:'-0.25 till -0.5',
+  min:-4.5,
+  max:-4.25,
+  text:'-4.5 till -4.25',
   fillColor:'#99D3FF',
   textColor:'white'
 }, {
-  min:-1.0,
-  max:-0.5,
-  text:'-0.5 till -1.0',
+  min:-4.0,
+  max:-4.5,
+  text:'-4.0 till -4.5',
   fillColor:'#5CB8FF',
   textColor:'white'
 }, {
-  min: -1.5,
-  max: -1.0,
-  text: '-1.0 till -1.5',
+  min: -5.5,
+  max: -5.0,
+  text: '-5.5 till -5.0',
   fillColor: '#1F9EFF',
   textColor:'white'
 }, {
-  min:-2.0,
-  max:-1.5,
-  text:'-1.5 till -2.0',
+  min:-6.0,
+  max:-5.5,
+  text:'-6.0 till -5.5',
   fillColor: '#007FE0',
   textColor:'white'
 }, {
   min:-100000,
-  max:-2,
-  text:'-2 or more',
+  max:-6,
+  text:'-6 or less',
   fillColor: '#005CA3',
   textColor:'white'
 }];
@@ -167,7 +167,7 @@ class ActuariesPage extends Component {
         this.geojson.features.map((feature) => {
           const featureProps = feature.properties;
           if (featureProps.iso_a2 === csvItem.id || featureProps.NUTS_ID === csvItem.id) {
-            let value = parseFloat(csvItem.mean) + 4.0;
+            let value = parseFloat(csvItem.mean);
             featureProps['fill-opacity'] = 1;
             featureProps['stroke-width'] = 1;
             // featureProps['text'] = value;// Math.round((parseFloat(value)*100.)/100.);
@@ -242,7 +242,7 @@ class ActuariesPage extends Component {
           </Form>
           <Card>
             <CardBody>
-              <CardTitle>Standard deviations:</CardTitle>
+              <CardTitle>Wx indicator:</CardTitle>
               <CardText>
                 {
                   colorBar.map((item, i) => {
