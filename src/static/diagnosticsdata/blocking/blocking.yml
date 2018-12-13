@@ -40,7 +40,7 @@ settings:
 title: Blocking metrics and indices
 #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
-
+data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip
 image_file: diagnosticsdata/blocking/blocking_thumbnail.png
 
 
