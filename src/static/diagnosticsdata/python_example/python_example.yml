@@ -38,7 +38,7 @@ settings:
   - Start year: 2000
   - End year: 2002
 title: ESMValTool climate data pre-processor
-process: /calculate/python_demonstrator_metric
+process: /calculate/esmvaltool_preprocessor
 data: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304.zip
 provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg
 image_file: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304/plots/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean.png
