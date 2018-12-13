@@ -100,10 +100,10 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   handleSliderChange (v) {
-    // console.log(v);
-    this.setState({ currentValue:v });
-
+    if (v <= 0) v = 0;
     if (this.timeDim) {
+      if (v >= this.timeDim.size()) v = this.timeDim.size() - 1;
+      this.setState({ currentValue:v });
       let timeValue = this.timeDim.getValueForIndex(v);
       this.setState({ timeValue:timeValue });
       if (this.webMapJSInstances['first']) {
@@ -389,6 +389,16 @@ export default class ADAGUCViewerComponent extends PureComponent {
         }
         { this.props.controls && this.props.controls.showtimeselector ? (<div><Row>
           <Col xs='3'>Time:</Col>
+          <Col xs='2'>
+            <div style={{display:'inline'}}>
+              <Button onClick={() => {
+                this.debouncedHandleSliderChange(this.state.currentValue - 1);
+              }}>&lt;</Button>
+              <Button onClick={() => {
+                this.debouncedHandleSliderChange(this.state.currentValue + 1);
+              }}>&gt;</Button>
+            </div>
+          </Col>
           <Col>
             <div style={{}}>
               <ReactSlider
@@ -401,7 +411,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
             </div>
           </Col>
         </Row><Row>
-          <Col xs='3'>Timevalue (UTC)</Col><Col>{this.state.timeValue + ' (' + (this.state.currentValue + 1) + '/' + this.state.numTimeValues + ')'}</Col>
+          <Col xs='3'>Timevalue (UTC)</Col><Col><b>{this.state.timeValue + ' (' + (this.state.currentValue + 1) + '/' + this.state.numTimeValues + ')'}</b></Col>
         </Row></div>) : null
         }
         { (this.props.controls && this.props.controls.showdownloadbutton !== false && 1 === 0) ? (<div><Row>
