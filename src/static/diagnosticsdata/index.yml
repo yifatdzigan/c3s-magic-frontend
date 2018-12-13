@@ -178,7 +178,7 @@ diagnostics:
         name: teleconnections
         title: Teleconnection indices and weather regimes
         sub_title:
-        info_text: This namelist implements the MId-Latitude Evaluation System (MiLES) providing teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
+        info_text: This diagnostic implements the MId-Latitude Evaluation System (MiLES) providing teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
         info_file: teleconnections/teleconnections.yml
         image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
         github_issue:
@@ -190,7 +190,7 @@ diagnostics:
         name: hyint_timeseries
         title: HyInt and ETCCDI trends and significance testing
         sub_title:
-        info_text: Metic showing timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
+        info_text: Metric showing timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
         info_file: hyint_timeseries/hyint_timeseries.yml
         image_file: diagnosticsdata/hyint_timeseries/hyint_timeseries_thumbnail.png
         github_issue:
