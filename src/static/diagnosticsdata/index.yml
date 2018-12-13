@@ -4,7 +4,7 @@ diagnostics:
         name: python_example
         title: ESMValTool climate data pre-processor
         sub_title:
-        info_text: Demonstration of ESMValtool backend
+        info_text: Showcases how ESMValTool climate data pre-processor can be used to regrid, select area, aggregate, provenance tracking and many more features.
         info_file: python_example/python_example.yml
         image_file: ./diagnosticsdata/python_example/CMIP5_bcc-csm1-1_Amon_historical_r1i1p1_T3M_ta_2001-2002_mean_r_2i936e.png
         github_issue:
@@ -22,7 +22,7 @@ diagnostics:
         name: cvdp
         title: Climate Variability Diagnostics
         sub_title:
-        info_text: Climate Variability Diagnostics
+        info_text: The Climate Variability Diagnostics Package (CVDP) developed by NCAR's Climate Analysis Section is an analysis tool that documents the major modes of climate variability in models and observations.
         info_file: cvdp/cvdp.yml
         image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png
         github_issue:
@@ -62,7 +62,7 @@ diagnostics:
         name: blocking
         title: Blocking metrics and indices
         sub_title:
-        info_text: This tool calculates mid-latitude 1D and 2D blocking indices
+        info_text: Metrics showing mid-latitude 1D and 2D blocking indices
         info_file: blocking/blocking.yml
         image_file: diagnosticsdata/blocking/blocking_thumbnail.png
         github_issue:
@@ -75,7 +75,7 @@ diagnostics:
         name: stratosphere-troposphere
         title: Stratosphere-troposphere coupling
         sub_title:
-        info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the stratosphere-troposphere coupling
+        info_text: Diagnostics showing EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the stratosphere-troposphere coupling
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
         image_file: diagnosticsdata/stratosphere-troposphere/stratosphere-troposphere_thumbnail.png
         github_issue:
@@ -89,7 +89,7 @@ diagnostics:
         name: modes_of_variability
         title: Modes of variability
         sub_title:
-        info_text: Tool to compute the RMSE between the observed and modelled patterns of variability.
+        info_text: Diagnostic to compute the RMSE between the observed and modelled patterns of variability.
         info_file: modes_of_variability/modes_of_variability.yml
         image_file: ./diagnosticsdata/modes_of_variability/era_interim_1990-01-2010-01_clusters.png
         github_issue:
@@ -101,7 +101,7 @@ diagnostics:
         name: hyint
         title: Hydroclimatic intensity (HyInt) and extremes
         sub_title:
-        info_text: HyInt is a tool for calculation of the hydroclimatic intensity index HY-INT and additional hydroclimatic indices, which allow to evaluate the overall behaviour of the hydroclimatic cycle
+        info_text: The HyInt metrics show the hydroclimatic intensity index HY-INT and additional hydroclimatic indices, which allow to evaluate the overall behaviour of the hydroclimatic cycle
         info_file: hyint/hyint.yml
         image_file: diagnosticsdata/hyint/hyint_thumbnail.png
         github_issue:
@@ -113,7 +113,7 @@ diagnostics:
         name: quantilebias
         title: Precipitation quantile bias
         sub_title:
-        info_text: This tool calculates the quantile bias between models and a reference dataset
+        info_text: Diagnostic showing the quantile bias between models and a reference dataset
         info_file: quantilebias/quantilebias.yml
         image_file: diagnosticsdata/quantilebias/quantilebias_thumbnail.png
         github_issue:
@@ -125,7 +125,7 @@ diagnostics:
         name: anomaly_agreement
         title: Generic multi-model products
         sub_title:
-        info_text: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
+        info_text: Diagnostic showing the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
         info_file: anomaly_agreement/anomaly_agreement.yml
         image_file: diagnosticsdata/anomaly_agreement/bsc_anomaly_timeseries.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
@@ -138,7 +138,7 @@ diagnostics:
         name: ensclus
         title: EnsClus - Ensemble Clustering
         sub_title:
-        info_text: EnsClus is a cluster analysis tool in Python, based on the k-means algorithm, with the aim to group ensemble members according to similar characteristics and to select the most representative member for each cluster
+        info_text: Diagnostic based on the k-means algorithm, with the aim to group ensemble members according to similar characteristics and to select the most representative member for each cluster
         info_file: ensclus/ensclus.yml
         image_file: diagnosticsdata/ensclus/ensclus_thumbnail.png
         github_issue:
@@ -151,7 +151,7 @@ diagnostics:
         name: combine_indices
         title: Single and multi-model indices based on area averages
         sub_title:
-        info_text: Tool to compute single and multi model indices based on area averages.
+        info_text: Diagnostic showing single and multi model indices based on area averages.
         info_file: combine_indices/combine_indices.yml
         image_file: diagnosticsdata/combine_indices/single_and_multi_model_indices_thumbnail.png
         github_issue:
@@ -163,7 +163,7 @@ diagnostics:
         name: annularmodes
         title: Indices of annular modes
         sub_title:
-        info_text: Tool based on EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode pattern at the surface and in the stratosphere
+        info_text: Diagnostic showing EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode pattern at the surface and in the stratosphere
         info_file: annularmodes/annularmodes.yml
         image_file: diagnosticsdata/annularmodes/annularmodes_thumbnail.png
         github_issue:
@@ -187,7 +187,7 @@ diagnostics:
         name: hyint_timeseries
         title: HyInt and ETCCDI trends and significance testing
         sub_title:
-        info_text: Tool for calculation of timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
+        info_text: Metic showing timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
         info_file: hyint_timeseries/hyint_timeseries.yml
         image_file: diagnosticsdata/hyint_timeseries/hyint_timeseries_thumbnail.png
         github_issue:
@@ -197,9 +197,9 @@ diagnostics:
     correlations:
         id: 11
         name: correlations
-        title: Climate explorer Correlate a field with a timeseries
+        title: Correlate a field with a timeseries
         sub_title:
-        info_text: Tool for correlating fields with timeseries as used in the KNMI climate explorer
+        info_text: Metric for correlating fields with timeseries as input 
         info_file: correlations/correlations.yml
         image_file: ./diagnosticsdata/correlations/climexp_correlations.png
         github_issue:
@@ -248,7 +248,7 @@ diagnostics:
         name: shapefile_selection
         title: Shapefile selection
         sub_title:
-        info_text: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
+        info_text: Metric showing selected gridded data within a user defined polygon shapefile and outputting as NetCDF or csv file.
         info_file: shapefile_selection/shapefile_selection.yml
         image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
         github_issue:
@@ -262,7 +262,7 @@ diagnostics:
         name: rainfarm
         title: RainFARM stochastic downscaling
         sub_title:
-        info_text: Tool to perform stochastic downscaling of precipitation fields predicting climate variables at local scale from information simulated by climate models at regional scale
+        info_text: Metric showing stochastic downscaling of precipitation fields predicting climate variables at local scale from information simulated by climate models at regional scale
         info_file: rainfarm/rainfarm.yml
         image_file: diagnosticsdata/rainfarm/rainfarm_thumbnail.png
         github_issue:
@@ -274,7 +274,7 @@ diagnostics:
         name: extreme_spells
         title: Heatwave and coldwave duration
         sub_title:
-        info_text: Tool to compute the duration of heatwaves and coldwaves, to help understand potential changes in energy demand.
+        info_text: Metric showing the duration of heatwaves and coldwaves, to help understand potential changes in energy demand.
         info_file: extreme_spells/extreme_spells.yml
         image_file: diagnosticsdata/extreme_spells/extreme_spells_energy.png
         github_issue:
@@ -287,7 +287,7 @@ diagnostics:
         name: dtr
         title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
         sub_title:
-        info_text: Tool to compute the diurnal temperature indicator to estimate energy demand, and the wind capacity factor to estimate energy supply.
+        info_text: Metric showing the diurnal temperature indicator to estimate energy demand, and the wind capacity factor to estimate energy supply.
         info_file: dtr/dtr.yml
         image_file: diagnosticsdata/dtr/diurnal_temperature_variation.png
         github_issue:
@@ -299,7 +299,7 @@ diagnostics:
         name: risk_index
         title: Combined Climate Extreme Index
         sub_title:
-        info_text: Tool to compute extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
+        info_text: Metric showing extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
         info_file: risk_index/risk_index.yml
         image_file: diagnosticsdata/risk_index/insurance_risk_indices.png
         tags:
