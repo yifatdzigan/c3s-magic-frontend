@@ -29,6 +29,7 @@ settings:
   - End year: 2008
 title: Indices of annular modes
 image_file: diagnosticsdata/annularmodes/annularmodes_thumbnail.png
+data: https://portal.c3s-magic.eu/data/recipes/recipe_modes_of_variability_wp4_20181210_114624.zip
 #provenance: <point to svg file>
 #process: <link to process> 
 process: /calculate/zonal_mean_nam
