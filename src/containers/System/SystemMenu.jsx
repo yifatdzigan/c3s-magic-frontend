@@ -17,7 +17,7 @@ export default class SystemMenu extends Component {
                 System
               </NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink href='#/about/provenance' active={pathname === '/about/provenance'} >
                 Provenance
               </NavLink>
@@ -27,7 +27,7 @@ export default class SystemMenu extends Component {
                 <Icon name='' />
                 Data used in this Portal
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink href='#/about/adagucviewer' active={pathname === '/about/adagucviewer'} >
                 <Icon name='' />

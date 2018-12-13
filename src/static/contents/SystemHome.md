@@ -1,6 +1,6 @@
 # System
 
-This section lists some of the features of the C3S-Magic system. Note that the system is still very much in active development, and some features may not be available yet.
+This section lists some of the features of the C3S-Magic system.
 
 ## Final System Description
 
