@@ -1,5 +1,5 @@
 ---
-name: ESMMValtool Backend
+name: ESMValTool Backend
 partner: DLR
 authors:
   - Veronika Eyring
@@ -14,7 +14,7 @@ authors:
   - Javier Vegas-Regidor
 contact:
   - Veronika Eyring (PI; DLR, Germany - veronika.eyring@dlr.de)
-description_short: ESMMValtool backend demo
+description_short: ESMValTool backend demo
 description_file: 'python_example/description.md'
 #report_file: report.pdf
 #media: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/Area-averaged%20tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png

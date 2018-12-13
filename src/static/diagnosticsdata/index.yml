@@ -184,6 +184,9 @@ diagnostics:
         info_file: shapefile_selection/shapefile_selection.yml
         image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
         github_issue:
+        tags:
+          - Catchment
+          - Hydrology
     rainfarm:
         id: 3
         name: rainfarm
