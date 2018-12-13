@@ -26,7 +26,7 @@ enableADAGUC:
   - layers: []
 # youtube:
 image_file: diagnosticsdata/consecdrydays/drydays.png
-process: /calculate/recipe_consecdrydays
+process: /calculate/consecdrydays
 data: https://portal.c3s-magic.eu/data/recipes/recipe_conseqdrydays_20181213_145259.zip
  #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
