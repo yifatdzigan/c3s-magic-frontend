@@ -44,8 +44,8 @@ title: Drought indicator
 # youtube:
 image_file: ./diagnosticsdata/drought_indicator/dryfreq.png
 data:
- - https://portal.c3s-magic.eu/data/recipes/recipe_spei_20181108_160736.zip
- - https://portal.c3s-magic.eu/data/recipes/recipe_spi_20181108_132957.zip
+  - https://portal.c3s-magic.eu/data/recipes/recipe_spei_20181108_160736.zip
+  - https://portal.c3s-magic.eu/data/recipes/recipe_spi_20181108_132957.zip
  #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
  
