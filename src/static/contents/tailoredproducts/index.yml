@@ -9,9 +9,9 @@ diagnostics:
         image_file: ./contents/tailoredproducts/water.png
         github_issue:
         tags:
-          - tag1
-          - tag2
-          - tag3
+          - Hydrology
+          - Water
+          - Tailored product
 
     actuaries:
         id: 2
@@ -23,9 +23,8 @@ diagnostics:
         image_file: ./contents/tailoredproducts/actuaries.png
         github_issue:
         tags:
-          - tag1
-          - tag2
-          - tag3
+          - Insurance
+          - Tailored product
 
     stormsurge:
         id: 3
@@ -37,9 +36,8 @@ diagnostics:
         image_file: ./diagnosticsdata/surge_height/surge_height_thumbnail.png
         github_issue:
         tags:
-          - tag1
-          - tag2
-          - tag3
+          - Storm surge
+          - Tailored product
           
     droughtindicator:
         id: 4
@@ -51,8 +49,7 @@ diagnostics:
         image_file: /diagnosticsdata/drought_indicator/histplot.png
         github_issue:
         tags:
-          - drought
-          - diagnostic
+          - Drought
 
     rainfarm:
         id: 5
@@ -64,7 +61,5 @@ diagnostics:
         image_file: /tailoredproducts/rainfarm/rainfarm.png
         github_issue:
         tags:
-          - tag1
-          - tag2
-          - tag3
+          - Precipitation
 
