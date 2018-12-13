@@ -19,7 +19,7 @@ enableEnsembleAnomalyPlots:
   - map_slider: true
 references:
   - text: "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."
-    url: "http://www.nu.nl"
+    url: "http://isiarticles.com/bundles/Article/pre/pdf/152927.pdf"
 settings:
   - Variable: "June mean air temperature at 2 m"
   - Models:
