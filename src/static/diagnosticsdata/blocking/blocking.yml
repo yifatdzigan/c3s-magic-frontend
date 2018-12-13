@@ -12,7 +12,9 @@ contact:
   - Enrico Arnone e.arnone@isac.cnr.it
 description_short: The Blocking metrics shows the mid-latitude 1D and 2D blocking indices.
 description_file: 'blocking/description.md'
-#media: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360'
+media: 
+  - diagnosticsdata/blocking/TM90_MPI-ESM-P_r1_1951_2005_DJF.png
+  - diagnosticsdata/blocking/BlockEvents_MPI-ESM-P_r1_1951_2005_DJF.png
 enableADAGUC:
   - data_url: https://portal.c3s-magic.eu/backend/wms?DATASET=WP4-6_ISAC_miles
   - projectionbutton: true

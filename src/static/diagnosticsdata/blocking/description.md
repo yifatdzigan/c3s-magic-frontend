@@ -4,5 +4,12 @@ The Blocking metrics and indices works on daily 500hPa geopotential height data 
   
 This functionality is implemented in the ESMValTool namelist MId-Latitude Evaluation System (MiLES) and is also available as stand-alone package (https://github.com/oloapinivad/MiLES).
 
-![example output](diagnosticsdata/blocking/TM90_MPI-ESM-P_r1_1951_2005_DJF.png "Example Output")
-![example output](diagnosticsdata/blocking/BlockEvents_MPI-ESM-P_r1_1951_2005_DJF.png "Example Output")
+### Description of user-changeable settings on webpage: 
+
+1) Selection of model
+
+2) Selection of reference dataset 
+
+3) Selection of period
+
+4) Selection of season

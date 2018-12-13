@@ -47,6 +47,19 @@ html {
   color: #5F5F5F;
 }
 
+.diagnosticsCol img {
+  width:100%;
+}
+
+.ClickableImage img {
+  width:100%;
+  cursor: pointer;
+}
+
+.ClickableImageModal {
+  display:block;
+  max-width: inherit;
+}
 
 html,
 body {
