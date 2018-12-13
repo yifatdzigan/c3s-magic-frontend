@@ -44,7 +44,7 @@ const mapTypeConfiguration = [
     baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
     title: 'Europe North Pole',
-    bbox: [-13000000,-13000000, 13000000, 13000000],
+    bbox: [-13000000, -13000000, 13000000, 13000000],
     srs: 'EPSG:3575',
     baselayer:{ service:'http://geoservices.knmi.nl/cgi-bin/bgmaps.cgi?', name:'naturalearth2', type: 'wms' }
   }, {
@@ -100,10 +100,10 @@ export default class ADAGUCViewerComponent extends PureComponent {
   }
 
   handleSliderChange (v) {
-    // console.log(v);
-    this.setState({ currentValue:v });
-
+    if (v <= 0) v = 0;
     if (this.timeDim) {
+      if (v >= this.timeDim.size()) v = this.timeDim.size() - 1;
+      this.setState({ currentValue:v });
       let timeValue = this.timeDim.getValueForIndex(v);
       this.setState({ timeValue:timeValue });
       if (this.webMapJSInstances['first']) {
@@ -125,7 +125,6 @@ export default class ADAGUCViewerComponent extends PureComponent {
   };
 
   updateBBOXDebounced (webmapjs, bbox) {
-
     for (let key in this.webMapJSInstances) {
       let otherWebMapJS = this.webMapJSInstances[key];
       if (webmapjs !== otherWebMapJS) {
@@ -134,16 +133,15 @@ export default class ADAGUCViewerComponent extends PureComponent {
         otherWebMapJS.resumeEvent('onupdatebbox');
       }
     };
-    this.setState({'bbox': bbox.toString()});
-
+    this.setState({ 'bbox': bbox.toString() });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.dapurl && this.prevProps.dapurl !== nextProps.dapurl) {
       this.prevProps.dapurl = nextProps.dapurl;
       let WMSGetCapabiltiesURL = config.backendHost + '/wms?source=' + encodeURIComponent(nextProps.dapurl);
       this.getLayersForService(WMSGetCapabiltiesURL, nextProps.dapurl);
-    } else if(nextProps.wmsurl && this.prevProps.wmsurl !== nextProps.wmsurl) {
+    } else if (nextProps.wmsurl && this.prevProps.wmsurl !== nextProps.wmsurl) {
       this.prevProps.wmsurl = nextProps.wmsurl;
       this.getLayersForService(nextProps.wmsurl);
     }
@@ -264,7 +262,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
       }
     }
 
-    if (this.webMapJSInstances['first'])this.webMapJSInstances['first'].draw();
+    if (this.webMapJSInstances['first']) this.webMapJSInstances['first'].draw();
 
     if (wmjsLayer) {
       let styles = wmjsLayer.getStyles();
@@ -317,11 +315,11 @@ export default class ADAGUCViewerComponent extends PureComponent {
           <CardText>{this.WMSServiceStore.abstract}</CardText>
         </div>
           : null }
-          { this.props.controls && this.props.controls.showlayerselector ? <Row>
-            <Col xs='3'>Layer</Col><Col><Dropdown
+        { this.props.controls && this.props.controls.showlayerselector ? <Row>
+          <Col xs='3'>Layer</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showlayerselector']}
             toggle={() => { this.toggle('showlayerselector'); }}
-            >
+          >
             <DropdownToggle caret>
               <Icon name='align-justify' />&nbsp;{(this.state.selectedLayer && this.state.selectedLayer.title) || 'Select a layer'}
             </DropdownToggle>
@@ -340,12 +338,12 @@ export default class ADAGUCViewerComponent extends PureComponent {
               }
             </DropdownMenu>
           </Dropdown></Col><Col>({this.state.wmsLayers.length} layers)</Col></Row> : null
-          }
-          { this.props.controls && this.props.controls.showstyleselector ? <Row>
-            <Col xs='3'>Style</Col><Col><Dropdown
+        }
+        { this.props.controls && this.props.controls.showstyleselector ? <Row>
+          <Col xs='3'>Style</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showstyleselector']}
             toggle={() => { this.toggle('showstyleselector'); }}
-            >
+          >
             <DropdownToggle caret>
               <Icon name='align-justify' />&nbsp;{(this.state.selectedStyle && this.state.selectedStyle.title) || 'Select a style'}
             </DropdownToggle>
@@ -364,12 +362,12 @@ export default class ADAGUCViewerComponent extends PureComponent {
               }
             </DropdownMenu>
           </Dropdown></Col></Row> : null
-          }
-          { this.props.controls && this.props.controls.showprojectionbutton ? <Row>
-            <Col xs='3'>Projection</Col><Col><Dropdown
+        }
+        { this.props.controls && this.props.controls.showprojectionbutton ? <Row>
+          <Col xs='3'>Projection</Col><Col><Dropdown
             isOpen={this.state.dropdownOpen['showprojectionbutton']}
             toggle={() => { this.toggle('showprojectionbutton'); }}
-            >
+          >
             <DropdownToggle caret>
               <Icon name='globe' />&nbsp;{this.state.maprojection || 'Map projection'}
             </DropdownToggle>
@@ -388,63 +386,70 @@ export default class ADAGUCViewerComponent extends PureComponent {
               }
             </DropdownMenu>
           </Dropdown></Col></Row> : null
-          }
-          { this.props.controls && this.props.controls.showtimeselector ? (<div><Row>
-            <Col xs='3'>Time:</Col>
-            <Col>
-              <div style={{
-                }}>
-                <ReactSlider
-                  className={'horizontal-slider'}
-                  min={0}
-                  max={parseInt(this.state.numTimeValues) - 1 }
-                  value={this.state.currentValue}
-                  onChange={(v) => { this.debouncedHandleSliderChange(v); }}
-                />
-              </div>
-            </Col>
-            </Row><Row>
-            <Col xs='3'>Timevalue (UTC)</Col><Col>{this.state.timeValue + ' (' + (this.state.currentValue + 1)+ '/' + this.state.numTimeValues + ')'}</Col>
-          </Row></div>) : null
-          }
-          {  (this.props.controls && this.props.controls.showdownloadbutton !== false && false) ? (<div><Row>
-            <Col xs='3'>
-            </Col>
-            <Col xs='1'>
-              <abbr title='Use the Web Coverage service to download the data behind this map for current date, geographical location and projection. Right click and copy the link to get the GetCoverage URL.'>
-                <Button disabled={!this.state.selectedLayer} target={'_blank'} href={
-                  this.state.selectedLayer && this.webMapJSInstances['first'] ? this.state.selectedLayer.service + '&SERVICE=WCS&REQUEST=GetCoverage' +
-                  '&COVERAGE=' + this.state.selectedLayer.name + '&FORMAT=NetCDF3&' +
-                  '&CRS='+this.state.srs+'&BBOX='+this.state.bbox+'&width=1000&height=1000' +
-                  '&TIME=' + this.state.timeValue
-                  // '&TIME=*'
+        }
+        { this.props.controls && this.props.controls.showtimeselector ? (<div><Row>
+          <Col xs='3'>Time:</Col>
+          <Col xs='2'>
+            <div style={{display:'inline'}}>
+              <Button onClick={() => {
+                this.debouncedHandleSliderChange(this.state.currentValue - 1);
+              }}>&lt;</Button>
+              <Button onClick={() => {
+                this.debouncedHandleSliderChange(this.state.currentValue + 1);
+              }}>&gt;</Button>
+            </div>
+          </Col>
+          <Col>
+            <div style={{}}>
+              <ReactSlider
+                className={'horizontal-slider'}
+                min={0}
+                max={parseInt(this.state.numTimeValues) - 1}
+                value={this.state.currentValue}
+                onChange={(v) => { this.debouncedHandleSliderChange(v); }}
+              />
+            </div>
+          </Col>
+        </Row><Row>
+          <Col xs='3'>Timevalue (UTC)</Col><Col><b>{this.state.timeValue + ' (' + (this.state.currentValue + 1) + '/' + this.state.numTimeValues + ')'}</b></Col>
+        </Row></div>) : null
+        }
+        { (this.props.controls && this.props.controls.showdownloadbutton !== false && 1 === 0) ? (<div><Row>
+          <Col xs='3' />
+          <Col xs='1'>
+            <abbr title='Use the Web Coverage service to download the data behind this map for current date,
+              &nbsp;geographical location and projection. Right click and copy the link to get the GetCoverage URL.'>
+              <Button disabled={!this.state.selectedLayer} target={'_blank'} href={
+                this.state.selectedLayer && this.webMapJSInstances['first'] ? this.state.selectedLayer.service + '&SERVICE=WCS&REQUEST=GetCoverage' +
+                '&COVERAGE=' + this.state.selectedLayer.name + '&FORMAT=NetCDF3&' +
+                '&CRS=' + this.state.srs + '&BBOX=' + this.state.bbox + '&width=1000&height=1000' +
+                '&TIME=' + this.state.timeValue
+                // '&TIME=*'
                   : '#'}
-                ><Icon name='download' /></Button>
-              </abbr>
-            </Col>
-            <Col xs='1'>
-              <abbr title='Download high quality image of this map'>
-                <Button ref={'imagedownloadbutton'} disabled={!this.state.selectedLayer} onClick={() => {
-                  /* Set the map size to a high quality big image size, load and redraw the scene, capture the canvas and set orignal size back */
-                  let webMapJS = this.state.selectedLayer.parentMaps[0];
-                  let currentSize= webMapJS.getSize();
-                  webMapJS.setSize(1920, 1920, true);                           // New big size for high quality images
-                  webMapJS.addListener('onmaploadingcomplete',()=>{                 // Add a listener once to listen to load ready
-                    const ctx = webMapJS.getFrontBufferCanvasContext();              // Get the ctx
-                    let dataURL = ctx.canvas.toDataURL('image/png');                // Convert canvas to a data url (base64 encoded PNG image)
-                    window.open(dataURL);                                           // Open this in a new tab
-                    webMapJS.setSize(currentSize.width, currentSize.height, true);  // Set original size back
-                    webMapJS.draw();                                                // Redraw orignal smaller size
-                  }, false);
+              ><Icon name='download' /></Button>
+            </abbr>
+          </Col>
+          <Col xs='1'>
+            <abbr title='Download high quality image of this map'>
+              <Button ref={'imagedownloadbutton'} disabled={!this.state.selectedLayer} onClick={() => {
+                /* Set the map size to a high quality big image size, load and redraw the scene, capture the canvas and set orignal size back */
+                let webMapJS = this.state.selectedLayer.parentMaps[0];
+                let currentSize = webMapJS.getSize();
+                webMapJS.setSize(1920, 1920, true); // New big size for high quality images
+                webMapJS.addListener('onmaploadingcomplete', () => { // Add a listener once to listen to load ready
+                  const ctx = webMapJS.getFrontBufferCanvasContext(); // Get the ctx
+                  let dataURL = ctx.canvas.toDataURL('image/png'); // Convert canvas to a data url (base64 encoded PNG image)
+                  window.open(dataURL); // Open this in a new tab
+                  webMapJS.setSize(currentSize.width, currentSize.height, true); // Set original size back
+                  webMapJS.draw(); // Redraw orignal smaller size
+                }, false);
+                webMapJS.draw(); // Draw big size
+              }}
+              ><Icon name='image' /></Button>
+            </abbr>
+          </Col>
 
-                  webMapJS.draw();                                                   // Draw big size
-
-                }}
-                ><Icon name='image' /></Button>
-              </abbr>
-            </Col>
-
-          </Row></div>) : null
+        </Row></div>) : null
         }
         {
           (this.props.stacklayers === false) ? this.state.wmsLayers.map((wmjslayer, index) => {

@@ -255,6 +255,8 @@ diagnostics:
         tags:
           - WP7
           - SMHI
+          - Catchment
+          - Hydrology
     rainfarm:
         id: 3
         name: rainfarm

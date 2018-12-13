@@ -1,5 +1,5 @@
 ---
-name: ESMMValtool Backend
+name: ESMValTool Backend
 partner: DLR
 authors:
   - Veronika Eyring
@@ -14,12 +14,15 @@ authors:
   - Javier Vegas-Regidor
 contact:
   - Veronika Eyring (PI; DLR, Germany - veronika.eyring@dlr.de)
-description_short: ESMMValtool backend demo
-description_file: 'python_example/description.md'
+description_short: Showcases how ESMValTool climate data pre-processor can be used to regrid, select area, aggregate, provenance tracking and many more features.
+description_file: 'python_example/description.md
 #report_file: report.pdf
 #media: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442/plots/anomaly_agreement/main/Area-averaged%20tas_JUN_multimodel-anomaly_2006_2099_1961_1990.png
 references:
-  - TBD
+  - text: "Gleckler, P. J., K. E. Taylor, and C. Doutriaux, Performance metrics for climate models, J. Geophys. Res., 113, D06104, doi: 10.1029/2007JD008972 (2008)."
+    url: "http://dx.doi.org/10.1029/2007JD008972"
+  - text: "Righi, M., Eyring, V., Klinger, C., Frank, F., Gottschaldt, K.-D., Jöckel, P., and Cionni, I.: Quantitative evaluation of oone and selected climate parameters in a set of EMAC simulations, Geosci. Model Dev., 8, 733, doi: 10.5194/gmd-8-733-2015 (2015)."
+    url: "https://doi.org/10.5194/gmd-8-733-2015"
 settings:
   - Models:
       - GFDL-ESM2G
@@ -29,7 +32,7 @@ settings:
   - Ensemble: "r1i1p1"
   - Start year: 2000
   - End year: 2001
-title: python demonstrator
+title: ESMValTool climate data pre-processor
 process: /calculate/python_demonstrator_metric
 data: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601.zip
 provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg
