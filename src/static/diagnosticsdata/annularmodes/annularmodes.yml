@@ -19,7 +19,8 @@ description_file: 'annularmodes/description.md'
 #  - styleselector: true
 #  - layers: []
 references:
-- "Baldwin, M. P. and Thompson, D. W. (2009), A critical comparison of stratosphere–troposphere coupling indices. Q.J.R. Meteorol. Soc., 135: 1661-1672. doi:10.1002/qj.479"
+- text: "Baldwin, M. P. and Thompson, D. W. (2009), A critical comparison of stratosphere–troposphere coupling indices. Q.J.R. Meteorol. Soc., 135: 1661-1672. doi:10.1002/qj.479"
+- url: "https://doi.org/10.1002/qj.479"
 settings:
   - Models:
       - MPI-ESM-LR
@@ -28,7 +29,9 @@ settings:
   - End year: 2008
 title: Indices of annular modes
 image_file: diagnosticsdata/annularmodes/annularmodes_thumbnail.png
-
+#provenance: <point to svg file>
+#process: <link to process> 
+process: /calculate/zonal_mean_nam
 
 
 
