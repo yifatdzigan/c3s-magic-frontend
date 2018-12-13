@@ -1,4 +1,15 @@
 diagnostics:
+    cvdp:
+          id: 20
+          name: cvdp
+          title: Climate Variability Diagnostics
+          sub_title:
+          info_text: Climate Variability Diagnostics
+          info_file: cvdp/cvdp.yml
+          image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png
+          github_issue:
+          tags:
+            - CVDP
     python_example:
         id: 20
         name: python_example
@@ -10,8 +21,7 @@ diagnostics:
         github_issue:
         tags:
           - ESMValtool
-          - demo
-
+          - WP3
     perfmetrics:
         id: 18
         name: perfmetrics
@@ -209,5 +219,3 @@ diagnostics:
         info_text: Tool to compute extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
         info_file: risk_index/risk_index.yml
         image_file: diagnosticsdata/risk_index/insurance_risk_indices.png
-
-
