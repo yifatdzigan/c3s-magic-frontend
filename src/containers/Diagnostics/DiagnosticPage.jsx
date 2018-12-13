@@ -117,7 +117,11 @@ class DiagnosticPage extends Component {
         _element = '<ul>';
         if (this.state.yamlData[elementName]) {
           this.state.yamlData[elementName].forEach(function (element) {
-            _element += '<li key={element}>' + element + '</li>';
+            if (typeof element === 'object') {
+              _element += '<li key={element}>' + element.text + '&nbsp;<a href="' + element.url + '" target="_blank">' + '[link to paper]' + '</a></li>';
+            } else {
+              _element += '<li key={element}>' + element + '</li>';
+            }
           });
         }
         _element += '</ul>';
