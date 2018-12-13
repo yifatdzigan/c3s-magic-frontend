@@ -389,7 +389,7 @@ export default class ADAGUCViewerComponent extends PureComponent {
         }
         { this.props.controls && this.props.controls.showtimeselector ? (<div><Row>
           <Col xs='3'>Time:</Col>
-          <Col xs='2'>
+          <Col xs='3'>
             <div style={{display:'inline'}}>
               <Button onClick={() => {
                 this.debouncedHandleSliderChange(this.state.currentValue - 1);
