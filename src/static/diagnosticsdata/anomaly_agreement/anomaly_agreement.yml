@@ -8,7 +8,7 @@ authors:
   - Javier Vegas.
 contact:
   - Nicolau Manubens @nmanuben
-description_short: Tools to compute the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
+description_short: For the generic multi-model diagnostic the ensemble mean anomaly, and the ensemble variance and agreement are calculated. The results are shown as maps and time series.
 description_file: 'anomaly_agreement/description.md'
 report_file: report.pdf
 media:
@@ -19,7 +19,7 @@ enableEnsembleAnomalyPlots:
   - map_slider: true
 references:
   - text: "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."
-    url: "http://www.nu.nl"
+    url: "https://doi.org/10.1016/j.envsoft.2018.01.018"
 settings:
   - Variable: "June mean air temperature at 2 m"
   - Models:
