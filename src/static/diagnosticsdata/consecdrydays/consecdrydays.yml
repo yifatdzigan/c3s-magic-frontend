@@ -1,0 +1,32 @@
+---
+name: Consecutive Dry Days
+partner: SMHI
+authors:
+  - Peter Berg
+contact:
+  - Peter Berg @PeterBergSMHI
+description_short: Calculating number of dry days
+description_file: 'consecdrydays/description.md'
+report_file:
+#images in description.md
+#references:
+settings:
+  - Models:
+    - bcc-csm1-1-m
+  - Start year: 2001
+  - End year: 2002
+  - Experiment: Historical
+title: Consecutive Dry Days
+enableADAGUC:
+  - data_url: https://portal.c3s-magic.eu/backend/adagucserver?source=c3smagic%2Frecipes%2Frecipe_conseqdrydays_20181213_145259%2Fwork%2Fdiagnostic1%2Fscript1%2FCMIP5_bcc-csm1-1-m_day_historical_r1i1p1_T2Ms_pr_2001-2002_drymax.nc&&service=WMS&request=GetCapabilities
+  - projectionbutton: false
+  - layerselector: false
+  - timeselector: false
+  - styleselector: false
+  - layers: []
+# youtube:
+image_file: diagnosticsdata/consecdrydays/drydays.png
+process: /calculate/recipe_consecdrydays
+data: https://portal.c3s-magic.eu/data/recipes/recipe_conseqdrydays_20181213_145259.zip
+ #provenance: <point to svg file>
+#process: <link to process, e.g.: process: /calculate/python_demonstrator_metric

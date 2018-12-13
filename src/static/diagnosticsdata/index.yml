@@ -1,15 +1,4 @@
 diagnostics:
-    cvdp:
-          id: 20
-          name: cvdp
-          title: Climate Variability Diagnostics
-          sub_title:
-          info_text: Climate Variability Diagnostics
-          info_file: cvdp/cvdp.yml
-          image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png
-          github_issue:
-          tags:
-            - CVDP
     python_example:
         id: 20
         name: python_example
@@ -22,6 +11,25 @@ diagnostics:
         tags:
           - ESMValtool
           - WP3
+          - DLR
+          - KNMI
+          - NLeSC
+          - URead
+          - BSC
+          - Process
+    cvdp:
+        id: 201
+        name: cvdp
+        title: Climate Variability Diagnostics
+        sub_title:
+        info_text: Climate Variability Diagnostics
+        info_file: cvdp/cvdp.yml
+        image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png
+        github_issue:
+        tags:
+          - CVDP
+          - WP4
+          - DLR
     perfmetrics:
         id: 18
         name: perfmetrics
@@ -35,6 +43,8 @@ diagnostics:
           - performance
           - mean annual cycle
           - Essential Climate Variables
+          - WP4
+          - DLR
     smpi:
         id: 19
         name: smpi
@@ -45,9 +55,8 @@ diagnostics:
         image_file: ./diagnosticsdata/smpi/Single.png
         github_issue:
         tags:
-          - tag1
-          - tag2
-          - tag3
+          - WP4
+          - DLR
     blocking:
         id: 7
         name: blocking
@@ -57,6 +66,10 @@ diagnostics:
         info_file: blocking/blocking.yml
         image_file: diagnosticsdata/blocking/blocking_thumbnail.png
         github_issue:
+        tags:
+          - WP4
+          - ISAC-CNR
+          - ensclus
     stratosphere-troposphere:
         id: 9
         name: stratosphere-troposphere
@@ -66,6 +79,10 @@ diagnostics:
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
         image_file: diagnosticsdata/stratosphere-troposphere/stratosphere-troposphere_thumbnail.png
         github_issue:
+        tags:
+          - WP4
+          - zmnam
+          - ISAC-CNR
     # a.k.a weather regimes https://github.com/nmanuben/ESMValTool/blob/bsc_wp5/esmvaltool/namelists/namelist_weather_regime.yml
     modes_of_variability:
         id: 112
@@ -76,6 +93,9 @@ diagnostics:
         info_file: modes_of_variability/modes_of_variability.yml
         image_file: ./diagnosticsdata/modes_of_variability/era_interim_1990-01-2010-01_clusters.png
         github_issue:
+        tags:
+          - WP4
+          - BSC
     hyint:
         id: 6
         name: hyint
@@ -85,6 +105,9 @@ diagnostics:
         info_file: hyint/hyint.yml
         image_file: diagnosticsdata/hyint/hyint_thumbnail.png
         github_issue:
+        tags:
+          - WP4
+          - ISAC-CNR
     quantilebias:
         id: 8
         name: quantilebias
@@ -94,6 +117,9 @@ diagnostics:
         info_file: quantilebias/quantilebias.yml
         image_file: diagnosticsdata/quantilebias/quantilebias_thumbnail.png
         github_issue:
+        tags:
+          - WP4
+          - ISAC-CNR
     anomaly_agreement:
         id: 1
         name: anomaly_agreement
@@ -103,6 +129,10 @@ diagnostics:
         info_file: anomaly_agreement/anomaly_agreement.yml
         image_file: diagnosticsdata/anomaly_agreement/bsc_anomaly_timeseries.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
+        tags:
+            - WP5
+            - Anomaly Agreement
+            - BSC
     ensclus:
         id: 4
         name: ensclus
@@ -112,6 +142,10 @@ diagnostics:
         info_file: ensclus/ensclus.yml
         image_file: diagnosticsdata/ensclus/ensclus_thumbnail.png
         github_issue:
+        tags:
+          - Sub-ensemble selection
+          - WP5
+          - ISAC-CNR
     combine_indices:
         id: 12
         name: combine_indices
@@ -121,6 +155,9 @@ diagnostics:
         info_file: combine_indices/combine_indices.yml
         image_file: diagnosticsdata/combine_indices/single_and_multi_model_indices_thumbnail.png
         github_issue:
+        tags:
+          - WP6
+          - BSC
     annularmodes:
         id: 2
         name: annularmodes
@@ -130,6 +167,9 @@ diagnostics:
         info_file: annularmodes/annularmodes.yml
         image_file: diagnosticsdata/annularmodes/annularmodes_thumbnail.png
         github_issue:
+        tags:
+          - WP6
+          - ISAC-CNR
     teleconnections:
         id: 5
         name: teleconnections
@@ -139,6 +179,9 @@ diagnostics:
         info_file: teleconnections/teleconnections.yml
         image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
         github_issue:
+        tags:
+          - WP6
+          - ISAC-CNR
     hyint_timeseries:
         id: 10
         name: hyint_timeseries
@@ -148,6 +191,9 @@ diagnostics:
         info_file: hyint_timeseries/hyint_timeseries.yml
         image_file: diagnosticsdata/hyint_timeseries/hyint_timeseries_thumbnail.png
         github_issue:
+        tags:
+          - WP6
+          - ISAC-CNR
     correlations:
         id: 11
         name: correlations
@@ -157,6 +203,9 @@ diagnostics:
         info_file: correlations/correlations.yml
         image_file: ./diagnosticsdata/correlations/climexp_correlations.png
         github_issue:
+        tags:
+          - WP6
+          - KNMI
     surge_height_estimator:
         id: 122
         name: surge_height
@@ -166,6 +215,10 @@ diagnostics:
         info_file: surge_height/surge_height.yml
         image_file: diagnosticsdata/surge_height/surge_height_thumbnail.png
         github_issue:
+        tags:
+          - WP7
+          - Storm
+          - KNMI
     drought_indicator:
         id: 17
         name: drought_indicator
@@ -173,8 +226,23 @@ diagnostics:
         sub_title:
         info_text: The drought indicator calculates diagnostics for meteorological drought.
         info_file: drought_indicator/drought_indicator.yml
-        image_file: ./diagnosticsdata/drought_indicator/dryfreq.png
+        image_file: https://portal.c3s-magic.eu/data/recipes/recipe_spi_20181108_132957/plots/diagnostic1/script1/histplot.png
         github_issue:
+        tags:
+          - WP7
+          - SMHI
+    consecdrydays:
+        id: 171
+        name: consecdrydays
+        title: Calculating number of dry days
+        sub_title:
+        info_text: Calculating number of dry days.
+        info_file: consecdrydays/consecdrydays.yml
+        image_file: diagnosticsdata/consecdrydays/drydays.png
+        github_issue:
+        tags:
+          - WP7
+          - SMHI
     shapefile_selection:
         id: 16
         name: shapefile_selection
@@ -184,6 +252,9 @@ diagnostics:
         info_file: shapefile_selection/shapefile_selection.yml
         image_file: diagnosticsdata/shapefile_selection/Basin_grid2.png
         github_issue:
+        tags:
+          - WP7
+          - SMHI
     rainfarm:
         id: 3
         name: rainfarm
@@ -193,6 +264,9 @@ diagnostics:
         info_file: rainfarm/rainfarm.yml
         image_file: diagnosticsdata/rainfarm/rainfarm_thumbnail.png
         github_issue:
+        tags:
+          - WP7
+          - ISAC-CNR
     extreme_spells:
         id: 14
         name: extreme_spells
@@ -202,6 +276,10 @@ diagnostics:
         info_file: extreme_spells/extreme_spells.yml
         image_file: diagnosticsdata/extreme_spells/extreme_spells_energy.png
         github_issue:
+        tags:
+          - WP7
+          - BSC
+          - Extreme Spells
     dtr:
         id: 13
         name: dtr
@@ -211,11 +289,18 @@ diagnostics:
         info_file: dtr/dtr.yml
         image_file: diagnosticsdata/dtr/diurnal_temperature_variation.png
         github_issue:
+        tags:
+          - WP7
+          - BSC
     risk_index:
         id: 101
         name: risk_index
-        title: Insurance risk indices
+        title: Combined Climate Extreme Index
         sub_title:
         info_text: Tool to compute extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
         info_file: risk_index/risk_index.yml
         image_file: diagnosticsdata/risk_index/insurance_risk_indices.png
+        tags:
+          - WP7
+          - BSC
+          - ACI
