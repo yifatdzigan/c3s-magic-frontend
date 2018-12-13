@@ -2,7 +2,7 @@ diagnostics:
     python_example:
         id: 20
         name: python_example
-        title: Python demonstrator
+        title: ESMValTool climate data pre-processor
         sub_title:
         info_text: Demonstration of ESMValtool backend
         info_file: python_example/python_example.yml
