@@ -10,6 +10,8 @@ import WPSWranglerDemo from './EnsembleAnomalyPlots';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import MarkdownFromFile from '../../containers/MarkdownFromFile';
 
+import ClickableImage from '../../components/ClickableImage';
+
 import { Row, Col, Button, Alert, Container } from 'reactstrap';
 import Icon from 'react-fa';
 import RenderWPSProcessOutput from '../../components/WPS/RenderWPSProcessOutput';
@@ -193,8 +195,8 @@ class DiagnosticPage extends Component {
         showSlider = true;
       }      
       return (
-        <div id='pagetop' className='MainViewport'>
-          <Row>
+        <div className='MainViewport'>
+          <Row id='pagetop'>
             <Col sm={{ size: 8, offset: 2 }}>
 
               <div className='text vspace2em text-center'>
@@ -255,7 +257,7 @@ class DiagnosticPage extends Component {
                   <div className='text'>
                     {this.isEnabled('image_file')
                       ? <div key={'image_file'} className='vspace2em'>
-                        <img width='100%' src={this.renderPageElement('image_file')} />
+                        <ClickableImage src={this.renderPageElement('image_file')} />
                       </div>
                       : null
                     }
@@ -305,7 +307,6 @@ class DiagnosticPage extends Component {
                           showstyleselector: this.getElementProperty('enableADAGUC', 'styleselector')
                         }}
                         parsedLayerCallback={(layer, webMapJSInstance) => {
-                          // console.log('webMapJSInstance', webMapJSInstance);
                           layer.zoomToLayer();
                           webMapJSInstance.draw();
                         }}
@@ -316,7 +317,7 @@ class DiagnosticPage extends Component {
                   { this.isEnabled('media') && !Array.isArray(this.renderPageElement('media'))
                     ? [
                       <div key={'media'} className='vspace2em'>
-                        <img width='100%' src={this.renderPageElement('media')} />
+                        <ClickableImage src={this.renderPageElement('media')} />
                       </div>
                     ]
                     : null
@@ -324,7 +325,7 @@ class DiagnosticPage extends Component {
                   { this.isEnabled('media') && Array.isArray(this.renderPageElement('media'))
                     ? this.renderPageElement('media').map((imageUrl, key) => {
                       return (<div key={'media' + key} className='vspace2em'>
-                        <img width='100%' src={imageUrl} />
+                        <ClickableImage src={imageUrl} />
                       </div>);
                     })
                     : null
