@@ -1,0 +1,1 @@
+Calculate consecutive dry days.
