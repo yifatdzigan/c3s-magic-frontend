@@ -33,7 +33,7 @@ settings:
   - Number of ensemble members: 2
   - Number of subdivisions: 8
 title: RainFARM stochastic downscaling
-youtube: P3BCRFipKO0
+#youtube: P3BCRFipKO0
 image_file: diagnosticsdata/rainfarm/rainfarm_thumbnail.png
 
 
