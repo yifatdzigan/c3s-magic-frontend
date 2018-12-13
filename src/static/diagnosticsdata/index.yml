@@ -30,6 +30,7 @@ diagnostics:
           - CVDP
           - WP4
           - DLR
+          - Process
     perfmetrics:
         id: 18
         name: perfmetrics
@@ -83,6 +84,7 @@ diagnostics:
           - WP4
           - zmnam
           - ISAC-CNR
+          - Process
     # a.k.a weather regimes https://github.com/nmanuben/ESMValTool/blob/bsc_wp5/esmvaltool/namelists/namelist_weather_regime.yml
     modes_of_variability:
         id: 112
@@ -146,6 +148,7 @@ diagnostics:
           - Sub-ensemble selection
           - WP5
           - ISAC-CNR
+          - Process
     combine_indices:
         id: 12
         name: combine_indices
@@ -243,6 +246,7 @@ diagnostics:
         tags:
           - WP7
           - SMHI
+          - Process
     shapefile_selection:
         id: 16
         name: shapefile_selection
@@ -257,6 +261,7 @@ diagnostics:
           - SMHI
           - Catchment
           - Hydrology
+          - Process
     rainfarm:
         id: 3
         name: rainfarm
