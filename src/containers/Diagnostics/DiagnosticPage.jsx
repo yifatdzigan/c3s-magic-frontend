@@ -167,8 +167,8 @@ class DiagnosticPage extends Component {
     );
   }
 
-  downloadData () {
-    var win = window.open(this.renderPageElement('data'), '_blank');
+  downloadData (url) {
+    var win = window.open(url, '_blank');
     win.focus();
   }
 
@@ -187,13 +187,17 @@ class DiagnosticPage extends Component {
     this.context.router.push(this.renderPageElement('process'));
   }
 
+  getBasename (str) {
+    return str.split(/[\\/]/).pop();
+  }
+
   render () {
     if (this.state.readSuccess) {
       let showSlider = false;
       let elProp = this.getElementProperty('enableEnsembleAnomalyPlots', 'map_slider');
       if (elProp.length >= 0 && elProp[0].map_slider === true) {
         showSlider = true;
-      }      
+      }
       return (
         <div className='MainViewport'>
           <Row id='pagetop'>
@@ -238,7 +242,18 @@ class DiagnosticPage extends Component {
                   <div className='vspace2em'>
                     { this.renderPageElement('provenance') && (<Button color='primary' onClick={this.viewProvenance}>&nbsp;View provenance</Button>) }
                     &nbsp;
-                    { this.renderPageElement('data') && (<Button color='primary' onClick={this.downloadData}><Icon name='download' />&nbsp;Download data</Button>) }
+                    { /*  data consisting of single entry */ }
+                    { (this.renderPageElement('data') && !Array.isArray(this.renderPageElement('data'))) && (
+                      <Button color='primary' onClick={() => { this.downloadData(this.renderPageElement('data')); }}>
+                        <Icon name='download' />&nbsp;Download data</Button>) }
+
+                    { /*  data consisting of multiple entries */ }
+                    { (this.renderPageElement('data') && Array.isArray(this.renderPageElement('data'))) && (
+                      <div><h2 style={{ color: '#921A36' }}>Datasets</h2><ul>{this.renderPageElement('data').map((dataUrl, key) => {
+                        return (<li key={key}><Button color='primary' onClick={() => { this.downloadData(dataUrl); }}>
+                          <Icon name='download' />&nbsp;{this.getBasename(dataUrl)}</Button></li>);
+                      })}</ul></div>)
+                    }
                   </div>
 
                 </Col>
