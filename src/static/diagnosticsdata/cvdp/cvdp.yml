@@ -27,7 +27,7 @@ settings:
   - Start year: 2000
   - End year: 2002
 title: Climate Variability Diagnostics
-process: /calculate/recipe_cvdp
+process: /calculate/cvdp
 data: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708.zip
 #provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg
 image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png

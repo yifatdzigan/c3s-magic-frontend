@@ -70,7 +70,6 @@ diagnostics:
         tags:
           - WP4
           - ISAC-CNR
-          - ensclus
     stratosphere-troposphere:
         id: 9
         name: stratosphere-troposphere
