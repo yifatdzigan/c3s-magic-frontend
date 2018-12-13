@@ -8,7 +8,7 @@ authors:
 contact:
   - Geert Jan van Oldenborgh gert.jan.van.olderenborgh@knmi.nl
   - Maarten Plieger maarten.plieger@knmi.nl
-description_short: Climate explorer allows the user to correlate a time series with other user-defined time series, as well as with system-defined time series of the same temporal resolution
+description_short: Correlates a time series with other user-defined time series, as well as with system-defined time series of the same temporal resolution
 description_file: 'correlations/description.md'
 #media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
 enableADAGUC:
@@ -19,6 +19,10 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 reference:
+ - text: "Van Oldenborgh, Geert Jan, and Gerrit Burgers. Searching for decadal variations in ENSO precipitation teleconnections, Geophysical Research Letters 32.15 (2005)."
+   url: "https://doi.org/10.1029/2005GL023110" 
+ - text: "Trouet, Valerie, and Geert Jan Van Oldenborgh. KNMI Climate Explorer: a web-based research tool for high-resolution paleoclimatology, Tree-Ring Research 69, no. 1 (2013): 3-13."
+   url: "https://doi.org/10.3959/1536-1098-69.1.3"
 settings:
   - NetCDF field: cru_ts3.22.1901.2013.pre.dat.nc
   - NetCDF timeseries: nino3.nc
@@ -28,7 +32,9 @@ settings:
   - Time frequency: mon
 title: KNMI Climate explorer Correlate a field with a timeseries
 image_file: ./diagnosticsdata/correlations/climexp_correlations.png
-
+#data: 
+#provenance: <point to svg file>
+#process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
 
 
 
