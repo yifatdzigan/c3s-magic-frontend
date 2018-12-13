@@ -8,7 +8,7 @@ authors:
   - Javier Vegas.
 contact:
   - Nicolau Manubens @nmanuben
-description_short: The generic multi-model metric calculates the ensemble mean anomaly, and the ensemble variance and agreement. The results are shown as maps and time series.
+description_short: For the generic multi-model diagnostic the ensemble mean anomaly, and the ensemble variance and agreement are calculated. The results are shown as maps and time series.
 description_file: 'anomaly_agreement/description.md'
 report_file: report.pdf
 media:
