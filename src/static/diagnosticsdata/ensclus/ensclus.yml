@@ -37,7 +37,7 @@ settings:
   - Number of PCs (numpcs): 'no' 
 youtube: MktvzcvflL8
 image_file: diagnosticsdata/ensclus/ensclus_thumbnail.png
-#data: 
+data: https://portal.c3s-magic.eu/data/recipes/recipe_ensclus_20181211.zip
 #provenance: <point to svg file>
 process: /calculate/ensclus
 
