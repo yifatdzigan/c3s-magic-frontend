@@ -35,7 +35,7 @@ settings:
   - Number of clusters: 6
   - Percentage of variance explained by PCs (perc): 80
   - Number of PCs (numpcs): 'no' 
-youtube: MktvzcvflL8
+#youtube: MktvzcvflL8
 image_file: diagnosticsdata/ensclus/ensclus_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_ensclus_20181211.zip
 #provenance: <point to svg file>
