@@ -7,7 +7,7 @@
     "test": "echo \"ok\"",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --port 3000"
+    "start": "webpack-dev-server --mode development --port 3000 --disable-host-check"
   },
   "repository": {
     "type": "git",

@@ -2,17 +2,18 @@
 import React, { PureComponent } from 'react';
 import ADAGUCViewerComponent from '../../components/ADAGUCViewerComponent';
 import PropTypes from 'prop-types';
-import { Button, FormGroup, Form, Label, Row, Col } from 'reactstrap';
+import { Label, Row, Col } from 'reactstrap';
 import ReactSlider from 'react-slider';
 import { withRouter } from 'react-router';
 import { debounce } from 'throttle-debounce';
+import { WMJSLayer } from 'adaguc-webmapjs';
 
 class WPSWranglerDemo extends PureComponent {
   constructor (props) {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      showSlider: this.props.showSlider ,
+      showSlider: this.props.showSlider,
       dropdownOpen: false,
       dropDownValue: 'add',
       inputa: 10,
@@ -91,6 +92,14 @@ class WPSWranglerDemo extends PureComponent {
           stacklayers
           height={'50vh'}
           wmsurl={this.props.map_data}
+          baselayers={[new WMJSLayer({
+            service: config.backendHost + '/wms?dataset=baselayers&',
+            name:'overlay',
+            format:'image/png',
+            title:'World country borders',
+            enabled: true,
+            keepOnTop:true
+          })]}
           parsedLayerCallback={
             (wmjsLayer, webMapJSInstance) => {
               this.webMapJSInstance = webMapJSInstance;
