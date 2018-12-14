@@ -29,9 +29,9 @@ class StormSurge extends Component {
     currentOptions.set = true;
     let layers = this.webMapJSInstance.getLayers();
     for (let j = 0; j < layers.length; j++) {
-      let gfiUrl = this.webMapJSInstance.getWMSGetFeatureInfoRequestURL(layers[j], options.x, options.y);  
+      let gfiUrl = this.webMapJSInstance.getWMSGetFeatureInfoRequestURL(layers[j], options.x, options.y);
       let urlObject = composeUrlObjectFromURL(gfiUrl);
-      let GFIURL = urlObject.location + '?';   
+      let GFIURL = urlObject.location + '?';
       for (let key in urlObject.kvp) {
         let value = urlObject.kvp[key];
         if (key === 'info_format') value = 'application/json';
@@ -79,9 +79,11 @@ class StormSurge extends Component {
     const wmsurl = 'https://portal.c3s-magic.eu/backend/adagucserver?source=c3smagic%2FWP7-surge_estimator%2Fsurge_heights_EC-Earth_s01r14_20131201-20140131.nc&';
     return (<div className='MainViewport'>
       <Row>
+      <Col xs='12'>
         <h1>Surge height estimator</h1>
         Estimates surge levels along the coast of the North Sea from anomalies in mean sea level pressure and wind components.
         Please check the <a href='/#/diagnostics/surge_height'>surge height diagnostic</a>.
+      </Col>
       </Row>
       <Row>
         <Col xs='7'>

@@ -39,7 +39,7 @@ image_file: diagnosticsdata/rainfarm/rainfarm_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_rainfarm_20181211.zip
 #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
-process: /calculate/rainfarm
+#process: /calculate/rainfarm
 
 
 
