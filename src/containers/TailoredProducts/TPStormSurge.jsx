@@ -10,7 +10,8 @@ class StormSurge extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      timeseriesData: []
+      timeseriesData: [],
+      station: 'Click on a station to get a timeseries'
     };
     this.webMapJSInstance = null;
     this.pointOnMapClicked = this.pointOnMapClicked.bind(this);
@@ -21,6 +22,7 @@ class StormSurge extends Component {
       console.error('no wmjsinstance');
       return;
     }
+    this.setState({ timeseriesDataFromAdaguc: null, timeseriesData: [], station: 'Getting timeseries...' });
     let currentOptions = {};
     currentOptions.x = options.x;
     currentOptions.y = options.y;
@@ -46,10 +48,17 @@ class StormSurge extends Component {
         responseType: 'json'
       }).then(src => {
         let newData = [];
+        let station = '';
         for (let key in src.data[0].data) {
           newData.push({ time:key, value: src.data[0].data[key] });
         }
-        this.setState({ timeseriesDataFromAdaguc: src.data, timeseriesData: newData });
+        try {
+          station = 'Timeseries for station ' + src.data[1].data[Object.keys(src.data[1].data)[0]];
+        } catch (e) {
+          station = 'No station info available';
+          console.error(e);
+        }
+        this.setState({ timeseriesDataFromAdaguc: src.data, timeseriesData: newData, station: station });
       }).catch((e) => {
         console.error(e);
       });
@@ -75,28 +84,32 @@ class StormSurge extends Component {
         Please check the <a href='/#/diagnostics/surge_height'>surge height diagnostic</a>.
       </Row>
       <Row>
-        <Col xs='8'>
+        <Col xs='7'>
           <ADAGUCViewerComponent
             height={'50vh'}
             layers={[]}
             wmsurl={wmsurl}
             controls={{
-              showprojectionbutton: true,
-              showlayerselector: true,
+              showprojectionbutton: false,
+              showlayerselector: false,
               showtimeselector: true,
-              showstyleselector: true
+              showstyleselector: false
             }}
             parsedLayerCallback={(layer, webMapJSInstance) => {
               layer.zoomToLayer();
               webMapJSInstance.draw();
               this.webMapJSInstance = webMapJSInstance;
+              webMapJSInstance.enableInlineGetFeatureInfo(false);
               webMapJSInstance.addListener('mouseclicked', this.pointOnMapClicked, true);
             }}
           />
         </Col>
-        <Col xs='4' style={{ height:'35vh' }} >
-          <div style={{ height:'300px', display: 'block' }} />
-          <RechartsComponent data={this.state.timeseriesData} type={'custom'} getCustom={this.getLineChart}/>
+        <Col xs='5' style={{ height:'35vh' }} >
+          <div style={{ height:'200px', display: 'block' }} />
+          <span>
+            <b>{ this.state.station }</b>
+          </span>
+          <RechartsComponent data={this.state.timeseriesData} type={'custom'} getCustom={this.getLineChart} />
         </Col>
       </Row>
     </div>);
