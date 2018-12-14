@@ -79,11 +79,11 @@ class StormSurge extends Component {
     const wmsurl = 'https://portal.c3s-magic.eu/backend/adagucserver?source=c3smagic%2FWP7-surge_estimator%2Fsurge_heights_EC-Earth_s01r14_20131201-20140131.nc&';
     return (<div className='MainViewport'>
       <Row>
-      <Col xs='12'>
-        <h1>Surge height estimator</h1>
-        Estimates surge levels along the coast of the North Sea from anomalies in mean sea level pressure and wind components.
-        Please check the <a href='/#/diagnostics/surge_height'>surge height diagnostic</a>.
-      </Col>
+        <Col xs='12' style={{ padding:'0 30px 30px 0' }}>
+          <h1>Surge height estimator</h1>
+          Estimates surge levels along the coast of the North Sea from anomalies in mean sea level pressure and wind components.
+          Please check the <a href='/#/diagnostics/surge_height'>surge height diagnostic</a>.
+        </Col>
       </Row>
       <Row>
         <Col xs='7'>
@@ -107,7 +107,7 @@ class StormSurge extends Component {
           />
         </Col>
         <Col xs='5' style={{ height:'35vh' }} >
-          <div style={{ height:'200px', display: 'block' }} />
+          <div style={{ height:'70px', display: 'block' }} />
           <span>
             <b>{ this.state.station }</b>
           </span>
