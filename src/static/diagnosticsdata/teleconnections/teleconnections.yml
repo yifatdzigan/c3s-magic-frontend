@@ -21,12 +21,12 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 references:
-  - text: "Dawson, A., T. N. Palmer, and S. Corti 2012, “Simulating regime structures in weather and climate prediction models”, Geophys. Res. Lett., 39, L21805, doi:10.1029/2012GL053284; 
-    url: "https://doi.org/10.1029/2012GL053284"
-  - text: Straus D. M., S. Corti and F. Molteni, 2007: Circulation Regimes: Chaotic Variability vs. SST-Forced Predictability. Journal of Climate, 20, 2251-2272; 
-    url: "http://dx.doi.org/10.1175/JCLI4070.1"
-  - text: Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo."
-    url: "http://doi.org/10.5281/zenodo.1237838"
+  - text: "Dawson, A., T. N. Palmer, and S. Corti 2012, “Simulating regime structures in weather and climate prediction models”, Geophys. Res. Lett., 39, L21805, doi:10.1029/2012GL053284;"
+    url: https://doi.org/10.1029/2012GL053284
+  - text: "Straus D. M., S. Corti and F. Molteni, 2007: Circulation Regimes: Chaotic Variability vs. SST-Forced Predictability. Journal of Climate, 20, 2251-2272;"
+    url: http://dx.doi.org/10.1175/JCLI4070.1
+  - text: "Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo."
+    url: http://doi.org/10.5281/zenodo.1237838
 settings:
   - Models:
       - MPI-ESM-P
