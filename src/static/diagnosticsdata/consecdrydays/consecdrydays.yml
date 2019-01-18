@@ -5,7 +5,7 @@ authors:
   - Peter Berg
 contact:
   - Peter Berg @PeterBergSMHI
-description_short: Calculating number of dry days
+description_short: Calculates the longest period of consecutive dry days (days with at least 'prlim' mm/day) in the provided time series, as well as the number of periods of at least 'frlim' consecutive dry days. 'prlim' and 'frlim' are provided by the user.
 description_file: 'consecdrydays/description.md'
 report_file:
 #images in description.md
@@ -16,6 +16,8 @@ settings:
   - Start year: 2001
   - End year: 2002
   - Experiment: Historical
+  - plim: 1
+  - frlim: 5
 title: Consecutive Dry Days
 enableADAGUC:
   - data_url: https://portal.c3s-magic.eu/backend/adagucserver?source=c3smagic%2Frecipes%2Frecipe_conseqdrydays_20181213_145259%2Fwork%2Fdiagnostic1%2Fscript1%2FCMIP5_bcc-csm1-1-m_day_historical_r1i1p1_T2Ms_pr_2001-2002_drymax.nc&&service=WMS&request=GetCapabilities
