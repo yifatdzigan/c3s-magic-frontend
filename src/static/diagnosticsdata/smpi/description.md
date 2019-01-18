@@ -1,4 +1,5 @@
-This tool allows the user to compute the single performance metric index.
+This diagnostic calculates the Single Model Performance Index (SMPI) following Reichler and Kim (2008). The SMPI (called "I2") is based on the comparison of several different climate variables (atmospheric, surface and oceanic) between climate model simulations and observations or reanalyses, and it focuses on the validation of the time-mean state of climate. 
 
-    Description of user-changeable settings on webpage':'
-    Selection of models 
+For I2 to be determined, the differences between the climatological mean of each model variable and observations at each of the available data grid points are calculated, and scaled to the interannual variance from the validating observations. This interannual variability is determined by performing a bootstrapping method (random selection with replacement) for the creation of a large synthetic ensemble of observational climatologies. 
+
+The results are then scaled to the average error from a reference ensemble of models, and in a final step the mean over all climate variables and one model is calculated. The plot shows the I2 values for each model (orange circles) and the multi-model mean (black circle), with the diameter of each circle representing the range of I2 values encompassed by the 5th and 95th percentiles of the bootstrap ensemble. The I2 values vary around one, with values greater than one for underperforming models, and values less than one for more accurate models.' 

@@ -10,9 +10,11 @@ contact:
   - Paolo Davini p.davini@isac.cnr.it
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
-description_short: This tool calculates mid-latitude 1D and 2D blocking indices
+description_short: The Blocking metrics shows the mid-latitude 1D and 2D blocking indices.
 description_file: 'blocking/description.md'
-#media: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360'
+media: 
+  - diagnosticsdata/blocking/TM90_MPI-ESM-P_r1_1951_2005_DJF.png
+  - diagnosticsdata/blocking/BlockEvents_MPI-ESM-P_r1_1951_2005_DJF.png
 enableADAGUC:
   - data_url: https://portal.c3s-magic.eu/backend/wms?DATASET=WP4-6_ISAC_miles
   - projectionbutton: true
@@ -21,7 +23,12 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 references:
-- "Davini, P., C. Cagnazzo, S. Gualdi, and A. Navarra, 2012: Bidimensional Diagnostics, Variability, and Trends of Northern Hemisphere Blocking. J. Climate, 25, 6496–6509, doi: 10.1175/JCLI-D-12-00032.1; Tibaldi S, Molteni F. 1990. On the operational predictability of blocking. Tellus A 42(3): 343–365, doi:10.1034/j.1600- 0870.1990.t01- 2- 00003.x; Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo. http://doi.org/10.5281/zenodo.1237838"
+- text: "Davini, P., C. Cagnazzo, S. Gualdi, and A. Navarra, 2012: Bidimensional Diagnostics, Variability, and Trends of Northern Hemisphere Blocking. J. Climate, 25, 6496–6509, doi: 10.1175/JCLI-D-12-00032.1" 
+  url: "https://doi.org/10.1175/JCLI-D-12-00032.1"
+- text: "Tibaldi S, Molteni F. 1990. On the operational predictability of blocking. Tellus A 42(3): 343–365, doi:10.1034/j.1600- 0870.1990.t01- 2- 00003.x" 
+  url: "https://doi.org/10.1034/j.1600-0870.1990.t01-2-00003.x"
+- text: "Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo. http://doi.org/10.5281/zenodo.1237838"
+  url: "http://doi.org/10.5281/zenodo.1237838"
 settings:
   - Models:
       - MPI-ESM-P
@@ -31,7 +38,10 @@ settings:
   - Season: DJF
   - Reference dataset: ERA-INTERIM
 title: Blocking metrics and indices
-
+#provenance: <point to svg file>
+#process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
+data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip
+image_file: diagnosticsdata/blocking/blocking_thumbnail.png
 
 
 

@@ -257,7 +257,8 @@ class TPCatchmentSelector extends Component {
       <h1>Hydrology - catchment selector</h1>
       <Row>
         <div className='text' style={{ paddingBottom:'15px' }}>
-        Impact models often require extraction of gridded data for irregular regions, typically defined by a shapefile. This is a tool for extracting gridded data for a user defined shapefile, here exemplified by three river catchments in Europe. The tool identifies grid points within the shapefile, or a representative point when no grid points are included, and outputs timeseries for selected variables. Here, a typical selection of daily temperature and precipitation time series are extracted as area averages for the shapefile. Outputs are available for download as either NetCDF or Excel format. <span>{this.state.featureIndex}</span>
+        Impact models often require extraction of gridded data for irregular regions, typically defined by a shapefile. This is a tool for extracting gridded data for a user defined shapefile, here exemplified by three river catchments in Europe. The tool identifies grid points within the shapefile, or a representative point when no grid points are included, and outputs timeseries for selected variables. Here, a typical selection of daily temperature and precipitation time series are extracted as area averages for the shapefile. Outputs are available for download as either NetCDF or Excel format.
+          &nbsp;Please check the <a href='/#/diagnostics/shapefile_selection'>shapefile selection metric</a> to calculate.
         </div>
       </Row>
       <Row>

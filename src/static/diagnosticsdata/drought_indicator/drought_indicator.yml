@@ -9,10 +9,14 @@ description_short: The drought indicator calculates the SPI and SPEI diagnostics
 description_file: 'drought_indicator/description.md'
 report_file:
 #images in description.md
-#media: diagnosticsdata/drought_indicator/dryfreq.png
+media:
+  - https://portal.c3s-magic.eu/data/recipes/recipe_spi_20181108_132957/plots/diagnostic1/script1/histplot.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_spei_20181108_160736/plots/diagnostic1/script1/histplot.png
 references:
-  - "McKee, T. B., Doesken, N. J., & Kleist, J. (1993). The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology (Vol. 17, No. 22, pp. 179-183). Boston, MA: American Meteorological Society."
-  - "Vicente-Serrano, S. M., Beguería, S., & López-Moreno, J. I. (2010). A multiscalar drought index sensitive to global warming: the standardized precipitation evapotranspiration index. Journal of climate, 23(7), 1696-1718."
+  - text: "McKee, T. B., Doesken, N. J., & Kleist, J. (1993). The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology (Vol. 17, No. 22, pp. 179-183). Boston, MA: American Meteorological Society."
+    url: "https://www.researchgate.net/profile/Patrick_Keys/post/Which_are_the_drought_indices_based_on_precipitation_and_temperature/attachment/59d652b379197b80779aadb6/AS:513526097166336@1499445570190/download/r_MCKEE_1993_Relationship+of+drought+Standardized+Precipitation+Index+SPI.pdf"
+  - text: "Vicente-Serrano, S. M., Beguería, S., & López-Moreno, J. I. (2010). A multiscalar drought index sensitive to global warming: the standardized precipitation evapotranspiration index. Journal of climate, 23(7), 1696-1718."
+    url: "https://doi.org/10.1175/2009JCLI2909.1"
 settings:
   - Models:
       - ACCESS1-0
@@ -37,4 +41,10 @@ settings:
       - SPI
       - SPEI
 title: Drought indicator
-youtube:
+# youtube:
+image_file: https://portal.c3s-magic.eu/data/recipes/recipe_spi_20181108_132957/plots/diagnostic1/script1/histplot.png
+data:
+  - https://portal.c3s-magic.eu/data/recipes/recipe_spei_20181108_160736.zip
+  - https://portal.c3s-magic.eu/data/recipes/recipe_spi_20181108_132957.zip
+ #provenance: <point to svg file>
+#process: <link to process, e.g.: process: /calculate/python_demonstrator_metric

@@ -596,6 +596,7 @@ class WPSDemoCopernicus extends Component {
               : '' }
               {compute ?
               <div>
+                { Object.keys(runningProcesses).length > 0 && <h2>Your processing results:</h2> }
                 <RenderProcesses runningProcesses={runningProcesses} resultClickCallback={this.resultClickCallback} dispatch={dispatch} actions={actions} />
               </div>
               : ''}

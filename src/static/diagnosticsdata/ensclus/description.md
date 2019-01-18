@@ -8,29 +8,3 @@ Other outputs refer to the statistics of clustering: in the PC space, the minimu
 
 ![example output](diagnosticsdata/ensclus/JJApranomaly_hist-min-small.png "Example output")
 
-### Description of user-changeable settings on webpage
-
-1) Selection of models
-
-2) Selection of variable name, as in the NetCDF data file.
-
-3) Selection of total number of ensemble members.
-
-4) Selection of season (DJF, DJFM, NDJFM, JJA so far).
-
-5) Selection of area (EAT, PNA, NH so far).
-
-6) Selection of kind of simulations (historical, scenario).
-
-7) Start year
-
-8) End year
-
-9) Selection of number of clusters.
-
-10) Selection of value to investigate (??th_percentile, mean, maximum, standard deviation, trend).
-
-11) Percentage of variance explained by PCs (perc)
-
-12) Number of PCs (numpcs): if perc is set, the number of PCs is computed according to the required percentage of variance explained by PCs (in the example, the number of PCs that explains al least the 80% of variance is 15: the first 15 PCs explain exactly the 80.73% of variance)
-

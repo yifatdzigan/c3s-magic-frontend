@@ -1,0 +1,33 @@
+---
+name: Climate Variability Diagnostics
+partner: DLR
+authors:
+  - Adam S. Phillips
+  - Clara Deser
+  - John Fasullo
+contact:
+  - Bjoern Broetz
+description_short: The Climate Variability Diagnostics Package (CVDP) developed by NCAR's Climate Analysis Section is an analysis tool that documents the major modes of climate variability in models and observations.
+description_file: 'cvdp/description.md'
+media:
+  - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/psl.mean.ann.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/pr.mean.ann.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/pr.za.ann.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/nam.ann.png
+  - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/nao.ann.png
+references:
+  - text: "Phillips, A. S., C. Deser, and J. Fasullo, 2014: A New Tool for Evaluating Modes of Variability in Climate Models. EOS, 95, 453-455, doi: 10.1002/2014EO490002."
+    url: https://doi.org/10.1002/2014EO490002
+settings:
+  - Models:
+      - MPI-ESM-LR
+  - Experiment: Historical
+  - Ensemble: "r1i1p1"
+  - Start year: 2000
+  - End year: 2002
+title: Climate Variability Diagnostics
+process: /calculate/cvdp
+data: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708.zip
+#provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181207_141601/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg
+image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png

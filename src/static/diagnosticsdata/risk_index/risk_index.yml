@@ -9,7 +9,7 @@ authors:
 contact:
   - Alasdair Hunter @alasdairhunter
   - Nicolau Manubens @nmanuben
-description_short: Tool to compute extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
+description_short: Metrics showing extreme indices relevant to the insurance industry (heat, cold, wind, flood and drought indices).
 description_file: 'risk_index/description.md'
 report_file: report.pdf
 media: diagnosticsdata/risk_index/insurance_risk_indices.png
@@ -21,7 +21,8 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 references:
-  - "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."
+  - text: "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."
+  - url: "https://doi.org/10.1016/j.envsoft.2018.01.018"
 settings:
   - Models:
     - IPSL
@@ -32,3 +33,9 @@ settings:
   - Experiment: RCP8.5
 title: Insurance risk indices
 youtube:
+info_file: risk_index/risk_index.yml
+image_file: diagnosticsdata/risk_index/insurance_risk_indices.png
+data: https://portal.c3s-magic.eu/data/recipes/recipe_insurance_risk_index_wp7_20181211_134658/plots/risk_index/main/tasmin_t10p_risk_insurance_index_IPSL-CM5A-LR_2020_2040_1971_2000.nc
+#provenance: <point to svg file>
+#process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
+

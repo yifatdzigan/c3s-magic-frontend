@@ -1,0 +1,44 @@
+---
+name: ESMValTool Backend
+partner: DLR
+authors:
+  - Veronika Eyring
+  - Bouwe Andela
+  - Bjoern Broetz
+  - Niels Drost
+  - Nikolay Koldunov
+  - Axel Lauer
+  - Benjamin Mueller
+  - Valeriu Predoi
+  - Mattia Righi
+  - Javier Vegas-Regidor
+contact:
+  - Veronika Eyring (PI; DLR, Germany - veronika.eyring@dlr.de)
+description_short: Showcases how ESMValTool climate data pre-processor can be used to regrid, select area, aggregate, provenance tracking and many more features.
+description_file: python_example/description.md
+#report_file: report.pdf
+media: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304/plots/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean.png
+enableADAGUC:
+  - data_url: https://portal.c3s-magic.eu/backend/adagucserver?source=c3smagic%2Frecipes%2Frecipe_python_20181213_151304%2Fwork%2Fdiagnostic1%2Fscript1%2FMultiModelMean_T3M_ta_2000-2002_mean.nc&&service=WMS&request=GetCapabilities
+  - projectionbutton: true
+  - layerselector: true
+  - timeselector: true
+  - styleselector: true
+  - layers: []
+references:
+  - text: "Righi, M., Eyring, V., Klinger, C., Frank, F., Gottschaldt, K.-D., Jöckel, P., and Cionni, I.: Quantitative evaluation of oone and selected climate parameters in a set of EMAC simulations, Geosci. Model Dev., 8, 733, doi: 10.5194/gmd-8-733-2015 (2015)."
+    url: "https://doi.org/10.5194/gmd-8-733-2015"
+settings:
+  - Models:
+      - GFDL-ESM2G
+      - MPI-ESM-MR
+      - bcc-csm1-1
+  - Experiment: Historical
+  - Ensemble: "r1i1p1"
+  - Start year: 2000
+  - End year: 2002
+title: ESMValTool climate data pre-processor
+process: /calculate/esmvaltool_preprocessor
+data: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304.zip
+provenance: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304/work/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean_provenance.svg
+image_file: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304/plots/diagnostic1/script1/MultiModelMean_T3M_ta_2000-2002_mean.png

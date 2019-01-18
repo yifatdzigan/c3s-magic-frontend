@@ -47,6 +47,19 @@ html {
   color: #5F5F5F;
 }
 
+.diagnosticsCol img {
+  width:100%;
+}
+
+.ClickableImage img {
+  width:100%;
+  cursor: pointer;
+}
+
+.ClickableImageModal {
+  display:block;
+  max-width: inherit;
+}
 
 html,
 body {
@@ -709,4 +722,15 @@ div.hpace2em {
 
 .card-img{
   height: 100%;
+  margin:auto;
+  display:block;
+}
+
+.col{
+  margin: auto;
+}
+
+.container .row {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }

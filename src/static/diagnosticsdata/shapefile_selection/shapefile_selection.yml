@@ -6,7 +6,7 @@ authors:
   - Anna Kuenz
 contact:
   - Peter Berg @PeterBergSMHI
-description_short: Tool for selecting gridded data within a user defined polygon shapefile and outputting as NetCDF or Excel file.
+description_short: Metric showing selected gridded data within a user defined polygon shapefile and outputting as NetCDF or Excel file.
 description_file: 'shapefile_selection/description.md'
 report_file:
 #media: diagnosticsdata/shapefile_selection/Basin_grid2.png
@@ -18,13 +18,17 @@ settings:
   - Start year: 1990
   - End year: 1999
   - Experiment: CMIP5
-  - shppath: 'Elbe.shp'
+  - shppath: 'Thames.shp'
   - wgtmet: 'mean_inside'
   - write_xlsx: true
   - write_netcdf: true
   - evalplot: false
 title: Shapefile selection
 youtube:
-
+image_file: diagnosticsdata/shapefile_selection/OBS_CRU_reanaly_1_T2Ms_tas_1990-1994.png
 ###
 # An example output is presented in the form of the figure 'Basin_grid2.png' with the caption: 'Example of grid point selection for a river basin of the hydrosheds data base. Red points are all grid points of the model, blue points are within the two largest polygons, and the orange polygon defaults to the grid point nearest to a representative point inside the polygon, which is most often the centroid point.'
+#data: 
+#provenance: <point to svg file>
+#process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
+process: /calculate/shape_select
