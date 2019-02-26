@@ -8,8 +8,7 @@ them on selected CMIP5 model output and visualize results in the browser or down
 
 #### Whom is this portal for?
 This portal provides both metrics on model fidelity, targeted to climate scientists and meteorologists, as well as 
-tailored products for different economic sectors. Possible users thereof include hydrologists, 
-insurance advisers or agricultural planners.
+tailored products for different economic sectors, including insurances, agriculture, water management and sustainable energy.
 <br><br>
 
 #### Usage
