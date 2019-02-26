@@ -9,9 +9,9 @@ If you would like to change anything, please do a pull-request to the master bra
 git clone https://github.com/c3s-magic/c3s-magic-frontend.git
 cd c3s-magic-frontend
 docker build -t c3s-magic-frontend .
-docker run -e CONTROLLER="https://portal.c3s-magic.eu/" -p 8081:5000 -it c3s-magic-frontend
+docker run -e CONTROLLER="https://portal.c3s-magic.eu/" -p 8080:80 -it c3s-magic-frontend
 ```
-Visit http://localhost:8081/
+Visit http://localhost:8080/
 
 
 
