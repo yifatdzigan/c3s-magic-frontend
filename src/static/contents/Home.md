@@ -12,14 +12,14 @@ tailored products for different economic sectors, including insurances, agricult
 <br><br>
 
 #### Usage
-* To see pre-calculated quality metrics of global circulation models, go to the [Metrics & Diagnostics](https://portal.c3s-magic.eu/#/diagnostics) section and 
-navigate to the selected tool.
-* For cross-domain derived diagnostics, go to the [Tailored Products](https://portal.c3s-magic.eu/#/tailoredproducts) page en select your diagnostic of choice.
-* To re-evaluate a metric with customized parameters on a selected dataset, sign in with your BADC/CEDA OpenID and navigate to the metric of 
-choice. Then click the *Calculate metric* button and enter the metric configuration dialog. Choose the configuration parameters 
-and input dataset of the assessment tool, and the resulting job will be scheduled onto the JASMIN cluster and listed in 
+* To see pre-calculated quality indices of global circulation models, go to the [Metrics & Diagnostics](https://portal.c3s-magic.eu/#/diagnostics) section and 
+navigate to your metric of choice.
+* For cross-domain derived diagnostics, go to the [Tailored Products](https://portal.c3s-magic.eu/#/tailoredproducts) page en select a diagnostic.
+* To re-evaluate a metric with customized parameters on a CMIP5 dataset, sign in with your BADC/CEDA OpenID and navigate to the metric of 
+choice. Then click the *Calculate metric* button to enter the metric configuration page. Choose the configuration parameters 
+and select the input dataset of the assessment tool, and the resulting processing job will be scheduled onto the JASMIN cluster and listed in 
 your job list. Your job list and basket can be found on the [Calculate](https://portal.c3s-magic.eu/#/calculate/) page.
-* For a simple exploration and visualization of CMIP-compliant GCM output, go to [Explore Data](https://portal.c3s-magic.eu/#/esgfsearch) and start browsing.
+* For a simple exploration and visualization or download of CMIP-compliant GCM output, go to [Explore Data](https://portal.c3s-magic.eu/#/esgfsearch) and start browsing.
 <br><br>
 
 #### About
