@@ -4,7 +4,7 @@ diagnostics:
         name: python_example
         title: ESMValTool climate data pre-processor
         sub_title:
-        info_text: Showcases how ESMValTool climate data pre-processor can be used to regrid, select area, aggregate, provenance tracking and many more features.
+        info_text: Showcases how ESMValTool climate data pre-processor can be used to regrid, select area, aggregate, perform provenance tracking and many more features.
         info_file: python_example/python_example.yml
         image_file: ./diagnosticsdata/python_example/CMIP5_bcc-csm1-1_Amon_historical_r1i1p1_T3M_ta_2001-2002_mean_r_2i936e.png
         github_issue:
@@ -22,7 +22,7 @@ diagnostics:
         name: cvdp
         title: Climate Variability Diagnostics
         sub_title:
-        info_text: The Climate Variability Diagnostics Package (CVDP) developed by NCAR's Climate Analysis Section is an analysis tool that documents the major modes of climate variability in models and observations.
+        info_text: The NCAR Climate Variability Package (CVDP) is a stand alone ncl based application for the analysis of climate variability in models and observations. The CVDP package is also distributed with the ESMValTool.
         info_file: cvdp/cvdp.yml
         image_file: https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png
         github_issue:
@@ -36,7 +36,7 @@ diagnostics:
         name: perfmetrics
         title: Performance metrics
         sub_title:
-        info_text: Performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected "Essential Climate Variables"
+        info_text: Diagnostic providing a standard recipe for the calculation of performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected Essential Climate Variables.
         info_file: perfmetrics/perfmetrics.yml
         image_file: ./diagnosticsdata/perfmetrics/Portait.png
         github_issue:
@@ -63,7 +63,7 @@ diagnostics:
         name: blocking
         title: Blocking metrics and indices
         sub_title:
-        info_text: Metrics showing mid-latitude 1D and 2D blocking indices
+        info_text: The Blocking metrics shows the mid-latitude 1D and 2D blocking indices. It is one of the recepies in the MId-Latitude Evaluation System (MiLES) that was developed to support analysis of mid-latitude weather patterns in terms of atmospheric blocking, teleconnections and weather regimes. 
         info_file: blocking/blocking.yml
         image_file: diagnosticsdata/blocking/blocking_thumbnail.png
         github_issue:
@@ -75,7 +75,7 @@ diagnostics:
         name: stratosphere-troposphere
         title: Stratosphere-troposphere coupling
         sub_title:
-        info_text: Diagnostics showing EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the stratosphere-troposphere coupling
+        info_text: Metric to evaluate the representation of the Northern Annular Mode (NAM) in climate simulations, using reanalysis datasets as reference.
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
         image_file: diagnosticsdata/stratosphere-troposphere/stratosphere-troposphere_thumbnail.png
         github_issue:
@@ -139,7 +139,7 @@ diagnostics:
         name: ensclus
         title: EnsClus - Ensemble Clustering
         sub_title:
-        info_text: Diagnostic based on the k-means algorithm, with the aim to group ensemble members according to similar characteristics and to select the most representative member for each cluster
+        info_text: Cluster analysis tool based on the k-means algorithm for ensembles of climate model simulations. EnsClus group ensemble members according to similar characteristics and select the most representative member for each cluster.
         info_file: ensclus/ensclus.yml
         image_file: diagnosticsdata/ensclus/ensclus_thumbnail.png
         github_issue:
