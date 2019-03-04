@@ -10,7 +10,7 @@ contact:
   - Paolo Davini p.davini@isac.cnr.it
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
-description_short: Diagnostic providing teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
+description_short: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
 description_file: 'teleconnections/description.md'
 #media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
 enableADAGUC:
@@ -21,17 +21,17 @@ enableADAGUC:
   - styleselector: true
   - layers: []
 references:
-  - text: "Dawson, A., T. N. Palmer, and S. Corti 2012, “Simulating regime structures in weather and climate prediction models”, Geophys. Res. Lett., 39, L21805, doi:10.1029/2012GL053284;"
-    url: https://doi.org/10.1029/2012GL053284
-  - text: "Straus D. M., S. Corti and F. Molteni, 2007: Circulation Regimes: Chaotic Variability vs. SST-Forced Predictability. Journal of Climate, 20, 2251-2272;"
-    url: http://dx.doi.org/10.1175/JCLI4070.1
-  - text: "Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo."
-    url: http://doi.org/10.5281/zenodo.1237838
+- text: "Davini, P., C. Cagnazzo, S. Gualdi, and A. Navarra, 2012: Bidimensional Diagnostics, Variability, and Trends of Northern Hemisphere Blocking. J. Climate, 25, 6496–6509, doi: 10.1175/JCLI-D-12-00032.1" 
+  url: "https://doi.org/10.1175/JCLI-D-12-00032.1"
+- text: "Tibaldi S, Molteni F. 1990. On the operational predictability of blocking. Tellus A 42(3): 343–365, doi:10.1034/j.1600- 0870.1990.t01- 2- 00003.x" 
+  url: "https://doi.org/10.1034/j.1600-0870.1990.t01-2-00003.x"
+- text: "Paolo Davini. (2018, April 30). MiLES - Mid Latitude Evaluation System (Version v0.51). Zenodo. http://doi.org/10.5281/zenodo.1237838"
+  url: "http://doi.org/10.5281/zenodo.1237838"
 settings:
   - Models:
-      - MPI-ESM-P
-  - Start year: 1950
-  - End year: 2005
+      - EC-EARTH
+  - Start year: 1980
+  - End year: 1989
   - Experiment: Historical
   - Season: DJF
   - Reference dataset: ERA-INTERIM
