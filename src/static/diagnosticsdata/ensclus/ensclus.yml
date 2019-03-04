@@ -1,7 +1,7 @@
 ---
 id: 1
 name: EnsClus - Ensemble Clustering
-title: Ensemble Clustering - a cluster analysis tool based on the k-means algorithm for ensembles of climate model simulations
+title: Ensemble Clustering - a cluster analysis tool for climate model simulations
 partner: ISAC-CNR
 authors:
   - Irene Mavilia (ISAC-CNR, Italy)
