@@ -33,11 +33,13 @@ settings:
       - GFDL-ESM2G
       - MPI-ESM-LR
       - bcc-csm1-1
+  - Variable: Temperature (3 dimensional)
   - Experiment: Historical
   - Ensemble: "r1i1p1"
   - Start year: 2000
   - End year: 2002
   - Reference dataset: ERA-INTERIM
+  - Additional dataset: NCEP
 title: ESMValTool climate data pre-processor
 process: /calculate/esmvaltool_preprocessor
 data: https://portal.c3s-magic.eu/data/recipes/recipe_python_20181213_151304.zip

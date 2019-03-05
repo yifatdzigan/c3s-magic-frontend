@@ -5,10 +5,10 @@ authors:
   - Nicolau Manubens
   - Alasdair Hunter
   - Louis-Philippe Caron
-  - Javier Vegas.
+  - Javier Vegas
 contact:
   - Nicolau Manubens @nmanuben
-description_short: For the 'generic multi-model diagnostic' the ensemble mean anomaly, and the ensemble variance and agreement are calculated. The results are shown as maps and time series.
+description_short: Diagnostic to calculate the ensemble's mean anomaly, variance and agreement. The results are shown as maps and time series.
 description_file: 'anomaly_agreement/description.md'
 report_file: report.pdf
 media:
@@ -18,10 +18,12 @@ enableEnsembleAnomalyPlots:
   - data_url: 'https://portal.c3s-magic.eu/backend/wms?DATASET=anomaly_agreement_stippling&'
   - map_slider: true
 references:
-  - text: "Manubens, Nicolau, Louis-Philippe Caron, Alasdair Hunter, Omar Bellprat, Eleftheria Exarchou, Neven S. Fučkar, Javier Garcia-Serrano et al. \"An R package for climate forecast verification.\" Environmental Modelling & Software 103 (2018): 29-42."
-    url: "https://doi.org/10.1016/j.envsoft.2018.01.018"
+  - text: "Hagedorn, R., Doblas-Reyes, F. J., Palmer, T. N., Nat E H Ag E D O R N, R. E., & Pa, T. N. (2005). The rationale behind the success of multi-model ensembles in seasonal forecasting-I. Basic concept, 57, doi: 10.3402/tellusa.v57i3.14657"
+    url: "https://doi.org/10.3402/tellusa.v57i3.14657"
+  - text: "Weigel, A. P., Liniger, M. A., & Appenzeller, C. (2008). Can multi-model combination really enhance the prediction skill of probabilistic ensemble forecasts? Quarterly Journal of the Royal Meteorological Society, 134(630), 241–260, doi: 10.1002/qj.210"
+    url: "https://doi.org/10.1002/qj.210"
 settings:
-  - Variable: "June mean air temperature at 2 m"
+  - Variable: "June mean air temperature at 2M"
   - Models:
       - MIROC5
       - MPI-ESM-MR
@@ -30,7 +32,7 @@ settings:
   - Historical simulations: "1961-1990"
   - Projection: "2006 - 2099"
   - Experiment: "RCP2.6"
-  - Area: "-20 to 60 East - 0 to 70 North"
+  - Agreement threshold: 80
   - Running mean period: "5 years"
 title: Generic multi-model products
 #youtube: CNWA4j2okcc

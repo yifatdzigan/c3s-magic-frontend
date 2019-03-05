@@ -26,6 +26,7 @@ references:
 settings:
   - Models:
       - MPI-ESM-LR
+  - Variable: "Mean air temperature at 2M"
   - Experiment: Historical
   - Ensemble: "r1i1p1"
   - Start year: 2000

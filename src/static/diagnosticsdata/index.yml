@@ -90,7 +90,7 @@ diagnostics:
         name: modes_of_variability
         title: Modes of variability
         sub_title:
-        info_text: Diagnostic to compute the RMSE between the observed and modelled patterns of variability.
+        info_text: Diagnostic to compute the Root Mean Square Error (RMSE) between the observed and modelled patterns of variability.
         info_file: modes_of_variability/modes_of_variability.yml
         image_file: ./diagnosticsdata/modes_of_variability/era_interim_1990-01-2010-01_clusters.png
         github_issue:
@@ -114,7 +114,7 @@ diagnostics:
         name: quantilebias
         title: Precipitation quantile bias
         sub_title:
-        info_text: Diagnostic showing the quantile bias between models and a reference dataset
+        info_text: Diagnostic showing the quantile bias between models and a reference dataset.
         info_file: quantilebias/quantilebias.yml
         image_file: diagnosticsdata/quantilebias/quantilebias_thumbnail.png
         github_issue:
@@ -126,7 +126,7 @@ diagnostics:
         name: anomaly_agreement
         title: Generic multi-model products
         sub_title:
-        info_text: Diagnostic showing the ensemble mean anomaly and the ensemble variance and agreement and plot the results as maps and time series.
+        info_text: Diagnostic to calculate the ensemble's mean anomaly, variance and agreement. The results are shown as maps and time series.
         info_file: anomaly_agreement/anomaly_agreement.yml
         image_file: diagnosticsdata/anomaly_agreement/bsc_anomaly_timeseries.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
@@ -151,7 +151,7 @@ diagnostics:
     combine_indices:
         id: 12
         name: combine_indices
-        title: Single and multi-model indices based on area averages
+        title: Single and multi-model indices based on area averages.
         sub_title:
         info_text: Diagnostic showing single and multi model indices based on area averages.
         info_file: combine_indices/combine_indices.yml
@@ -165,7 +165,7 @@ diagnostics:
         name: annularmodes
         title: Indices of annular modes
         sub_title:
-        info_text: This metric shows the EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode (NAM) pattern at the surface and in the stratosphere. The outputs are a plot of the monthly timeseries of the zonal mean NAM index and a frequency histogram of the daily values of the NAM index.
+        info_text: Metric to show the EOF/PC decomposition of the zonal mean geopotential height field to provide an evaluation of the Northern Annular Mode (NAM) pattern at the surface and in the stratosphere. Outputs are a plot of the monthly time series of the zonal mean NAM index and a frequency histogram of the daily values of the NAM index.
         info_file: annularmodes/annularmodes.yml
         image_file: diagnosticsdata/annularmodes/annularmodes_thumbnail.png
         github_issue:
@@ -177,7 +177,7 @@ diagnostics:
         name: teleconnections
         title: Teleconnection indices and weather regimes
         sub_title:
-        info_text: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes
+        info_text: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes.
         info_file: teleconnections/teleconnections.yml
         image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
         github_issue:
@@ -189,7 +189,7 @@ diagnostics:
         name: hyint_timeseries
         title: HyInt and ETCCDI trends and significance testing
         sub_title:
-        info_text: Metric showing timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices
+        info_text: Metric showing timeseries and trends for the HyInt hydroclimatic indices and ETCCDI extremes indices.
         info_file: hyint_timeseries/hyint_timeseries.yml
         image_file: diagnosticsdata/hyint_timeseries/hyint_timeseries_thumbnail.png
         github_issue:
