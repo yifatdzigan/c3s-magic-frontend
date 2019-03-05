@@ -30,9 +30,13 @@ references:
 settings:
   - Models:
       - EC-EARTH
+  - Variable: Geopotential height
   - Start year: 1980
   - End year: 1989
+  - Longitude: "0-360"
+  - Latitude: "1.25-90"
   - Experiment: Historical
+  - Ensemble: "r2i1p1"
   - Season: DJF
   - Reference dataset: ERA-INTERIM
   - Teleconnection index: NAO

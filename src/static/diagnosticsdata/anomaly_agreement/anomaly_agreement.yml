@@ -23,11 +23,11 @@ references:
   - text: "Weigel, A. P., Liniger, M. A., & Appenzeller, C. (2008). Can multi-model combination really enhance the prediction skill of probabilistic ensemble forecasts? Quarterly Journal of the Royal Meteorological Society, 134(630), 241–260, doi: 10.1002/qj.210"
     url: "https://doi.org/10.1002/qj.210"
 settings:
-  - Variable: "June mean air temperature at 2M"
   - Models:
       - MIROC5
       - MPI-ESM-MR
       - bcc-csm1-1
+  - Variable: "June mean air temperature at 2M"
   - Ensemble: "r1i1p1"
   - Historical simulations: "1961-1990"
   - Projection: "2006 - 2099"

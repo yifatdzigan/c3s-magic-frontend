@@ -34,11 +34,14 @@ references:
 settings:
   - Models:
       - EC-EARTH
+  - Variable: Geopotential height
   - Start year: 1980
   - End year: 1989
   - Experiment: Historical
+  - Ensamble: r2i1p1
   - Season: DJF
   - Reference dataset: ERA-INTERIM
+  - Latitude: "60N (fixed)"
 title: Blocking metrics and indices
 #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric

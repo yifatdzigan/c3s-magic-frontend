@@ -29,9 +29,13 @@ Vol. 294, Issue 5542, pp. 581-584: https://doi.org/10.1126/science.1063315"
 settings:
   - Models:
       - MPI-ESM-MR
+  - Variable: Geopotential height
   - Experiment: Historical
+  - Ensamble: "r1i1p1"
   - Start year: 1979
   - End year: 2008
+  - Longitude: "0-360"
+  - Latitude: "20-90"
 title: Stratosphere-troposphere coupling
 image_file: diagnosticsdata/stratosphere-troposphere/stratosphere-troposphere_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_eof_20181211.zip

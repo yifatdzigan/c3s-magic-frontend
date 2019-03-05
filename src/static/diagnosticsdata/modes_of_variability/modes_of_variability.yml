@@ -35,17 +35,19 @@ references:
 settings:
   - Region: North Atlantic
   - Model: bcc-csm1-1
+  - Longitude: "0-360"
+  - Latitude: "30-90"
   - Ensemble: "r1i1p1"
   - Variables: "Daily pressure at sea level (psl) at 2M"
+  - Experiment: "rcp8.5" 
+#  - Area: "0 to 360 lon 30 to 90 lat"
+  - historical simulation: "1971 - 2000"
+  - projection : "2020 - 2050"
+  - frequency: 'JAN'
   - ncenters: 3
   - cluster_method: "kmeans"
   - EOFS: "TRUE"
   - detrend_order: 2
-  - Experiment: "rcp8.5" 
-  - Area: "0 to 360 lon 30 to 90 lat"
-  - historical simulation: "1971 - 2000"
-  - projection : "2020 - 2050"
-  - frequency: 'JAN'
 title: Modes of variability
 youtube:
 data: https://portal.c3s-magic.eu/data/recipes/recipe_modes_of_variability_wp4_20181210_114624.zip
