@@ -311,6 +311,18 @@ diagnostics:
         tags:
           - WP7
           - BSC
+    capacity_factor:
+        id: 133
+        name: capacity_factor
+        title: Capacity factor of wind power 
+        sub_title: Ratio of average estimated power to theoretical maximum power
+        info_text: Metric showing the wind capacity factor to estimate energy supply.
+        info_file: capacity_factor/capacity_factor.yml
+        image_file: diagnosticsdata/capacity_factor/diurnal_temperature_variation.png
+        github_issue:
+        tags:
+          - WP7    
+          - BSC
     risk_index:
         id: 101
         name: risk_index
