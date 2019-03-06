@@ -25,11 +25,13 @@ references:
   - url: "https://doi.org/10.1016/j.envsoft.2018.01.018"
 settings:
   - Models:
-    - IPSL
-  - start_historical: '1960-01-01'
-  - end_historical: '1991-12-31'
-  - start_projection: '2020-01-01'
-  - end_projection: '2040-12-31'
+    - IPSL-CM5A-MR
+  - Variable: "Near surface wind speed"
+  - Ensemble: "r1i1p1"
+  - Longitude: "-60 - 40"
+  - Latitude: "30 - 70"
+  - Historical simulations: "1971-2000"
+  - Projection: "2020 - 2040"
   - Experiment: RCP8.5
 title: Insurance risk indices
 youtube:
