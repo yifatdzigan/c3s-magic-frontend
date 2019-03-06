@@ -301,9 +301,10 @@ diagnostics:
     dtr:
         id: 13
         name: dtr
-        title: Diurnal Temperature Variation (DTR) Indicator and Wind Capacity Factor
+        title: Diurnal Temperature Variation (DTR) Indicator 
         sub_title:
-        info_text: Metric showing the diurnal temperature indicator to estimate energy demand, and the wind capacity factor to estimate energy supply.
+        info_text: Metric showing the diurnal temperature indicator to estimate energy demand
+#        , and the wind capacity factor to estimate energy supply.
         info_file: dtr/dtr.yml
         image_file: diagnosticsdata/dtr/diurnal_temperature_variation.png
         github_issue:
