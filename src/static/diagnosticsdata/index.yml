@@ -153,7 +153,7 @@ diagnostics:
         name: combine_indices
         title: Single and multi-model indices based on area averages.
         sub_title:
-        info_text: Diagnostic showing single and multi model indices based on area averages.
+        info_text: Metric showning single and multi model indices based on area averages.
         info_file: combine_indices/combine_indices.yml
         image_file: diagnosticsdata/combine_indices/single_and_multi_model_indices_thumbnail.png
         github_issue:
@@ -175,11 +175,23 @@ diagnostics:
     teleconnections:
         id: 5
         name: teleconnections
-        title: Teleconnection indices and weather regimes
+        title: Teleconnection indices
         sub_title:
-        info_text: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions) and North-Atlantic Weather Regimes.
+        info_text: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions).
         info_file: teleconnections/teleconnections.yml
         image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
+        github_issue:
+        tags:
+          - WP6
+          - ISAC-CNR
+    weather_regimes:
+        id: 55
+        name: weather_regimes
+        title: Weather regimes
+        sub_title:
+        info_text: Recipe for computing and plotting weather regimes using the MiLES (Mid-Latitude Evaluation System) package.
+        info_file: weather_regimes/weather_regimes.yml
+        image_file: diagnosticsdata/weather_regimes/weather_regimes_thumbnail.png
         github_issue:
         tags:
           - WP6

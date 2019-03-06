@@ -39,7 +39,7 @@ settings:
       - CNRM-CM5
       - CNRM-CM5-2
       - CSIRO-Mk3-6-0
-      - EC-EARTH(ensemble-r6i1p1)
+      - EC-EARTH
       - FGOALS-g2
       - FGOALS-s2
       - FIO-ESM
@@ -47,9 +47,9 @@ settings:
       - GFDL-CM3
       - GFDL-ESM2G
       - GFDL-ESM2M
-      - GISS-E2-H(ensemble-r1i1p2)
+      - GISS-E2-H
       - GISS-E2-H-CC
-      - GISS-E2-R(ensemble-r1i1p2)
+      - GISS-E2-R
       - HadCM3
       - HadGEM2-AO
       - HadGEM2-CC
@@ -110,7 +110,7 @@ settings:
 #  - Reference dataset for Specific humidity: AIRS
 #  - Reference dataset for Sea-surface (skin) temperature: ESACCI-SST
 #  - Reference dataset for Total column ozone: ESACCI-OZONE
-  - Note: "Some varaibles were calculated using part of the models and different start/end dates or different ensembles"
+  - Note: "Some varaibles were calculated using part of the models and different start/end dates and some models are using different ensembles (r6i1p1 for EC-EARTH and r1i1p2 for GISS-E2-H/GISS-E2-R)"
 title: Performance metrics for essential climate parameters
 youtube:
 #chart: 'https://portal.c3s-magic.eu/backend/adagucopendap/recipe_flato13ipcc_20180825_091035%2Fwork%2Ffig09-42a%2Ffig09-42a%2Fch09_fig09-42a.nc'

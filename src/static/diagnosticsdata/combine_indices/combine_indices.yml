@@ -18,11 +18,18 @@ references:
     url: "https://doi.org/10.1016/j.envsoft.2018.01.018"
 settings:
   - Models:
-      - IPSL
-  - start_projection: "2020-01-01"
-  - end_projection: "2040-12-31"
-  - Indices: tx90p, tx10p, cdd, rx5day, wx
-  - Weights: NULL
+      - MPI-ESM-MR
+  - Variable: Percipitation
+  - Start year: 1950
+  - End year: 2005
+  - Longitude: "200-300"
+  - Latitude: "20-70"
+  - Experiment: Historical
+  - Ensemble: "r1i1p1"
+#  - Indices: tx90p, tx10p, cdd, rx5day, wx
+  - Weights: "equal"
+  - Running mean: 5
+  - Months: "1 - 3"
   - Experiment: RCP8.5
 title: Single and multi-model indices based on area averages
 # youtube: 
