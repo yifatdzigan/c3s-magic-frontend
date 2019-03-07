@@ -1,5 +1,5 @@
 ---
-name: Insurance risk indices (Tailored product - Insurance)
+name: Combined Climate Extreme Index
 partner: BSC
 authors:
   - Louis-Philippe Caron
@@ -51,7 +51,7 @@ settings:
   - Historical simulations: "1971-2000"
   - Projection: "2020 - 2040"
   - Experiment: RCP8.5
-title: Insurance risk indices
+title: Combined Climate Extreme Index
 youtube:
 info_file: risk_index/risk_index.yml
 image_file: diagnosticsdata/risk_index/insurance_risk_indices.png

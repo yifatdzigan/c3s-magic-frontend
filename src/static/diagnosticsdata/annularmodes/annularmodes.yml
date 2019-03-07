@@ -1,6 +1,6 @@
 ---
 id: 1
-name: Indices of annular modes
+name: Indices of Annular Modes
 partner: ISAC-CNR
 authors:
   - Federico Serva (ISAC-CNR, Italy)
@@ -37,7 +37,7 @@ settings:
   - Start year: 1979
   - End year: 2008
   - Latitude (pre-processor): "20 - 90"
-title: Indices of annular modes
+title: Indices of Annular Modes
 image_file: diagnosticsdata/annularmodes/annularmodes_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_modes_of_variability_wp4_20181210_114624.zip
 #provenance: <point to svg file>

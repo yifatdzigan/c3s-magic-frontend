@@ -1,6 +1,6 @@
 ---
 id: 55
-name: Weather regimes
+name: Weather Regimes
 partner: ISAC-CNR
 authors:
   - Paolo Davini (ISAC-CNR, Italy)
@@ -38,7 +38,7 @@ settings:
   - Season: DJF
   - Reference dataset: ERA-INTERIM
   - Number of clusters: 4
-title: Weather regimes
+title: Weather Regimes
 image_file: diagnosticsdata/weather_regimes/weather_regimes_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip
 #provenance: <point to svg file>

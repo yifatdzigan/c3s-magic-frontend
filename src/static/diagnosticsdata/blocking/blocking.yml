@@ -1,6 +1,6 @@
 ---
 id: 1
-name: Blocking metrics and indices
+name: Blocking Metrics and Indices
 partner: ISAC-CNR
 authors:
   - Paolo Davini (ISAC-CNR, Italy)
@@ -43,7 +43,7 @@ settings:
   - Season: DJF
   - Reference dataset: ERA-INTERIM
   - Latitude (pre-processor): "1.25 - 90"
-title: Blocking metrics and indices
+title: Blocking Metrics and Indices
 #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip

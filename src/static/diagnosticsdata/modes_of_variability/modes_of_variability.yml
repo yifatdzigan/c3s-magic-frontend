@@ -1,6 +1,6 @@
 ---
 id: 5
-name: Modes of variability
+name: Modes of Variability
 partner: BSC
 authors:
   - Verónica Torralba
@@ -32,10 +32,11 @@ references:
   - text: "Vautard, R., 1990: Multiple weather regimes over the North Atlantic: Analysis of precursors and successors. Monthly weather review, 118 (10), 2056-2081, doi: 10.1175/1520-0493(1990)118<2056:MWROTN>2.0.CO;2"
     url: "https://doi.org/10.1175/1520-0493(1990)118<2056:MWROTN>2.0.CO;2"
   - text: "Yiou, P., K. Goubanova, Z. X. Li, and M. Nogaj, 2008: Weather regime dependence of extreme value statistics for summer temperature and precipitation. Nonlinear Processes in Geophysics, 15 (3), 365-378, doi: 10.5194/npg-15-365-2008"
-    url: ""https://doi.org/10.5194/npg-15-365-2008" 
+    url: "https://doi.org/10.5194/npg-15-365-2008" 
 settings:
   - Model: bcc-csm1-1
-  - Variable: "Daily pressure at sea level (psl) at 2M"
+  - Variable: 
+      - "Daily pressure at sea level (psl) at 2M"
   - Longitude (pre-processor): "0 - 360"
   - Latitude (pre-processor): "30 - 90"
   - Region: "North Atlantic"
@@ -44,12 +45,12 @@ settings:
 #  - Area: "0 to 360 lon 30 to 90 lat"
   - Historical simulation: "1971 - 2000"
   - Projection : "2020 - 2050"
-  - Frequency: 'JAN'
+  - Frequency: JAN
   - ncenters: 3
   - Cluster method: "kmeans"
   - EOFS: "TRUE"
   - Detrend order: 2
-title: Modes of variability
+title: Modes of Variability
 youtube:
 data: https://portal.c3s-magic.eu/data/recipes/recipe_modes_of_variability_wp4_20181210_114624.zip
 image_file: /diagnosticsdata/modes_of_variability/era_interim_1990-01-2010-01_clusters.png

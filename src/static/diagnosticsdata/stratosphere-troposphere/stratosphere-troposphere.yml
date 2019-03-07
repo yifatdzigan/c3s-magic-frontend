@@ -1,6 +1,6 @@
 ---
 id: 1
-name: Stratosphere-troposphere coupling
+name: Stratosphere-Troposphere coupling
 partner: ISAC-CNR
 authors:
   - Federico Serva (ISAC-CNR, Italy)
@@ -38,7 +38,7 @@ settings:
   - End year: 2008
   - Longitude (pre-processor): "0-360"
   - Latitude (pre-processor): "20-90"
-title: Stratosphere-troposphere coupling
+title: Stratosphere-Troposphere coupling
 image_file: diagnosticsdata/stratosphere-troposphere/stratosphere-troposphere_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_eof_20181211.zip
 #provenance: <point to svg file>

@@ -1,6 +1,6 @@
 ---
 id: 1
-name: Teleconnection indices
+name: Teleconnection Indices
 partner: ISAC-CNR
 authors:
   - Paolo Davini (ISAC-CNR, Italy)
@@ -40,7 +40,7 @@ settings:
   - Season: DJF
   - Reference dataset: ERA-INTERIM
   - Teleconnection index: NAO
-title: Teleconnection indices
+title: Teleconnection Indices
 image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip
 #provenance: <point to svg file>

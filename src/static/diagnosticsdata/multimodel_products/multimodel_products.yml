@@ -1,5 +1,6 @@
 ---
-name: Generic multi-model products
+id: 8
+name: Generic Multi-Model Products
 partner: BSC
 authors:
   - Nicolau Manubens
@@ -38,7 +39,7 @@ settings:
   - Agreement threshold: 80
   - Running mean period: "5 years"
   - Time series plot: "single"
-title: Generic multi-model products
+title: Generic Multi-Model Products
 #youtube: CNWA4j2okcc
 data: https://portal.c3s-magic.eu/data/recipes/recipe_multimodel_products_wp5_20181211_133442.zip
 #provenance: <point to svg file>

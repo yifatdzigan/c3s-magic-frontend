@@ -34,7 +34,7 @@ diagnostics:
     perfmetrics:
         id: 18
         name: perfmetrics
-        title: Performance metrics
+        title: Performance Metrics for Essential Climate Parameters
         sub_title:
         info_text: A standard recipe for the calculation of performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected Essential Climate Variables (ECV) plus some additional corresponding diagnostics.
         info_file: perfmetrics/perfmetrics.yml
@@ -61,7 +61,7 @@ diagnostics:
     blocking:
         id: 7
         name: blocking
-        title: Blocking metrics and indices
+        title: Blocking Metrics and Indices
         sub_title:
         info_text: The Blocking metrics shows the mid-latitude 1D and 2D blocking indices. It is one of the recepies in the MId-Latitude Evaluation System (MiLES).
         info_file: blocking/blocking.yml
@@ -73,7 +73,7 @@ diagnostics:
     stratosphere-troposphere:
         id: 9
         name: stratosphere-troposphere
-        title: Stratosphere-troposphere coupling
+        title: Stratosphere-Troposphere coupling
         sub_title:
         info_text: Metric to evaluate the representation of the Northern Annular Mode (NAM) in climate simulations, using reanalysis datasets as reference.
         info_file: stratosphere-troposphere/stratosphere-troposphere.yml
@@ -87,7 +87,7 @@ diagnostics:
     modes_of_variability:
         id: 5
         name: modes_of_variability
-        title: Modes of variability
+        title: Modes of Variability
         sub_title:
         info_text: Diagnostic to compute the Root Mean Square Error (RMSE) between the observed and modelled patterns of variability.
         info_file: modes_of_variability/modes_of_variability.yml
@@ -121,11 +121,11 @@ diagnostics:
           - WP4
           - ISAC-CNR
     multimodel_products:
-        id: 1
+        id: 8
         name: multimodel_products
-        title: Generic multi-model products
+        title: Generic Multi-Model Products
         sub_title:
-        info_text: Diagnostic to calculate the ensemble's mean anomaly, variance and agreement. The results are shown as maps and time series.
+        info_text: Diagnostic to calculate the ensemble mean anomaly, variance and agreement. The results are shown as maps and time series.
         info_file: multimodel_products/multimodel_products.yml
         image_file: diagnosticsdata/multimodel_products/bsc_anomaly_timeseries.png
         github_issue: https://github.com/c3s-magic/c3s-magic-frontend/issues/51
@@ -147,14 +147,14 @@ diagnostics:
           - WP5
           - ISAC-CNR
           - Process
-    combine_indices:
+    combined_indices:
         id: 12
-        name: combine_indices
+        name: combined_indices
         title: Single and multi-model indices based on area averages.
         sub_title:
         info_text: Metric showning single and multi model indices based on area averages.
-        info_file: combine_indices/combine_indices.yml
-        image_file: diagnosticsdata/combine_indices/single_and_multi_model_indices_thumbnail.png
+        info_file: combined_indices/combined_indices.yml
+        image_file: diagnosticsdata/combined_indices/single_and_multi_model_indices_thumbnail.png
         github_issue:
         tags:
           - WP6
@@ -162,7 +162,7 @@ diagnostics:
     annularmodes:
         id: 2
         name: annularmodes
-        title: Indices of annular modes
+        title: Indices of Annular Modes
         sub_title:
         info_text: Metric to show the zonal mean Northern Annular Mode (NAM) to provide an evaluation of the NAM pattern at the surface and in the stratosphere. Outputs are a plot of the monthly timeseries of the zonal mean NAM index and a frequency histogram of the daily values of the NAM index. 
         info_file: annularmodes/annularmodes.yml
@@ -186,7 +186,7 @@ diagnostics:
     weather_regimes:
         id: 55
         name: weather_regimes
-        title: Weather regimes
+        title: Weather Regimes
         sub_title:
         info_text: Recipe for computing and plotting weather regimes using the MiLES (Mid-Latitude Evaluation System) package.
         info_file: weather_regimes/weather_regimes.yml
@@ -287,7 +287,7 @@ diagnostics:
     heatwaves_coldwaves:
         id: 14
         name: heatwaves_coldwaves
-        title: Heatwaves and coldwaves duration
+        title: Heatwaves and Coldwaves duration
         sub_title:
         info_text: Metric showing the duration of heatwaves and coldwaves, to help understand potential changes in energy demand.
         info_file: heatwaves_coldwaves/heatwaves_coldwaves.yml
@@ -296,7 +296,7 @@ diagnostics:
         tags:
           - WP7
           - BSC
-          - Heatwaves and coldwaves
+#          - Heatwaves and coldwaves
     dtr:
         id: 13
         name: dtr
@@ -313,7 +313,7 @@ diagnostics:
     capacity_factor:
         id: 133
         name: capacity_factor
-        title: Capacity factor of wind power 
+        title: Capacity Factor of Wind Power 
         sub_title: Ratio of average estimated power to theoretical maximum power
         info_text: Metric showing the wind capacity factor to estimate energy supply.
         info_file: capacity_factor/capacity_factor.yml
