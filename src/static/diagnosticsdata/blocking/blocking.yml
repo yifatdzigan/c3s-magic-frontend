@@ -10,7 +10,8 @@ contact:
   - Paolo Davini p.davini@isac.cnr.it
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
-description_short: The Blocking metrics shows the mid-latitude 1D and 2D blocking indices. It is one of the recepies in the MId-Latitude Evaluation System (MiLES) that was developed to support analysis of mid-latitude weather patterns in terms of atmospheric blocking, teleconnections and weather regimes. 
+description_short: The Blocking metrics shows the mid-latitude 1D and 2D blocking indices. It is one of the recepies in the MId-Latitude Evaluation System (MiLES).
+#that was developed to support analysis of mid-latitude weather patterns in terms of atmospheric blocking, teleconnections and weather regimes. 
 description_file: 'blocking/description.md'
 media: 
   - diagnosticsdata/blocking/TM90_MPI-ESM-P_r1_1951_2005_DJF.png
@@ -34,14 +35,14 @@ references:
 settings:
   - Models:
       - EC-EARTH
-  - Variable: Geopotential height
+  - Variable: "Geopotential height"
   - Start year: 1980
   - End year: 1989
   - Experiment: Historical
   - Ensamble: r2i1p1
   - Season: DJF
   - Reference dataset: ERA-INTERIM
-  - Latitude: "60N (fixed)"
+  - Latitude (pre-processor): "1.25 - 90"
 title: Blocking metrics and indices
 #provenance: <point to svg file>
 #process: <link to process, e.g.: process: /calculate/python_demonstrator_metric

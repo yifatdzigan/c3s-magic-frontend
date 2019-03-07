@@ -10,7 +10,7 @@ contact:
   - Paolo Davini p.davini@isac.cnr.it
   - Jost von Hardenberg j.vonhardeberg@isac.cnr.it
   - Enrico Arnone e.arnone@isac.cnr.it
-description_short: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions) 
+description_short: Diagnostic that implements the MId-Latitude Evaluation System (MiLES) to provide teleconnection indices (Z500 empirical orthogonal functions). 
 description_file: 'teleconnections/description.md'
 #media: https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=512&h=360
 enableADAGUC:
@@ -30,17 +30,17 @@ references:
 settings:
   - Models:
       - EC-EARTH
-  - Variable: Geopotential height
+  - Variable: "Geopotential height"
   - Start year: 1980
   - End year: 1989
-  - Longitude: "0-360"
-  - Latitude: "1.25-90"
+  - Longitude (pre-processor): "0 - 360"
+  - Latitude (pre-processor): "1.25 - 90"
   - Experiment: Historical
   - Ensemble: "r2i1p1"
   - Season: DJF
   - Reference dataset: ERA-INTERIM
   - Teleconnection index: NAO
-title: Teleconnection indices and weather regimes
+title: Teleconnection indices
 image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip
 #provenance: <point to svg file>

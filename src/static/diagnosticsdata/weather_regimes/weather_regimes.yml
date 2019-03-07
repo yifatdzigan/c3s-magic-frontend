@@ -38,8 +38,8 @@ settings:
   - Season: DJF
   - Reference dataset: ERA-INTERIM
   - Number of clusters: 4
-title: Teleconnection indices and weather regimes
-image_file: diagnosticsdata/teleconnections/teleconnections_thumbnail.png
+title: Weather regimes
+image_file: diagnosticsdata/weather_regimes/weather_regimes_thumbnail.png
 data: https://portal.c3s-magic.eu/data/recipes/recipe_miles_block_20181211.zip
 #provenance: <point to svg file>
 #process: <link to process> 

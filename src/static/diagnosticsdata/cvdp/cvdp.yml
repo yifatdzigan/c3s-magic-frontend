@@ -5,9 +5,10 @@ authors:
   - Adam S. Phillips
   - Clara Deser
   - John Fasullo
+  - Bjoern Broetz
 contact:
   - Bjoern Broetz
-description_short: The NCAR Climate Variability Package (CVDP) is a stand alone ncl based application for the analysis of climate variability in models and observations. The package is also distributed with the ESMValTool.
+description_short: The NCAR Climate Variability Package (CVDP) is a stand alone ncl based application for the analysis of climate variability in models and observations.
 description_file: 'cvdp/description.md'
 media:
   - https://portal.c3s-magic.eu/data/recipes/recipe_cvdp_20181207_142708/work/diagnostic1/cvdp/tas.mean.ann.png

@@ -7,9 +7,8 @@ authors:
   - Mattia Righi
   - Birgit Hassler
 contact:
-  - Veronika Eyring @veyring
   - Mattia Righi @mattiarighi
-description_short: Diagnostic providing a standard recipe for the calculation of performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected Essential Climate Variables plus some additional corresponding diagnostics.
+description_short: A standard recipe for the calculation of performance metrics to quantify the ability of the models to reproduce the climatological mean annual cycle for selected Essential Climate Variables (ECV) plus some additional corresponding diagnostics.
 description_file: 'perfmetrics/description.md'
 report_file:
 media: diagnosticsdata/perfmetrics/Portait.png

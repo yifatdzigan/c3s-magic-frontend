@@ -1,4 +1,4 @@
-Part of the ESMValTool recipe MId-Latitude Evaluation System (MiLES) the teleconnection diagnostic is calculated using daily 500hPa geopotential height data (with data interpolated on a common 2.5x2.5 grid) and provides the following diagnostics':'
+Part of the ESMValTool recipe MId-Latitude Evaluation System (MiLES), the teleconnection diagnostic is calculated using daily 500hPa geopotential height data (with data interpolated on a common 2.5x2.5 grid) and provides the following diagnostics':'
 
 * Z500 Empirical Orthogonal Functions':' 
 
